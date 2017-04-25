@@ -8,11 +8,11 @@ using UnityEngine.UI;
 public class GameManager : NetworkBehaviour {
 
     [SyncVar]
-    private int m_LocalClass = 0;
+    public int m_LocalClass = 0;
 
     public GameObject m_ClassViewerPrefab;
 
-    private GameObject m_LocalClassViewer;
+    public GameObject m_LocalClassViewer;
 
     private List<GameObject> m_ToSpawn;
 
@@ -23,24 +23,8 @@ public class GameManager : NetworkBehaviour {
 
         DontDestroyOnLoad(transform.gameObject);
 
-        GameObject[] p_list = GameObject.FindGameObjectsWithTag("ClassViewer");
 
-        int which = (int)this.netId.Value % 4;
-
-        var viewer = (GameObject)Instantiate(m_ClassViewerPrefab);
-        viewer.transform.SetParent(GameObject.Find("Canvas").transform);
-        viewer.GetComponent<RectTransform>().anchoredPosition = p_list[which].GetComponent<RectTransform>().anchoredPosition;
-
-        viewer.GetComponent<Image>().color = Color.blue;
-
-        m_LocalClassViewer = viewer;
     }
-
-    public override void OnStartServer()
-    {
-        NetworkServer.Spawn(m_LocalClassViewer);
-    }
-
 
 
     public int getLocalClass() {
@@ -55,13 +39,36 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
+
+
     [Command]
     public void CmdSetLocalClass(int playerClass)
     {
         m_LocalClass = playerClass;
         Debug.Log("Class " + m_LocalClass);
 
-        m_LocalClassViewer.GetComponent<ClassShower>().setFlag(m_LocalClass == 0 ? Color.black : m_LocalClass == 1 ? Color.green : m_LocalClass == 2 ? Color.yellow : Color.white);
+        if(m_LocalClassViewer)
+            Destroy(m_LocalClassViewer);
+
+        var viewer = (GameObject)Instantiate(m_ClassViewerPrefab);
+
+
+        m_LocalClassViewer = viewer;
+
+        GameObject[] p_list = GameObject.FindGameObjectsWithTag("ClassViewer");
+        int which = (int)this.netId.Value % 4;
+
+
+        m_LocalClassViewer.transform.position = p_list[which].transform.position;
+
+        m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer = (m_LocalClass == 0 ? Color.black : m_LocalClass == 1 ? Color.green : m_LocalClass == 2 ? Color.yellow : Color.white);
+
+        m_LocalClassViewer.GetComponent<MeshRenderer>().material.color = m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer;
+
+        NetworkServer.Spawn(m_LocalClassViewer);
+
     }
+
+
 
 }

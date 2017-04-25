@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ClassShower : NetworkBehaviour {
 
     [SyncVar]
-    public Color m_LocalClassViewer;
+    public Color m_LocalClassViewer = Color.white;
 
 
     public void setFlag(Color color)
@@ -16,11 +16,15 @@ public class ClassShower : NetworkBehaviour {
 
     }
 
-    [ClientRpc]
-    public void RpcFlagUpdate()
+    public void Update()
     {
-        if(isLocalPlayer)
-            GetComponent<Image>().color = m_LocalClassViewer;
+        RpcSetFlag();
+    }
+
+    [ClientRpc]
+    public void RpcSetFlag()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = m_LocalClassViewer;
     }
 
 }

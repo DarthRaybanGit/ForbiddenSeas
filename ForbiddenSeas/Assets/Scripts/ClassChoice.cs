@@ -5,16 +5,24 @@ using UnityEngine.Networking;
 
 public class ClassChoice : NetworkBehaviour {
 
+    public bool m_pressed = false;
 
     public void chosePlayerClass(int n)
     {
+
+
         if (n < 4)
         {
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("GameManager"))
             {
-                g.GetComponent<GameManager>().setLocalClass(n);
+
+                GameManager gm = g.GetComponent<GameManager>();
+                gm.setLocalClass(n);
+                //gm.m_LocalClassViewer.GetComponent<ClassShower>().RpcSetFlag();
+
             }
         }
+
 
     }
 
