@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
-public class ClassShower : MonoBehaviour {
+public class ClassShower : NetworkBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SyncVar]
+    public Color m_LocalClassViewer;
+
+
+    public void setFlag(Color color)
+    {
+        m_LocalClassViewer = color;
+
+    }
+
+    [ClientRpc]
+    public void RpcFlagUpdate()
+    {
+        if(isLocalPlayer)
+            GetComponent<Image>().color = m_LocalClassViewer;
+    }
+
 }
