@@ -16,14 +16,16 @@ public class ClassChoice : NetworkBehaviour {
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("GameManager"))
             {
 
-                GameManager gm = g.GetComponent<GameManager>();
+                PlayerManager gm = g.GetComponent<PlayerManager>();
                 gm.setLocalClass(n);
                 //gm.m_LocalClassViewer.GetComponent<ClassShower>().RpcSetFlag();
 
             }
         }
-
-
     }
 
+    public void readyToPlay()
+    {
+
+    }
 }

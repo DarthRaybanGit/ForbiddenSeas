@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameManager : NetworkBehaviour {
+public class PlayerManager : NetworkBehaviour {
 
     [SyncVar]
     public int m_LocalClass = 0;
 
     public GameObject m_ClassViewerPrefab;
+    public GameObject m_PlayerPrefab;
 
     public GameObject m_LocalClassViewer;
 
