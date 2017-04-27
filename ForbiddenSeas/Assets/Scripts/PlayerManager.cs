@@ -19,14 +19,13 @@ public class PlayerManager : NetworkBehaviour {
 
     public void Awake()
     {
-        if (GameObject.FindGameObjectsWithTag("GameManager").Length > 1 && isLocalPlayer)
-            Destroy(gameObject);
-
         DontDestroyOnLoad(transform.gameObject);
-
-
     }
 
+    public void Start()
+    {
+        LocalGameManager.Instance.m_LocalPlayer = gameObject;
+    }
 
     public int getLocalClass() {
         return m_LocalClass;

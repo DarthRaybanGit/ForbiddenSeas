@@ -19,13 +19,14 @@ public class OnlineManager : NetworkManager {
             Debug.Log("Player name: " + pc.gameObject.name + " ID: " + pc.gameObject.GetInstanceID());
         }
         Debug.Log("ID: " + playerControllerId);
-        GameObject pg = conn.playerControllers.ToArray()[0].gameObject;
-        RpcNotifyManager(pg);
+        //GameObject pg = conn.playerControllers.ToArray()[0].gameObject;
     }
 
-    [ClientRpc]
-    public void RpcNotifyManager(GameObject g)
-    {
 
+
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+        Debug.Log(ClientScene.localPlayers.Count);
     }
 }
