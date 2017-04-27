@@ -18,6 +18,9 @@ public class ClassShower : NetworkBehaviour {
 
     public void Update()
     {
+        if (!isServer)
+            return;
+
         RpcSetFlag();
     }
 

@@ -3,30 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class OnlineManager : NetworkManager {
+public class OnlineManager : NetworkLobbyManager {
 
-    public override void OnServerConnect(NetworkConnection conn)
+
+    public static OnlineManager s_Singleton;
+
+    public GameObject[] m_playerPlacement;
+
+    void Start()
     {
-        base.OnServerConnect(conn);
-
+        s_Singleton = this;
+        m_playerPlacement = new GameObject[4];
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-    {
-        base.OnServerAddPlayer(conn, playerControllerId);
-        foreach(PlayerController pc in conn.playerControllers)
-        {
-            Debug.Log("Player name: " + pc.gameObject.name + " ID: " + pc.gameObject.GetInstanceID());
-        }
-        Debug.Log("ID: " + playerControllerId);
-        //GameObject pg = conn.playerControllers.ToArray()[0].gameObject;
-    }
-
-
-
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        base.OnClientSceneChanged(conn);
-        Debug.Log(ClientScene.localPlayers.Count);
-    }
 }
