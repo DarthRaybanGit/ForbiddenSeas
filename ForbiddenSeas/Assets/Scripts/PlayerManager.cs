@@ -58,6 +58,22 @@ public class PlayerManager : NetworkBehaviour {
         GameObject[] p_list = GameObject.FindGameObjectsWithTag("ClassViewer");
         int which = (int)this.netId.Value % 4;
 
+        if(OnlineManager.s_Singleton.m_playerPlacement[which])
+            OnlineManager.s_Singleton.m_playerPlacement[which] = m_LocalClassViewer;
+        else
+        {
+            bool finded = false;
+            for (which = 0; which < 4; which++)
+            {
+                if (OnlineManager.s_Singleton.m_playerPlacement[which])
+                {
+                    finded = true;
+                    break;
+                }
+            }
+            if (!finded)
+                return;
+        }
 
         m_LocalClassViewer.transform.position = p_list[which].transform.position;
 
