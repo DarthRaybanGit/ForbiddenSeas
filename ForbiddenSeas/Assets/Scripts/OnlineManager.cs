@@ -19,5 +19,13 @@ public class OnlineManager : NetworkManager {
             Debug.Log("Player name: " + pc.gameObject.name + " ID: " + pc.gameObject.GetInstanceID());
         }
         Debug.Log("ID: " + playerControllerId);
+        GameObject pg = conn.playerControllers.ToArray()[0].gameObject;
+        RpcNotifyManager(pg);
+    }
+
+    [ClientRpc]
+    public void RpcNotifyManager(GameObject g)
+    {
+
     }
 }
