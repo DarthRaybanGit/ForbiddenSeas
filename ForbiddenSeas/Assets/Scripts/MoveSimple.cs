@@ -7,13 +7,17 @@ public class MoveSimple : NetworkBehaviour {
 
     public float speed;
     public float rotSpeed;
+    public Camera cam;
 
 	void Update ()
     {
         if (!isLocalPlayer)
+        {
+            Destroy(cam.GetComponent<AudioListener>());
             return;
+        }
         
-        Vector3 move = Camera.main.transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        Vector3 move = cam.transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * speed;
         transform.position += new Vector3(move.x, 0f, move.z);
         transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed, 0f ));
 	}

@@ -15,6 +15,9 @@ public class FlagshipStatus : NetworkBehaviour
 
     void Start()
     {
+        if (!isLocalPlayer)
+            return;
+        
         switch (shipClass)
         {
             case ShipClass.pirates:
