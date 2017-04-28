@@ -16,4 +16,9 @@ public class OnlineManager : NetworkLobbyManager {
         m_playerPlacement = new GameObject[4];
     }
 
+    public override void OnLobbyServerPlayersReady()
+    {
+        base.OnLobbyServerPlayersReady();
+        Debug.Log("All Ready!");
+    }
 }

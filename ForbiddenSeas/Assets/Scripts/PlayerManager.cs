@@ -14,6 +14,7 @@ public class PlayerManager : NetworkBehaviour {
     public GameObject m_PlayerPrefab;
 
     public GameObject m_LocalClassViewer;
+    public int m_LocalClassViewerIndex = 99;
 
     private List<GameObject> m_ToSpawn;
 
@@ -24,7 +25,10 @@ public class PlayerManager : NetworkBehaviour {
 
     public void Start()
     {
-        LocalGameManager.Instance.m_LocalPlayer = gameObject;
+        if(isLocalPlayer)
+            LocalGameManager.Instance.m_LocalPlayer = gameObject;
+        if(isServer)
+            LocalGameManager.Instance.m_LocalClassViewer = GameObject.FindGameObjectsWithTag("ClassViewer");
     }
 
     public int getLocalClass() {
@@ -35,6 +39,7 @@ public class PlayerManager : NetworkBehaviour {
     {
         if (isLocalPlayer)
         {
+            Debug.Log("Sto chiedendo al server di impostare la mia classe a " + playerClass);
             CmdSetLocalClass(playerClass);
         }
     }
@@ -55,27 +60,39 @@ public class PlayerManager : NetworkBehaviour {
 
         m_LocalClassViewer = viewer;
 
-        GameObject[] p_list = GameObject.FindGameObjectsWithTag("ClassViewer");
+        //m_LocalClassViewer.GetComponent<ClassShower>().m_PlayerOwner = gameObject;
+
+
         int which = (int)this.netId.Value % 4;
 
-        if(OnlineManager.s_Singleton.m_playerPlacement[which] == null)
-            OnlineManager.s_Singleton.m_playerPlacement[which] = m_LocalClassViewer;
+        if (m_LocalClassViewerIndex != 99)
+        {
+            which = m_LocalClassViewerIndex;
+        }
         else
         {
-            bool finded = false;
-            for (which = 0; which < 4; which++)
+            if (OnlineManager.s_Singleton.m_playerPlacement[which] == null)
+                OnlineManager.s_Singleton.m_playerPlacement[which] = m_LocalClassViewer;
+            else
             {
-                if (OnlineManager.s_Singleton.m_playerPlacement[which] == null)
+                bool finded = false;
+                for (which = 0; which < 4; which++)
                 {
-                    finded = true;
-                    break;
+                    if (OnlineManager.s_Singleton.m_playerPlacement[which] == null)
+                    {
+                        finded = true;
+                        break;
+                    }
                 }
+                if (!finded)
+                    return;
             }
-            if (!finded)
-                return;
         }
 
-        m_LocalClassViewer.transform.position = p_list[which].transform.position;
+        m_LocalClassViewer.transform.position = LocalGameManager.Instance.m_LocalClassViewer[which].transform.position;
+
+        if(m_LocalClassViewerIndex == 99)
+            m_LocalClassViewerIndex = which;
 
         m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer = (m_LocalClass == 0 ? Color.black : m_LocalClass == 1 ? Color.green : m_LocalClass == 2 ? Color.yellow : Color.white);
 

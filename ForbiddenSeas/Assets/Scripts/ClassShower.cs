@@ -9,6 +9,8 @@ public class ClassShower : NetworkBehaviour {
     [SyncVar]
     public Color m_LocalClassViewer = Color.white;
 
+    public GameObject m_PlayerOwner;
+
 
     public void setFlag(Color color)
     {

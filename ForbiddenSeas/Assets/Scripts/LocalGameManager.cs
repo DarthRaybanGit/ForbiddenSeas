@@ -9,6 +9,8 @@ public class LocalGameManager : MonoBehaviour {
 
     public GameObject m_LocalPlayer;
 
+    public GameObject[] m_LocalClassViewer;
+
 
     private void Awake()
     {

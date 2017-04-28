@@ -32,6 +32,7 @@ public class CanvasControl : MonoBehaviour {
 
     public void SelectClass(int n)
     {
+        Debug.Log("Selected class " + n);
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().setLocalClass(n);
     }
 
@@ -39,5 +40,6 @@ public class CanvasControl : MonoBehaviour {
     {
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkLobbyPlayer>().readyToBegin = true;
         m_LobbyButtons.SetActive(false);
+        LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
     }
 }
