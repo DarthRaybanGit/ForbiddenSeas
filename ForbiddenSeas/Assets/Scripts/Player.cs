@@ -6,14 +6,30 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour {
 
     public GameObject[] m_AdmiralList = new GameObject[4];
+    public GameObject m_LocalCamera;
 
-    private int m_Class = 0;
+
+
+    [SyncVar]
+    public int m_Class = 0;
 
     public override void OnStartLocalPlayer()
     {
-        //m_Class = GameManager.Instance.getLocalClass();
-        GameObject pl = GameObject.Instantiate(m_AdmiralList[m_Class]);
-        pl.transform.SetParent(transform);
+        if (!isServer)
+        {
+
+            if (isLocalPlayer)
+            {
+                transform.GetChild(1).gameObject.SetActive(true);
+                Camera.main.enabled = false;
+                transform.GetChild(1).tag = "MainCamera";
+            }
+        }
+    }
+
+    public void SetClass(int playerClass)
+    {
+        m_Class = playerClass;
     }
 
 }
