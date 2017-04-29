@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class LocalGameManager : MonoBehaviour {
+public class LocalGameManager : NetworkBehaviour {
 
     public static LocalGameManager Instance = null;
 
     public GameObject m_LocalPlayer;
 
     public GameObject[] m_LocalClassViewer;
+
+
+    public bool m_serverTimeSended = false;
+    public bool m_timeIsSynced = false;
+    public float m_ServerOffsetTime;
+
+    public static float m_MatchEndTime;
 
 
     private void Awake()
@@ -22,8 +29,19 @@ public class LocalGameManager : MonoBehaviour {
 
     }
 
-	// Update is called once per frame
-	void Update () {
+    [ClientRpc]
+    public void RpcNotifyServerTime(float time)
+    {
+        Debug.Log("Sto notificando il time");
+        m_ServerOffsetTime = time - Time.time;
+        m_timeIsSynced = true;
+        m_serverTimeSended = true;
+    }
 
-	}
+    public float syncedTime()
+    {
+        return isServer ? Time.time : Time.time + m_ServerOffsetTime;
+    }
+
+
 }
