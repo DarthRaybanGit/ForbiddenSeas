@@ -69,4 +69,11 @@ public class OnlineManager : NetworkLobbyManager {
 
         return pl;
     }
+
+
+    public override void OnLobbyClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnLobbyClientSceneChanged(conn);
+
+    }
 }

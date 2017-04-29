@@ -27,8 +27,12 @@ public class PlayerManager : NetworkBehaviour {
     {
         if(isLocalPlayer)
             LocalGameManager.Instance.m_LocalPlayer = gameObject;
-        if(isServer)
+        if (isServer)
+        {
             LocalGameManager.Instance.m_LocalClassViewer = GameObject.FindGameObjectsWithTag("ClassViewer");
+            LocalGameManager.Instance.m_serverTimeSended = true;
+            LocalGameManager.Instance.RpcNotifyServerTime(Time.time);
+        }
     }
 
     public int getLocalClass() {
