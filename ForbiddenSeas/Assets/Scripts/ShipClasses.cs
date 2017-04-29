@@ -37,7 +37,8 @@ public class Orientals
     public const float maxSpeed = 60f;
     public const float maneuverability = ManeuverabilityLevel.LOW;
     public Attack mainAttack = new Cannon();
-    public Attack specialAttack = new Cannon();}
+    public Attack specialAttack = new Cannon();
+}
 
 public class Attack{}
 
