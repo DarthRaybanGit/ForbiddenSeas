@@ -20,9 +20,9 @@ public class Player : NetworkBehaviour {
 
             if (isLocalPlayer)
             {
-                transform.GetChild(1).gameObject.SetActive(true);
+                m_LocalCamera.SetActive(true);
                 Camera.main.enabled = false;
-                transform.GetChild(1).tag = "MainCamera";
+                m_LocalCamera.tag = "MainCamera";
             }
         }
     }
