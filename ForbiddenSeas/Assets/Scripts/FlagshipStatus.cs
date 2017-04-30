@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class FlagshipStatus : NetworkBehaviour
 {
+    public enum ShipClass {pirates, vikings, venetians, orientals};
+
     public ShipClass shipClass;
     public static string shipName;
     public static int m_MaxHealth;
@@ -54,7 +56,10 @@ public class FlagshipStatus : NetworkBehaviour
         }
         m_Health = m_MaxHealth;
     }
-    public enum ShipClass {pirates, vikings, venetians, orientals};
 
+    public void takeDamage(int dmg)
+    {
+        m_Health -= dmg;
+    }
 }
 

@@ -6,9 +6,9 @@ using UnityEngine.Networking;
 public class CombatSystem : NetworkBehaviour
 {
     [ClientRpc]
-    void RpcTakeDamage(string o)
+    void RpcTakenDamage(string o)
     {
-        Debug.Log(gameObject.name + "Colpito " + o);
+            Debug.Log(gameObject.name + "Colpito " + o);
     }
 
     void mainAttack()
@@ -24,7 +24,10 @@ public class CombatSystem : NetworkBehaviour
     {
         if (isServer)
         {
-            RpcTakeDamage(other.name);
+            Debug.Log(gameObject.name + "Preso danno");
+            //gameObject.GetComponent<FlagshipStatus>().shipClass
+            other.GetComponent<FlagshipStatus>().takeDamage(100);
+            RpcTakenDamage(other.name);
         }
     }
 
