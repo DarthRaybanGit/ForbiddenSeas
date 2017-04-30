@@ -98,7 +98,7 @@ public class PlayerManager : NetworkBehaviour {
         if(m_LocalClassViewerIndex == 99)
             m_LocalClassViewerIndex = which;
 
-        m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer = (m_LocalClass == 0 ? Color.black : m_LocalClass == 1 ? Color.green : m_LocalClass == 2 ? Color.yellow : Color.white);
+        m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer = (m_LocalClass == (int) FlagshipStatus.ShipClass.pirates ? Color.black : m_LocalClass == (int)FlagshipStatus.ShipClass.venetians ? Color.green : m_LocalClass == (int)FlagshipStatus.ShipClass.vikings ? Color.yellow : Color.white);
 
         m_LocalClassViewer.GetComponent<MeshRenderer>().material.color = m_LocalClassViewer.GetComponent<ClassShower>().m_LocalClassViewer;
 
