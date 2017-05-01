@@ -60,6 +60,15 @@ public class FlagshipStatus : NetworkBehaviour
     public void takeDamage(int dmg)
     {
         m_Health -= dmg;
+
+        if (m_Health <= 0)
+            onDeath();
+    }
+
+    public void onDeath()
+    {
+        GetComponent<Material>().color = Color.red;
     }
 }
+
 
