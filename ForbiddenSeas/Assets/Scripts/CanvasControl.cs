@@ -56,7 +56,7 @@ public class CanvasControl : MonoBehaviour {
         {
             float time = LocalGameManager.Instance.syncedTime();
             int minutes = Mathf.FloorToInt(time/60);
-            m_Clock.GetComponent<Text>().text = String.Format("{0,2:D2} {1,2:D2}", minutes, Mathf.FloorToInt(time - minutes * 60));
+            m_Clock.GetComponent<Text>().text = String.Format("{0,2:D2}:{1,2:D2}", minutes, Mathf.FloorToInt(time - minutes * 60));
         }
     }
 
