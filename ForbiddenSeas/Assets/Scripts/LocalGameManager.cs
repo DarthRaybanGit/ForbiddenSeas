@@ -11,10 +11,12 @@ public class LocalGameManager : NetworkBehaviour {
 
     public GameObject[] m_LocalClassViewer;
 
+    public bool m_GameIsStarted = false;
 
     public bool m_serverTimeSended = false;
     public bool m_timeIsSynced = false;
     public float m_ServerOffsetTime;
+    public float m_InitialTimer = 0f;
 
     public static float m_MatchEndTime;
 
@@ -40,7 +42,7 @@ public class LocalGameManager : NetworkBehaviour {
 
     public float syncedTime()
     {
-        return isServer ? Time.time : Time.time + m_ServerOffsetTime;
+        return isServer ? Time.timeSinceLevelLoad  : Time.timeSinceLevelLoad + m_ServerOffsetTime;
     }
 
 

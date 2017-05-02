@@ -23,8 +23,26 @@ public class Player : NetworkBehaviour {
                 m_LocalCamera.SetActive(true);
                 Camera.main.enabled = false;
                 m_LocalCamera.tag = "MainCamera";
+                CmdAskForCurrentTime();
+
             }
+            LocalGameManager.Instance.m_GameIsStarted = true;
+            LocalGameManager.Instance.m_InitialTimer = Time.time;
         }
+
+    }
+
+    public override void OnStartServer()
+    {
+        LocalGameManager.Instance.m_GameIsStarted = true;
+        LocalGameManager.Instance.m_InitialTimer = Time.time;
+    }
+
+    [Command]
+    public void CmdAskForCurrentTime()
+    {
+        LocalGameManager.Instance.m_serverTimeSended = true;
+        LocalGameManager.Instance.RpcNotifyServerTime(Time.time);
     }
 
     public void SetClass(int playerClass)
