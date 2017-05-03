@@ -6,19 +6,16 @@ using UnityEngine.UI;
 using System;
 
 
-public class CanvasControl : MonoBehaviour {
+public class OutGameCanvasControl : MonoBehaviour {
 
     public GameObject m_ConnectButtons;
     public GameObject m_LobbyButtons;
-    public GameObject m_Clock;
 
 
 	public void StartConnectionAsServer()
     {
         if (OnlineManager.s_Singleton.StartServer()) Debug.Log("Server initialized correctly."); else Debug.Log("Server initialization fault.");
         m_ConnectButtons.SetActive(false);
-        m_Clock.transform.SetParent(transform);
-        m_Clock.SetActive(true);
     }
 
     public void StartConnectionAsClient()
@@ -50,15 +47,7 @@ public class CanvasControl : MonoBehaviour {
     }
 
 
-    public void Update()
-    {
-        if(LocalGameManager.Instance.m_timeIsSynced || LocalGameManager.Instance.m_serverTimeSended)
-        {
-            float time = LocalGameManager.Instance.syncedTime();
-            int minutes = Mathf.FloorToInt(time/60);
-            m_Clock.GetComponent<Text>().text = String.Format("{0,2:D2}:{1,2:D2}", minutes, Mathf.FloorToInt(time - minutes * 60));
-        }
-    }
+
 
 
 }
