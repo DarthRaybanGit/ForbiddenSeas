@@ -20,14 +20,15 @@ public class CombatSystem : NetworkBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (isServer)
+        if (true)//isServer)
         {
             Debug.Log(gameObject.name + "Preso danno");
             //gameObject.GetComponent<FlagshipStatus>().shipClass
-            other.GetComponent<FlagshipStatus>().takeDamage(100);
-            RpcTakenDamage(other.name);
+            GetComponent<FlagshipStatus>().CmdTakeDamage(100);
+            if(isServer)
+                RpcTakenDamage(other.name);
         }
     }
 

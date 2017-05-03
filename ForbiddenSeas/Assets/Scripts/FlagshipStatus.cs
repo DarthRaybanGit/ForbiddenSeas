@@ -57,15 +57,17 @@ public class FlagshipStatus : NetworkBehaviour
         m_Health = m_MaxHealth;
     }
 
-    public void takeDamage(int dmg)
+    [Command]
+    public void CmdTakeDamage(int dmg)
     {
         m_Health -= dmg;
 
         if (m_Health <= 0)
-            onDeath();
+            CmdOnDeath();
     }
 
-    public void onDeath()
+    [Command]
+    public void CmdOnDeath()
     {
         GetComponent<Material>().color = Color.red;
     }
