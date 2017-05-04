@@ -17,18 +17,13 @@ public class MoveSimple : NetworkBehaviour {
 	private float Velocity=0f;
 	private float smoothTime=20f;
 	private Rigidbody rb;
-	private float Vm;
-	//public GameObject Sea;
-	//private Transform SeaPlane;
-	//private Cloth planeCloth;
-	private int index=-1;
 
 	public override void OnStartLocalPlayer()
 	{
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (!isLocalPlayer)
 		{
@@ -72,16 +67,15 @@ public class MoveSimple : NetworkBehaviour {
 			Factor = SpeedLevel.SLOW;
 			break;
 		}
-		Vm = rb.velocity.magnitude;
-		Debug.Log (Vm);
-		if (rb.velocity.magnitude < speed * Factor ) {
-			rb.AddForce (transform.forward * Acceleration * forward * -1f);
-		}
-		//float newRotation = Mathf.SmoothDamp (transform.rotation.z, Input.GetAxis ("Horizontal") * 10f * Factor, ref Velocity, smoothTime);
-		//Debug.Log (newRotation);
-		//Debug.Log (Velocity);
+		/*if (actualspeed<speed*factor*forward)
+			actualspeed +=acceleration*time.deltatime;*/
+		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1); 
+		/*if (rb.velocity.magnitude < speed * Factor ) {*/
+		rb.MovePosition(rb.position +transform.forward* speed * Factor * forward * -1*Time.fixedDeltaTime);
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed , Input.GetAxis ("Horizontal") * 10f * Factor));
-		transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
+		rb.MoveRotation (Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime));
+		//rb.AddTorque (transform.up * Input.GetAxis ("Horizontal") * rotSpeed);
+		//Debug.Log (rb.velocity.magnitude);
 		//GetClosestVertex ();
 	}
 
