@@ -13,6 +13,15 @@ public class Player : NetworkBehaviour {
     [SyncVar]
     public int m_Class = 0;
 
+    public void Start()
+    {
+        if (!isLocalPlayer)
+        {
+            Destroy(m_LocalCamera.GetComponent<AudioListener>());
+            return;
+        }
+    }
+
     public override void OnStartLocalPlayer()
     {
         if (!isServer)

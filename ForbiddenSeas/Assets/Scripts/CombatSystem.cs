@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class CombatSystem : NetworkBehaviour
 {
-    
+
 
     void mainAttack()
     {
@@ -13,7 +13,7 @@ public class CombatSystem : NetworkBehaviour
 
     void SpecialAttack()
     {
-        
+
     }
 
     void OnTriggerStay(Collider other)
@@ -22,7 +22,7 @@ public class CombatSystem : NetworkBehaviour
         {
             Debug.Log(gameObject.name + "Preso danno");
             //gameObject.GetComponent<FlagshipStatus>().shipClass
-            GetComponent<FlagshipStatus>().CmdTakeDamage(100, other.name);
+            GetComponent<FlagshipStatus>().CmdTakeDamage(100, other.transform.parent.gameObject.GetComponent<NetworkBehaviour>().netId.Value.ToString());
         }
 
     }

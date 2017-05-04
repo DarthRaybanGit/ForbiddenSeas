@@ -25,11 +25,8 @@ public class MoveSimple : NetworkBehaviour {
 
 	void FixedUpdate ()
 	{
-		if (!isLocalPlayer)
-		{
-			Destroy(cam.GetComponent<AudioListener>());
-			return;
-		}
+        if (!isLocalPlayer)
+            return;
 		if (Scroll == 0) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
 				State = State < 3 ? State + 1 : State;
@@ -42,7 +39,7 @@ public class MoveSimple : NetworkBehaviour {
 					State-=1f;*/
 			}
 			if (State < 0)
-				forward = -1;		
+				forward = -1;
 			else
 				forward = 1;
 			Scroll = Input.GetAxis ("Mouse ScrollWheel");
@@ -69,9 +66,9 @@ public class MoveSimple : NetworkBehaviour {
 		}
 		/*if (actualspeed<speed*factor*forward)
 			actualspeed +=acceleration*time.deltatime;*/
-		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1); 
+		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1);
 		/*if (rb.velocity.magnitude < speed * Factor ) {*/
-		rb.MovePosition(rb.position +transform.forward* speed * Factor * forward * -1*Time.fixedDeltaTime);
+		rb.MovePosition(rb.position + transform.forward* speed * Factor * forward * -1*Time.fixedDeltaTime);
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed , Input.GetAxis ("Horizontal") * 10f * Factor));
 		rb.MoveRotation (Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime));
 		//rb.AddTorque (transform.up * Input.GetAxis ("Horizontal") * rotSpeed);
