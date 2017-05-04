@@ -58,19 +58,30 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Command]
-    public void CmdTakeDamage(int dmg)
+    public void CmdTakeDamage(int dmg, string name)
     {
         m_Health -= dmg;
-
+        Debug.Log("CMD take dmg eseguito :D");
+        RpcTakenDamage(name);
+    
         if (m_Health <= 0)
-            CmdOnDeath();
+            OnDeath();
     }
-
-    [Command]
-    public void CmdOnDeath()
+        
+    public void OnDeath()
     {
         GetComponent<Material>().color = Color.red;
     }
+
+    [ClientRpc]
+    void RpcTakenDamage(string o)
+    {
+        Debug.Log("io sono: " + OnlineManager.s_Singleton.client.connection.connectionId.ToString() + " Colpito " + o);
+    }
+
+    //metodo DoT && HoT
+
+
 }
 
 
