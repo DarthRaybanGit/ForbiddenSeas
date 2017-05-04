@@ -34,6 +34,7 @@ public class Player : NetworkBehaviour {
                 m_LocalCamera.tag = "MainCamera";
                 CmdAskForCurrentTime();
                 CmdStartGeneralLoop();
+                playerId = OnlineManager.s_Singleton.GetPlayerId(gameObject);
 
             }
             LocalGameManager.Instance.m_GameIsStarted = true;
