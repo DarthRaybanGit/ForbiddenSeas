@@ -7,7 +7,7 @@ public class Player : NetworkBehaviour {
 
     public GameObject[] m_AdmiralList = new GameObject[4];
     public GameObject m_LocalCamera;
-
+    public int playerId;
 
 
     [SyncVar]
@@ -81,5 +81,8 @@ public class Player : NetworkBehaviour {
     }
 
 
-
+    public int GetPlayerId()
+    {
+        return playerId;
+    }
 }
