@@ -26,20 +26,18 @@ public class Player : NetworkBehaviour {
     {
         if (!isServer)
         {
-
             if (isLocalPlayer)
             {
                 m_LocalCamera.SetActive(true);
-                Camera.main.enabled = false;
+                Camera oldMain = Camera.main;
+                oldMain.enabled = false;
+                oldMain.gameObject.SetActive(false);
+                oldMain.gameObject.tag = "Untagged";
                 m_LocalCamera.tag = "MainCamera";
-
-
-
                 CmdStartGeneralLoop((int)this.netId.Value);
             }
             LocalGameManager.Instance.m_GameIsStarted = true;
         }
-
     }
 
     public override void OnStartServer()

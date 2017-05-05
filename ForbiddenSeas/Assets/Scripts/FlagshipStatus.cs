@@ -63,6 +63,7 @@ public class FlagshipStatus : NetworkBehaviour
 
         }
         m_Health = m_MaxHealth;
+
     }
 
     [Command]
@@ -70,11 +71,11 @@ public class FlagshipStatus : NetworkBehaviour
     {
         m_Health -= dmg;
         RpcTakenDamage(a_name, da_name);
-    
+
         if (m_Health <= 0)
             OnDeath();
     }
-        
+
     public void OnDeath()
     {
         transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;

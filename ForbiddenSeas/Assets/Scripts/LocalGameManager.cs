@@ -85,7 +85,7 @@ public class LocalGameManager : NetworkBehaviour {
     public void RpcSearchGameObjectForPlayers()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        m_Players = new GameObject[players.Length];
+        LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
         Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
 
@@ -98,7 +98,7 @@ public class LocalGameManager : NetworkBehaviour {
                 if (i == (int)players[j].GetComponent<Player>().netId.Value)
                     break;
             }
-            m_Players[count] = players[j];
+            LocalGameManager.Instance.m_Players[count] = players[j];
             count++;
         }
 
@@ -110,7 +110,7 @@ public class LocalGameManager : NetworkBehaviour {
 
     public GameObject GetPlayer(int playerId)
     {
-        return (playerId - 1) > m_Players.Length ? null : m_Players[playerId - 1];
+        return (playerId) > m_Players.Length ? null : m_Players[playerId];
     }
 
     public int GetPlayerId(GameObject player_go)
@@ -119,9 +119,10 @@ public class LocalGameManager : NetworkBehaviour {
         for(i = 0; i < m_Players.Length; i++)
         {
             if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
-                break;
+                return i + 1;
+
         }
-        return i+1;
+        return -1;
     }
 
     //Funzioni per la sincronizzazione del timestamp del server sui clients.
