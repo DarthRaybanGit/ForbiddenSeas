@@ -22,15 +22,15 @@ public class CombatSystem : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            Debug.Log(gameObject.name + "Preso danno da "+ other.name);
+            Debug.Log(gameObject.name + "Preso danno da "+ other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
 
             if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
             {
                 int dmg = 0;
                 if (other.tag.Equals("mainAttack"))
-                    dmg = other.GetComponentInParent<FlagshipStatus>().m_main.damage;
+                    dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
                 else
-                    dmg = other.GetComponentInParent<FlagshipStatus>().m_special.damage;
+                    dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
 
                 GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.gameObject).ToString());
             }

@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 114130035200792958}
   - component: {fileID: 136116412931054286}
   - component: {fileID: 54360109460913826}
+  - component: {fileID: 114143520851380954}
   m_Layer: 0
   m_Name: Pirates Flagship
   m_TagString: Player
@@ -1794,6 +1795,17 @@ MonoBehaviour:
   m_LocalCamera: {fileID: 1401329760740216}
   playerId: 0
   m_Class: 0
+--- !u!114 &114143520851380954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869087919111540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d6cebd39bfa488182d981534c07495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114660679311915734
 MonoBehaviour:
   m_ObjectHideFlags: 1

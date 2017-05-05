@@ -86,6 +86,7 @@ public class OnlineManager : NetworkLobbyManager {
         NetworkServer.ReplacePlayerForConnection(conn, pl, playerControllerId);
 
         SetPlayerInfoNetID(conn, pl.GetComponent<Player>().netId.Value);
+        pl.GetComponent<FlagshipStatus>().InitializeFlagshipStatus();
         return pl;
     }
 

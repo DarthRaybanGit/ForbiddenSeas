@@ -13,12 +13,10 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_Health;
     public static float m_Maneuvrability;
     public static float m_maxSpeed;
-    public Attack m_main, m_special;
+    public int m_main, m_special;
 
-    void Start()
+    public void InitializeFlagshipStatus()
     {
-        if (!isLocalPlayer)
-            return;
 
         switch ((int)shipClass)
         {
@@ -27,8 +25,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_MaxHealth = Pirates.maxHealth;
                 m_Maneuvrability = Pirates.maneuverability;
                 m_maxSpeed = Pirates.maxSpeed;
-                m_main = Pirates.mainAttack;
-                m_special = Pirates.specialAttack;
+                m_main = Pirates.mainAttackDmg;
+                m_special = Pirates.specAttackDmg;
                 break;
 
             case 1:
@@ -36,8 +34,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_MaxHealth = Vikings.maxHealth;
                 m_Maneuvrability = Vikings.maneuverability;
                 m_maxSpeed = Vikings.maxSpeed;
-                m_main = Vikings.mainAttack;
-                m_special = Vikings.specialAttack;
+                m_main = Vikings.mainAttackDmg;
+                m_special = Vikings.specAttackDmg;
                 break;
 
             case 2:
@@ -45,8 +43,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_MaxHealth = Venetians.maxHealth;
                 m_Maneuvrability = Venetians.maneuverability;
                 m_maxSpeed = Venetians.maxSpeed;
-                m_main = Venetians.mainAttack;
-                m_special = Venetians.specialAttack;
+                m_main = Venetians.mainAttackDmg;
+                m_special = Venetians.specAttackDmg;
                 break;
 
             case 3:
@@ -54,16 +52,15 @@ public class FlagshipStatus : NetworkBehaviour
                 m_MaxHealth = Orientals.maxHealth;
                 m_Maneuvrability = Orientals.maneuverability;
                 m_maxSpeed = Orientals.maxSpeed;
-                m_main = Orientals.mainAttack;
-                m_special = Orientals.specialAttack;
+                m_main = Orientals.mainAttackDmg;
+                m_special = Orientals.specAttackDmg;
                 break;
 
             default:
                 return;
-
         }
-        m_Health = m_MaxHealth;
 
+        m_Health = m_MaxHealth;
     }
 
     [Command]
