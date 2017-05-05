@@ -77,7 +77,7 @@ public class FlagshipStatus : NetworkBehaviour
         
     public void OnDeath()
     {
-        GetComponent<Material>().color = Color.red;
+        transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
     }
 
     [ClientRpc]

@@ -94,16 +94,4 @@ public class OnlineManager : NetworkLobbyManager {
     {
         base.OnLobbyClientSceneChanged(conn);
     }
-
-    //mi serve questi due metodi, suggerisco di tenere nel dizionario il riferimento al gameobject dei quattro player
-    //ps. con playerId intendo 1-2-3-4, non il network id
-    public GameObject GetPlayer(int playerId)
-    {
-        return null;
-    }
-
-    public int GetPlayerId(GameObject player_go)
-    {
-        return 0;
-    }
 }

@@ -30,7 +30,7 @@ public class CombatSystem : NetworkBehaviour
                 else
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special.damage;
                 
-                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, other.transform.parent.gameObject.GetComponent<NetworkBehaviour>().netId.Value.ToString());
+                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(other.gameObject).ToString());
             }
         }
 

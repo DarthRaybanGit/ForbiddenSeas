@@ -12,17 +12,24 @@ public class PlayerFloatingName : MonoBehaviour
 
     void Start()
     {
-        target = OnlineManager.s_Singleton.GetPlayer(id).transform;
+        StartCoroutine(WaitForReady());
     }
 
     void Update ()
     {
-        if(target != null)
+        if(target)
         {
             Vector2 targetPos = Camera.main.WorldToScreenPoint(target.position);
             transform.position = targetPos + offset;
             GetComponent<Text>().text = "Player " + id + " " + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
         }
 
+    }
+
+    IEnumerator WaitForReady()
+    {
+        yield return new WaitUntil(() => LocalGameManager.Instance.m_PlayerRegistered);
+
+        target = LocalGameManager.Instance.GetPlayer(id).transform;
     }
 }
