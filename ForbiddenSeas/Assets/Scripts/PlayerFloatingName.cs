@@ -8,6 +8,7 @@ public class PlayerFloatingName : MonoBehaviour
     [Range(1,4)]
     public int id;
     private Transform target;
+    public Vector2 offset;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class PlayerFloatingName : MonoBehaviour
         if(target != null)
         {
             Vector2 targetPos = Camera.main.WorldToScreenPoint(target.position);
-            transform.position = targetPos;
+            transform.position = targetPos + offset;
             GetComponent<Text>().text = "Player " + id + " " + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
         }
 

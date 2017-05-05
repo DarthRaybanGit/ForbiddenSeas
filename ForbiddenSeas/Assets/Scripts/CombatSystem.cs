@@ -18,11 +18,20 @@ public class CombatSystem : NetworkBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (isLocalPlayer)//isServer)
+        if (isLocalPlayer)
         {
             Debug.Log(gameObject.name + "Preso danno");
-            //gameObject.GetComponent<FlagshipStatus>().shipClass
-            GetComponent<FlagshipStatus>().CmdTakeDamage(100, other.transform.parent.gameObject.GetComponent<NetworkBehaviour>().netId.Value.ToString());
+
+            if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
+            {
+                int dmg = 0;
+                if (other.tag.Equals("mainAttack"))
+                    dmg = other.GetComponentInParent<FlagshipStatus>().m_main.damage;
+                else
+                    dmg = other.GetComponentInParent<FlagshipStatus>().m_special.damage;
+                
+                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, other.transform.parent.gameObject.GetComponent<NetworkBehaviour>().netId.Value.ToString());
+            }
         }
 
     }
