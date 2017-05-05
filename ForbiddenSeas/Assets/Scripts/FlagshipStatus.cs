@@ -13,11 +13,11 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_Health;
     public static float m_Maneuvrability;
     public static float m_maxSpeed;
+    [SyncVar]
     public int m_main, m_special;
 
     public void InitializeFlagshipStatus()
     {
-
         switch ((int)shipClass)
         {
             case 0:
@@ -59,7 +59,7 @@ public class FlagshipStatus : NetworkBehaviour
             default:
                 return;
         }
-
+        Debug.Log("danno: "+m_main);
         m_Health = m_MaxHealth;
     }
 
