@@ -66,10 +66,10 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Command]
-    public void CmdTakeDamage(int dmg, string name)
+    public void CmdTakeDamage(int dmg, string a_name, string da_name)
     {
         m_Health -= dmg;
-        RpcTakenDamage(name);
+        RpcTakenDamage(a_name, da_name);
     
         if (m_Health <= 0)
             OnDeath();
@@ -81,9 +81,9 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcTakenDamage(string o)
+    void RpcTakenDamage(string a, string da)
     {
-        Debug.Log("io sono: " + OnlineManager.s_Singleton.client.connection.connectionId.ToString() + " Colpito " + o);
+        Debug.Log("io sono: " + OnlineManager.s_Singleton.client.connection.connectionId.ToString() + " Colpito " + a + " da " + da);
     }
 
     //metodo DoT && HoT

@@ -121,7 +121,7 @@ public class LocalGameManager : NetworkBehaviour {
             if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
                 break;
         }
-        return i + 1;
+        return i+1;
     }
 
     //Funzioni per la sincronizzazione del timestamp del server sui clients.

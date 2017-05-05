@@ -20,7 +20,7 @@ public class CombatSystem : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            Debug.Log(gameObject.name + "Preso danno");
+            Debug.Log(gameObject.name + "Preso danno da "+ other.name);
 
             if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
             {
@@ -30,10 +30,8 @@ public class CombatSystem : NetworkBehaviour
                 else
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special.damage;
                 
-                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(other.gameObject).ToString());
+                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.gameObject).ToString());
             }
         }
-
     }
-
 }

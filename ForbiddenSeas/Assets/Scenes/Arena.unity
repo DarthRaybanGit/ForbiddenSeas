@@ -540,7 +540,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867755928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e07f8cc01c438429ea0bb8a2096e43fa, type: 3}
   m_Name: 
@@ -561,7 +561,7 @@ Cloth:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867755928}
-  m_Enabled: 1
+  m_Enabled: 0
   m_StretchingStiffness: 0.9
   m_BendingStiffness: 0
   m_UseTethers: 1
