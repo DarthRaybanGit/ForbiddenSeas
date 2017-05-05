@@ -10,7 +10,7 @@ public class OnlineManager : NetworkLobbyManager {
 
     public GameObject[] m_playerPlacement;
     public GameObject[] m_AdmiralList = new GameObject[4];
-    Dictionary<int, int> currentPlayers;
+    public Dictionary<int, int[]> currentPlayers;
 
     public GameObject m_GamePlayer;
 
@@ -18,7 +18,7 @@ public class OnlineManager : NetworkLobbyManager {
     {
         s_Singleton = this;
         m_playerPlacement = new GameObject[4];
-        currentPlayers = new Dictionary<int, int>();
+        currentPlayers = new Dictionary<int, int[]>();
     }
 
 
@@ -39,26 +39,44 @@ public class OnlineManager : NetworkLobbyManager {
     public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
     {
         if (!currentPlayers.ContainsKey(conn.connectionId))
-            currentPlayers.Add(conn.connectionId, 0);
+            currentPlayers.Add(conn.connectionId, new int[10]);
 
         return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
     }
 
-    public void SetPlayerTypeLobby(NetworkConnection conn, int _type)
+    public void SetPlayerInfoNetID(NetworkConnection conn, uint id)
     {
         if (currentPlayers.ContainsKey(conn.connectionId))
-            currentPlayers[conn.connectionId] = _type;
+            currentPlayers[conn.connectionId][(int)PlayerInfo.ID] = (int)id;
+    }
+
+    public void SetPlayerInfoLoadedFlag(NetworkConnection conn, bool loaded)
+    {
+        if (currentPlayers.ContainsKey(conn.connectionId))
+            currentPlayers[conn.connectionId][(int)PlayerInfo.IS_LOADED] = loaded ? 1 : 0;
+    }
+
+    public bool EveryoneIsOnline()
+    {
+        int checksum = 0;
+        foreach(int[] i in currentPlayers.Values)
+        {
+            checksum += i[(int)PlayerInfo.IS_LOADED];
+        }
+        Debug.Log("Ci sono Online: " + checksum + " su " + currentPlayers.Keys.Count);
+        return checksum == currentPlayers.Keys.Count;
     }
 
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
     {
 
-        SetPlayerTypeLobby(conn, conn.playerControllers.ToArray()[0].gameObject.GetComponent<PlayerManager>().m_LocalClass);
-
         GameObject pl = GameObject.Instantiate(m_AdmiralList[conn.playerControllers.ToArray()[0].gameObject.GetComponent<PlayerManager>().m_LocalClass]);
 
         GameObject g = GameObject.Instantiate(gamePlayerPrefab);
 
+        //Setting startup PlayerInfo
+
+        SetPlayerInfoLoadedFlag(conn, false);
 
         pl.transform.SetParent(g.transform);
         NetworkTransformChild ntc = g.GetComponent<NetworkTransformChild>();
@@ -67,6 +85,7 @@ public class OnlineManager : NetworkLobbyManager {
 
         NetworkServer.ReplacePlayerForConnection(conn, pl, playerControllerId);
 
+        SetPlayerInfoNetID(conn, pl.GetComponent<Player>().netId.Value);
         return pl;
     }
 

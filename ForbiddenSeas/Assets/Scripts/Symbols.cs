@@ -22,3 +22,19 @@ public class SpeedLevelRatio
     public const float HALF = 1.5f;
     public const float FULL = 2f;
 }
+
+public enum PlayerInfo
+{
+    ID,
+    SPAWN_POSITION,
+    IS_LOADED
+};
+
+public enum FixedDelayInGame
+{
+    TREASURE_FIRST_SPAWN = 180,
+    TREASURE_RESPAWN = 10,
+    POWERUP_SPAWN = 60,
+    PLAYERS_DELAY = 5,
+    COUNTDOWN_START = 5
+}

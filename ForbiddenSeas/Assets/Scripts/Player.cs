@@ -32,10 +32,10 @@ public class Player : NetworkBehaviour {
                 m_LocalCamera.SetActive(true);
                 Camera.main.enabled = false;
                 m_LocalCamera.tag = "MainCamera";
-                CmdAskForCurrentTime();
-                CmdStartGeneralLoop();
-                playerId = OnlineManager.s_Singleton.GetPlayerId(gameObject);
 
+
+
+                CmdStartGeneralLoop((int)this.netId.Value);
             }
             LocalGameManager.Instance.m_GameIsStarted = true;
         }
@@ -61,14 +61,47 @@ public class Player : NetworkBehaviour {
     //Se entro quel countdown tutti i player non saranno entrati in partita riporterebbe tutti alla Lobby.
 
     [Command]
-    public void CmdStartGeneralLoop()
+    public void CmdStartGeneralLoop(int connectionID)
     {
-        if(LocalGameManager.Instance.m_GameIsStarted && !LocalGameManager.Instance.m_GameGeneralLoopIsStarted)
+        ImOnline(connectionID);
+        if (LocalGameManager.Instance.m_GameIsStarted && !LocalGameManager.Instance.m_GameGeneralLoopIsStarted)
         {
-            Debug.Log("Game STARTED!");
+            Debug.Log("Sono il primo! Aspettiamo gli altri prima di iniziare il game!");
             LocalGameManager.Instance.m_GameGeneralLoopIsStarted = true;
-            StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
-            StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
+
+            foreach(int i in OnlineManager.s_Singleton.currentPlayers.Keys)
+            {
+                Debug.Log("è presente il Player " + i);
+            }
+
+            int[] to_Send = new int[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
+            int[] to_SendIds = new int[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
+
+            int count = 0;
+
+            foreach (int i in OnlineManager.s_Singleton.currentPlayers.Keys)
+            {
+                to_Send[count] = i;
+                to_SendIds[count] = OnlineManager.s_Singleton.currentPlayers[i][(int)PlayerInfo.ID];
+                count++;
+            }
+
+            LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send, to_SendIds);
+
+
+            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline());
+        }
+
+    }
+
+    public void ImOnline(int connectionID)
+    {
+        Debug.Log("Sta notificando il player " + connectionID);
+
+        foreach(int i in OnlineManager.s_Singleton.currentPlayers.Keys)
+        {
+            if(OnlineManager.s_Singleton.currentPlayers[i][(int) PlayerInfo.ID] == connectionID)
+                OnlineManager.s_Singleton.currentPlayers[i][(int)PlayerInfo.IS_LOADED] = 1;
         }
     }
 
