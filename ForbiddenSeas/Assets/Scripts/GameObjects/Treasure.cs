@@ -5,15 +5,16 @@ using UnityEngine.Networking;
 
 public class Treasure : NetworkBehaviour {
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
         if (!isServer)
         {
-            if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().isLocalPlayer && collision.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Player>().isLocalPlayer && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
             {
                 Debug.Log("Toccato il tesoro!");
-                collision.gameObject.GetComponent<Player>().CmdCatchTheTreasure((int)collision.gameObject.GetComponent<Player>().netId.Value);
+                other.gameObject.GetComponent<Player>().CmdCatchTheTreasure((int)other.gameObject.GetComponent<Player>().netId.Value);
             }
         }
     }
+
 }
