@@ -94,10 +94,10 @@ public class Player : NetworkBehaviour {
                 count++;
             }
 
-            LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send, to_SendIds);
 
 
-            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline());
+
+            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline(to_Send, to_SendIds));
         }
 
     }
@@ -125,15 +125,20 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdCatchTheTreasure(int playerId)
     {
+        if (!LocalGameManager.Instance.m_Treasure.activeSelf)
+            return;
+
         LocalGameManager.Instance.m_Treasure.SetActive(false);
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+        Debug.Log("Il player " + playerId + " ha preso il tesoro!");
+        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
         {
             if (g.GetComponent<Player>())
             {
                 if(g.GetComponent<Player>().netId.Value == playerId)
                 {
+                    Debug.Log("Gli sto facendo prendere il tesoro!");
                     g.GetComponent<Player>().m_HasTreasure = true;
-                    LocalGameManager.Instance.RpcNotifyNewTreasureOwner(playerId);
+                    LocalGameManager.Instance.RpcNotifyNewTreasureOwner(playerId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
                 }
             }
         }

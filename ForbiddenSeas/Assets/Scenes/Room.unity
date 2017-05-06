@@ -652,7 +652,7 @@ MonoBehaviour:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 5ebcef8b37044024793fd4f0f99566a6, type: 2}
   - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
-  - {fileID: 0}
+  - {fileID: 1869087919111540, guid: 32c67c82dbbe957468d36e9f7fb624d2, type: 2}
   m_GamePlayer: {fileID: 0}
 --- !u!4 &531278812
 Transform:

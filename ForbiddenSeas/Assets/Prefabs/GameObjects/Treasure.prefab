@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4227305666921520}
   - component: {fileID: 114049144551314640}
   - component: {fileID: 114753260350949088}
+  - component: {fileID: 65490168677079568}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -317,6 +318,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552039735733222}
   m_Mesh: {fileID: 4300004, guid: d9a3fef19d1b2e94ea46599fa3ac4b71, type: 3}
+--- !u!65 &65490168677079568
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1108263141705070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1257262, y: 2.0535102, z: 1.565721}
+  m_Center: {x: 0.012431383, y: 0.98544765, z: -0.022934675}
 --- !u!114 &114049144551314640
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -32,7 +32,7 @@ public enum PlayerInfo
 
 public enum FixedDelayInGame
 {
-    TREASURE_FIRST_SPAWN = 180,
+    TREASURE_FIRST_SPAWN = 2,
     TREASURE_RESPAWN = 10,
     POWERUP_SPAWN = 60,
     PLAYERS_DELAY = 5,

@@ -11,7 +11,8 @@ public class Treasure : NetworkBehaviour {
         {
             if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().isLocalPlayer)
             {
-                collision.gameObject.GetComponent<Player>().CmdCatchTheTreasure(LocalGameManager.Instance.GetPlayerId(collision.gameObject));
+                Debug.Log("Toccato il tesoro!");
+                collision.gameObject.GetComponent<Player>().CmdCatchTheTreasure((int)collision.gameObject.GetComponent<Player>().netId.Value);
             }
         }
     }
