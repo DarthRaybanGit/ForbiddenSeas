@@ -10,6 +10,9 @@ public class Player : NetworkBehaviour {
     public GameObject m_LocalCamera;
     public int playerId;
 
+    public bool m_HasTreasure = false;
+    public GameObject m_LocalTreasure;
+
 
     [SyncVar]
     public int m_Class = 0;
@@ -119,6 +122,22 @@ public class Player : NetworkBehaviour {
         LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
     }
 
+    [Command]
+    public void CmdCatchTheTreasure(int playerId)
+    {
+        LocalGameManager.Instance.m_Treasure.SetActive(false);
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (g.GetComponent<Player>())
+            {
+                if(g.GetComponent<Player>().netId.Value == playerId)
+                {
+                    g.GetComponent<Player>().m_HasTreasure = true;
+                    LocalGameManager.Instance.RpcNotifyNewTreasureOwner(playerId);
+                }
+            }
+        }
+    }
 
     public int GetPlayerId()
     {

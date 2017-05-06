@@ -26,6 +26,8 @@ public class LocalGameManager : NetworkBehaviour {
 
     public static float m_MatchEndTime;
 
+    public GameObject m_Treasure;
+
 
     private void Awake()
     {
@@ -116,7 +118,7 @@ public class LocalGameManager : NetworkBehaviour {
     public int GetPlayerId(GameObject player_go)
     {
         if (player_go)
-            return -1;
+            return Symbols.PLAYER_NOT_SET;
 
         int i;
 
@@ -125,7 +127,7 @@ public class LocalGameManager : NetworkBehaviour {
             if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
                 return i + 1;
         }
-        return -1;
+        return Symbols.PLAYER_NOT_SET;
     }
 
     //Funzioni per la sincronizzazione del timestamp del server sui clients.
@@ -159,9 +161,12 @@ public class LocalGameManager : NetworkBehaviour {
         yield return new WaitForSeconds(180f);
         //Risincronizza il time per sicurezza
         LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
-        Debug.Log("Tesoro Spawn!!!");
 
-        //Spawnare il tesoro e aprire le porte dei canali.
+        m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
+
+        Debug.Log("Tesoro Spawn!!!");
+        NetworkServer.Spawn(m_Treasure);
+        //Aprire le porte dei canali.
     }
 
     [Server]
@@ -219,6 +224,28 @@ public class LocalGameManager : NetworkBehaviour {
             return false;
         }
         return m_PlayerRegistered;
+    }
+
+    public int WhoAmI(GameObject me)
+    {
+        if (IsEveryPlayerRegistered())
+        {
+            return GetPlayerId(me);
+        }
+        else
+            return Symbols.PLAYER_NOT_SET;
+    }
+
+
+    [ClientRpc]
+    public void RpcNotifyNewTreasureOwner(int playerId)
+    {
+        if (IsEveryPlayerRegistered())
+        {
+            Player pl = GetPlayer(playerId).GetComponent<Player>();
+            pl.m_LocalTreasure.SetActive(true);
+            pl.m_HasTreasure = true;
+        }
     }
 
 }

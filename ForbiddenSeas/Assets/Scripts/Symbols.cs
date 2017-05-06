@@ -38,3 +38,19 @@ public enum FixedDelayInGame
     PLAYERS_DELAY = 5,
     COUNTDOWN_START = 5
 }
+
+//KEEP IT UPDATE
+public enum SpawnIndex
+{
+    CLASS_VIEWER,
+    ORIENTALS_FLAGSHIP,
+    PIRATES_FLAGSHIP,
+    VENETIANS_FLAGSHIP,
+    VIKINGS_FLAGSHIP,
+    TREASURE
+}
+
+public class Symbols
+{
+    public const int PLAYER_NOT_SET = -1;
+}
