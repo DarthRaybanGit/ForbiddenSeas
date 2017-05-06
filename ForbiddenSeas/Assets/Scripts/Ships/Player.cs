@@ -158,6 +158,12 @@ public class Player : NetworkBehaviour {
 
     }
 
+    [Command]
+    public void CmdScoreAnARRH(NetworkInstanceId playerId)
+    {
+
+    }
+
     [ClientRpc]
     public void RpcHideTreasure()
     {
