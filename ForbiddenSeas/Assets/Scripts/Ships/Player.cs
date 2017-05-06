@@ -144,6 +144,24 @@ public class Player : NetworkBehaviour {
         }
     }
 
+    [Server]
+    public void LostTheTreasure()
+    {
+        Destroy(LocalGameManager.Instance.m_Treasure);
+        LocalGameManager.Instance.m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
+        LocalGameManager.Instance.m_Treasure.transform.position = gameObject.transform.position + Vector3.forward * 10f;
+
+        NetworkServer.Spawn(LocalGameManager.Instance.m_Treasure);
+        RpcHideTreasure();
+    }
+
+    [ClientRpc]
+    public void RpcHideTreasure()
+    {
+        if(m_HasTreasure)
+            m_LocalTreasure.SetActive(false);
+    }
+
     public int GetPlayerId()
     {
         return playerId;

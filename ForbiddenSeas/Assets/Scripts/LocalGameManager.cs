@@ -257,7 +257,7 @@ public class LocalGameManager : NetworkBehaviour {
                 GameObject tr = ClientScene.FindLocalObject(treasure);
                 if (tr)
                 {
-                    tr.SetActive(false);
+                    Destroy(tr);
                 }
             }
             else
@@ -268,9 +268,5 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
 
-    public GameObject FindGameObjectWithNetID(int netid)
-    {
-        return ClientScene.FindLocalObject((NetworkInstanceId)netId);
-    }
 
 }

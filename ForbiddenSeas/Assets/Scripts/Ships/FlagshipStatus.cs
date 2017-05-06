@@ -23,8 +23,11 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_main, m_special;
     public float m_mainCD, m_specialCD;
 
+    public Player m_Me;
+
     void Start()
     {
+        m_Me = gameObject.GetComponent<Player>();
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -96,7 +99,12 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void OnDeath()
     {
-        transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
+        //transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
+        if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
+        {
+            m_Me.m_HasTreasure = false;
+            m_Me.LostTheTreasure();
+        }
     }
 
     [ClientRpc]
