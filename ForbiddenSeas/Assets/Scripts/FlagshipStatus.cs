@@ -6,15 +6,27 @@ using UnityEngine.Networking;
 public class FlagshipStatus : NetworkBehaviour
 {
     public enum ShipClass {pirates, vikings, venetians, orientals};
+
     public ShipClass shipClass;
     public static string shipName;
     public static int m_MaxHealth;
-    [SyncVar]
-    public int m_Health;
     public static float m_Maneuvrability;
     public static float m_maxSpeed;
+
+    [SyncVar]
+    public int m_Health;
+    public int m_reputation = 0;
+    public int m_yohoho = 0;
+    public int m_DoT = 10; // da azzerare
+
     [SyncVar]
     public int m_main, m_special;
+
+    void Start()
+    {
+        if(isLocalPlayer)
+            StartCoroutine(DmgOverTime());
+    }
 
     public void InitializeFlagshipStatus()
     {
@@ -59,7 +71,7 @@ public class FlagshipStatus : NetworkBehaviour
             default:
                 return;
         }
-        Debug.Log("danno: "+m_main);
+
         m_Health = m_MaxHealth;
     }
 
@@ -81,10 +93,19 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     void RpcTakenDamage(string a, string da)
     {
-        Debug.Log("io sono: " + OnlineManager.s_Singleton.client.connection.connectionId.ToString() + " Colpito " + a + " da " + da);
+        Debug.Log("io sono: player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString() + " Colpito " + a + " da " + da);
     }
 
     //metodo DoT && HoT
+    private IEnumerator DmgOverTime()
+    {
+        Debug.Log("dentro coroutine");
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), "DoT");
+        }
+    }
 
 
 }

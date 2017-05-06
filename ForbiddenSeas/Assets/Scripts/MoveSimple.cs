@@ -9,12 +9,12 @@ public class MoveSimple : NetworkBehaviour {
 	public float rotSpeed;
 	public Camera cam;
 	private int State=0;
-	private float ActualSpeed = 0f;
+	//private float ActualSpeed = 0f;
 	public float Acceleration = 10f;
 	public float Factor=0;
 	private float Scroll = 0;
 	private float forward=1;
-	private float Velocity=0f;
+	//private float Velocity=0f;
 	private float smoothTime=20f;
 	private Rigidbody rb;
 
