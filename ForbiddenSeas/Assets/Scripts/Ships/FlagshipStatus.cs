@@ -17,10 +17,11 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_Health;
     public int m_reputation = 0;
     public int m_yohoho = 0;
-    public int m_DoT = 10; // da azzerare
+    public int m_DoT = 0;
 
     [SyncVar]
     public int m_main, m_special;
+    public float m_mainCD, m_specialCD;
 
     void Start()
     {
@@ -39,6 +40,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_maxSpeed = Pirates.maxSpeed;
                 m_main = Pirates.mainAttackDmg;
                 m_special = Pirates.specAttackDmg;
+                m_mainCD = Pirates.mainAttackCD;
+                m_specialCD = Pirates.specAttackCD;
                 break;
 
             case 1:
@@ -48,6 +51,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_maxSpeed = Vikings.maxSpeed;
                 m_main = Vikings.mainAttackDmg;
                 m_special = Vikings.specAttackDmg;
+                m_mainCD = Vikings.mainAttackCD;
+                m_specialCD = Vikings.specAttackCD;
                 break;
 
             case 2:
@@ -57,6 +62,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_maxSpeed = Venetians.maxSpeed;
                 m_main = Venetians.mainAttackDmg;
                 m_special = Venetians.specAttackDmg;
+                m_mainCD = Venetians.mainAttackCD;
+                m_specialCD = Venetians.specAttackCD;
                 break;
 
             case 3:
@@ -66,6 +73,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_maxSpeed = Orientals.maxSpeed;
                 m_main = Orientals.mainAttackDmg;
                 m_special = Orientals.specAttackDmg;
+                m_mainCD = Orientals.mainAttackCD;
+                m_specialCD = Orientals.specAttackCD;
                 break;
 
             default:
