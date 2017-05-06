@@ -44,6 +44,8 @@ public class OnlineManager : NetworkLobbyManager {
         return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
     }
 
+    //Modify Player Info
+
     public void SetPlayerInfoNetID(NetworkConnection conn, uint id)
     {
         if (currentPlayers.ContainsKey(conn.connectionId))
@@ -54,6 +56,12 @@ public class OnlineManager : NetworkLobbyManager {
     {
         if (currentPlayers.ContainsKey(conn.connectionId))
             currentPlayers[conn.connectionId][(int)PlayerInfo.IS_LOADED] = loaded ? 1 : 0;
+    }
+
+    public void SetPlayerInfoRespawnLocation(NetworkConnection conn, int index)
+    {
+        if (currentPlayers.ContainsKey(conn.connectionId))
+            currentPlayers[conn.connectionId][(int)PlayerInfo.SPAWN_POSITION] = index;
     }
 
     public bool EveryoneIsOnline()
