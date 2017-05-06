@@ -103,7 +103,7 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
-            m_Me.LostTheTreasure();
+            StartCoroutine(m_Me.LostTheTreasure());
         }
     }
 

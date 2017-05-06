@@ -145,14 +145,17 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
-    public void LostTheTreasure()
+    public IEnumerator LostTheTreasure()
     {
+        Vector3 futureSpawn = gameObject.transform.position + Vector3.forward;
+        RpcHideTreasure();
         Destroy(LocalGameManager.Instance.m_Treasure);
+        yield return new WaitForSeconds(1f);
         LocalGameManager.Instance.m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
-        LocalGameManager.Instance.m_Treasure.transform.position = gameObject.transform.position + Vector3.forward * 10f;
+        LocalGameManager.Instance.m_Treasure.transform.position = futureSpawn;
 
         NetworkServer.Spawn(LocalGameManager.Instance.m_Treasure);
-        RpcHideTreasure();
+
     }
 
     [ClientRpc]
