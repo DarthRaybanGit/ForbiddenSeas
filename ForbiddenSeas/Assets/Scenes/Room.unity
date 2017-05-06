@@ -637,7 +637,16 @@ MonoBehaviour:
   m_LobbyScene: Room
   m_PlayScene: Arena
   lobbySlots: []
-  m_playerPlacement: []
+  m_playerPlacement:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_SpawnPosition:
+  - {fileID: 4121301786378684, guid: a13006de655b99846a80bd935c5b4554, type: 2}
+  - {fileID: 4395635449845018, guid: 87b0731703d26444cbb60e03ff6d9bf6, type: 2}
+  - {fileID: 4999524769020252, guid: 9bf25b2383084d64f9af77d6d656785a, type: 2}
+  - {fileID: 4901075925224216, guid: 45d095620e8acd34cbe8c7183a15be64, type: 2}
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 5ebcef8b37044024793fd4f0f99566a6, type: 2}

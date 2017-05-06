@@ -9,6 +9,8 @@ public class OnlineManager : NetworkLobbyManager {
     public static OnlineManager s_Singleton;
 
     public GameObject[] m_playerPlacement;
+
+    public Transform[] m_SpawnPosition;
     public GameObject[] m_AdmiralList = new GameObject[4];
     public Dictionary<int, int[]> currentPlayers;
 
@@ -75,10 +77,13 @@ public class OnlineManager : NetworkLobbyManager {
         return checksum == currentPlayers.Keys.Count;
     }
 
+    private int count = 0;
+
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
     {
-
-        GameObject pl = GameObject.Instantiate(m_AdmiralList[conn.playerControllers.ToArray()[0].gameObject.GetComponent<PlayerManager>().m_LocalClass]);
+        SetPlayerInfoRespawnLocation(conn, count);
+        count++;
+        GameObject pl = GameObject.Instantiate(m_AdmiralList[conn.playerControllers.ToArray()[0].gameObject.GetComponent<PlayerManager>().m_LocalClass], m_SpawnPosition[currentPlayers[conn.connectionId][(int)PlayerInfo.SPAWN_POSITION]].position, Quaternion.identity);
 
         GameObject g = GameObject.Instantiate(gamePlayerPrefab);
 
@@ -94,6 +99,7 @@ public class OnlineManager : NetworkLobbyManager {
         NetworkServer.ReplacePlayerForConnection(conn, pl, playerControllerId);
 
         SetPlayerInfoNetID(conn, pl.GetComponent<Player>().netId.Value);
+
         pl.GetComponent<FlagshipStatus>().InitializeFlagshipStatus();
         return pl;
     }

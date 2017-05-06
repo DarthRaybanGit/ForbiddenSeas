@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class Player : NetworkBehaviour {
 
@@ -20,6 +21,10 @@ public class Player : NetworkBehaviour {
             Destroy(m_LocalCamera.GetComponent<AudioListener>());
             return;
         }
+        else
+        {
+
+        }
     }
 
     public override void OnStartLocalPlayer()
@@ -28,17 +33,19 @@ public class Player : NetworkBehaviour {
         {
             if (isLocalPlayer)
             {
-                m_LocalCamera.SetActive(true);
-                Camera oldMain = Camera.main;
-                oldMain.enabled = false;
-                oldMain.gameObject.SetActive(false);
-                oldMain.gameObject.tag = "Untagged";
+                Camera.main.gameObject.SetActive(false);
                 m_LocalCamera.tag = "MainCamera";
+                m_LocalCamera.SetActive(true);
+                m_LocalCamera.GetComponent<Camera>().enabled = true;
+                Debug.Log("Ho finito di settare la camera.");
                 CmdStartGeneralLoop((int)this.netId.Value);
+                LocalGameManager.Instance.m_GameIsStarted = true;
             }
-            LocalGameManager.Instance.m_GameIsStarted = true;
+
         }
     }
+
+
 
     public override void OnStartServer()
     {

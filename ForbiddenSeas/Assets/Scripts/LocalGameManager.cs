@@ -44,7 +44,7 @@ public class LocalGameManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcNotifyPlayersInGame(int[] players, int[] ids)
     {
-        Debug.Log("Sto registrando i player " + players.Length + " con " + ids.Length + " IDS");
+        //Debug.Log("Sto registrando i player " + players.Length + " con " + ids.Length + " IDS");
 
         if (players.Length != ids.Length)
         {
@@ -57,7 +57,7 @@ public class LocalGameManager : NetworkBehaviour {
                 m_PlayersID.Add(players[i], ids[i]);
         }
 
-        Debug.Log("Ho aggiunto " + m_PlayersID.Keys.Count + " chiavi" + " Ho aggiunto " + m_PlayersID.Values.Count + " valori");
+        //Debug.Log("Ho aggiunto " + m_PlayersID.Keys.Count + " chiavi" + " Ho aggiunto " + m_PlayersID.Values.Count + " valori");
         b_playersRegistered = true;
     }
 
@@ -65,20 +65,20 @@ public class LocalGameManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcNotifyPlayersID(int[] ids)
     {
-        Debug.Log("CAZZO");
+        //Debug.Log("CAZZO");
         StartCoroutine(delayedIDRegistration(ids));
     }
 
     IEnumerator delayedIDRegistration(int[] ids)
     {
         yield return new WaitUntil(() => b_playersRegistered);
-        Debug.Log("Sto registrando gli NetID dei player " + ids.Length);
+        //Debug.Log("Sto registrando gli NetID dei player " + ids.Length);
         for (int i = 0; i < ids.Length; i++)
         {
-            Debug.Log("Ho ricevuto il NetID " + ids[i]);
+           //Debug.Log("Ho ricevuto il NetID " + ids[i]);
             m_PlayersID[i] = ids[i];
         }
-        Debug.Log("Ho aggiunto " + m_PlayersID.Values.Count + " valori");
+        //Debug.Log("Ho aggiunto " + m_PlayersID.Values.Count + " valori");
     }
 
     [ClientRpc]
@@ -87,7 +87,7 @@ public class LocalGameManager : NetworkBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
-        Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
+        //Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
 
         int count = 0;
         foreach(int i in m_PlayersID.Values)
@@ -115,7 +115,11 @@ public class LocalGameManager : NetworkBehaviour {
 
     public int GetPlayerId(GameObject player_go)
     {
+        if (player_go)
+            return -1;
+
         int i;
+
         for(i = 0; i < m_Players.Length; i++)
         {
             if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
@@ -199,6 +203,22 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
 
-
+    public bool IsEveryPlayerRegistered()
+    {
+        //Debug.Log("Looking for Player: " + m_PlayerRegistered);
+        if (m_PlayerRegistered)
+        {
+            foreach (GameObject g in m_Players)
+            {
+                if (!g.activeSelf)
+                    return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+        return m_PlayerRegistered;
+    }
 
 }

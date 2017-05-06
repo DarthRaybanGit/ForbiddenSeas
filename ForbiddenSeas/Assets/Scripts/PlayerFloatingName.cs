@@ -19,7 +19,7 @@ public class PlayerFloatingName : MonoBehaviour
 
     void Update ()
     {
-        if(trovato && target != null)
+        if(trovato && target)
         {
             Vector2 targetPos = Camera.main.WorldToScreenPoint(target.position);
             transform.position = targetPos + offset;
@@ -30,7 +30,11 @@ public class PlayerFloatingName : MonoBehaviour
 
     IEnumerator WaitForReady()
     {
-        yield return new WaitUntil(() => LocalGameManager.Instance.m_PlayerRegistered && LocalGameManager.Instance.m_GameIsStarted && LocalGameManager.Instance.m_serverTimeSended);
+        yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
+
+
+        //Debug.Log("Sto Cercando i player!");
+
         if (id > LocalGameManager.Instance.m_Players.Length)
         {
             gameObject.SetActive(false);
@@ -38,7 +42,7 @@ public class PlayerFloatingName : MonoBehaviour
         else
         {
             target = LocalGameManager.Instance.GetPlayer(id - 1).transform;
-            Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
+            //Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
             trovato = true;
         }
 

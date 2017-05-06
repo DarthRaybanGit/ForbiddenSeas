@@ -8,6 +8,7 @@ TagManager:
   - ClassViewer
   - mainAttack
   - specialAttack
+  - Etichette
   layers:
   - Default
   - TransparentFX
