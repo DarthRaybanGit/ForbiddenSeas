@@ -120,7 +120,6 @@ public class LocalGameManager : NetworkBehaviour {
         {
             if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
                 return i + 1;
-
         }
         return -1;
     }
