@@ -14,13 +14,14 @@ public class CoolDownIndicator : MonoBehaviour
     IEnumerator StartCoolDown(float cd)
     {
         GetComponent<Image>().fillAmount = 1f;
+        int i = 0;
         float amount = 1f;
-        float decrease = cd * 0.1f;
-        while (GetComponent<Image>().fillAmount > 0f)
+        float decrease = 0.02f / cd;
+        while (amount > 0f)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.02f);
             amount -= decrease;
-            Debug.Log("Amount: "+amount);
+            Debug.Log("Decrease: "+decrease + "i: "+ (i++));
             GetComponent<Image>().fillAmount = amount;
         }
     }
