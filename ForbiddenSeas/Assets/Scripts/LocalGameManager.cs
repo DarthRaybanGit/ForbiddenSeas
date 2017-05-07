@@ -27,6 +27,7 @@ public class LocalGameManager : NetworkBehaviour {
     public static float m_MatchEndTime;
 
     public GameObject m_Treasure;
+    public bool m_TreasureIsInGame = false;
     public GameObject[] m_Ports;
 
 
