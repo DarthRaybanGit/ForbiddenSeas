@@ -128,14 +128,14 @@ public class LocalGameManager : NetworkBehaviour {
 
     public int GetPlayerId(GameObject player_go)
     {
-        if (player_go)
+        if (!player_go || !player_go.CompareTag("Player"))
             return Symbols.PLAYER_NOT_SET;
 
         int i;
 
         for(i = 0; i < m_Players.Length; i++)
         {
-            if (m_Players[i].GetInstanceID() == player_go.GetInstanceID())
+            if (m_Players[i].GetComponent<Player>().netId == player_go.GetComponent<Player>().netId)
                 return i + 1;
         }
         return Symbols.PLAYER_NOT_SET;
@@ -271,6 +271,19 @@ public class LocalGameManager : NetworkBehaviour {
             return Symbols.PLAYER_NOT_SET;
     }
 
+    [Client]
+    public GameObject WhoAsTheTreasure()
+    {
+        if (IsEveryPlayerRegistered())
+        {
+            foreach(GameObject g in m_Players)
+            {
+                if (g.GetComponent<Player>().m_HasTreasure)
+                    return g;
+            }
+        }
+        return null;
+    }
 
     [ClientRpc]
     public void RpcNotifyNewTreasureOwner(int playerId, NetworkInstanceId treasure)
