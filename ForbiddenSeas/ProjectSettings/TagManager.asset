@@ -9,6 +9,8 @@ TagManager:
   - mainAttack
   - specialAttack
   - Etichette
+  - mainCD_UI
+  - specCD_UI
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,14 @@ public class CombatSystem : NetworkBehaviour
     bool mainCoolDown = false;
     bool specCoolDown = false;
     bool fire = false;
+    public GameObject MainUI;
+    public GameObject SpecUI;
+
+    void Awake()
+    {
+        MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
+        SpecUI = GameObject.FindGameObjectWithTag("specCD_UI");
+    }
 
     void Update()
     {
@@ -22,6 +30,8 @@ public class CombatSystem : NetworkBehaviour
                 fire = true;
                 mainCoolDown = true;
                 StartCoroutine(MainAttack());
+                Debug.Log("main cd: "+ GetComponent<FlagshipStatus>().m_mainCD);
+                MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
             }
         }
 
@@ -33,6 +43,7 @@ public class CombatSystem : NetworkBehaviour
                 fire = true;
                 specCoolDown = true;
                 StartCoroutine(SpecialAttack());
+                SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
             }
         }
     }
