@@ -209,6 +209,15 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
     [Server]
+    public IEnumerator c_RespawnTreasure()
+    {
+        yield return new WaitForSeconds((int)FixedDelayInGame.TREASURE_RESPAWN);
+        Destroy(m_Treasure);
+        m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
+        NetworkServer.Spawn(m_Treasure);
+    }
+
+    [Server]
     public IEnumerator c_WaitUntilEveryPlayersOnline(int[] msg1, int[] msg2)
     {
         float timestamp = Time.time;

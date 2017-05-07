@@ -152,7 +152,9 @@ public class Player : NetworkBehaviour {
         Vector3 futureSpawn = gameObject.transform.position + Vector3.forward;
         RpcHideTreasure();
         Destroy(LocalGameManager.Instance.m_Treasure);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(LocalGameManager.Instance.m_Treasure);
         LocalGameManager.Instance.m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
         LocalGameManager.Instance.m_Treasure.transform.position = futureSpawn;
 
@@ -161,17 +163,24 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
-    public void ScoreAnARRH(NetworkInstanceId playerId)
+    public void ScoreAnARRH()
     {
-        Debug.Log("Player " + (int)playerId.Value + " ha segnato un ARRH!");
+        Debug.Log("Player " + (int)netId.Value + " ha segnato un ARRH!");
 
+        //Aumenta punteggi etc
+
+        RpcHideTreasure();
+        StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
     }
 
     [ClientRpc]
     public void RpcHideTreasure()
     {
-        if(m_HasTreasure)
+        if (m_HasTreasure)
+        {
+            m_HasTreasure = false;
             m_LocalTreasure.SetActive(false);
+        }
     }
 
     public int GetPlayerId()

@@ -13,7 +13,7 @@ public class Porto : NetworkBehaviour {
             {
                 Debug.Log("Toccato il porto!");
                 collision.gameObject.GetComponent<Player>().m_HasTreasure = false;
-                collision.gameObject.GetComponent<Player>().ScoreAnARRH(collision.gameObject.GetComponent<Player>().netId);
+                collision.gameObject.GetComponent<Player>().ScoreAnARRH();
             }
         }
     }
