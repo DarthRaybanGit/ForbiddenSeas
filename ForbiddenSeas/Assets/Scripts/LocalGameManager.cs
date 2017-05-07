@@ -111,7 +111,7 @@ public class LocalGameManager : NetworkBehaviour {
 
     public GameObject GetPlayer(int playerId)
     {
-        return (playerId) > m_Players.Length ? null : m_Players[playerId];
+        return (playerId) > m_Players.Length || playerId <= 0 ? null : m_Players[playerId - 1];
     }
 
     public GameObject GetPlayerFromNetID(int netID)

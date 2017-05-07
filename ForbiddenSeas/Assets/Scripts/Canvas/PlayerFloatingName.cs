@@ -41,7 +41,7 @@ public class PlayerFloatingName : MonoBehaviour
         }
         else
         {
-            target = LocalGameManager.Instance.GetPlayer(id - 1).transform;
+            target = LocalGameManager.Instance.GetPlayer(id).transform;
             //Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
             trovato = true;
         }
