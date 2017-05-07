@@ -137,7 +137,7 @@ public class Player : NetworkBehaviour {
         {
             if (g.GetComponent<Player>())
             {
-                Debug.Log("Gli sto facendo prendere il tesoro!");
+                //Debug.Log("Gli sto facendo prendere il tesoro!");
                 Player pl = g.GetComponent<Player>();
                 pl.m_HasTreasure = true;
                 LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)playerId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
@@ -154,9 +154,9 @@ public class Player : NetworkBehaviour {
 
         while (pl.m_HasTreasure && pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho < 100)
         {
-            Debug.Log("YOHOHO!");
+
             yield return new WaitForSeconds((int)FixedDelayInGame.YOHOHO_UPDATE_INTERVAL);
-            Debug.Log("YOHOHO! Increase! " + pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho);
+
             pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho += 100 / (float)FixedDelayInGame.YOHOHO_FULLFY_SPAN;
             if (pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho > 100)
                 pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho = 100;
