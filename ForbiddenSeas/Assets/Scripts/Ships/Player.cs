@@ -122,26 +122,28 @@ public class Player : NetworkBehaviour {
         LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
     }
 
-    [Command]
-    public void CmdCatchTheTreasure(int playerId)
+    [Server]
+    public void CatchTheTreasure(NetworkInstanceId playerId)
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)
             return;
 
         LocalGameManager.Instance.m_Treasure.SetActive(false);
         Debug.Log("Il player " + playerId + " ha preso il tesoro!");
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+
+
+        GameObject g = NetworkServer.FindLocalObject(playerId);
+        if (g)
         {
             if (g.GetComponent<Player>())
             {
-                if(g.GetComponent<Player>().netId.Value == playerId)
-                {
-                    Debug.Log("Gli sto facendo prendere il tesoro!");
-                    g.GetComponent<Player>().m_HasTreasure = true;
-                    LocalGameManager.Instance.RpcNotifyNewTreasureOwner(playerId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
-                }
+                Debug.Log("Gli sto facendo prendere il tesoro!");
+                g.GetComponent<Player>().m_HasTreasure = true;
+                LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)playerId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
             }
+
         }
+
     }
 
     [Server]
@@ -158,9 +160,10 @@ public class Player : NetworkBehaviour {
 
     }
 
-    [Command]
-    public void CmdScoreAnARRH(NetworkInstanceId playerId)
+    [Server]
+    public void ScoreAnARRH(NetworkInstanceId playerId)
     {
+        Debug.Log("Player " + (int)playerId.Value + " ha segnato un ARRH!");
 
     }
 

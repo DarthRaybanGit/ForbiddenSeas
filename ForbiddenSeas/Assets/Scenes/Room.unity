@@ -649,6 +649,11 @@ MonoBehaviour:
   - {fileID: 4395635449845018, guid: 87b0731703d26444cbb60e03ff6d9bf6, type: 2}
   - {fileID: 4999524769020252, guid: 9bf25b2383084d64f9af77d6d656785a, type: 2}
   - {fileID: 4901075925224216, guid: 45d095620e8acd34cbe8c7183a15be64, type: 2}
+  m_PortSpawnPosition:
+  - {fileID: 4876588696805150, guid: e0d47649c1fc3f941a303b196b1b259f, type: 2}
+  - {fileID: 4246205741725678, guid: eaa9820eb5d223943bb0cbc03aaa75ae, type: 2}
+  - {fileID: 4240404434626506, guid: eeaa51000e189364f9f36a8ecc352c97, type: 2}
+  - {fileID: 4706207241900874, guid: 62ac98aa42afad84ab2b0002d04ec2e1, type: 2}
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 5ebcef8b37044024793fd4f0f99566a6, type: 2}

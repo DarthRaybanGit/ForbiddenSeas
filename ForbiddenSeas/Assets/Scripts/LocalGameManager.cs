@@ -27,6 +27,7 @@ public class LocalGameManager : NetworkBehaviour {
     public static float m_MatchEndTime;
 
     public GameObject m_Treasure;
+    public GameObject[] m_Ports;
 
 
     private void Awake()
@@ -38,6 +39,12 @@ public class LocalGameManager : NetworkBehaviour {
         DontDestroyOnLoad(transform.gameObject);
         m_PlayersID = new Dictionary<int, int>();
     }
+
+    public override void OnStartServer()
+    {
+        m_Ports = new GameObject[4];
+    }
+
 
 
     //Funzione per la restituzione dell'array contenente i connection ID dei player
@@ -171,6 +178,20 @@ public class LocalGameManager : NetworkBehaviour {
         Debug.Log("Tesoro Spawn!!!");
         NetworkServer.Spawn(m_Treasure);
         //Aprire le porte dei canali.
+
+        //Spawn dei Porti
+        int count = 0;
+        for(; count < m_Ports.Length; count++)
+        {
+            m_Ports[count] = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PORTO], OnlineManager.s_Singleton.m_PortSpawnPosition[count].position, Quaternion.identity);
+        }
+
+
+        foreach(GameObject g in m_Ports)
+        {
+            NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+        }
+
     }
 
     [Server]

@@ -7,12 +7,12 @@ public class Treasure : NetworkBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!isServer)
+        if (isServer)
         {
-            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Player>().isLocalPlayer && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0 && !other.gameObject.GetComponent<Player>().m_HasTreasure)
             {
                 Debug.Log("Toccato il tesoro!");
-                other.gameObject.GetComponent<Player>().CmdCatchTheTreasure((int)other.gameObject.GetComponent<Player>().netId.Value);
+                other.gameObject.GetComponent<Player>().CatchTheTreasure(other.gameObject.GetComponent<Player>().netId);
             }
         }
     }
