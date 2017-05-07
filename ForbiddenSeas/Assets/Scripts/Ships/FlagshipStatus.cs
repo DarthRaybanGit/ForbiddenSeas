@@ -15,8 +15,13 @@ public class FlagshipStatus : NetworkBehaviour
 
     [SyncVar]
     public int m_Health;
+    [SyncVar]
     public int m_reputation = 0;
-    public int m_yohoho = 0;
+    [SyncVar]
+    public float m_yohoho = 0;
+    [SyncVar]
+    public bool m_isDead = false;
+
     public int m_DoT = 0;
 
     [SyncVar]
@@ -105,6 +110,17 @@ public class FlagshipStatus : NetworkBehaviour
             m_Me.m_HasTreasure = false;
             StartCoroutine(m_Me.LostTheTreasure());
         }
+        if (!m_isDead)
+        {
+            //Set all the penalties here.
+            m_yohoho -= 15f;
+            if (m_yohoho < 0)
+                m_yohoho = 0;
+            //Decrease Reputation
+            //Increase Death Count
+            //Increase Opponent Kill Count
+        }
+        m_isDead = true;
     }
 
     [ClientRpc]
