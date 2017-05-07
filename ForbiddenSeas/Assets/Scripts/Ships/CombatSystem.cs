@@ -13,7 +13,7 @@ public class CombatSystem : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!mainCoolDown && !fire)
@@ -61,11 +61,11 @@ public class CombatSystem : NetworkBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && other.CompareTag("Player"))
         {
             if (other.gameObject.Equals(gameObject))
                 return;
-            
+
             Debug.Log(gameObject.name + "Preso danno da "+ other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
 
             if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))

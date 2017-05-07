@@ -27,6 +27,7 @@ public class LocalGameManager : NetworkBehaviour {
     public static float m_MatchEndTime;
 
     public GameObject m_Treasure;
+    public GameObject[] m_Ports;
 
 
     private void Awake()
@@ -39,6 +40,12 @@ public class LocalGameManager : NetworkBehaviour {
         m_PlayersID = new Dictionary<int, int>();
     }
 
+    public override void OnStartServer()
+    {
+        m_Ports = new GameObject[4];
+    }
+
+
 
     //Funzione per la restituzione dell'array contenente i connection ID dei player
     private bool b_playersRegistered = false;
@@ -46,7 +53,7 @@ public class LocalGameManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcNotifyPlayersInGame(int[] players, int[] ids)
     {
-        //Debug.Log("Sto registrando i player " + players.Length + " con " + ids.Length + " IDS");
+        Debug.Log("Sto registrando i player " + players.Length + " con " + ids.Length + " IDS");
 
         if (players.Length != ids.Length)
         {
@@ -59,43 +66,35 @@ public class LocalGameManager : NetworkBehaviour {
                 m_PlayersID.Add(players[i], ids[i]);
         }
 
-        //Debug.Log("Ho aggiunto " + m_PlayersID.Keys.Count + " chiavi" + " Ho aggiunto " + m_PlayersID.Values.Count + " valori");
+        Debug.Log("Ho aggiunto " + m_PlayersID.Keys.Count + " chiavi" + " Ho aggiunto " + m_PlayersID.Values.Count + " valori");
         b_playersRegistered = true;
     }
 
-
-    [ClientRpc]
-    public void RpcNotifyPlayersID(int[] ids)
+    private bool idRegistrati()
     {
-        //Debug.Log("CAZZO");
-        StartCoroutine(delayedIDRegistration(ids));
-    }
-
-    IEnumerator delayedIDRegistration(int[] ids)
-    {
-        yield return new WaitUntil(() => b_playersRegistered);
-        //Debug.Log("Sto registrando gli NetID dei player " + ids.Length);
-        for (int i = 0; i < ids.Length; i++)
-        {
-           //Debug.Log("Ho ricevuto il NetID " + ids[i]);
-            m_PlayersID[i] = ids[i];
-        }
-        //Debug.Log("Ho aggiunto " + m_PlayersID.Values.Count + " valori");
+        return b_playersRegistered;
     }
 
     [ClientRpc]
     public void RpcSearchGameObjectForPlayers()
     {
+        StartCoroutine(delayedGameObjectRegistration());
+    }
+
+    IEnumerator delayedGameObjectRegistration()
+    {
+        yield return new WaitUntil(() => idRegistrati());
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
         //Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
 
         int count = 0;
-        foreach(int i in m_PlayersID.Values)
+        foreach (int i in m_PlayersID.Values)
         {
             int j;
-            for(j = 0; j < players.Length; j++)
+            for (j = 0; j < players.Length; j++)
             {
                 if (i == (int)players[j].GetComponent<Player>().netId.Value)
                     break;
@@ -113,6 +112,18 @@ public class LocalGameManager : NetworkBehaviour {
     public GameObject GetPlayer(int playerId)
     {
         return (playerId) > m_Players.Length ? null : m_Players[playerId];
+    }
+
+    public GameObject GetPlayerFromNetID(int netID)
+    {
+        int count = 0;
+        foreach(int i in m_PlayersID.Keys)
+        {
+            if (m_PlayersID[i] == netID)
+                return m_Players[count];
+            count++;
+        }
+        return null;
     }
 
     public int GetPlayerId(GameObject player_go)
@@ -158,7 +169,7 @@ public class LocalGameManager : NetworkBehaviour {
     [Server]
     public IEnumerator c_WaitForTreasure()
     {
-        yield return new WaitForSeconds(180f);
+        yield return new WaitForSeconds((int)FixedDelayInGame.TREASURE_FIRST_SPAWN);
         //Risincronizza il time per sicurezza
         LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
 
@@ -167,6 +178,20 @@ public class LocalGameManager : NetworkBehaviour {
         Debug.Log("Tesoro Spawn!!!");
         NetworkServer.Spawn(m_Treasure);
         //Aprire le porte dei canali.
+
+        //Spawn dei Porti
+        int count = 0;
+        for(; count < m_Ports.Length; count++)
+        {
+            m_Ports[count] = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PORTO], OnlineManager.s_Singleton.m_PortSpawnPosition[count].position, Quaternion.identity);
+        }
+
+
+        foreach(GameObject g in m_Ports)
+        {
+            NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+        }
+
     }
 
     [Server]
@@ -174,7 +199,7 @@ public class LocalGameManager : NetworkBehaviour {
     {
         while (LocalGameManager.Instance.m_GameIsStarted)
         {
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds((int)FixedDelayInGame.POWERUP_SPAWN);
             //Risincronizza il time per sicurezza
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
             Debug.Log("PowerUp SPAWN!!!");
@@ -184,7 +209,16 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
     [Server]
-    public IEnumerator c_WaitUntilEveryPlayersOnline()
+    public IEnumerator c_RespawnTreasure()
+    {
+        yield return new WaitForSeconds((int)FixedDelayInGame.TREASURE_RESPAWN);
+        Destroy(m_Treasure);
+        m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
+        NetworkServer.Spawn(m_Treasure);
+    }
+
+    [Server]
+    public IEnumerator c_WaitUntilEveryPlayersOnline(int[] msg1, int[] msg2)
     {
         float timestamp = Time.time;
         yield return new WaitUntil(() => OnlineManager.s_Singleton.EveryoneIsOnline() || Time.time > (timestamp + (int)FixedDelayInGame.PLAYERS_DELAY));
@@ -199,6 +233,7 @@ public class LocalGameManager : NetworkBehaviour {
         {
             //Start Game!
             Debug.Log("START GAME!!!");
+            LocalGameManager.Instance.RpcNotifyPlayersInGame(msg1,msg2);
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
             StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
             LocalGameManager.Instance.m_serverTimeSended = true;
@@ -215,7 +250,7 @@ public class LocalGameManager : NetworkBehaviour {
         {
             foreach (GameObject g in m_Players)
             {
-                if (!g.activeSelf)
+                if(!g || !g.activeSelf)
                     return false;
             }
         }
@@ -238,14 +273,30 @@ public class LocalGameManager : NetworkBehaviour {
 
 
     [ClientRpc]
-    public void RpcNotifyNewTreasureOwner(int playerId)
+    public void RpcNotifyNewTreasureOwner(int playerId, NetworkInstanceId treasure)
     {
         if (IsEveryPlayerRegistered())
         {
-            Player pl = GetPlayer(playerId).GetComponent<Player>();
-            pl.m_LocalTreasure.SetActive(true);
-            pl.m_HasTreasure = true;
+            GameObject g = GetPlayerFromNetID(playerId);
+            Player pl = g ? g.GetComponent<Player>() : null;
+            if (pl)
+            {
+                pl.m_LocalTreasure.SetActive(true);
+                pl.m_HasTreasure = true;
+
+                GameObject tr = ClientScene.FindLocalObject(treasure);
+                if (tr)
+                {
+                    Destroy(tr);
+                }
+            }
+            else
+            {
+                Debug.Log("No player " + playerId + " trovato!");
+            }
         }
     }
+
+
 
 }

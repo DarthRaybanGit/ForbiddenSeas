@@ -15,16 +15,24 @@ public class FlagshipStatus : NetworkBehaviour
 
     [SyncVar]
     public int m_Health;
+    [SyncVar]
     public int m_reputation = 0;
-    public int m_yohoho = 0;
+    [SyncVar]
+    public float m_yohoho = 0;
+    [SyncVar]
+    public bool m_isDead = false;
+
     public int m_DoT = 0;
 
     [SyncVar]
     public int m_main, m_special;
     public float m_mainCD, m_specialCD;
 
+    public Player m_Me;
+
     void Start()
     {
+        m_Me = gameObject.GetComponent<Player>();
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -96,7 +104,23 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void OnDeath()
     {
-        transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
+        //transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
+        if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
+        {
+            m_Me.m_HasTreasure = false;
+            StartCoroutine(m_Me.LostTheTreasure());
+        }
+        if (!m_isDead)
+        {
+            //Set all the penalties here.
+            m_yohoho -= 15f;
+            if (m_yohoho < 0)
+                m_yohoho = 0;
+            //Decrease Reputation
+            //Increase Death Count
+            //Increase Opponent Kill Count
+        }
+        m_isDead = true;
     }
 
     [ClientRpc]

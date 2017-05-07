@@ -11,7 +11,9 @@ public class OnlineManager : NetworkLobbyManager {
     public GameObject[] m_playerPlacement;
 
     public Transform[] m_SpawnPosition;
+    public Transform[] m_PortSpawnPosition;
     public GameObject[] m_AdmiralList = new GameObject[4];
+
     public Dictionary<int, int[]> currentPlayers;
 
     public GameObject m_GamePlayer;

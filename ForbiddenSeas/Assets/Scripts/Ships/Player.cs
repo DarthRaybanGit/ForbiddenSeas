@@ -94,10 +94,10 @@ public class Player : NetworkBehaviour {
                 count++;
             }
 
-            LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send, to_SendIds);
 
 
-            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline());
+
+            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline(to_Send, to_SendIds));
         }
 
     }
@@ -122,20 +122,82 @@ public class Player : NetworkBehaviour {
         LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
     }
 
-    [Command]
-    public void CmdCatchTheTreasure(int playerId)
+    [Server]
+    public void CatchTheTreasure(NetworkInstanceId playerId)
     {
+        if (!LocalGameManager.Instance.m_Treasure.activeSelf)
+            return;
+
         LocalGameManager.Instance.m_Treasure.SetActive(false);
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+        Debug.Log("Il player " + playerId + " ha preso il tesoro!");
+
+
+        GameObject g = NetworkServer.FindLocalObject(playerId);
+        if (g)
         {
             if (g.GetComponent<Player>())
             {
-                if(g.GetComponent<Player>().netId.Value == playerId)
-                {
-                    g.GetComponent<Player>().m_HasTreasure = true;
-                    LocalGameManager.Instance.RpcNotifyNewTreasureOwner(playerId);
-                }
+                //Debug.Log("Gli sto facendo prendere il tesoro!");
+                Player pl = g.GetComponent<Player>();
+                pl.m_HasTreasure = true;
+                LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)playerId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
+                StartCoroutine(yohohoBarGrow(pl));
             }
+
+        }
+
+    }
+
+    [Server]
+    public IEnumerator yohohoBarGrow(Player pl)
+    {
+
+        while (pl.m_HasTreasure && pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho < 100)
+        {
+
+            yield return new WaitForSeconds((int)FixedDelayInGame.YOHOHO_UPDATE_INTERVAL);
+
+            pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho += 100 / (float)FixedDelayInGame.YOHOHO_FULLFY_SPAN;
+            if (pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho > 100)
+                pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho = 100;
+
+        }
+    }
+
+    [Server]
+    public IEnumerator LostTheTreasure()
+    {
+        Vector3 futureSpawn = gameObject.transform.position + Vector3.forward;
+        RpcHideTreasure();
+        Destroy(LocalGameManager.Instance.m_Treasure);
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(LocalGameManager.Instance.m_Treasure);
+        LocalGameManager.Instance.m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
+        LocalGameManager.Instance.m_Treasure.transform.position = futureSpawn;
+
+        NetworkServer.Spawn(LocalGameManager.Instance.m_Treasure);
+
+    }
+
+    [Server]
+    public void ScoreAnARRH()
+    {
+        Debug.Log("Player " + (int)netId.Value + " ha segnato un ARRH!");
+
+        //Aumenta punteggi etc
+
+        RpcHideTreasure();
+        StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
+    }
+
+    [ClientRpc]
+    public void RpcHideTreasure()
+    {
+        if (m_HasTreasure)
+        {
+            m_HasTreasure = false;
+            m_LocalTreasure.SetActive(false);
         }
     }
 
