@@ -47,7 +47,8 @@ public enum SpawnIndex
     PIRATES_FLAGSHIP,
     VENETIANS_FLAGSHIP,
     VIKINGS_FLAGSHIP,
-    TREASURE
+    TREASURE,
+    PORTO
 }
 
 public class Symbols
