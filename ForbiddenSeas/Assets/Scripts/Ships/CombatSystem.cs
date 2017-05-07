@@ -36,13 +36,13 @@ public class CombatSystem : NetworkBehaviour
             }
         }
     }
-
+        
     private IEnumerator MainAttack()
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
-        Utility.FindChildWithTag(gameObject, "mainAttack").SetActive(true);
+        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", true);
         yield return new WaitForSeconds(0.1f);
-        Utility.FindChildWithTag(gameObject, "mainAttack").SetActive(false);
+        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", false);
         fire = false;
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
         mainCoolDown = false;
@@ -79,5 +79,18 @@ public class CombatSystem : NetworkBehaviour
                 GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.gameObject).ToString());
             }
         }
+    }
+
+    [Command]
+    public void CmdActivateTrigger(int playerId, string tag, bool b)
+    {
+        RpcSetActiveTrigger(playerId, tag, b);
+    }
+
+    [ClientRpc]
+    public void RpcSetActiveTrigger(int playerId, string tag, bool b)
+    {
+        Debug.Log("trigger playerId: "+playerId);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(b);
     }
 }

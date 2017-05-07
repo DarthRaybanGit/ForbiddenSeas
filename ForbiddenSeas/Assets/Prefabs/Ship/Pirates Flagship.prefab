@@ -225,13 +225,15 @@ GameObject:
   - component: {fileID: 4043603906462104}
   - component: {fileID: 65716306890143452}
   - component: {fileID: 54930900319909490}
+  - component: {fileID: 23408693606521754}
+  - component: {fileID: 33191660797223310}
   m_Layer: 0
   m_Name: AoE_Cannon
   m_TagString: mainAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1384900353851840
 GameObject:
   m_ObjectHideFlags: 1
@@ -1106,6 +1108,37 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!23 &23408693606521754
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367010828756206}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2eecf1e649afc4a57b44e3a54bd9ea93, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &23462512313888890
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1560,6 +1593,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1255583600551710}
   m_Mesh: {fileID: 4300092, guid: c1cb0670ed37db4449f092281f0d519d, type: 3}
+--- !u!33 &33191660797223310
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367010828756206}
+  m_Mesh: {fileID: 4300096, guid: c1cb0670ed37db4449f092281f0d519d, type: 3}
 --- !u!33 &33245116649023962
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1839,9 +1879,11 @@ MonoBehaviour:
   m_Health: 0
   m_reputation: 0
   m_yohoho: 0
-  m_DoT: 10
+  m_DoT: 0
   m_main: 0
   m_special: 0
+  m_mainCD: 0
+  m_specialCD: 0
 --- !u!114 &114789289762858792
 MonoBehaviour:
   m_ObjectHideFlags: 1
