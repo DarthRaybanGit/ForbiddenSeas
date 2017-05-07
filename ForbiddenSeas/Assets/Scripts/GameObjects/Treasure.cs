@@ -5,6 +5,13 @@ using UnityEngine.Networking;
 
 public class Treasure : NetworkBehaviour {
 
+
+    public override void OnStartClient()
+    {
+        LocalGameManager.Instance.m_TreasureIsInGame = true;
+        LocalGameManager.Instance.m_Treasure = gameObject;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (isServer)

@@ -198,6 +198,7 @@ public class Player : NetworkBehaviour {
         {
             m_HasTreasure = false;
             m_LocalTreasure.SetActive(false);
+            LocalGameManager.Instance.m_TreasureIsInGame = false;
         }
     }
 
