@@ -10,11 +10,15 @@ public class CombatSystem : NetworkBehaviour
     bool fire = false;
     public GameObject MainUI;
     public GameObject SpecUI;
+    public GameObject GlobalMUI;
+    public GameObject GlobalSUI;
 
     void Awake()
     {
         MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
         SpecUI = GameObject.FindGameObjectWithTag("specCD_UI");
+        GlobalMUI = GameObject.FindGameObjectWithTag("GlobalM_UI");
+        GlobalSUI = GameObject.FindGameObjectWithTag("GlobalS_UI");
     }
 
     void Update()
@@ -24,6 +28,7 @@ public class CombatSystem : NetworkBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
             if (!mainCoolDown && !fire)
             {
                 Debug.Log("Sparo main");
@@ -38,6 +43,7 @@ public class CombatSystem : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            GlobalSUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
             if (!specCoolDown && !fire)
             {
                 Debug.Log("Sparo special");

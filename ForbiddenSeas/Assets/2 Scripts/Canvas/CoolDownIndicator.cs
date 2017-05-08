@@ -36,4 +36,9 @@ public class CoolDownIndicator : MonoBehaviour
                 return;
         }
     }
+
+    public void OnGlobalPressed()
+    {
+        anim.Play();
+    }
 }
