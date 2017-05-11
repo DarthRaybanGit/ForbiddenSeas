@@ -158,6 +158,8 @@ GameObject:
   - component: {fileID: 114844916950294838}
   - component: {fileID: 114493030174999872}
   - component: {fileID: 114946845592829762}
+  - component: {fileID: 54905173336842266}
+  - component: {fileID: 136193404277718814}
   m_Layer: 0
   m_Name: Viking Flagship
   m_TagString: Player
@@ -1666,6 +1668,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1717182780057394}
   m_Mesh: {fileID: 4300000, guid: c1cb0670ed37db4449f092281f0d519d, type: 3}
+--- !u!54 &54905173336842266
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507429031933400}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!81 &81522838567742876
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1691,7 +1708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb946c289ba9d4a03b7bcdf14c5acfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  maxSpeed: 0
   rotSpeed: 100
   cam: {fileID: 20779171505692740}
   Acceleration: 10
@@ -1740,12 +1757,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipClass: 3
+  m_Maneuvrability: 0
+  m_maxSpeed: 0
   m_Health: 0
   m_reputation: 0
   m_yohoho: 0
+  m_isDead: 0
   m_DoT: 10
   m_main: 0
   m_special: 0
+  m_mainCD: 0
+  m_specialCD: 0
+  m_Me: {fileID: 0}
 --- !u!114 &114844916950294838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1758,12 +1781,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
+  m_SendInterval: 0.03846154
+  m_SyncRotationAxis: 6
   m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.0001
+  m_SnapThreshold: 20
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
 --- !u!114 &114946845592829762
@@ -1794,3 +1817,16 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594926022531992}
   m_Enabled: 1
+--- !u!136 &136193404277718814
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1507429031933400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.349192
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4, z: 0}
