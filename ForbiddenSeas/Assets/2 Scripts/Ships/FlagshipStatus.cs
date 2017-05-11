@@ -10,8 +10,10 @@ public class FlagshipStatus : NetworkBehaviour
     public ShipClass shipClass;
     public static string shipName;
     public static int m_MaxHealth;
-    public static float m_Maneuvrability;
-    public static float m_maxSpeed;
+	[SyncVar]
+    public float m_Maneuvrability;
+	[SyncVar]
+    public float m_maxSpeed;
 
     [SyncVar]
     public int m_Health;
