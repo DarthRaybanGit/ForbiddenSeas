@@ -105,7 +105,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void OnDeath()
     {
-        //transform.GetChild(0).GetComponentInChildren<Material>().color = Color.red;
+        
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
