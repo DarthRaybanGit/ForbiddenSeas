@@ -13,6 +13,8 @@ public class Player : NetworkBehaviour {
     public bool m_HasTreasure = false;
     public GameObject m_LocalTreasure;
 
+    public Vector3 m_StartPosition;
+
 
     [SyncVar]
     public int m_Class = 0;
@@ -42,6 +44,7 @@ public class Player : NetworkBehaviour {
                 m_LocalCamera.GetComponent<Camera>().enabled = true;
                 Debug.Log("Ho finito di settare la camera.");
                 CmdStartGeneralLoop((int)this.netId.Value);
+                m_StartPosition = transform.position;
                 LocalGameManager.Instance.m_GameIsStarted = true;
             }
 
