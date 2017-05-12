@@ -59,3 +59,15 @@ public class Symbols
     public const float mainAttackDelay = 0.5f;
     public const float specAttackDelay = 0.3f;
 }
+
+public class ReputationValues
+{
+    public const int KILLED = -500;
+    public const int SUPPKILLED = -100;
+    public const int COIN = 50;
+    public const int KILL = 1000;
+    public const int SUPPKILL = 500;
+    public const int POWERUP = 200;
+    public const int TREASURE = 500;
+    public const int ARRH = 2000;
+}

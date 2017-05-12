@@ -124,6 +124,8 @@ public class FlagshipStatus : NetworkBehaviour
             //Increase Opponent Kill Count
         }
         m_isDead = true;
+        CmdRespawn();
+
     }
 
     [ClientRpc]
@@ -143,7 +145,13 @@ public class FlagshipStatus : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdRespawn()
+    {
+        m_reputation += ReputationValues.KILLED;
+        m_reputation = (m_reputation < 0) ? 0 : m_reputation;
+        m_Health = m_MaxHealth;
+        transform.position = GetComponent<Player>().m_SpawnPoint;
+    }
 
 }
-
-
