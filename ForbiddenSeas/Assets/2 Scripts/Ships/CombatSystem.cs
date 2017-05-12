@@ -89,11 +89,10 @@ public class CombatSystem : NetworkBehaviour
         {
             if (other.gameObject.Equals(gameObject))
                 return;
-            
-            Debug.Log(gameObject.name + "Preso danno da "+ other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
 
             if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
             {
+                Debug.Log(gameObject.name + "Preso danno da "+ other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
                 int dmg = 0;
                 if (other.tag.Equals("mainAttack"))
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;

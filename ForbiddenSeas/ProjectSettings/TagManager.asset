@@ -13,6 +13,8 @@ TagManager:
   - specCD_UI
   - GlobalM_UI
   - GlobalS_UI
+  - ReputationUI
+  - ScoreUI
   layers:
   - Default
   - TransparentFX

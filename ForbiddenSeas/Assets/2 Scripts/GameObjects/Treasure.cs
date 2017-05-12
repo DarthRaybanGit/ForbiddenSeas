@@ -19,7 +19,7 @@ public class Treasure : NetworkBehaviour {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0 && !other.gameObject.GetComponent<Player>().m_HasTreasure)
             {
                 Debug.Log("Toccato il tesoro!");
-                other.gameObject.GetComponent<Player>().CatchTheTreasure(other.gameObject.GetComponent<Player>().netId);
+                other.gameObject.GetComponent<Player>().CatchTheTreasure();
             }
         }
     }

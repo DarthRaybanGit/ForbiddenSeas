@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -14,8 +15,11 @@ public class Player : NetworkBehaviour {
     public GameObject m_LocalTreasure;
 
     public Vector3 m_SpawnPoint;
+    public Text m_reputationTextUI;
+    public Text m_scoreTextUI;
 
-
+    [SyncVar]
+    public int m_score = 0;
     [SyncVar]
     public int m_Class = 0;
 
@@ -26,9 +30,9 @@ public class Player : NetworkBehaviour {
             Destroy(m_LocalCamera.GetComponent<AudioListener>());
             return;
         }
-        else
+        if (isLocalPlayer || isServer)
         {
-
+            
         }
     }
 
@@ -46,6 +50,9 @@ public class Player : NetworkBehaviour {
                 CmdStartGeneralLoop((int)this.netId.Value);
                 m_SpawnPoint = transform.position;
                 LocalGameManager.Instance.m_GameIsStarted = true;
+                m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
+                m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
+
             }
 
         }
@@ -75,6 +82,7 @@ public class Player : NetworkBehaviour {
     [Command]
     public void CmdStartGeneralLoop(int connectionID)
     {
+
         ImOnline(connectionID);
         if (LocalGameManager.Instance.m_GameIsStarted && !LocalGameManager.Instance.m_GameGeneralLoopIsStarted)
         {
@@ -127,7 +135,7 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
-    public void CatchTheTreasure(NetworkInstanceId playerId)
+    public void CatchTheTreasure()
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)
             return;
@@ -135,20 +143,14 @@ public class Player : NetworkBehaviour {
         LocalGameManager.Instance.m_Treasure.SetActive(false);
         Debug.Log("Il player " + playerId + " ha preso il tesoro!");
 
+        //Debug.Log("Gli sto facendo prendere il tesoro!");
+        GetComponent<FlagshipStatus>().m_reputation += ReputationValues.TREASURE;
+        TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
 
-        GameObject g = NetworkServer.FindLocalObject(playerId);
-        if (g)
-        {
-            if (g.GetComponent<Player>())
-            {
-                //Debug.Log("Gli sto facendo prendere il tesoro!");
-                Player pl = g.GetComponent<Player>();
-                pl.m_HasTreasure = true;
-                LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)playerId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
-                StartCoroutine(yohohoBarGrow(pl));
-            }
-
-        }
+        m_HasTreasure = true;
+        LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)netId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
+        StartCoroutine(yohohoBarGrow(this));
+    
 
     }
 
@@ -189,10 +191,36 @@ public class Player : NetworkBehaviour {
     {
         Debug.Log("Player " + (int)netId.Value + " ha segnato un ARRH!");
 
-        //Aumenta punteggi etc
-
+        m_score++;
+        GetComponent<FlagshipStatus>().m_reputation += ReputationValues.ARRH;
+        TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
+        TargetRpcUpdateScoreUI(GetComponent<NetworkIdentity>().connectionToClient);
         RpcHideTreasure();
         StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
+    }
+
+    [TargetRpc]
+    public void TargetRpcUpdateReputationUI(NetworkConnection u)
+    {
+        StartCoroutine(UpdateReputationUI());
+    }
+
+    IEnumerator UpdateReputationUI()
+    {
+        yield return new WaitForSeconds(0.1f);
+        m_reputationTextUI.text = "Reputation " + GetComponent<FlagshipStatus>().m_reputation.ToString();
+    }
+
+    [TargetRpc]
+    public void TargetRpcUpdateScoreUI(NetworkConnection u)
+    {
+        StartCoroutine(UpdateScoreUI());
+    }
+
+    IEnumerator UpdateScoreUI()
+    {
+        yield return new WaitForSeconds(0.1f);
+        m_scoreTextUI.text = "Score " + m_score.ToString();
     }
 
     [ClientRpc]

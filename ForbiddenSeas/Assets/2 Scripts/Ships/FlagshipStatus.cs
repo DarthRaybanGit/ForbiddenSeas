@@ -124,7 +124,11 @@ public class FlagshipStatus : NetworkBehaviour
             //Increase Opponent Kill Count
         }
         m_isDead = true;
-        CmdRespawn();
+        m_reputation += ReputationValues.KILLED;
+        m_reputation = (m_reputation < 0) ? 0 : m_reputation;
+        GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
+        m_Health = m_MaxHealth;
+        TargetRpcRespawn(GetComponent<NetworkIdentity>().connectionToClient);
 
     }
 
@@ -144,13 +148,9 @@ public class FlagshipStatus : NetworkBehaviour
             CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), "DoT");
         }
     }
-
-    [Command]
-    public void CmdRespawn()
+    [TargetRpc]
+    public void TargetRpcRespawn(NetworkConnection u)
     {
-        m_reputation += ReputationValues.KILLED;
-        m_reputation = (m_reputation < 0) ? 0 : m_reputation;
-        m_Health = m_MaxHealth;
         transform.position = GetComponent<Player>().m_SpawnPoint;
     }
 
