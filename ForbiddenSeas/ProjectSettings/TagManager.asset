@@ -11,6 +11,8 @@ TagManager:
   - Etichette
   - mainCD_UI
   - specCD_UI
+  - GlobalM_UI
+  - GlobalS_UI
   layers:
   - Default
   - TransparentFX

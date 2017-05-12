@@ -8,9 +8,9 @@ public class Pirates
     public const float maxSpeed = 60f;
     public const float maneuverability = ManeuverabilityLevel.LOW;
     public const int mainAttackDmg = 500;
-    public const float mainAttackCD = 1.5f;
+    public const float mainAttackCD = 2.5f;
     public const int specAttackDmg = 500;
-    public const float specAttackCD = 1.5f;
+    public const float specAttackCD = 10f;
 
 }
 

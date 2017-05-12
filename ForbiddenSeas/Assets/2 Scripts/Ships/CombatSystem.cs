@@ -10,11 +10,15 @@ public class CombatSystem : NetworkBehaviour
     bool fire = false;
     public GameObject MainUI;
     public GameObject SpecUI;
+    public GameObject GlobalMUI;
+    public GameObject GlobalSUI;
 
     void Awake()
     {
         MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
         SpecUI = GameObject.FindGameObjectWithTag("specCD_UI");
+        GlobalMUI = GameObject.FindGameObjectWithTag("GlobalM_UI");
+        GlobalSUI = GameObject.FindGameObjectWithTag("GlobalS_UI");
     }
 
     void Update()
@@ -24,11 +28,13 @@ public class CombatSystem : NetworkBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
             if (!mainCoolDown && !fire)
             {
                 Debug.Log("Sparo main");
                 fire = true;
                 mainCoolDown = true;
+                StartCoroutine(GlobalCoolDown(SpecUI));
                 StartCoroutine(MainAttack());
                 Debug.Log("main cd: "+ GetComponent<FlagshipStatus>().m_mainCD);
                 MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
@@ -37,15 +43,24 @@ public class CombatSystem : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            GlobalSUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
             if (!specCoolDown && !fire)
             {
                 Debug.Log("Sparo special");
                 fire = true;
                 specCoolDown = true;
+                StartCoroutine(GlobalCoolDown(MainUI));
                 StartCoroutine(SpecialAttack());
                 SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
             }
         }
+    }
+
+    private IEnumerator GlobalCoolDown(GameObject UI)
+    {
+        UI.GetComponent<CoolDownIndicator>().OnCoolDown(1.5f);
+        yield return new WaitForSeconds(1.5f);
+        fire = false;
     }
         
     private IEnumerator MainAttack()
@@ -54,7 +69,6 @@ public class CombatSystem : NetworkBehaviour
         CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", true);
         yield return new WaitForSeconds(0.1f);
         CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", false);
-        fire = false;
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
         mainCoolDown = false;
     }
@@ -65,7 +79,6 @@ public class CombatSystem : NetworkBehaviour
         Utility.FindChildWithTag(gameObject, "specialAttack").SetActive(true);
         yield return new WaitForSeconds(0.1f);
         Utility.FindChildWithTag(gameObject, "specialAttack").SetActive(false);
-        fire = false;
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_specialCD - Symbols.mainAttackDelay - 0.1f);
         specCoolDown = false;
     }
