@@ -9,6 +9,7 @@ public class PlayerFloatingName : MonoBehaviour
     public int id;
     public Transform target;
     public Vector2 offset;
+    Vector2 targetPos;
 
     public bool trovato = false;
 
@@ -21,11 +22,25 @@ public class PlayerFloatingName : MonoBehaviour
     {
         if(trovato && target)
         {
-            Vector2 targetPos = Camera.main.WorldToScreenPoint(target.position);
-            transform.position = targetPos + offset;
-            GetComponent<Text>().text = "Player " + id + " " + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
+            if (LocalGameManager.Instance.GetPlayer(id).GetComponent<Player>().isThisPlayerLocal())
+            {
+                targetPos = Camera.main.WorldToScreenPoint(target.position);
+                transform.position = targetPos + offset;
+                GetComponent<Text>().text = "Local Player " + id + " " + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
+            }
+            else
+            {
+                targetPos = Camera.main.WorldToScreenPoint(target.position);
+                targetPos += offset;
+                Debug.Log("id: "+ id + "y: "+ Camera.main.WorldToScreenPoint(target.position).y + "h: "+ Camera.main.pixelHeight);
+                //if (targetPos.y > (Camera.main.pixelHeight / 2f))
+                   // targetPos = new Vector2(targetPos.x, 0.65f * Camera.main.pixelHeight); da sistemare
+                if (Camera.main.WorldToScreenPoint(target.position).z < 0)
+                    targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
+                transform.position = targetPos;
+                GetComponent<Text>().text = "Player " + id + " " + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
+            }
         }
-
     }
 
     IEnumerator WaitForReady()
