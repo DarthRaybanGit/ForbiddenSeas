@@ -66,9 +66,9 @@ public class CombatSystem : NetworkBehaviour
     private IEnumerator MainAttack()
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
-        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", true);
+        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", true);
         yield return new WaitForSeconds(0.1f);
-        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "mainAttack", false);
+        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", false);
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
         mainCoolDown = false;
     }
@@ -76,9 +76,9 @@ public class CombatSystem : NetworkBehaviour
     private IEnumerator SpecialAttack()
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
-        Utility.FindChildWithTag(gameObject, "specialAttack").SetActive(true);
+        Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        Utility.FindChildWithTag(gameObject, "specialAttack").SetActive(false);
+        Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(false);
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_specialCD - Symbols.mainAttackDelay - 0.1f);
         specCoolDown = false;
     }

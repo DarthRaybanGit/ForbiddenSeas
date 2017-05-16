@@ -32,6 +32,9 @@ public class CoolDownIndicator : MonoBehaviour
             case (50):
                 anim.Play("CoolDown5sec");
                 break;
+            case (100):
+                anim.Play("CoolDown10sec");
+                break;
             default:
                 return;
         }
