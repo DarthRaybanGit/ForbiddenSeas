@@ -9,12 +9,13 @@ public class cameraMovement : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		offset = new Vector3 (0, 2.5f, 3.7f);
+		offset = new Vector3 (0, 10f, 15f);
 		transform.position = player.transform.position + offset;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position = player.transform.position + offset;
+		transform.rotation = Quaternion.Euler(new Vector3(20,player.transform.rotation.y - 180,0));
 	}
 }
