@@ -5,7 +5,7 @@ public class Pirates
 {
     public const string shipName = "Pirate Galleon";
     public const int maxHealth = 1000;
-    public const float maxSpeed = 60f;
+    public const float maxSpeed = 120f;
     public const float maneuverability = ManeuverabilityLevel.LOW;
     public const int mainAttackDmg = 500;
     public const float mainAttackCD = 2.5f;

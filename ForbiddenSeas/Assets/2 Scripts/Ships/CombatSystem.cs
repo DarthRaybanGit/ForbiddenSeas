@@ -67,8 +67,10 @@ public class CombatSystem : NetworkBehaviour
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
         CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", true);
-        yield return new WaitForSeconds(0.1f);
+        Debug.Log("inizio" + Time.time);
+        yield return new WaitForSeconds(0.5f);
         CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", false);
+        Debug.Log("end" + Time.time);
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
         mainCoolDown = false;
     }
@@ -77,7 +79,7 @@ public class CombatSystem : NetworkBehaviour
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
         Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.8f);
         Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(false);
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_specialCD - Symbols.mainAttackDelay - 0.1f);
         specCoolDown = false;
@@ -113,7 +115,7 @@ public class CombatSystem : NetworkBehaviour
     [ClientRpc]
     public void RpcSetActiveTrigger(int playerId, string tag, bool b)
     {
-        Debug.Log("trigger playerId: "+playerId);
+        Debug.Log("trigger playerId: "+playerId + "go: "+Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(b);
     }
 }

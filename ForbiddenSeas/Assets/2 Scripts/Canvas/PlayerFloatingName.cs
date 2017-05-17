@@ -32,9 +32,8 @@ public class PlayerFloatingName : MonoBehaviour
             {
                 targetPos = Camera.main.WorldToScreenPoint(target.position);
                 targetPos += offset;
-                Debug.Log("id: "+ id + "y: "+ Camera.main.WorldToScreenPoint(target.position).y + "h: "+ Camera.main.pixelHeight);
-                //if (targetPos.y > (Camera.main.pixelHeight / 2f))
-                   // targetPos = new Vector2(targetPos.x, 0.65f * Camera.main.pixelHeight); da sistemare
+                if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
+                    targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
                 if (Camera.main.WorldToScreenPoint(target.position).z < 0)
                     targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
                 transform.position = targetPos;

@@ -580,9 +580,9 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1971321780712888, guid: 8d78d26c3c892b64f9632bbc62bb881c, type: 2}
-  - {fileID: 1869087919111540, guid: 32c67c82dbbe957468d36e9f7fb624d2, type: 2}
+  - {fileID: 0}
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
-  - {fileID: 1869087919111540, guid: 5ebcef8b37044024793fd4f0f99566a6, type: 2}
+  - {fileID: 0}
   - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
   - {fileID: 1108263141705070, guid: 093fc32d4b5ba4d4997c7a04e00aedb8, type: 2}
   - {fileID: 1694748985517856, guid: 3e49985e113e9894895dc1f4db2376dc, type: 2}
@@ -656,9 +656,9 @@ MonoBehaviour:
   - {fileID: 4706207241900874, guid: 62ac98aa42afad84ab2b0002d04ec2e1, type: 2}
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
-  - {fileID: 1869087919111540, guid: 5ebcef8b37044024793fd4f0f99566a6, type: 2}
+  - {fileID: 0}
   - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
-  - {fileID: 1869087919111540, guid: 32c67c82dbbe957468d36e9f7fb624d2, type: 2}
+  - {fileID: 0}
   m_GamePlayer: {fileID: 0}
 --- !u!4 &531278812
 Transform:
@@ -2315,6 +2315,8 @@ MonoBehaviour:
   m_timeIsSynced: 0
   m_ServerOffsetTime: 0
   m_Treasure: {fileID: 0}
+  m_TreasureIsInGame: 0
+  m_Ports: []
 --- !u!4 &2043742207
 Transform:
   m_ObjectHideFlags: 0
