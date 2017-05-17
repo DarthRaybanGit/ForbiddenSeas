@@ -238,4 +238,9 @@ public class Player : NetworkBehaviour {
     {
         return playerId;
     }
+
+    public bool isThisPlayerLocal()
+    {
+        return isLocalPlayer;
+    }
 }
