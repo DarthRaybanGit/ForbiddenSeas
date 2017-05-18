@@ -65,7 +65,9 @@ public class CombatSystem : NetworkBehaviour
         
     private IEnumerator MainAttack(int playerId, string tag)
     {
+        RpcSetActiveTrigger(playerId, "MAP");
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
+        RpcSetUnactiveTrigger(playerId, "MAP");
         RpcSetActiveTrigger(playerId, tag);
         yield return new WaitForSeconds(0.2f);
         RpcSetUnactiveTrigger(playerId, tag);
@@ -112,14 +114,14 @@ public class CombatSystem : NetworkBehaviour
     [ClientRpc]
     public void RpcSetActiveTrigger(int playerId, string tag)
     {
-        Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
+        //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(true);
     }
 
     [ClientRpc]
     public void RpcSetUnactiveTrigger(int playerId, string tag)
     {
-        Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
+        //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(false);
     }
 
@@ -139,7 +141,8 @@ public class CombatSystem : NetworkBehaviour
                 else
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
 
-                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.gameObject).ToString());
+                Debug.Log("################## "+other.transform.parent.gameObject);
+                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
             }
         }
     }
