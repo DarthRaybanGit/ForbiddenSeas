@@ -14,6 +14,8 @@ public class CoolDownIndicator : MonoBehaviour
 
     public void OnCoolDown(float cd)
     {
+        if (anim.isPlaying)
+            return;
         int cdswitch = (int)(cd * 10f);
         switch (cdswitch)
         {
@@ -41,6 +43,11 @@ public class CoolDownIndicator : MonoBehaviour
     }
 
     public void OnGlobalPressed()
+    {
+        anim.Play();
+    }
+
+    public void NotAvailable()
     {
         anim.Play();
     }

@@ -894,6 +894,8 @@ GameObject:
   - component: {fileID: 638966442}
   - component: {fileID: 638966444}
   - component: {fileID: 638966443}
+  - component: {fileID: 638966446}
+  - component: {fileID: 638966445}
   m_Layer: 5
   m_Name: SpecialAttack
   m_TagString: Untagged
@@ -954,6 +956,32 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 638966441}
+--- !u!111 &638966445
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638966441}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 51bf191fd7593463798c33cfaa605dcc, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 51bf191fd7593463798c33cfaa605dcc, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &638966446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638966441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02014aa6ea48349a3b42b7c1319c357c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &655894285
 GameObject:
   m_ObjectHideFlags: 0
@@ -10920,6 +10948,8 @@ GameObject:
   - component: {fileID: 1954518693}
   - component: {fileID: 1954518695}
   - component: {fileID: 1954518694}
+  - component: {fileID: 1954518697}
+  - component: {fileID: 1954518696}
   m_Layer: 5
   m_Name: MainAttack
   m_TagString: Untagged
@@ -10980,6 +11010,32 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1954518692}
+--- !u!111 &1954518696
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1954518692}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 51bf191fd7593463798c33cfaa605dcc, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 51bf191fd7593463798c33cfaa605dcc, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &1954518697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1954518692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02014aa6ea48349a3b42b7c1319c357c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018461906
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,6 +39,10 @@ public class CombatSystem : NetworkBehaviour
                 Debug.Log("main cd: "+ GetComponent<FlagshipStatus>().m_mainCD);
                 MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
             }
+            else
+            {
+                MainUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -52,6 +56,10 @@ public class CombatSystem : NetworkBehaviour
                 StartCoroutine(GlobalCoolDown(MainUI));
                 CmdSpecialAttack(LocalGameManager.Instance.GetPlayerId(gameObject), "SA");
                 SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
+            }
+            else
+            {
+                SpecUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
             }
         }
     }
@@ -71,7 +79,7 @@ public class CombatSystem : NetworkBehaviour
         RpcSetActiveTrigger(playerId, tag);
         yield return new WaitForSeconds(0.2f);
         RpcSetUnactiveTrigger(playerId, tag);
-        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
+        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.2f);
         RpcEndMainCoolDown();
     }
 
@@ -90,12 +98,12 @@ public class CombatSystem : NetworkBehaviour
     private IEnumerator SpecialAttack(int playerId, string tag)
     {
         RpcSetActiveTrigger(playerId, "SAP");
-        yield return new WaitForSeconds(Symbols.mainAttackDelay);
+        yield return new WaitForSeconds(Symbols.specAttackDelay);
         RpcSetUnactiveTrigger(playerId, "SAP");
         RpcSetActiveTrigger(playerId, tag);
         yield return new WaitForSeconds(0.2f);
         RpcSetUnactiveTrigger(playerId, tag);
-        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.specAttackDelay - 0.1f);
+        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_specialCD - Symbols.specAttackDelay - 0.2f);
         RpcEndSpecCoolDown();
     }
 
