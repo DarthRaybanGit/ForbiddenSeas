@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4497648523442520}
   m_Layer: 0
   m_Name: MainAttack
-  m_TagString: MainAttackSystem
+  m_TagString: MA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4040176363968592}
   m_Layer: 0
   m_Name: SpecialAttack
-  m_TagString: SpecAttackSystem
+  m_TagString: SA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

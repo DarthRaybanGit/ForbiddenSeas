@@ -35,7 +35,7 @@ public class CombatSystem : NetworkBehaviour
                 fire = true;
                 mainCoolDown = true;
                 StartCoroutine(GlobalCoolDown(SpecUI));
-                StartCoroutine(MainAttack());
+                CmdMainAttack(LocalGameManager.Instance.GetPlayerId(gameObject), "MA");
                 Debug.Log("main cd: "+ GetComponent<FlagshipStatus>().m_mainCD);
                 MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
             }
@@ -50,7 +50,7 @@ public class CombatSystem : NetworkBehaviour
                 fire = true;
                 specCoolDown = true;
                 StartCoroutine(GlobalCoolDown(MainUI));
-                StartCoroutine(SpecialAttack());
+                CmdSpecialAttack(LocalGameManager.Instance.GetPlayerId(gameObject), "SA");
                 SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
             }
         }
@@ -63,26 +63,62 @@ public class CombatSystem : NetworkBehaviour
         fire = false;
     }
         
-    private IEnumerator MainAttack()
+    private IEnumerator MainAttack(int playerId, string tag)
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
-        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", true);
-        Debug.Log("inizio" + Time.time);
-        yield return new WaitForSeconds(0.5f);
-        CmdActivateTrigger(LocalGameManager.Instance.GetPlayerId(gameObject), "MainAttackSystem", false);
-        Debug.Log("end" + Time.time);
+        RpcSetActiveTrigger(playerId, tag);
+        yield return new WaitForSeconds(0.2f);
+        RpcSetUnactiveTrigger(playerId, tag);
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.1f);
+        RpcEndMainCoolDown();
+    }
+
+    [ClientRpc]
+    public void RpcEndMainCoolDown()
+    {
         mainCoolDown = false;
     }
 
-    private IEnumerator SpecialAttack()
+    [Command]
+    public void CmdMainAttack(int playerId, string tag)
+    {
+        StartCoroutine(MainAttack(playerId, tag));
+    }
+
+    private IEnumerator SpecialAttack(int playerId, string tag)
     {
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
-        Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(true);
-        yield return new WaitForSeconds(0.8f);
-        Utility.FindChildWithTag(gameObject, "SpecAttackSystem").SetActive(false);
-        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_specialCD - Symbols.mainAttackDelay - 0.1f);
+        RpcSetActiveTrigger(playerId, tag);
+        yield return new WaitForSeconds(0.2f);
+        RpcSetUnactiveTrigger(playerId, tag);
+        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.specAttackDelay - 0.1f);
+        RpcEndSpecCoolDown();
+    }
+
+    [ClientRpc]
+    public void RpcEndSpecCoolDown()
+    {
         specCoolDown = false;
+    }
+
+    [Command]
+    public void CmdSpecialAttack(int playerId, string tag)
+    {
+        StartCoroutine(SpecialAttack(playerId, tag));
+    }
+
+    [ClientRpc]
+    public void RpcSetActiveTrigger(int playerId, string tag)
+    {
+        Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(true);
+    }
+
+    [ClientRpc]
+    public void RpcSetUnactiveTrigger(int playerId, string tag)
+    {
+        Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -94,7 +130,7 @@ public class CombatSystem : NetworkBehaviour
 
             if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
             {
-                Debug.Log(gameObject.name + "Preso danno da "+ other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
+                Debug.Log(gameObject.name + "Preso danno da " + other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
                 int dmg = 0;
                 if (other.tag.Equals("mainAttack"))
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
@@ -104,18 +140,5 @@ public class CombatSystem : NetworkBehaviour
                 GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.gameObject).ToString());
             }
         }
-    }
-
-    [Command]
-    public void CmdActivateTrigger(int playerId, string tag, bool b)
-    {
-        RpcSetActiveTrigger(playerId, tag, b);
-    }
-
-    [ClientRpc]
-    public void RpcSetActiveTrigger(int playerId, string tag, bool b)
-    {
-        Debug.Log("trigger playerId: "+playerId + "go: "+Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
-        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(b);
     }
 }
