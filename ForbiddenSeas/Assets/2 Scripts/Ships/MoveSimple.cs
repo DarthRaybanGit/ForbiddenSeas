@@ -31,9 +31,15 @@ public class MoveSimple : NetworkBehaviour {
 	public override void OnStartLocalPlayer()
 	{
 		rb = GetComponent<Rigidbody>();
-		maxSpeed=GetComponent<FlagshipStatus>().m_maxSpeed;
-		maneuvrability = GetComponent<FlagshipStatus> ().m_Maneuvrability;
+        StartCoroutine(waitForStat());
 	}
+
+    IEnumerator waitForStat()
+    {
+        yield return new WaitForFixedUpdate();
+        maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
+        maneuvrability = GetComponent<FlagshipStatus>().m_Maneuvrability;
+    }
 
 	void FixedUpdate ()
 	{
@@ -80,11 +86,11 @@ public class MoveSimple : NetworkBehaviour {
 		//GetClosestVertex ();
 		/*actionPoint = transform.position + transform.TransformDirection(bouyancyCentreOffset);
 		forceFactor = 1f - ((actionPoint.y - waterLevel) / floatHeight);
-		if (forceFactor > 0f) 
+		if (forceFactor > 0f)
 		{
 			upLift = -Physics.gravity * (forceFactor - rb.velocity.y * bounceDamp);
 			Debug.Log (upLift);
-			rb.AddForceAtPosition (upLift, actionPoint); 
+			rb.AddForceAtPosition (upLift, actionPoint);
 		}*/
 	}
 

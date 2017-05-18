@@ -89,18 +89,18 @@ public class LocalGameManager : NetworkBehaviour {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
-        //Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
+        Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
 
         int count = 0;
         foreach (int i in m_PlayersID.Values)
         {
+            Debug.Log("#########Indice " + count);
             int j;
             for (j = 0; j < players.Length; j++)
             {
                 if (i == (int)players[j].GetComponent<Player>().netId.Value)
-                    break;
+                    LocalGameManager.Instance.m_Players[count] = players[j];
             }
-            LocalGameManager.Instance.m_Players[count] = players[j];
             count++;
         }
 

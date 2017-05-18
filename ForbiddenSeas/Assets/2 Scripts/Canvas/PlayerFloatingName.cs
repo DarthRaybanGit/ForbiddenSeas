@@ -47,7 +47,7 @@ public class PlayerFloatingName : MonoBehaviour
         yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
 
 
-        //Debug.Log("Sto Cercando i player!");
+        Debug.Log("Sto Cercando i player!");
 
         if (id > LocalGameManager.Instance.m_Players.Length)
         {
@@ -56,7 +56,7 @@ public class PlayerFloatingName : MonoBehaviour
         else
         {
             target = LocalGameManager.Instance.GetPlayer(id).transform;
-            //Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
+            Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
             trovato = true;
         }
 
