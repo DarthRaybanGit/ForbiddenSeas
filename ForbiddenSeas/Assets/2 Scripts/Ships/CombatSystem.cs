@@ -87,7 +87,9 @@ public class CombatSystem : NetworkBehaviour
 
     private IEnumerator SpecialAttack(int playerId, string tag)
     {
+        RpcSetActiveTrigger(playerId, "SAP");
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
+        RpcSetUnactiveTrigger(playerId, "SAP");
         RpcSetActiveTrigger(playerId, tag);
         yield return new WaitForSeconds(0.2f);
         RpcSetUnactiveTrigger(playerId, tag);
