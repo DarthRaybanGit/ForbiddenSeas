@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class MoveSimple : NetworkBehaviour {
 
 	public float maxSpeed;
+	public float maneuvrability;
 	public float rotSpeed;
 	public Camera cam;
 	private int State=0;
@@ -31,6 +32,7 @@ public class MoveSimple : NetworkBehaviour {
 	{
 		rb = GetComponent<Rigidbody>();
 		maxSpeed=GetComponent<FlagshipStatus>().m_maxSpeed;
+		maneuvrability = GetComponent<FlagshipStatus> ().m_Maneuvrability;
 	}
 
 	void FixedUpdate ()
@@ -68,9 +70,9 @@ public class MoveSimple : NetworkBehaviour {
 		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1);
 		/*if (rb.velocity.magnitude < speed * Factor ) {*/
 		if (rb.velocity.magnitude<maxSpeed*Factor)
-			rb.AddForce (transform.forward * maxSpeed * Factor  * -1 * Time.fixedDeltaTime * 0.1f);
+			rb.AddForce (transform.forward * Acceleration * Factor  * -1 * Time.fixedDeltaTime * 0.1f);
 		rb.MovePosition(rb.position + transform.forward* maxSpeed * Factor  * -1*Time.fixedDeltaTime*0.1f);
-		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
+		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;
 		//rb.AddTorque (transform.up * Input.GetAxis ("Horizontal") * rotSpeed);

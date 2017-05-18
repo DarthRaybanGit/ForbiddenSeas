@@ -1708,7 +1708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb946c289ba9d4a03b7bcdf14c5acfe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0
+  maxSpeed: 100
+  maneuvrability: 1
   rotSpeed: 100
   cam: {fileID: 20779171505692740}
   Acceleration: 10
