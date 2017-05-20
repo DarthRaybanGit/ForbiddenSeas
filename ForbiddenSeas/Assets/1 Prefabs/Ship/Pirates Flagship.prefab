@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_AdmiralList:
   - {fileID: 1869087919111540}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
-  - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
+  - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b, type: 2}
   m_LocalCamera: {fileID: 1401329760740216}
   playerId: 0

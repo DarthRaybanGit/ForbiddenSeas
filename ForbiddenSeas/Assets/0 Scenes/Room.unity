@@ -583,7 +583,7 @@ MonoBehaviour:
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b, type: 2}
-  - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
+  - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1108263141705070, guid: 093fc32d4b5ba4d4997c7a04e00aedb8, type: 2}
   - {fileID: 1694748985517856, guid: 3e49985e113e9894895dc1f4db2376dc, type: 2}
   m_CustomConfig: 0
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
-  - {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab, type: 2}
+  - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b, type: 2}
   m_GamePlayer: {fileID: 0}
 --- !u!4 &531278812
@@ -859,7 +859,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1788,7 +1788,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Venetians
+  m_Text: Egyptians
 --- !u!222 &1754239418
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1951,7 +1951,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

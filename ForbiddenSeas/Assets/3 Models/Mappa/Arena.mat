@@ -7,8 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Arena
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
+  m_ShaderKeywords: TCP2_OUTLINE_CONST_SIZE TCP2_OUTLINE_TEXTURED TCP2_UV2_AS_NORMALS
+    TCP2_ZSMOOTH_ON
   m_LightmapFlags: 4
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -75,6 +76,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Ramp
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ToonShade
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: <noninit>
@@ -91,6 +104,9 @@ Material:
     - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _DstBlendOutline
+      second: 10
     - first:
         name: _GlossMapScale
       second: 1
@@ -110,11 +126,32 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
+        name: _Offset1
+      second: 0
+    - first:
+        name: _Offset2
+      second: 0
+    - first:
+        name: _Outline
+      second: 0.002
+    - first:
         name: _Parallax
       second: 0.02
     - first:
+        name: _RampSmooth
+      second: 0.1
+    - first:
+        name: _RampThreshold
+      second: 0.5
+    - first:
+        name: _Shininess
+      second: 0.1
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
+    - first:
+        name: _SpecSmooth
+      second: 0.05
     - first:
         name: _SpecularHighlights
       second: 1
@@ -122,8 +159,17 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
+        name: _SrcBlendOutline
+      second: 3
+    - first:
+        name: _TexLod
+      second: 5
+    - first:
         name: _UVSec
       second: 0
+    - first:
+        name: _ZSmooth
+      second: -0.5
     - first:
         name: _ZWrite
       second: 1
@@ -137,3 +183,15 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _HColor
+      second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+    - first:
+        name: _OutlineColor
+      second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - first:
+        name: _SColor
+      second: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
