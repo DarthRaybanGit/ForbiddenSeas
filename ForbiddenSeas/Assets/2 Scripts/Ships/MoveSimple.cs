@@ -10,7 +10,7 @@ public class MoveSimple : NetworkBehaviour {
 	public float rotSpeed;
 	public Camera cam;
 	private int State=0;
-	//private float ActualSpeed = 0f;
+	public float ActualSpeed = 0f;
 	public float Acceleration = 10f;
 	public float Factor=0;
 	private float Scroll = 0;
@@ -74,10 +74,10 @@ public class MoveSimple : NetworkBehaviour {
 		/*if (actualspeed<speed*factor*forward)
 			actualspeed +=acceleration*time.deltatime;*/
 		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1);
-		/*if (rb.velocity.magnitude < speed * Factor ) {*/
-		if (rb.velocity.magnitude<maxSpeed*Factor)
-			rb.AddForce (transform.forward * Acceleration * Factor  * -1 * Time.fixedDeltaTime * 0.1f);
-		rb.MovePosition(rb.position + transform.forward* maxSpeed * Factor  * -1*Time.fixedDeltaTime*0.1f);
+		/*if (rb.velocity.magnitude < maxSpeed * Factor ) */
+		ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * Factor, Acceleration);
+
+		rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;
