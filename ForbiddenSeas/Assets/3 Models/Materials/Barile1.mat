@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ShipMapterial
+  m_Name: Barile1
   m_Shader: {fileID: 4800000, guid: 6782973e3ca8b2543beddb0a3dc3175e, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -42,13 +42,13 @@ Material:
     - first:
         name: _EmissionMap
       second:
-        m_Texture: {fileID: 2800000, guid: f5ed110ddf03e45fd9a4192683a0e4ae, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: eec97181e4ef544f7b6f459d0991ae59, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -89,14 +89,11 @@ Material:
         name: _DstBlend
       second: 0
     - first:
-        name: _DstBlendOutline
-      second: 10
-    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
@@ -110,15 +107,6 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _Offset1
-      second: 0
-    - first:
-        name: _Offset2
-      second: 0
-    - first:
-        name: _Outline
-      second: 1
-    - first:
         name: _Parallax
       second: 0.02
     - first:
@@ -128,14 +116,8 @@ Material:
         name: _RampThreshold
       second: 0.5
     - first:
-        name: _Shininess
-      second: 0.29
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
-    - first:
-        name: _SpecSmooth
-      second: 1
     - first:
         name: _SpecularHighlights
       second: 1
@@ -143,36 +125,21 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _SrcBlendOutline
-      second: 5
-    - first:
-        name: _TexLod
-      second: 5
-    - first:
         name: _UVSec
       second: 0
-    - first:
-        name: _ZSmooth
-      second: -0.5
     - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+      second: {r: 0.167, g: 0.167, b: 0.167, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HColor
       second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     - first:
-        name: _OutlineColor
-      second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - first:
         name: _SColor
       second: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
