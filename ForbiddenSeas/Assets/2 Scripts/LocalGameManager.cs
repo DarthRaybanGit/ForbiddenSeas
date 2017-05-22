@@ -46,62 +46,30 @@ public class LocalGameManager : NetworkBehaviour {
         m_Ports = new GameObject[4];
     }
 
-
-
-    //Funzione per la restituzione dell'array contenente i connection ID dei player
-    private bool b_playersRegistered = false;
-
     [ClientRpc]
-    public void RpcNotifyPlayersInGame(int[] players, int[] ids)
+    public void RpcNotifyPlayersInGame(NetworkInstanceId[] players)
     {
-        Debug.Log("Sto registrando i player " + players.Length + " con " + ids.Length + " IDS");
+        Debug.Log("Sto registrando " + players.Length + " players");
 
-        if (players.Length != ids.Length)
-        {
-            return;
-        }
-
-        for(int i = 0; i < players.Length; i++)
-        {
-            if (!m_PlayersID.ContainsKey(players[i]))
-                m_PlayersID.Add(players[i], ids[i]);
-        }
-
-        Debug.Log("Ho aggiunto " + m_PlayersID.Keys.Count + " chiavi" + " Ho aggiunto " + m_PlayersID.Values.Count + " valori");
-        b_playersRegistered = true;
+        StartCoroutine(registrazione(players));
     }
 
-    private bool idRegistrati()
+    IEnumerator registrazione(NetworkInstanceId[] play)
     {
-        return b_playersRegistered;
-    }
+        Debug.Log("Localmente " + GameObject.FindGameObjectsWithTag("Player").Length);
 
-    [ClientRpc]
-    public void RpcSearchGameObjectForPlayers()
-    {
-        StartCoroutine(delayedGameObjectRegistration());
-    }
-
-    IEnumerator delayedGameObjectRegistration()
-    {
-        yield return new WaitUntil(() => idRegistrati());
+        yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Player").Length == play.Length);
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
-        Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length + " e IDs " + m_PlayersID.Keys.Count);
+        Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length);
 
-        int count = 0;
-        foreach (int i in m_PlayersID.Values)
+        for(int i = 0; i < play.Length; i++)
         {
-            Debug.Log("#########Indice " + count);
-            int j;
-            for (j = 0; j < players.Length; j++)
-            {
-                if (i == (int)players[j].GetComponent<Player>().netId.Value)
-                    LocalGameManager.Instance.m_Players[count] = players[j];
-            }
-            count++;
+            Debug.Log("ID: " + play[i] + " Object " + ClientScene.FindLocalObject(play[i]));
+            LocalGameManager.Instance.m_Players[i] = ClientScene.FindLocalObject(play[i]);
+            //LocalGameManager.Instance.m_Players[i].GetComponent<Player>().playerId = i;
         }
 
         m_PlayerRegistered = true;
@@ -112,24 +80,29 @@ public class LocalGameManager : NetworkBehaviour {
 
     public GameObject GetPlayer(int playerId)
     {
+        if (!m_PlayerRegistered)
+            return null;
+
         return (playerId) > m_Players.Length || playerId <= 0 ? null : m_Players[playerId - 1];
     }
 
-    public GameObject GetPlayerFromNetID(int netID)
+    public GameObject GetPlayerFromNetID(NetworkInstanceId netID)
     {
-        int count = 0;
-        foreach(int i in m_PlayersID.Keys)
+        if (!m_PlayerRegistered)
+            return null;
+
+        foreach(GameObject g in m_Players)
         {
-            if (m_PlayersID[i] == netID)
-                return m_Players[count];
-            count++;
+            if (g.GetComponent<NetworkIdentity>().netId == netID)
+                return g;
         }
+
         return null;
     }
 
     public int GetPlayerId(GameObject player_go)
     {
-        if (!player_go || !player_go.CompareTag("Player"))
+        if (!player_go || !player_go.CompareTag("Player") || !m_PlayerRegistered)
             return Symbols.PLAYER_NOT_SET;
 
         int i;
@@ -219,10 +192,12 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
     [Server]
-    public IEnumerator c_WaitUntilEveryPlayersOnline(int[] msg1, int[] msg2)
+    public IEnumerator c_WaitUntilEveryPlayersOnline()
     {
         float timestamp = Time.time;
         yield return new WaitUntil(() => OnlineManager.s_Singleton.EveryoneIsOnline() || Time.time > (timestamp + (int)FixedDelayInGame.PLAYERS_DELAY));
+
+
 
 
         if (!OnlineManager.s_Singleton.EveryoneIsOnline())
@@ -232,14 +207,30 @@ public class LocalGameManager : NetworkBehaviour {
         }
         else
         {
+            NetworkInstanceId[] to_Send = new NetworkInstanceId[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
+
+            int count = 0;
+
+            foreach (GameObject i in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                to_Send[count] = i.GetComponent<NetworkIdentity>().netId;
+                count++;
+            }
+
+            foreach (NetworkInstanceId i in to_Send)
+            {
+                Debug.Log("Sto per inviare " + i);
+            }
+
+
+
             //Start Game!
             Debug.Log("START GAME!!!");
-            LocalGameManager.Instance.RpcNotifyPlayersInGame(msg1,msg2);
+            LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send);
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
             StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
             LocalGameManager.Instance.m_serverTimeSended = true;
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
-            LocalGameManager.Instance.RpcSearchGameObjectForPlayers();
         }
     }
 
@@ -287,7 +278,7 @@ public class LocalGameManager : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcNotifyNewTreasureOwner(int playerId, NetworkInstanceId treasure)
+    public void RpcNotifyNewTreasureOwner(NetworkInstanceId playerId, NetworkInstanceId treasure)
     {
         if (IsEveryPlayerRegistered())
         {

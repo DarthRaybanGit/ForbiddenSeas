@@ -32,7 +32,7 @@ public class Player : NetworkBehaviour {
         }
         if (isLocalPlayer || isServer)
         {
-            
+
         }
     }
 
@@ -47,6 +47,7 @@ public class Player : NetworkBehaviour {
                 m_LocalCamera.SetActive(true);
                 m_LocalCamera.GetComponent<Camera>().enabled = true;
                 Debug.Log("Ho finito di settare la camera.");*/
+                LocalGameManager.Instance.m_LocalPlayer = gameObject;
                 CmdStartGeneralLoop((int)this.netId.Value);
                 m_SpawnPoint = transform.position;
                 LocalGameManager.Instance.m_GameIsStarted = true;
@@ -94,22 +95,9 @@ public class Player : NetworkBehaviour {
                 Debug.Log("è presente il Player " + i);
             }
 
-            int[] to_Send = new int[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
-            int[] to_SendIds = new int[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
-
-            int count = 0;
-
-            foreach (int i in OnlineManager.s_Singleton.currentPlayers.Keys)
-            {
-                to_Send[count] = i;
-                to_SendIds[count] = OnlineManager.s_Singleton.currentPlayers[i][(int)PlayerInfo.ID];
-                count++;
-            }
 
 
-
-
-            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline(to_Send, to_SendIds));
+            StartCoroutine(LocalGameManager.Instance.c_WaitUntilEveryPlayersOnline());
         }
 
     }
@@ -148,9 +136,9 @@ public class Player : NetworkBehaviour {
         TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
 
         m_HasTreasure = true;
-        LocalGameManager.Instance.RpcNotifyNewTreasureOwner((int)netId.Value, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
+        LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
         StartCoroutine(yohohoBarGrow(this));
-    
+
 
     }
 
