@@ -329,7 +329,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1507429031933400, guid: 5c467bfeae0427142b60e052c8476eab,
+  m_PlayerPrefab: {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
@@ -464,6 +464,7 @@ MonoBehaviour:
   player: {fileID: 0}
   smooth: 0.1
   Angle: 15
+  wait: 0
 --- !u!4 &812472101
 Transform:
   m_ObjectHideFlags: 0
@@ -496,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &867755929
 Transform:
   m_ObjectHideFlags: 0
