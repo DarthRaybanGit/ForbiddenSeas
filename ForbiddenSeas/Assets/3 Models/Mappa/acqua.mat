@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: acqua
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_Shader: {fileID: 4800000, guid: d750c31b4e1d7eb439d55598b1e8b1af, type: 3}
+  m_ShaderKeywords: TCP2_SPEC_TOON _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -19,7 +19,7 @@ Material:
         name: _BumpMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _DetailAlbedoMap
@@ -44,6 +44,18 @@ Material:
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 80, y: 80}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _GradientNorm
+      second:
+        m_Texture: {fileID: 2800000, guid: a53ce5f7a35bb2540b31eaada32da3e5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _GradientTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 0d9a9ea1a8999d541803f83d9a554350, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
@@ -72,7 +84,7 @@ Material:
     - first:
         name: _Ramp
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e2b38417f28f3714bbef266604e1611e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -116,8 +128,14 @@ Material:
         name: _RampThreshold
       second: 0.5
     - first:
+        name: _Shininess
+      second: 0.79
+    - first:
         name: _SmoothnessTextureChannel
       second: 1
+    - first:
+        name: _SpecSmooth
+      second: 0.813
     - first:
         name: _SpecularHighlights
       second: 1
@@ -133,13 +151,19 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.6764706, g: 0.8661257, b: 1, a: 1}
+      second: {r: 0.8235294, g: 0.92697763, b: 1, a: 1}
+    - first:
+        name: _ColorTint
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HColor
-      second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+      second: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
     - first:
         name: _SColor
-      second: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+      second: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.5055147, g: 0.7209686, b: 0.8088235, a: 1}
