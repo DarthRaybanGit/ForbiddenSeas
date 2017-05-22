@@ -4,7 +4,7 @@
 		_GradientTex("Gradient", 2D) = "white" {}
 	_GradientNorm("GradientNormal", 2D) = "normal" {}
 
-	_ColorTint("Tint", Color) = (1, 1, 1, 1)
+	_ColorTint("Gradient", 2D) = "white" {}
 	}
 		SubShader
 	{
@@ -12,10 +12,11 @@
 	{
 		Tags
 	{
-		"LightMode" = "ForwardBase"
+		//"LightMode" = "ForwardBase"
+		"Queue" = "Transparent-1"
 	}
 
-		LOD 100
+		LOD 200
 
 		CGPROGRAM
 #pragma vertex vert
@@ -40,7 +41,7 @@
 		float2 uv_GradientTex : TEXCOORD0;
 		float2 uv_GradientNorm : TEXCOORD1;
 
-		float4 color : COLOR0;
+		float4 color : TEXCOORD2;
 		float bump : COLOR1;
 	};
 
@@ -99,17 +100,17 @@
 		float delta = 1;
 
 		float x = v.vertex.x;
-		float z = v.vertex.z;
+		float y = v.vertex.y;
 
-		float perl = perlin(float2(x + delta * _Time.w, z + delta * _Time.w), 0.1);
-		perl += perlin(float2(x + delta * _Time.y, z + delta * _Time.y), 0.5);
-		perl += perlin(float2(x + delta * _SinTime.y, z + delta * _SinTime.y), 1);
-		perl += perlin(float2(x + delta * _SinTime.x, z + delta * _SinTime.x), 2);
+		float perl = perlin(float2(x + delta * _Time.w, y + delta * _Time.w), 0.1);
+		perl += perlin(float2(x + delta * _Time.z, y + delta * _Time.z), 0.5);
+		perl += perlin(float2(x + delta * _SinTime.z, y + delta * _SinTime.z), 1);
+		perl += perlin(float2(x + delta * _SinTime.x, y + delta * _SinTime.x), 2);
 
 		perl /= 4;
 		perl = (perl + 1) / 2;
 
-		o.vertex = mul(UNITY_MATRIX_MVP, float4(v.vertex.x, v.vertex.y + perl * 2, v.vertex.z, v.vertex.w));
+		o.vertex = mul(UNITY_MATRIX_MVP, float4(v.vertex.x, v.vertex.y , v.vertex.z + perl, v.vertex.w));
 
 		o.color = _ColorTint;
 		o.bump = perl;
@@ -119,7 +120,7 @@
 
 	float4 frag(v2f i) : SV_Target
 	{
-		return tex2D(_GradientTex, float2(i.bump, 0.5)) * i.color;
+		return tex2D(_GradientTex, i.uv_GradientTex);
 	}
 		ENDCG
 	}
