@@ -11,8 +11,8 @@ public class MoveSimple : NetworkBehaviour {
 	public Camera cam;
 	public int State=0;
 	public float ActualSpeed = 0f;
-	public float Acceleration = 0.03f;
-	public float deceleration = 0.1f;
+	private float Acceleration = 0.03f;
+	private float deceleration = 0.1f;
 	public float Factor=0;
 	private float Scroll = 0;
 	//private float forward=1;
