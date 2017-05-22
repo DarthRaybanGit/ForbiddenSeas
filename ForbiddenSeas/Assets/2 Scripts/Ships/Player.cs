@@ -42,11 +42,11 @@ public class Player : NetworkBehaviour {
         {
             if (isLocalPlayer)
             {
-                Camera.main.gameObject.SetActive(false);
-                m_LocalCamera.tag = "MainCamera";
+                //Camera.main.gameObject.SetActive(true);
+                /*m_LocalCamera.tag = "MainCamera";
                 m_LocalCamera.SetActive(true);
                 m_LocalCamera.GetComponent<Camera>().enabled = true;
-                Debug.Log("Ho finito di settare la camera.");
+                Debug.Log("Ho finito di settare la camera.");*/
                 CmdStartGeneralLoop((int)this.netId.Value);
                 m_SpawnPoint = transform.position;
                 LocalGameManager.Instance.m_GameIsStarted = true;
