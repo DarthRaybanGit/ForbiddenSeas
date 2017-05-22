@@ -9,15 +9,17 @@ public class MoveSimple : NetworkBehaviour {
 	public float maneuvrability;
 	public float rotSpeed;
 	public Camera cam;
-	private int State=0;
+	public int State=0;
 	public float ActualSpeed = 0f;
-	public float Acceleration = 0.01f;
+	private float Acceleration = 0.03f;
+	private float deceleration = 0.1f;
 	public float Factor=0;
 	private float Scroll = 0;
 	//private float forward=1;
 	//private float Velocity=0f;
 	private float smoothTime=20f;
 	private Rigidbody rb;
+	public float numberOfScroll = 20f;
 
 	/* float waterLevel = 0f;
 	public float floatHeight = 2f;
@@ -47,7 +49,7 @@ public class MoveSimple : NetworkBehaviour {
             return;
 		if (Scroll == 0) {
 			if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
-				State = State < 3 ? State + 1 : State;
+				State = State < numberOfScroll ? State + 1 : State;
 			}
 			if (Input.GetAxis ("Mouse ScrollWheel") < 0.0) {
 				State = State > 0 ? State - 1 : State;
@@ -56,26 +58,28 @@ public class MoveSimple : NetworkBehaviour {
 		} else {
 			Scroll = Input.GetAxis ("Mouse ScrollWheel");
 		}
-		switch(State)
-		{
-		case 0:
+		if (State / numberOfScroll == SpeedLevel.STOP)
 			Factor = SpeedLevel.STOP;
-			break;
-		case 1:
-			Factor = SpeedLevel.SLOW;
-			break;
-		case 2:
-			Factor = SpeedLevel.HALF;
-			break;
-		case 3:
-			Factor = SpeedLevel.FULL;
-			break;
+		else 
+		{
+			if (State / numberOfScroll == SpeedLevel.FULL)
+				Factor = SpeedLevel.FULL;
+			else 
+			{
+				if (State / numberOfScroll >= SpeedLevel.HALF)
+					Factor = SpeedLevel.HALF;
+				else
+					Factor = SpeedLevel.SLOW;
+			}
 		}
 		/*if (actualspeed<speed*factor*forward)
 			actualspeed +=acceleration*time.deltatime;*/
 		//Vector3 moveVelocity = new Vector3 (0, 0, speed * Factor * forward * -1);
 		/*if (rb.velocity.magnitude < maxSpeed * Factor ) */
-		ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * Factor, Acceleration);
+		if (ActualSpeed<maxSpeed*State/numberOfScroll)
+			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State/numberOfScroll, Acceleration);
+		else
+			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State/numberOfScroll, deceleration);
 		rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);

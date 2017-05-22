@@ -15,6 +15,7 @@ public class MovementCopySmooth : MonoBehaviour {
 		StartCoroutine(waitEveryone());
 
 	}
+
 	IEnumerator waitEveryone()
 	{
 		yield return new WaitUntil (() => LocalGameManager.Instance.IsEveryPlayerRegistered ());
