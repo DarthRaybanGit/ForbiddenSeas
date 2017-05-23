@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class FlagshipStatus : NetworkBehaviour
 {
-    public enum ShipClass {pirates, vikings, venetians, orientals};
+    public enum ShipClass {pirates, vikings, egyptians, orientals};
 
     public ShipClass shipClass;
     public static string shipName;
@@ -23,7 +23,7 @@ public class FlagshipStatus : NetworkBehaviour
     public float m_yohoho = 0;
     [SyncVar]
     public bool m_isDead = false;
-
+    [SyncVar]
     public int m_DoT = 0;
 
     [SyncVar]
@@ -167,7 +167,13 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Command]
-    public void CmdBlind()
+    public void CmdBlind(NetworkIdentity u)
+    {
+        TargetRpcBlind(u.connectionToClient);
+    }
+
+    [TargetRpc]
+    private void TargetRpcBlind(NetworkConnection nc)
     {
         Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
         bl.SetBlind(true);

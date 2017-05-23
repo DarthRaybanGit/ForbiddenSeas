@@ -154,7 +154,7 @@ public class CombatSystem : NetworkBehaviour
                     GetComponent<FlagshipStatus>().CmdMiasma();
                     break;
                 case "RasEye":
-                    GetComponent<FlagshipStatus>().CmdBlind();
+                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>());
                     break;
                 default:
                     return;   
