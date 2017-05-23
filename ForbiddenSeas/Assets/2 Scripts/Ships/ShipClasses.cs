@@ -57,12 +57,17 @@ public class Orientals
 
 }
 
-public enum AlteratedStatus
+public enum BuffStatus
 {
-    poison,
-    blind,
-    yohoho,
+    
     regen,
     dmgUp,
-    speedUp
+    speedUp,
+    yohoho
+}
+
+public enum DebuffStatus
+{
+    poison,
+    blind
 }

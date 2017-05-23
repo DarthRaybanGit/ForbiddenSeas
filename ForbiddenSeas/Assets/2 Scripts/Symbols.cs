@@ -48,12 +48,17 @@ public enum FixedDelayInGame
     YOHOHO_FULLFY_SPAN = 120
 }
 
-public enum StatusTiming
+public enum BuffTiming
 {
     YOHOHO_DURATION = 5,
     REGEN_DURATION = 20,
     SPEED_UP_DURATION = 20,
     DAMAGE_UP_DURATION = 20,
+
+}
+
+public enum DebuffTiming
+{
     POISON_DURATION = 9,
     BLIND_DURATION = 6
 }
