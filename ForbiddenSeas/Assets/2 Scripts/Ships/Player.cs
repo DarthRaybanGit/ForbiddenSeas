@@ -123,6 +123,23 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
+    public void CatchAPowerUp(PowerUP p)
+    {
+        switch (p)
+        {
+            case PowerUP.REGEN:
+                break;
+            case PowerUP.DAMAGE_UP:
+                break;
+            case PowerUP.SPEED_UP:
+                break;
+        }
+
+
+    }
+
+
+    [Server]
     public void CatchTheTreasure()
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)

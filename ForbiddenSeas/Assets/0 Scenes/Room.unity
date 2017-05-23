@@ -586,6 +586,9 @@ MonoBehaviour:
   - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1108263141705070, guid: 093fc32d4b5ba4d4997c7a04e00aedb8, type: 2}
   - {fileID: 1694748985517856, guid: 3e49985e113e9894895dc1f4db2376dc, type: 2}
+  - {fileID: 1906551762036520, guid: 479d8dbca8679cf408e9f374663e4c2a, type: 2}
+  - {fileID: 1319198098063744, guid: 640c09e667655d74c8ddece0bf6deca6, type: 2}
+  - {fileID: 1039782963185754, guid: ff9ce719f5e50ab46a29e64fd08cbaf8, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -654,6 +657,10 @@ MonoBehaviour:
   - {fileID: 4246205741725678, guid: eaa9820eb5d223943bb0cbc03aaa75ae, type: 2}
   - {fileID: 4240404434626506, guid: eeaa51000e189364f9f36a8ecc352c97, type: 2}
   - {fileID: 4706207241900874, guid: 62ac98aa42afad84ab2b0002d04ec2e1, type: 2}
+  m_PowerUpSpawnPosition:
+  - {fileID: 4528184946475946, guid: 083cb021da8507b41af080493402803b, type: 2}
+  - {fileID: 4611656013796284, guid: 1fecc1153a482c44294389af58eecb55, type: 2}
+  - {fileID: 4819954708130412, guid: bcbbefbc16d3fad46ad7088c985e643b, type: 2}
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
@@ -2317,6 +2324,7 @@ MonoBehaviour:
   m_Treasure: {fileID: 0}
   m_TreasureIsInGame: 0
   m_Ports: []
+  m_PowerUp: 000000
 --- !u!4 &2043742207
 Transform:
   m_ObjectHideFlags: 0
