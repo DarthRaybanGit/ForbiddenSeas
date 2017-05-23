@@ -30,6 +30,8 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_main, m_special;
     [SyncVar]
     public float m_mainCD, m_specialCD;
+    [SyncVar]
+    public bool[] status = {false, false, false, false, false, false};
 
     public Player m_Me;
 
@@ -67,14 +69,14 @@ public class FlagshipStatus : NetworkBehaviour
                 break;
 
             case 2:
-                shipName = Venetians.shipName;
-                m_MaxHealth = Venetians.maxHealth;
-                m_Maneuvrability = Venetians.maneuverability;
-                m_maxSpeed = Venetians.maxSpeed;
-                m_main = Venetians.mainAttackDmg;
-                m_special = Venetians.specAttackDmg;
-                m_mainCD = Venetians.mainAttackCD;
-                m_specialCD = Venetians.specAttackCD;
+                shipName = Egyptians.shipName;
+                m_MaxHealth = Egyptians.maxHealth;
+                m_Maneuvrability = Egyptians.maneuverability;
+                m_maxSpeed = Egyptians.maxSpeed;
+                m_main = Egyptians.mainAttackDmg;
+                m_special = Egyptians.specAttackDmg;
+                m_mainCD = Egyptians.mainAttackCD;
+                m_specialCD = Egyptians.specAttackCD;
                 break;
 
             case 3:
@@ -148,10 +150,55 @@ public class FlagshipStatus : NetworkBehaviour
             CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), "DoT");
         }
     }
+
     [TargetRpc]
     public void TargetRpcRespawn(NetworkConnection u)
     {
         transform.position = GetComponent<Player>().m_SpawnPoint;
     }
 
+    //status alterati - power-ups
+
+    [Command]
+    public void Miasma()
+    {
+        m_DoT += Orientals.specAttackDmg;
+        StartCoroutine(resetDoT(Orientals.specAttackDmg, 0f));
+    }
+
+    [Command]
+    public void Blind()
+    {
+
+    }
+
+    [Command]
+    public void DamageUp()
+    {
+
+    }
+
+    [Command]
+    public void SpeedUp()
+    {
+
+    }
+
+    [Command]
+    public void Yohoho()
+    {
+
+    }
+
+    [Command]
+    public void Regen()
+    {
+
+    }
+
+    private IEnumerator resetDoT(int dmg, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        m_DoT -= dmg;
+    }
 }

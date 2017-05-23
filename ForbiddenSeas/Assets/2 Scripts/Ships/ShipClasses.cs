@@ -14,7 +14,7 @@ public class Pirates
 
 }
 
-public class Venetians
+public class Egyptians
 {
     public const string shipName = "War-type Gondola";
     public const int maxHealth = 800;
@@ -48,4 +48,14 @@ public class Orientals
     public const float mainAttackCD = 1.5f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
+}
+
+public enum AlteratedStatus
+{
+    poison,
+    blind,
+    yohoho,
+    regen,
+    dmgUp,
+    speedUp
 }
