@@ -21,6 +21,9 @@ TagManager:
   - SpecAttackSystem
   - SAP
   - MAP
+  - Blind
+  - Miasma
+  - RasEye
   layers:
   - Default
   - TransparentFX

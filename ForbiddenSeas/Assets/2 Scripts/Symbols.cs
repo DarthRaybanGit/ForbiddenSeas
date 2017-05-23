@@ -53,7 +53,9 @@ public enum StatusTiming
     YOHOHO_DURATION = 5,
     REGEN_DURATION = 20,
     SPEED_UP_DURATION = 20,
-    DAMAGE_UP_DURATION = 20
+    DAMAGE_UP_DURATION = 20,
+    POISON_DURATION = 9,
+    BLIND_DURATION = 6
 }
 
 //KEEP IT UPDATE
@@ -76,6 +78,7 @@ public class Symbols
     public const int PLAYER_NOT_SET = -1;
     public const float mainAttackDelay = 0.7f;
     public const float specAttackDelay = 0.7f;
+    public const int REGEN_AMOUNT = -50;
 }
 
 public class ReputationValues
