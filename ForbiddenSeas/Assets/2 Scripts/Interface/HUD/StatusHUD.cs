@@ -25,10 +25,10 @@ public class StatusHUD : MonoBehaviour
 
     public IEnumerator ActivateDebuff(int debuff, int max, float sec)
     {
-        neg[max - 1].gameObject.SetActive(true);
-        neg[max - 1].sprite = spriteDebuff[debuff];
+        neg[max].gameObject.SetActive(true);
+        neg[max].sprite = spriteDebuff[debuff];
         yield return new WaitForSeconds(sec);
-        neg[max-1].gameObject.SetActive(false);
+        neg[max].gameObject.SetActive(false);
     }
 
     public IEnumerator ActivateBuff(int buff, int max, float sec)
@@ -38,6 +38,4 @@ public class StatusHUD : MonoBehaviour
         yield return new WaitForSeconds(sec);
         pos[max-1].gameObject.SetActive(false);
     }
-
-
 }

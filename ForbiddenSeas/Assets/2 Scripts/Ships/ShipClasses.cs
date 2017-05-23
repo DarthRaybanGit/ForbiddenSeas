@@ -51,7 +51,7 @@ public class Orientals
     public const float maneuverability = ManeuverabilityLevel.LOW;
     public const int mainAttackDmg = 500;
     public const float mainAttackCD = 1.5f;
-    public const int specAttackDmg = 500;
+    public const int specAttackDmg = 10;
     public const float specAttackCD = 1.5f;
     public const float defense = 0.15f;
 

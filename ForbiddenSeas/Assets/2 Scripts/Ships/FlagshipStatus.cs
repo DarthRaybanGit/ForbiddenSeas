@@ -35,7 +35,6 @@ public class FlagshipStatus : NetworkBehaviour
     [SyncVar]
     public SyncListBool buffList = new SyncListBool();
 
-    public StatusHUD statusHUD;
 
     public Player m_Me;
 
@@ -105,7 +104,6 @@ public class FlagshipStatus : NetworkBehaviour
         for(int i =0; i<4;i++)
             buffList.Add(false);
 
-        statusHUD = GameObject.FindGameObjectWithTag("StatusHUD").GetComponent<StatusHUD>();
         m_Health = m_MaxHealth;
     }
 
@@ -175,8 +173,6 @@ public class FlagshipStatus : NetworkBehaviour
     public void CmdMiasma()
     {
         debuffList[(int)DebuffStatus.poison] = true;
-
-        StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison, maxNumberStatus(debuffList),(float)DebuffTiming.POISON_DURATION));
         m_DoT += Orientals.specAttackDmg;
         StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)DebuffTiming.POISON_DURATION));
     }
@@ -184,9 +180,6 @@ public class FlagshipStatus : NetworkBehaviour
     [Command]
     public void CmdBlind(NetworkIdentity u)
     {
-        debuffList[(int)DebuffStatus.blind] = true;
-
-        StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind, maxNumberStatus(debuffList),(float)DebuffTiming.BLIND_DURATION));
         debuffList[(int)DebuffStatus.blind] = true;
         TargetRpcBlind(u.connectionToClient);
     }
@@ -236,7 +229,6 @@ public class FlagshipStatus : NetworkBehaviour
         yield return new WaitForSeconds(duration);
         bl.SetBlind(false);
         debuffList[(int)DebuffStatus.blind] = false;
-
     }
 
     public static int maxNumberStatus(SyncListBool b)
@@ -249,4 +241,5 @@ public class FlagshipStatus : NetworkBehaviour
         }
         return c;
     }
+
 }
