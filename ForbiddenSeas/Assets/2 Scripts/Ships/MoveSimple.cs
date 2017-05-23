@@ -72,7 +72,7 @@ public class MoveSimple : NetworkBehaviour {
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;
 		animator.SetFloat ("Speed", ActualSpeed / maxSpeed);
-		Debug.Log (State / numberOfScroll);
+		//Debug.Log (State / numberOfScroll);
 	}
 
 }

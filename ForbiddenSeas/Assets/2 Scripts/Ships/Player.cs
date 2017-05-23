@@ -134,8 +134,6 @@ public class Player : NetworkBehaviour {
             case PowerUP.SPEED_UP:
                 break;
         }
-
-
     }
 
 
