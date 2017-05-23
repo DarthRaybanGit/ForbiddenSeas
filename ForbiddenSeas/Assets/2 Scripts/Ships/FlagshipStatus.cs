@@ -30,14 +30,15 @@ public class FlagshipStatus : NetworkBehaviour
     public int m_main, m_special;
     [SyncVar]
     public float m_mainCD, m_specialCD;
-    //[SyncList]
-    //public bool[] status = {false, false, false, false, false, false};
+    [SyncVar]
+    public SyncListBool statusList = new SyncListBool();
 
     public Player m_Me;
 
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
+        
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -94,6 +95,10 @@ public class FlagshipStatus : NetworkBehaviour
                 return;
         }
 
+
+        for(int i =0; i<6;i++)
+            statusList.Add(false);
+        
         m_Health = m_MaxHealth;
     }
 
@@ -162,6 +167,7 @@ public class FlagshipStatus : NetworkBehaviour
     [Command]
     public void CmdMiasma()
     {
+        statusList[(int)AlteratedStatus.poison] = true;
         m_DoT += Orientals.specAttackDmg;
         StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)StatusTiming.POISON_DURATION));
     }
@@ -169,6 +175,7 @@ public class FlagshipStatus : NetworkBehaviour
     [Command]
     public void CmdBlind(NetworkIdentity u)
     {
+        statusList[(int)AlteratedStatus.blind] = true;
         TargetRpcBlind(u.connectionToClient);
     }
 
@@ -209,11 +216,14 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds(duration);
         m_DoT -= dmg;
+        statusList[(int)AlteratedStatus.poison] = false;
     }
 
     private IEnumerator resetBlind(Blind bl, float duration)
     {
         yield return new WaitForSeconds(duration);
         bl.SetBlind(false);
+        statusList[(int)AlteratedStatus.blind] = false;
+
     }
 }
