@@ -6,21 +6,15 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: No Name
+  m_Name: Schema_Arena_Definitivo-01
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-    - first:
-        name: <noninit>
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -49,12 +43,12 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 100, y: 100}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 9f326bc5c5c834d8194931b6fee05065, type: 3}
+        m_Texture: {fileID: 2800000, guid: 578f62017ceb68c498e0ebc59d50a8c8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -75,16 +69,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Ramp
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: <noninit>
-      second: 1
     - first:
         name: _BumpScale
       second: 1
@@ -119,12 +104,6 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _RampSmooth
-      second: 0.1
-    - first:
-        name: _RampThreshold
-      second: 0.5
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -141,17 +120,8 @@ Material:
       second: 1
     m_Colors:
     - first:
-        name: <noninit>
-      second: {r: 0.28676468, g: 0.70486814, b: 1, a: 1}
-    - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _HColor
-      second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
-    - first:
-        name: _SColor
-      second: {r: 0.4, g: 0.4, b: 0.4, a: 1}
