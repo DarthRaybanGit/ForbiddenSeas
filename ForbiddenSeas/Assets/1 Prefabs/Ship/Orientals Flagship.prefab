@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 64465923698272956}
   m_Layer: 0
   m_Name: AoE_Miasma
-  m_TagString: specialAttack
+  m_TagString: Miasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,7 +912,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4057546884658500}
-  - component: {fileID: 95371830629544320}
   m_Layer: 0
   m_Name: PirateAdmiral_Definitive
   m_TagString: Untagged
@@ -1484,7 +1483,7 @@ Transform:
   m_GameObject: {fileID: 1649425479731978}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 106, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4497648523442520}
   m_RootOrder: 0
@@ -1825,7 +1824,7 @@ Transform:
   m_GameObject: {fileID: 1337400159862984}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 106, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4497648523442520}
   m_RootOrder: 1
@@ -2381,23 +2380,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95371830629544320
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1845835140756912}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b214fc05d53a74b13b5536b2e4e5921a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114056343329908290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2473,9 +2455,11 @@ MonoBehaviour:
   maneuvrability: 0
   rotSpeed: 100
   cam: {fileID: 20091067108358248}
+  State: 0
   ActualSpeed: 0
-  Acceleration: 10
   Factor: 0
+  numberOfScroll: 20
+  animator: {fileID: 0}
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2487,7 +2471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31a8c2959b12ad4ba5b4b238a0866a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipClass: 0
+  shipClass: 3
   m_Maneuvrability: 0
   m_maxSpeed: 0
   m_Health: 0
@@ -2545,7 +2529,7 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 5.04
+  m_OrthographicSize: 10.08
   m_Material: {fileID: 2100000, guid: 2e5986df5ad4147f892a9aefc52bfd27, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2

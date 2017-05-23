@@ -11,10 +11,11 @@ public class Pirates
     public const float mainAttackCD = 2.5f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 10f;
+    public const float defense = 0.15f;
 
 }
 
-public class Venetians
+public class Egyptians
 {
     public const string shipName = "War-type Gondola";
     public const int maxHealth = 800;
@@ -24,6 +25,8 @@ public class Venetians
     public const float mainAttackCD = 1.5f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
+    public const float defense = 0.05f;
+
 }
 
 public class Vikings
@@ -36,6 +39,8 @@ public class Vikings
     public const float mainAttackCD = 1.5f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
+    public const float defense = 0.10f;
+
 }
 
 public class Orientals
@@ -48,4 +53,16 @@ public class Orientals
     public const float mainAttackCD = 1.5f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
+    public const float defense = 0.15f;
+
+}
+
+public enum AlteratedStatus
+{
+    poison,
+    blind,
+    yohoho,
+    regen,
+    dmgUp,
+    speedUp
 }

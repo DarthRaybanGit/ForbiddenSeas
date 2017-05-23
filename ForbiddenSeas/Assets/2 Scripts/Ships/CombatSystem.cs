@@ -139,18 +139,25 @@ public class CombatSystem : NetworkBehaviour
         {
             if (other.gameObject.Equals(gameObject))
                 return;
-
-            if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
+            int dmg;
+            switch (other.tag)
             {
-                Debug.Log(gameObject.name + "Preso danno da " + other.name + other.GetComponentInParent<FlagshipStatus>().m_main);
-                int dmg = 0;
-                if (other.tag.Equals("mainAttack"))
+                case "mainAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
-                else
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
+                    break;
+                case "specialAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
-
-                Debug.Log("################## "+other.transform.parent.gameObject);
-                GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
+                    break;
+                case "Miasma":
+                    GetComponent<FlagshipStatus>().CmdMiasma();
+                    break;
+                case "RasEye":
+                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>());
+                    break;
+                default:
+                    return;   
             }
         }
     }

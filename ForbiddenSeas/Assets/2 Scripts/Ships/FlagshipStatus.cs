@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class FlagshipStatus : NetworkBehaviour
 {
-    public enum ShipClass {pirates, vikings, venetians, orientals};
+    public enum ShipClass {pirates, vikings, egyptians, orientals};
 
     public ShipClass shipClass;
     public static string shipName;
@@ -23,19 +23,22 @@ public class FlagshipStatus : NetworkBehaviour
     public float m_yohoho = 0;
     [SyncVar]
     public bool m_isDead = false;
-
+    [SyncVar]
     public int m_DoT = 0;
 
     [SyncVar]
     public int m_main, m_special;
     [SyncVar]
     public float m_mainCD, m_specialCD;
+    [SyncVar]
+    public SyncListBool statusList = new SyncListBool();
 
     public Player m_Me;
 
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
+        
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -67,14 +70,14 @@ public class FlagshipStatus : NetworkBehaviour
                 break;
 
             case 2:
-                shipName = Venetians.shipName;
-                m_MaxHealth = Venetians.maxHealth;
-                m_Maneuvrability = Venetians.maneuverability;
-                m_maxSpeed = Venetians.maxSpeed;
-                m_main = Venetians.mainAttackDmg;
-                m_special = Venetians.specAttackDmg;
-                m_mainCD = Venetians.mainAttackCD;
-                m_specialCD = Venetians.specAttackCD;
+                shipName = Egyptians.shipName;
+                m_MaxHealth = Egyptians.maxHealth;
+                m_Maneuvrability = Egyptians.maneuverability;
+                m_maxSpeed = Egyptians.maxSpeed;
+                m_main = Egyptians.mainAttackDmg;
+                m_special = Egyptians.specAttackDmg;
+                m_mainCD = Egyptians.mainAttackCD;
+                m_specialCD = Egyptians.specAttackCD;
                 break;
 
             case 3:
@@ -92,6 +95,10 @@ public class FlagshipStatus : NetworkBehaviour
                 return;
         }
 
+
+        for(int i =0; i<6;i++)
+            statusList.Add(false);
+        
         m_Health = m_MaxHealth;
     }
 
@@ -148,10 +155,75 @@ public class FlagshipStatus : NetworkBehaviour
             CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), "DoT");
         }
     }
+
     [TargetRpc]
     public void TargetRpcRespawn(NetworkConnection u)
     {
         transform.position = GetComponent<Player>().m_SpawnPoint;
     }
 
+    //status alterati - power-ups
+
+    [Command]
+    public void CmdMiasma()
+    {
+        statusList[(int)AlteratedStatus.poison] = true;
+        m_DoT += Orientals.specAttackDmg;
+        StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)StatusTiming.POISON_DURATION));
+    }
+
+    [Command]
+    public void CmdBlind(NetworkIdentity u)
+    {
+        statusList[(int)AlteratedStatus.blind] = true;
+        TargetRpcBlind(u.connectionToClient);
+    }
+
+    [TargetRpc]
+    private void TargetRpcBlind(NetworkConnection nc)
+    {
+        Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
+        bl.SetBlind(true);
+        StartCoroutine(resetBlind(bl, (float)StatusTiming.BLIND_DURATION));
+    }
+
+    [Command]
+    public void CmdDamageUp()
+    {
+
+    }
+
+    [Command]
+    public void CmdSpeedUp()
+    {
+
+    }
+
+    [Command]
+    public void CmdYohoho()
+    {
+
+    }
+
+    [Command]
+    public void CmdRegen()
+    {
+        m_DoT += Symbols.REGEN_AMOUNT;
+        StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)StatusTiming.REGEN_DURATION));
+    }
+
+    private IEnumerator resetDoT(int dmg, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        m_DoT -= dmg;
+        statusList[(int)AlteratedStatus.poison] = false;
+    }
+
+    private IEnumerator resetBlind(Blind bl, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        bl.SetBlind(false);
+        statusList[(int)AlteratedStatus.blind] = false;
+
+    }
 }
