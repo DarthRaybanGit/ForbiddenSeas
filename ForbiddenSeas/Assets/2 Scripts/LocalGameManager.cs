@@ -181,6 +181,13 @@ public class LocalGameManager : NetworkBehaviour {
             Debug.Log("PowerUp SPAWN!!!");
 
             //Controllare se un power up è già presente oppure no in quel caso non spawnare nulla.
+            foreach(bool b in m_PowerUp)
+            {
+                if (!b)
+                {
+
+                }
+            }
         }
     }
 

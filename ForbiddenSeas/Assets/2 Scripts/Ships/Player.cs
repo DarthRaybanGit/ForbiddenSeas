@@ -123,8 +123,18 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
-    public void CatchAPowerUp()
+    public void CatchAPowerUp(PowerUP p)
     {
+        switch (p)
+        {
+            case PowerUP.REGEN:
+                break;
+            case PowerUP.DAMAGE_UP:
+                break;
+            case PowerUP.SPEED_UP:
+                break;
+        }
+
 
     }
 

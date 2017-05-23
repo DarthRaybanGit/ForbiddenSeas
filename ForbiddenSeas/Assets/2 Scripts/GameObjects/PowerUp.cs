@@ -21,8 +21,15 @@ public class PowerUp : NetworkBehaviour {
             if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
             {
                 Debug.Log("Toccato un powerUp da " + other.gameObject.GetComponent<Player>().netId);
-                other.gameObject.GetComponent<Player>().CatchTheTreasure();
+                other.gameObject.GetComponent<Player>().CatchAPowerUp(type);
+                LocalGameManager.Instance.m_PowerUp[(int)type] = false;
+                Invoke("killMe", 0.5f);
             }
         }
+    }
+
+    private void killMe()
+    {
+        Destroy(gameObject);
     }
 }
