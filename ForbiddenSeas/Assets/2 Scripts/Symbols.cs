@@ -33,8 +33,8 @@ public enum PlayerInfo
 public enum PowerUP
 {
     REGEN,
-    DAMAGE_UP,
-    SPEED_UP
+    SPEED_UP,
+    DAMAGE_UP
 };
 
 public enum FixedDelayInGame
@@ -48,6 +48,14 @@ public enum FixedDelayInGame
     YOHOHO_FULLFY_SPAN = 120
 }
 
+public enum StatusTiming
+{
+    YOHOHO_DURATION = 5,
+    REGEN_DURATION = 20,
+    SPEED_UP_DURATION = 20,
+    DAMAGE_UP_DURATION = 20
+}
+
 //KEEP IT UPDATE
 public enum SpawnIndex
 {
@@ -57,7 +65,10 @@ public enum SpawnIndex
     VENETIANS_FLAGSHIP,
     VIKINGS_FLAGSHIP,
     TREASURE,
-    PORTO
+    PORTO,
+    REGEN,
+    SPEED_UP,
+    DAMAGE_UP
 }
 
 public class Symbols

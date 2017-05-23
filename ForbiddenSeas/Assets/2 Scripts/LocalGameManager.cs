@@ -180,13 +180,16 @@ public class LocalGameManager : NetworkBehaviour {
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
             Debug.Log("PowerUp SPAWN!!!");
 
+            int count = 0;
             //Controllare se un power up è già presente oppure no in quel caso non spawnare nulla.
             foreach(bool b in m_PowerUp)
             {
                 if (!b)
                 {
-
+                    GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[count].position, Quaternion.identity);
+                    NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
                 }
+                count++;
             }
         }
     }
