@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 48f092c01a8f6429fbc19decd18280b3
+guid: 8b2262e4ecf4845d7a0fad0cd4cdca13
 timeCreated: 1495532293
 licenseType: Free
 ModelImporter:
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Drittto_corto
+    4300000: CurvaMezza.007
   materials:
     importMaterials: 1
     materialName: 0

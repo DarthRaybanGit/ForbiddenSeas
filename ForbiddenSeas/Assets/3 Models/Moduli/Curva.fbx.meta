@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ef0ced1d7df524e3484e0e5325c04e78
-timeCreated: 1495397150
+timeCreated: 1495532294
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Curva
+    4300000: CurvaMezza.001
   materials:
     importMaterials: 1
     materialName: 0
