@@ -31,7 +31,7 @@ public class MoveSimple : NetworkBehaviour {
         yield return new WaitForFixedUpdate();
         maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
         maneuvrability = GetComponent<FlagshipStatus>().m_Maneuvrability;
-		animator = GetComponentInChildren<Animator> ();
+		animator = GetComponent<Animator>();
     }
 
 	void FixedUpdate ()
@@ -51,11 +51,11 @@ public class MoveSimple : NetworkBehaviour {
 		}
 		if (State / numberOfScroll == SpeedLevel.STOP)
 			Factor = SpeedLevel.STOP;
-		else 
+		else
 		{
 			if (State / numberOfScroll == SpeedLevel.FULL)
 				Factor = SpeedLevel.FULL;
-			else 
+			else
 			{
 				if (State / numberOfScroll >= SpeedLevel.HALF)
 					Factor = SpeedLevel.HALF;

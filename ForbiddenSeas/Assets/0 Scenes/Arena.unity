@@ -926,6 +926,7 @@ MonoBehaviour:
   player: {fileID: 0}
   smooth: 0.1
   Angle: 15
+  wait: 0
 --- !u!1 &595808240
 GameObject:
   m_ObjectHideFlags: 0
