@@ -30,6 +30,13 @@ public enum PlayerInfo
     IS_LOADED
 };
 
+public enum PowerUP
+{
+    REGEN,
+    DAMAGE_UP,
+    SPEED_UP
+};
+
 public enum FixedDelayInGame
 {
     TREASURE_FIRST_SPAWN = 2,

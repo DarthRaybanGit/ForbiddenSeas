@@ -123,6 +123,13 @@ public class Player : NetworkBehaviour {
     }
 
     [Server]
+    public void CatchAPowerUp()
+    {
+
+    }
+
+
+    [Server]
     public void CatchTheTreasure()
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)

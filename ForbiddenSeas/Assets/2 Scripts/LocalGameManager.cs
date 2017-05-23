@@ -30,6 +30,8 @@ public class LocalGameManager : NetworkBehaviour {
     public bool m_TreasureIsInGame = false;
     public GameObject[] m_Ports;
 
+    //Server
+    public bool[] m_PowerUp = { false, false, false};
 
     private void Awake()
     {
