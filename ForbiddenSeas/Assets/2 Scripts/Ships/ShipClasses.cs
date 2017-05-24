@@ -58,8 +58,7 @@ public class Orientals
 }
 
 public enum BuffStatus
-{
-    
+{    
     regen,
     dmgUp,
     speedUp,

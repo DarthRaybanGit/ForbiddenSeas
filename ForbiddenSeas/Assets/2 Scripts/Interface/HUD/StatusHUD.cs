@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class StatusHUD : MonoBehaviour
 {
@@ -23,16 +24,22 @@ public class StatusHUD : MonoBehaviour
 
     }
 
-    public IEnumerator ActivateDebuff(int debuff, int max, float sec)
+    public IEnumerator ActivateDebuff(int debuff, float sec)
     {
-        neg[max].gameObject.SetActive(true);
-        neg[max].sprite = spriteDebuff[debuff];
+        yield return new WaitForSeconds(0.1f);
+        SyncListBool bl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().debuffList;
+        Debug.Log(bl.ToString());
+        int max = FlagshipStatus.maxNumberStatus(bl);
+        neg[max-1].gameObject.SetActive(true);
+        neg[max-1].sprite = spriteDebuff[debuff];
         yield return new WaitForSeconds(sec);
         neg[max].gameObject.SetActive(false);
     }
 
-    public IEnumerator ActivateBuff(int buff, int max, float sec)
+    public IEnumerator ActivateBuff(int buff, float sec)
     {
+        yield return new WaitForSeconds(0.1f);
+        int max = FlagshipStatus.maxNumberStatus(GetComponent<FlagshipStatus>().debuffList);
         pos[max - 1].gameObject.SetActive(true);
         pos[max - 1].sprite = spriteBuff[buff];
         yield return new WaitForSeconds(sec);
