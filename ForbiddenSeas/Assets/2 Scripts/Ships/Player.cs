@@ -32,8 +32,9 @@ public class Player : NetworkBehaviour {
         }
         if (isLocalPlayer || isServer)
         {
-            Physics.IgnoreLayerCollision(10, 10);
+
         }
+
     }
 
     public override void OnStartLocalPlayer()
