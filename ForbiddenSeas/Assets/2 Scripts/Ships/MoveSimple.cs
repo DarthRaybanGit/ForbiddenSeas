@@ -28,7 +28,7 @@ public class MoveSimple : NetworkBehaviour {
 
     IEnumerator waitForStat()
     {
-        yield return new WaitForFixedUpdate();
+        yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
         maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
         maneuvrability = GetComponent<FlagshipStatus>().m_Maneuvrability;
 		animator = GetComponent<Animator>();
@@ -65,7 +65,7 @@ public class MoveSimple : NetworkBehaviour {
 		}
 		if (ActualSpeed < maxSpeed * State / numberOfScroll)
 			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, Acceleration);
-		else 
+		else
 		{
 			if (ActualSpeed > 0.9f)
 				ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, deceleration);
