@@ -29,10 +29,15 @@ public class MovementCopySmooth : MonoBehaviour {
 	void FixedUpdate () {
 		if (!wait)
 			return;
-		transform.position = player.transform.position;
 		Vector3 EulerAngles = transform.rotation.eulerAngles;
-		EulerAngles.y = Mathf.SmoothDampAngle (EulerAngles.y, player.transform.eulerAngles.y + Input.GetAxis("Horizontal") * Angle, ref velocity, smooth);
+		if (transform.position==player.transform.position)
+			EulerAngles.y = Mathf.SmoothDampAngle (EulerAngles.y, player.transform.eulerAngles.y /*+ Input.GetAxis("Horizontal") * Angle*/, ref velocity, smooth);
+		else
+			EulerAngles.y = Mathf.SmoothDampAngle (EulerAngles.y, player.transform.eulerAngles.y + Input.GetAxis("Horizontal") * Angle, ref velocity, smooth);
 		transform.rotation = Quaternion.Euler (EulerAngles);
+		transform.position = player.transform.position;
+
+
 	}
 
 
