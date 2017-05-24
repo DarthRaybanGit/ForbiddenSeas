@@ -38,16 +38,11 @@ public class MoveSimple : NetworkBehaviour {
 	{
         if (!isLocalPlayer)
             return;
-		if (Scroll == 0) {
-			if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
-				State = State < numberOfScroll ? State + 1 : State;
-			}
-			if (Input.GetAxis ("Mouse ScrollWheel") < 0.0) {
-				State = State > 0 ? State - 1 : State;
-			}
-			Scroll = Input.GetAxis ("Mouse ScrollWheel");
-		} else {
-			Scroll = Input.GetAxis ("Mouse ScrollWheel");
+		if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
+			State = State < numberOfScroll ? State + 1 : State;
+		}
+		if (Input.GetAxis ("Mouse ScrollWheel") < 0.0) {
+			State = State > 0 ? State - 1 : State;
 		}
 		if (State / numberOfScroll == SpeedLevel.STOP)
 			Factor = SpeedLevel.STOP;
