@@ -34,6 +34,7 @@ public class Player : NetworkBehaviour {
         {
 
         }
+
     }
 
     public override void OnStartLocalPlayer()
@@ -53,10 +54,10 @@ public class Player : NetworkBehaviour {
                 LocalGameManager.Instance.m_GameIsStarted = true;
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
-
             }
 
         }
+
     }
 
 
@@ -125,6 +126,7 @@ public class Player : NetworkBehaviour {
     [Server]
     public void CatchAPowerUp(PowerUP p)
     {
+        LocalGameManager.Instance.m_PowerUp[(int)p] = false;
         switch (p)
         {
             case PowerUP.REGEN:

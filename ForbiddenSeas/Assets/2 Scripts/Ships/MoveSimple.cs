@@ -28,7 +28,7 @@ public class MoveSimple : NetworkBehaviour {
 
     IEnumerator waitForStat()
     {
-        yield return new WaitForFixedUpdate();
+        yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
         maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
         maneuvrability = GetComponent<FlagshipStatus>().m_Maneuvrability;
 		animator = GetComponent<Animator>();
@@ -65,7 +65,7 @@ public class MoveSimple : NetworkBehaviour {
 		}
 		if (ActualSpeed < maxSpeed * State / numberOfScroll)
 			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, Acceleration);
-		else 
+		else
 		{
 			if (ActualSpeed > 0.9f)
 				ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, deceleration);
@@ -76,7 +76,7 @@ public class MoveSimple : NetworkBehaviour {
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;
-        if(GetComponent<Animator>())
+        if(animator)
             animator.SetFloat ("Speed", ActualSpeed / maxSpeed);
 		//Debug.Log (State / numberOfScroll);
 	}

@@ -27,7 +27,7 @@ public class CombatSystem : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
@@ -66,13 +66,32 @@ public class CombatSystem : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdDamageThis(NetworkInstanceId who, int amount)
+    {
+        Debug.Log("Passato " + who);
+        GameObject g = NetworkServer.FindLocalObject(who);
+        if (g.GetComponent<PowerUp>())
+        {
+            Debug.Log("PowerUp colpito " + who + " danno preso " + amount);
+            g.GetComponent<PowerUp>().m_health -= amount;
+
+            if(g.GetComponent<PowerUp>().m_health <= 0)
+            {
+                Debug.Log("Toccato un powerUp da " + netId);
+                gameObject.GetComponentInParent<Player>().CatchAPowerUp(g.GetComponent<PowerUp>().type);
+                g.GetComponent<PowerUp>().killMe();
+            }
+        }
+    }
+
     private IEnumerator GlobalCoolDown(GameObject UI)
     {
         UI.GetComponent<CoolDownIndicator>().OnCoolDown(1.5f);
         yield return new WaitForSeconds(1.5f);
         fire = false;
     }
-        
+
     private IEnumerator MainAttack(int playerId, string tag)
     {
         RpcSetActiveTrigger(playerId, "MAP");
@@ -153,15 +172,17 @@ public class CombatSystem : NetworkBehaviour
                     GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
                     break;
                 case "Miasma":
+                    bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
                     GetComponent<FlagshipStatus>().CmdMiasma();
-                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison, FlagshipStatus.maxNumberStatus(GetComponent<FlagshipStatus>().debuffList),(float)DebuffTiming.POISON_DURATION));
+                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison,(float)DebuffTiming.POISON_DURATION, check));
                     break;
                 case "RasEye":
-                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind, FlagshipStatus.maxNumberStatus(GetComponent<FlagshipStatus>().debuffList),(float)DebuffTiming.BLIND_DURATION));
+                    bool check1 = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.blind];
+                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind,(float)DebuffTiming.BLIND_DURATION, check1));
                     GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>());
                     break;
                 default:
-                    return;   
+                    return;
             }
         }
     }
