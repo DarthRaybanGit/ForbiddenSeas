@@ -24,22 +24,19 @@ public class StatusHUD : MonoBehaviour
 
     }
 
-    public IEnumerator ActivateDebuff(int debuff, float sec)
+    public IEnumerator ActivateDebuff(int debuff, float sec, bool check)
     {
-        yield return new WaitForSeconds(0.1f);
-        SyncListBool bl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().debuffList;
-        Debug.Log(bl.ToString());
-        int max = FlagshipStatus.maxNumberStatus(bl);
+        yield return new WaitWhile(() => check.Equals(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().debuffList[debuff]));
+        int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().debuffList);
         neg[max-1].gameObject.SetActive(true);
         neg[max-1].sprite = spriteDebuff[debuff];
         yield return new WaitForSeconds(sec);
-        neg[max].gameObject.SetActive(false);
+        neg[max -1].gameObject.SetActive(false);
     }
 
     public IEnumerator ActivateBuff(int buff, float sec)
     {
-        yield return new WaitForSeconds(0.1f);
-        int max = FlagshipStatus.maxNumberStatus(GetComponent<FlagshipStatus>().debuffList);
+        int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().buffList);
         pos[max - 1].gameObject.SetActive(true);
         pos[max - 1].sprite = spriteBuff[buff];
         yield return new WaitForSeconds(sec);
