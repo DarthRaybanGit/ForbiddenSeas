@@ -2174,7 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.0625
+  m_SendInterval: 0.055555556
   m_SyncRotationAxis: 2
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -2222,6 +2222,7 @@ MonoBehaviour:
   SpecUI: {fileID: 0}
   GlobalMUI: {fileID: 0}
   GlobalSUI: {fileID: 0}
+  statusHUD: {fileID: 0}
 --- !u!114 &114353414015100942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2284,6 +2285,7 @@ MonoBehaviour:
   m_special: 0
   m_mainCD: 0
   m_specialCD: 0
+  statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
 --- !u!114 &114789289762858792
 MonoBehaviour:
