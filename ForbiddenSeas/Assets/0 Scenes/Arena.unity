@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -248,6 +248,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -340,6 +344,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -590,6 +598,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -682,6 +694,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -770,6 +786,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -858,6 +878,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -946,6 +970,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1034,6 +1062,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1122,6 +1154,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -1210,6 +1246,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1298,6 +1338,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1386,6 +1430,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -1474,6 +1522,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1562,6 +1614,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -1650,6 +1706,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -1675,6 +1735,76 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+--- !u!1 &280325277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 280325278}
+  - component: {fileID: 280325280}
+  - component: {fileID: 280325279}
+  m_Layer: 5
+  m_Name: HP_Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &280325278
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 280325277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 967410254}
+  - {fileID: 823672741}
+  m_Father: {fileID: 413010485}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 446, y: 127}
+  m_SizeDelta: {x: 230, y: 230}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &280325279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 280325277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 0e96e5434d27940159dfb8a6c467e946, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &280325280
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 280325277}
 --- !u!1001 &285265596
 Prefab:
   m_ObjectHideFlags: 0
@@ -1738,6 +1868,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -1884,6 +2018,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -1972,6 +2110,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -2129,6 +2271,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -2260,6 +2406,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 37.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -2518,6 +2668,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -52.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -2606,6 +2760,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -2694,6 +2852,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -2782,6 +2944,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -2870,6 +3036,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -2958,6 +3128,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -3089,6 +3263,7 @@ RectTransform:
   - {fileID: 1079476556}
   - {fileID: 2079017658}
   - {fileID: 1206126265}
+  - {fileID: 280325278}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3160,6 +3335,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -3314,6 +3493,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -3402,6 +3585,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -3684,6 +3871,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -3772,6 +3963,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -3860,6 +4055,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -3952,6 +4151,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -4040,6 +4243,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -4128,6 +4335,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -4261,6 +4472,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -4482,6 +4697,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -4574,6 +4793,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -4662,6 +4885,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -4848,6 +5075,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -4999,6 +5230,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -5087,6 +5322,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -5175,6 +5414,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -5267,6 +5510,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -5351,6 +5598,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: b858cf68d7d024f508584d4870489533, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b858cf68d7d024f508584d4870489533, type: 3}
   m_IsPrefabParent: 0
@@ -5486,6 +5737,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -5574,6 +5829,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -5662,6 +5921,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -5687,6 +5950,91 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+--- !u!1 &823672740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 823672741}
+  - component: {fileID: 823672744}
+  - component: {fileID: 823672743}
+  - component: {fileID: 823672742}
+  m_Layer: 5
+  m_Name: IconClass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &823672741
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823672740}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280325278}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 110, y: 110}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &823672742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823672740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2b6561e2df94286885d8255fc5746a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icons:
+  - {fileID: 21300000, guid: 37d560d35a3d7458db310e25b35dab98, type: 3}
+  - {fileID: 21300000, guid: 5f7c62b3b499e426f976e3a957302adf, type: 3}
+  - {fileID: 21300000, guid: 344508af68ef14e3db7673448ba44846, type: 3}
+  - {fileID: 21300000, guid: ff517c34891414c5f85d81fbd9186197, type: 3}
+--- !u!114 &823672743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823672740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: ff517c34891414c5f85d81fbd9186197, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &823672744
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 823672740}
 --- !u!1001 &825262702
 Prefab:
   m_ObjectHideFlags: 0
@@ -5750,6 +6098,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -5997,6 +6349,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -6085,6 +6441,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -6173,6 +6533,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -6257,6 +6621,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -182
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 0f5abce6d3c0148f7b88ed4965d8fc25, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f5abce6d3c0148f7b88ed4965d8fc25, type: 3}
   m_IsPrefabParent: 0
@@ -6387,6 +6755,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -6575,6 +6947,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -6663,6 +7039,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -6831,6 +7211,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -6923,6 +7307,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -7011,6 +7399,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -7036,6 +7428,74 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+--- !u!1 &967410253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 967410254}
+  - component: {fileID: 967410256}
+  - component: {fileID: 967410255}
+  m_Layer: 5
+  m_Name: HP_BarActive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &967410254
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967410253}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280325278}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 220, y: 220}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &967410255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967410253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 0.17241383, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 4c58e6b648b28485ca60902adc3a9037, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0.7
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &967410256
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967410253}
 --- !u!1001 &971531526
 Prefab:
   m_ObjectHideFlags: 0
@@ -7095,6 +7555,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -52.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -7187,6 +7651,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -7275,6 +7743,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -7392,6 +7864,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -7480,6 +7956,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -7572,6 +8052,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -7656,6 +8140,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -142.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -7816,6 +8304,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -7904,6 +8396,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -7992,6 +8488,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -8225,6 +8725,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -8448,6 +8952,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -8536,6 +9044,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -8624,6 +9136,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -8712,6 +9228,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -8800,6 +9320,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -8935,6 +9459,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -9154,6 +9682,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -9242,6 +9774,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -9420,6 +9956,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -9508,6 +10048,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -9712,6 +10256,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -9800,6 +10348,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -9888,6 +10440,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -10044,6 +10600,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -10230,6 +10790,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -10392,6 +10956,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -10480,6 +11048,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -10568,6 +11140,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -10656,6 +11232,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -10744,6 +11324,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -10993,6 +11577,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -11081,6 +11669,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -11169,6 +11761,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -11257,6 +11853,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -11413,6 +12013,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 37.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -11501,6 +12105,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -11589,6 +12197,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -11677,6 +12289,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -11765,6 +12381,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -11853,6 +12473,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -11941,6 +12565,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -12029,6 +12657,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -12196,6 +12828,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -12284,6 +12920,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -12486,6 +13126,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -12574,6 +13218,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -12662,6 +13310,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -12782,6 +13434,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -12874,6 +13530,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -12962,6 +13622,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -13050,6 +13714,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -13138,6 +13806,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -13320,6 +13992,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -13408,6 +14084,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -13496,6 +14176,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -13584,6 +14268,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -13676,6 +14364,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -13764,6 +14456,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -13852,6 +14548,10 @@ Prefab:
       propertyPath: m_Name
       value: Dritto (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c5c25e5db8ee4ffeadc0713e451629d, type: 3}
   m_IsPrefabParent: 0
@@ -14014,6 +14714,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -14102,6 +14806,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -14321,6 +15029,10 @@ Prefab:
       propertyPath: m_Name
       value: Bivio (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d58616181b5a4f9a80ed710f851ae4f, type: 3}
   m_IsPrefabParent: 0
@@ -14405,6 +15117,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 6f73d7accb3884fc59b12d3497fcfed6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f73d7accb3884fc59b12d3497fcfed6, type: 3}
   m_IsPrefabParent: 0
@@ -23064,6 +23780,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -23111,7 +23831,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947004224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7}
+  m_LocalPosition: {x: 0, y: -0.45, z: 7}
   m_LocalScale: {x: 2.58, y: 2.58, z: 2.58}
   m_Children:
   - {fileID: 904702330}
@@ -23190,6 +23910,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -23278,6 +24002,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -23499,6 +24227,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -23591,6 +24323,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -23675,6 +24411,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -142.7
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -23885,6 +24625,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -23973,6 +24717,10 @@ Prefab:
       propertyPath: m_Name
       value: Curva (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef0ced1d7df524e3484e0e5325c04e78, type: 3}
   m_IsPrefabParent: 0
@@ -24057,6 +24805,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 8b2262e4ecf4845d7a0fad0cd4cdca13, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b2262e4ecf4845d7a0fad0cd4cdca13, type: 3}
   m_IsPrefabParent: 0
@@ -24300,6 +25052,10 @@ Prefab:
       propertyPath: m_Name
       value: CurvaU (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 61d8a880e9f94406892a166f279282bd, type: 3}
   m_IsPrefabParent: 0
@@ -24388,6 +25144,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -24476,6 +25236,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
@@ -24564,6 +25328,10 @@ Prefab:
       propertyPath: m_Name
       value: MezzaCurva (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21d3051ba1381497c959c68afc3ff067, type: 3}
   m_IsPrefabParent: 0
@@ -24652,6 +25420,10 @@ Prefab:
       propertyPath: m_Name
       value: DrittoCorto (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a3be5cf26c8c54172b6aaff0d00ba648, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48f092c01a8f6429fbc19decd18280b3, type: 3}
   m_IsPrefabParent: 0
