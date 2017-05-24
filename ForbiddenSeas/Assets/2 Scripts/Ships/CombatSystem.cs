@@ -25,7 +25,7 @@ public class CombatSystem : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
@@ -64,13 +64,32 @@ public class CombatSystem : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdDamageThis(NetworkInstanceId who, int amount)
+    {
+        Debug.Log("Passato " + who);
+        GameObject g = NetworkServer.FindLocalObject(who);
+        if (g.GetComponent<PowerUp>())
+        {
+            Debug.Log("PowerUp colpito " + who + " danno preso " + amount);
+            g.GetComponent<PowerUp>().m_health -= amount;
+
+            if(g.GetComponent<PowerUp>().m_health <= 0)
+            {
+                Debug.Log("Toccato un powerUp da " + netId);
+                gameObject.GetComponentInParent<Player>().CatchAPowerUp(g.GetComponent<PowerUp>().type);
+                g.GetComponent<PowerUp>().killMe();
+            }
+        }
+    }
+
     private IEnumerator GlobalCoolDown(GameObject UI)
     {
         UI.GetComponent<CoolDownIndicator>().OnCoolDown(1.5f);
         yield return new WaitForSeconds(1.5f);
         fire = false;
     }
-        
+
     private IEnumerator MainAttack(int playerId, string tag)
     {
         RpcSetActiveTrigger(playerId, "MAP");
@@ -157,7 +176,7 @@ public class CombatSystem : NetworkBehaviour
                     GetComponent<FlagshipStatus>().CmdBlind();
                     break;
                 default:
-                    return;   
+                    return;
             }
         }
     }
