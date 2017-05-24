@@ -54,7 +54,15 @@ public enum BuffTiming
     REGEN_DURATION = 20,
     SPEED_UP_DURATION = 20,
     DAMAGE_UP_DURATION = 20,
+}
 
+public enum BuffValue
+{
+    RegenValue = 50,
+    DmgUpValue = 20,
+    SpeedUpValue = 20,
+    YohohoSpeed = 100,
+    YohohoRegen = 150
 }
 
 public enum DebuffTiming

@@ -35,12 +35,14 @@ public class FlagshipStatus : NetworkBehaviour
     [SyncVar]
     public SyncListBool buffList = new SyncListBool();
 
-
+    public StatusHUD statusHUD;
     public Player m_Me;
 
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
+        statusHUD = GameObject.FindGameObjectWithTag("StatusHUD").GetComponent<StatusHUD>();
+
         
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
@@ -195,19 +197,57 @@ public class FlagshipStatus : NetworkBehaviour
     [Server]
     public void DamageUp()
     {
+        StartCoroutine(DmgUp());
+    }
 
+    IEnumerator DmgUp()
+    {
+        buffList[(int)BuffStatus.dmgUp] = true;
+        int currentMain = m_main;
+        int currentSpec = m_special;
+
+        m_main += (m_main / (int)BuffValue.DmgUpValue);
+        m_special += (m_special / (int)BuffValue.DmgUpValue);
+        statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION);
+        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        m_main = currentMain;
+        m_special = currentSpec;
+        buffList[(int)BuffStatus.dmgUp] = false;
     }
 
     [Server]
     public void SpeedUp()
     {
+        StartCoroutine(IESpeedUp());
+    }
 
+    IEnumerator IESpeedUp()
+    {
+        buffList[(int)BuffStatus.speedUp] = true;
+        float currentSpeed = m_maxSpeed;
+        m_maxSpeed += (m_maxSpeed / (float)BuffValue.SpeedUpValue);
+        statusHUD.ActivateBuff((int)BuffStatus.speedUp, (float)BuffTiming.SPEED_UP_DURATION);
+        yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
+        m_maxSpeed = currentSpeed;
+        buffList[(int)BuffStatus.speedUp] = false;
     }
 
     [Server]
     public void Yohoho()
     {
+        StartCoroutine(IEYohoho());
+    }
 
+    IEnumerator IEYohoho()
+    {
+        buffList[(int)BuffStatus.yohoho] = true;
+        float currentSpeed = m_maxSpeed;
+        m_maxSpeed += (m_maxSpeed / (float)BuffValue.YohohoSpeed);
+        m_DoT += (int)BuffValue.YohohoRegen;
+        yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
+        m_maxSpeed = currentSpeed;
+        m_DoT -= (int)BuffValue.YohohoRegen;
+        buffList[(int)BuffStatus.yohoho] = false;
     }
 
     [Command]
