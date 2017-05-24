@@ -12,6 +12,7 @@ public class CombatSystem : NetworkBehaviour
     public GameObject SpecUI;
     public GameObject GlobalMUI;
     public GameObject GlobalSUI;
+    public StatusHUD statusHUD;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class CombatSystem : NetworkBehaviour
         SpecUI = GameObject.FindGameObjectWithTag("specCD_UI");
         GlobalMUI = GameObject.FindGameObjectWithTag("GlobalM_UI");
         GlobalSUI = GameObject.FindGameObjectWithTag("GlobalS_UI");
+        statusHUD = GameObject.FindGameObjectWithTag("StatusHUD").GetComponent<StatusHUD>();
     }
 
     void Update()
@@ -171,9 +173,11 @@ public class CombatSystem : NetworkBehaviour
                     break;
                 case "Miasma":
                     GetComponent<FlagshipStatus>().CmdMiasma();
+                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison,(float)DebuffTiming.POISON_DURATION));
                     break;
                 case "RasEye":
-                    GetComponent<FlagshipStatus>().CmdBlind();
+                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind,(float)DebuffTiming.BLIND_DURATION));
+                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>());
                     break;
                 default:
                     return;

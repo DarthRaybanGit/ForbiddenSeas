@@ -63,10 +63,15 @@ public class MoveSimple : NetworkBehaviour {
 					Factor = SpeedLevel.SLOW;
 			}
 		}
-		if (ActualSpeed<maxSpeed*State/numberOfScroll)
-			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State/numberOfScroll, Acceleration);
-		else
-			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State/numberOfScroll, deceleration);
+		if (ActualSpeed < maxSpeed * State / numberOfScroll)
+			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, Acceleration);
+		else 
+		{
+			if (ActualSpeed > 0.9f)
+				ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, deceleration);
+			else
+				ActualSpeed = 0;
+		}
 		rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);

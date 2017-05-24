@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class FlagshipStatus : NetworkBehaviour
 {
-    public enum ShipClass {pirates, vikings, venetians, orientals};
+    public enum ShipClass {pirates, vikings, egyptians, orientals};
 
     public ShipClass shipClass;
     public static string shipName;
@@ -23,21 +23,25 @@ public class FlagshipStatus : NetworkBehaviour
     public float m_yohoho = 0;
     [SyncVar]
     public bool m_isDead = false;
-
+    [SyncVar]
     public int m_DoT = 0;
 
     [SyncVar]
     public int m_main, m_special;
     [SyncVar]
     public float m_mainCD, m_specialCD;
-    //[SyncList]
-    //public bool[] status = {false, false, false, false, false, false};
+    [SyncVar]
+    public SyncListBool debuffList = new SyncListBool();
+    [SyncVar]
+    public SyncListBool buffList = new SyncListBool();
+
 
     public Player m_Me;
 
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
+        
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -93,6 +97,12 @@ public class FlagshipStatus : NetworkBehaviour
             default:
                 return;
         }
+
+
+        for(int i =0; i<2;i++)
+            debuffList.Add(false);
+        for(int i =0; i<4;i++)
+            buffList.Add(false);
 
         m_Health = m_MaxHealth;
     }
@@ -162,32 +172,40 @@ public class FlagshipStatus : NetworkBehaviour
     [Command]
     public void CmdMiasma()
     {
+        debuffList[(int)DebuffStatus.poison] = true;
         m_DoT += Orientals.specAttackDmg;
-        StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)StatusTiming.POISON_DURATION));
+        StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)DebuffTiming.POISON_DURATION));
     }
 
     [Command]
-    public void CmdBlind()
+    public void CmdBlind(NetworkIdentity u)
+    {
+        debuffList[(int)DebuffStatus.blind] = true;
+        TargetRpcBlind(u.connectionToClient);
+    }
+
+    [TargetRpc]
+    private void TargetRpcBlind(NetworkConnection nc)
     {
         Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
         bl.SetBlind(true);
-        StartCoroutine(resetBlind(bl, (float)StatusTiming.BLIND_DURATION));
+        StartCoroutine(resetBlind(bl, (float)DebuffTiming.BLIND_DURATION));
     }
 
-    [Command]
-    public void CmdDamageUp()
+    [Server]
+    public void DamageUp()
     {
 
     }
 
-    [Command]
-    public void CmdSpeedUp()
+    [Server]
+    public void SpeedUp()
     {
 
     }
 
-    [Command]
-    public void CmdYohoho()
+    [Server]
+    public void Yohoho()
     {
 
     }
@@ -196,18 +214,32 @@ public class FlagshipStatus : NetworkBehaviour
     public void CmdRegen()
     {
         m_DoT += Symbols.REGEN_AMOUNT;
-        StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)StatusTiming.REGEN_DURATION));
+        StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)BuffTiming.REGEN_DURATION));
     }
 
     private IEnumerator resetDoT(int dmg, float duration)
     {
         yield return new WaitForSeconds(duration);
         m_DoT -= dmg;
+        debuffList[(int)DebuffStatus.poison] = false;
     }
 
     private IEnumerator resetBlind(Blind bl, float duration)
     {
         yield return new WaitForSeconds(duration);
         bl.SetBlind(false);
+        debuffList[(int)DebuffStatus.blind] = false;
     }
+
+    public static int maxNumberStatus(SyncListBool b)
+    {
+        int c = 0;
+        for(int i = 0; i< b.Count; i++)
+        {
+            if(b[i])
+                c++;
+        }
+        return c;
+    }
+
 }
