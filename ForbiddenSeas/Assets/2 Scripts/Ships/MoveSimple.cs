@@ -77,8 +77,6 @@ public class MoveSimple : NetworkBehaviour {
 
         rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
 
-        Debug.Log("############### " + rb.velocity);
-
         var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;

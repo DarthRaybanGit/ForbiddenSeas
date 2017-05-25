@@ -13,6 +13,12 @@ public class PowerUp : NetworkBehaviour {
     [SyncVar]
     public float m_health = 5000;
 
+    public void Start()
+    {
+        if (type == PowerUP.DAMAGE_UP)
+            transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -43,7 +49,8 @@ public class PowerUp : NetworkBehaviour {
 
     IEnumerator powerUpFill(NetworkInstanceId who)
     {
-        yield return null;
+        yield return new WaitForSeconds(0.2f);
+        transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
 
     }
 
