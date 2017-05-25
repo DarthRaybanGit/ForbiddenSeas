@@ -20,6 +20,10 @@ public class MoveSimple : NetworkBehaviour {
 	public float numberOfScroll = 20f;
 	public Animator animator;
 
+
+
+    public float spinta;
+
 	public override void OnStartLocalPlayer()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -67,8 +71,15 @@ public class MoveSimple : NetworkBehaviour {
 			else
 				ActualSpeed = 0;
 		}
-		rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
-		var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
+        //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
+
+        rb.AddForce(transform.forward * ActualSpeed * -1);
+
+        rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
+
+        Debug.Log("############### " + rb.velocity);
+
+        var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
 		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 		rb.angularVelocity = Vector3.zero;
         if(animator)

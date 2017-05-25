@@ -13,11 +13,6 @@ public class PowerUp : NetworkBehaviour {
     [SyncVar]
     public float m_health = 5000;
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        transform.Rotate(m_rot * Time.deltaTime, Space.World);
-    }
 
     public void OnTriggerEnter(Collider other)
     {

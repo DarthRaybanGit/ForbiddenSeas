@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114307837453404382}
   - component: {fileID: 114119609682277786}
   - component: {fileID: 135848778039846418}
-  - component: {fileID: 95449432122542300}
   m_Layer: 0
   m_Name: DamageUp
   m_TagString: Untagged
@@ -40,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565045066844230}
   - component: {fileID: 119572426624191784}
+  - component: {fileID: 111574104015545400}
   m_Layer: 0
   m_Name: Boudaries
   m_TagString: Untagged
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4948301354035110}
   - component: {fileID: 119151154424995618}
-  - component: {fileID: 95259549011824146}
+  - component: {fileID: 111120291277955442}
   m_Layer: 0
   m_Name: Inner_Ring
   m_TagString: Untagged
@@ -112,47 +112,43 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039782963185754}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &95259549011824146
-Animator:
-  serializedVersion: 3
+--- !u!111 &111120291277955442
+Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1355582914338586}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9fa10d26ff3bc60488bb636a29b783f6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95449432122542300
-Animator:
   serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cae693cc1be2ca24a9e4e6190c88a8a9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cae693cc1be2ca24a9e4e6190c88a8a9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!111 &111574104015545400
+Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1039782963185754}
+  m_GameObject: {fileID: 1225761708892340}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34ff6779d35625c4aa4a5c7db7540c43, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7e1748e89b4a34749b67ad838a1f96f7, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 7e1748e89b4a34749b67ad838a1f96f7, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114119609682277786
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1039782963185754}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76b2079df3c5a924f8276148f6cdb3c9, type: 3}
   m_Name: 

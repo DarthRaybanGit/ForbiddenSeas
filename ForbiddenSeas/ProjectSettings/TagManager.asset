@@ -24,6 +24,8 @@ TagManager:
   - Blind
   - Miasma
   - RasEye
+  - StatusHUD
+  - Arena
   layers:
   - Default
   - TransparentFX

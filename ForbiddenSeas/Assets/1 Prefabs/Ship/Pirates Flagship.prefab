@@ -910,11 +910,11 @@ GameObject:
   - component: {fileID: 114056343329908290}
   - component: {fileID: 114714280644948776}
   - component: {fileID: 114130035200792958}
-  - component: {fileID: 136116412931054286}
   - component: {fileID: 54360109460913826}
   - component: {fileID: 114143520851380954}
   - component: {fileID: 95450348320103396}
   - component: {fileID: 114353414015100942}
+  - component: {fileID: 136362053705324240}
   m_Layer: 10
   m_Name: Pirates Flagship
   m_TagString: Player
@@ -2083,14 +2083,14 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869087919111540}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 8
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &64482679572989962
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -2262,6 +2262,7 @@ MonoBehaviour:
   Factor: 0
   numberOfScroll: 20
   animator: {fileID: 0}
+  spinta: 20
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2274,6 +2275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipClass: 0
+  m_MaxHealth: 0
   m_Maneuvrability: 0
   m_maxSpeed: 0
   m_Health: 0
@@ -2362,19 +2364,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401329760740216}
   m_Enabled: 1
---- !u!136 &136116412931054286
+--- !u!136 &136362053705324240
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869087919111540}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: baa9ddc1da1dd6f469fb4f8c96c030cf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.3491924
+  m_Radius: 0.41
+  m_Height: 1.7
   m_Direction: 2
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: 0, y: 0.22, z: 0}
 --- !u!137 &137215337375557466
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
