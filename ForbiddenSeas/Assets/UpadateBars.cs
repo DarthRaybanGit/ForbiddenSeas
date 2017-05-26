@@ -8,6 +8,7 @@ public class UpadateBars : MonoBehaviour
     public bool isHPbar = true;
     public float amount = 1f, total = 1f;
     private Image bar;
+    private bool ready = false;
 
     void Start()
     {
@@ -28,16 +29,19 @@ public class UpadateBars : MonoBehaviour
             total = 120f;
             amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
         }
+        ready = true;
     }
 
 	void Update ()
     {
-        if (isHPbar)
-            amount = (float)LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_Health;
-        else
+        if (ready)
+        {
+            if (isHPbar)
+                amount = (float)LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_Health;
+            else
+                amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
 
-            amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
-
-        bar.fillAmount = 1f / total * amount;
+            bar.fillAmount = 1f / total * amount;
+        }
 	}
 }
