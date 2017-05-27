@@ -26,7 +26,7 @@ public class UpadateSpeedIndicator : MonoBehaviour
     {
         actualSpeed = LocalGameManager.Instance.m_LocalPlayer.GetComponent<MoveSimple>().ActualSpeed;
 
-        amount = 160f / maxSpeed * actualSpeed;
+        amount = 135f / maxSpeed * actualSpeed;
 
         transform.rotation = Quaternion.Euler(amount * Vector3.forward);
     }
