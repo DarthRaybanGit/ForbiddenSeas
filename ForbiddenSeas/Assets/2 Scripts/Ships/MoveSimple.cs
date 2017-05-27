@@ -21,12 +21,35 @@ public class MoveSimple : NetworkBehaviour {
 	public Animator animator;
 
 
+    private Transform myTransform;
+    [SerializeField]
+    public float lerpRate = 5;
 
-    public float spinta;
+    public float syncPosX;
+    public float syncPosZ;
 
-	public override void OnStartLocalPlayer()
+
+    private Vector3 lastPos;
+    public float threshold = 0.5f;
+
+
+
+
+    public float syncRotY;
+    private Vector3 lastRot;
+    public float rotThreshold;
+
+    public void Start()
+    {
+        syncPosX = GetComponent<Transform>().position.x;
+        syncPosZ = GetComponent<Transform>().position.z;
+    }
+
+    public override void OnStartLocalPlayer()
 	{
 		rb = GetComponent<Rigidbody>();
+        myTransform = GetComponent<Transform>();
+
         StartCoroutine(waitForStat());
 	}
 
@@ -36,12 +59,18 @@ public class MoveSimple : NetworkBehaviour {
         maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
         maneuvrability = GetComponent<FlagshipStatus>().m_Maneuvrability;
 		animator = GetComponent<Animator>();
+
     }
 
 	void FixedUpdate ()
 	{
+
         if (!isLocalPlayer)
+        {
+            LerpPosition();
             return;
+        }
+
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
 			State = State < numberOfScroll ? State + 1 : State;
 		}
@@ -82,7 +111,45 @@ public class MoveSimple : NetworkBehaviour {
 		rb.angularVelocity = Vector3.zero;
         if(animator)
             animator.SetFloat ("Speed", ActualSpeed / maxSpeed);
-		//Debug.Log (State / numberOfScroll);
-	}
+        //Debug.Log (State / numberOfScroll);
+
+        TransmitPosition();
+
+    }
+
+
+
+    void LerpPosition()
+    {
+        //Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), Time.fixedDeltaTime * lerpRate);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), Time.deltaTime * smoothTime);
+    }
+
+    [Command]
+    void Cmd_ProvidePositionToServer(float x, float z, float rotation)
+    {
+        //Debug.Log("####### " + x + " ###### " + z );
+        Rpc_SetPosition(x, z, rotation);
+    }
+
+    [ClientRpc]
+    public void Rpc_SetPosition(float x, float z, float rot)
+    {
+        syncPosX = x;
+        syncPosZ = z;
+        syncRotY = rot;
+    }
+
+    void TransmitPosition()
+    {
+        //Debug.Log("###########"+Vector3.Distance(myTransform.position, lastPos));
+        if (isLocalPlayer && (Vector3.Distance(myTransform.position, lastPos) > threshold || Vector3.Distance(transform.rotation.eulerAngles, lastRot) > rotThreshold))
+        {
+            Cmd_ProvidePositionToServer(myTransform.position.x, myTransform.position.z, transform.rotation.eulerAngles.y);
+            lastPos = myTransform.position;
+            lastRot = transform.rotation.eulerAngles;
+        }
+    }
 
 }
