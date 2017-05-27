@@ -907,7 +907,6 @@ GameObject:
   - component: {fileID: 4031181710060198}
   - component: {fileID: 114660679311915734}
   - component: {fileID: 114789289762858792}
-  - component: {fileID: 114056343329908290}
   - component: {fileID: 114714280644948776}
   - component: {fileID: 114130035200792958}
   - component: {fileID: 54360109460913826}
@@ -2162,26 +2161,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114056343329908290
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869087919111540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 0
-  m_SendInterval: 0.09090909
-  m_SyncRotationAxis: 2
-  m_RotationSyncCompression: 1
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.1
-  m_SnapThreshold: 30
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114130035200792958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2267,8 +2246,7 @@ MonoBehaviour:
   syncPosZ: 0
   threshold: 0.1
   syncRotY: 0
-  lastRot: {x: 0, y: 0, z: 0}
-  rotThreshold: 3
+  rotThreshold: 1
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
