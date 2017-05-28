@@ -14,6 +14,9 @@ public class PowerUp : NetworkBehaviour {
     public GameObject m_Inner;
     public GameObject m_Boundaries;
 
+    public GameObject m_EmitterBound;
+    public GameObject m_EmitterGain;
+
 
     [SyncVar]
     public float m_health = 5000;
@@ -22,7 +25,13 @@ public class PowerUp : NetworkBehaviour {
     public override void OnStartClient()
     {
         if (type == PowerUP.DAMAGE_UP)
+        {
             transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
+            m_EmitterBound.GetComponent<ParticleSystem>().Play();
+            m_EmitterBound.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
+        }
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -55,6 +64,8 @@ public class PowerUp : NetworkBehaviour {
             if(!isServer && m_Inner.GetComponent<Animation>().isPlaying)
                 m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = -3.0f;
             m_LockForFirstInside = false;
+            m_EmitterBound.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
         }
     }
 
@@ -69,13 +80,15 @@ public class PowerUp : NetworkBehaviour {
             //Invio da startare l'animazione solo al client...forse è meglio
             if (isServer)
             {
-                yield return new WaitForSeconds((int)FixedDelayInGame.DAMAGEUP_TIME);
+                float time = Time.time;
+                yield return new WaitUntil(() => Time.time - time >= (int)FixedDelayInGame.DAMAGEUP_TIME || !m_LockForFirstInside);
                 if (m_LockForFirstInside)
                 {
                     Debug.Log("Power up ottenuto da " + who);
                     NetworkServer.FindLocalObject(who).GetComponent<Player>().CatchAPowerUp(PowerUP.DAMAGE_UP);
                     //Play animation di rewarding in client.
                     RpcAnimatePowerUPGained();
+                    yield return new WaitForSeconds(3.5f);
                     killMe();
                 }
             }
@@ -83,6 +96,8 @@ public class PowerUp : NetworkBehaviour {
             {
                 m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = 1.0f;
                 m_Inner.GetComponent<Animation>().Play();
+                m_EmitterBound.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             }
         }
     }
@@ -92,7 +107,10 @@ public class PowerUp : NetworkBehaviour {
     {
 
         //Aggiungere i particles.
+        m_EmitterBound.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+        m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
 
+        m_EmitterGain.SetActive(true);
     }
 
     public void killMe()
