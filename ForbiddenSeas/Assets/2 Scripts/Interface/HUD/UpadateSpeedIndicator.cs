@@ -6,12 +6,11 @@ using UnityEngine.UI;
 public class UpadateSpeedIndicator : MonoBehaviour
 {
 
-    public float amount = 1f, maxSpeed = 1f, actualSpeed = 1f;
-    private Image bar;
+    private float amount = 1f, maxSpeed = 1f, actualSpeed = 1f;
+    private bool prontiPartenzaVia = false;
 
     void Start()
     {
-        bar = GetComponent<Image>();
         StartCoroutine(WaitforReady());
     }
 
@@ -20,10 +19,14 @@ public class UpadateSpeedIndicator : MonoBehaviour
         yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
         actualSpeed = LocalGameManager.Instance.m_LocalPlayer.GetComponent<MoveSimple>().ActualSpeed;
         maxSpeed = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_maxSpeed;
+        prontiPartenzaVia = true;
     }
 
     void Update()
     {
+        if (!prontiPartenzaVia)
+            return;
+        
         actualSpeed = LocalGameManager.Instance.m_LocalPlayer.GetComponent<MoveSimple>().ActualSpeed;
 
         amount = 135f / maxSpeed * actualSpeed;
