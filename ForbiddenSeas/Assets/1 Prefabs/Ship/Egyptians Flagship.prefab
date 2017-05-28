@@ -911,7 +911,6 @@ GameObject:
   - component: {fileID: 4031181710060198}
   - component: {fileID: 114660679311915734}
   - component: {fileID: 114789289762858792}
-  - component: {fileID: 114056343329908290}
   - component: {fileID: 114714280644948776}
   - component: {fileID: 114130035200792958}
   - component: {fileID: 136116412931054286}
@@ -2296,26 +2295,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114056343329908290
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869087919111540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0.09090909
-  m_SyncRotationAxis: 6
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.0001
-  m_SnapThreshold: 20
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114130035200792958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2356,6 +2335,7 @@ MonoBehaviour:
   SpecUI: {fileID: 0}
   GlobalMUI: {fileID: 0}
   GlobalSUI: {fileID: 0}
+  statusHUD: {fileID: 0}
 --- !u!114 &114660679311915734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2376,6 +2356,12 @@ MonoBehaviour:
   Factor: 0
   numberOfScroll: 20
   animator: {fileID: 0}
+  lerpRate: 8
+  syncPosX: 0
+  syncPosZ: 0
+  threshold: 0.1
+  syncRotY: 0
+  rotThreshold: 1
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2388,6 +2374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipClass: 2
+  m_MaxHealth: 0
   m_Maneuvrability: 0
   m_maxSpeed: 0
   m_Health: 0
@@ -2399,6 +2386,7 @@ MonoBehaviour:
   m_special: 0
   m_mainCD: 0
   m_specialCD: 0
+  statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
 --- !u!114 &114789289762858792
 MonoBehaviour:
