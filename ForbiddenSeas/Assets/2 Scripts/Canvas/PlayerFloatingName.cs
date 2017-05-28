@@ -47,7 +47,7 @@ public class PlayerFloatingName : MonoBehaviour
             }
             FillBar();
             transform.GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
-
+            transform.GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
         }
     }
 
