@@ -251,4 +251,33 @@ public class Player : NetworkBehaviour {
     {
         return isLocalPlayer;
     }
+
+
+    private float startTime, journeyLength;
+    public bool barca_isMoving = false;
+
+    public void SpostaBarca(GameObject barca, Vector3 end, float speed)
+    {
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(barca.transform.position, end);
+        StartCoroutine(SpostaBarcaLoop(barca, end, speed));
+    }
+
+    private IEnumerator SpostaBarcaLoop(GameObject barca, Vector3 end, float speed)
+    {
+        if (barca.GetComponent<Player>())
+            barca.GetComponent<Player>().barca_isMoving = true;
+
+        while (Vector3.Distance(barca.transform.position, end) > 0.01f)
+        {
+            float distCovered = (Time.time - startTime) * speed;
+            float fracJourney = distCovered / journeyLength;
+            barca.transform.position = Vector3.Lerp(barca.transform.position, end, fracJourney);
+            yield return null;
+        }
+        barca.transform.position = end;
+
+        if (barca.GetComponent<Player>())
+            barca.GetComponent<Player>().barca_isMoving = false;
+    }
 }

@@ -12,6 +12,8 @@ public class Pirates
     public const int specAttackDmg = 500;
     public const float specAttackCD = 10f;
     public const float defense = 0.15f;
+    public const float mainDistance = -20f;
+    public const float specialDistance = 5f;
 
 }
 
@@ -26,6 +28,8 @@ public class Egyptians
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
     public const float defense = 0.05f;
+    public const float mainDistance = -22f;
+    public const float specialDistance = 5f;
 
 }
 
@@ -40,7 +44,8 @@ public class Vikings
     public const int specAttackDmg = 500;
     public const float specAttackCD = 1.5f;
     public const float defense = 0.10f;
-
+    public const float mainDistance = -22f;
+    public const float specialDistance = 5f;
 }
 
 public class Orientals
@@ -54,11 +59,13 @@ public class Orientals
     public const int specAttackDmg = 10;
     public const float specAttackCD = 1.5f;
     public const float defense = 0.15f;
+    public const float mainDistance = -22f;
+    public const float specialDistance = 5f;
 
 }
 
 public enum BuffStatus
-{    
+{
     regen,
     dmgUp,
     speedUp,

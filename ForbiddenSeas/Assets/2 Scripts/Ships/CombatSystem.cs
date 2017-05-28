@@ -14,6 +14,9 @@ public class CombatSystem : NetworkBehaviour
     public GameObject GlobalSUI;
     public StatusHUD statusHUD;
 
+    public GameObject[] MainParticles;
+    private Vector3 waterLocation;
+
     void Awake()
     {
         MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
@@ -144,7 +147,13 @@ public class CombatSystem : NetworkBehaviour
     public void RpcSetActiveTrigger(int playerId, string tag)
     {
         //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
+        if(tag.Equals("MAP") || tag.Equals("SAP"))
+        {
+            GetComponent<Animator>().SetTrigger(tag.Equals("MAP") ? "MainAttack" : "SpecAttack");
+
+        }
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(true);
+
     }
 
     [ClientRpc]
@@ -152,7 +161,52 @@ public class CombatSystem : NetworkBehaviour
     {
         //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(false);
+        /*
+        if (tag.Equals("MA"))
+            waterLocation = transform.position + transform.forward * GetComponent<FlagshipStatus>().m_mainDistance;
+        else if (tag.Equals("SA"))
+        {
+            waterLocation = transform.position + transform.forward * GetComponent<FlagshipStatus>().m_specialDistance;
+        }*/
     }
+
+
+    public void SparoMain()
+    {
+        StartCoroutine(startParticle());
+    }
+
+    IEnumerator startParticle()
+    {
+
+        switch (GetComponent<FlagshipStatus>().shipClass)
+        {
+            case FlagshipStatus.ShipClass.pirates:
+                MainParticles[0].SetActive(false);
+                MainParticles[0].SetActive(true);
+                yield return new WaitForSeconds(1f);
+                waterLocation = transform.position + transform.forward * GetComponent<FlagshipStatus>().m_mainDistance;
+                GameObject g = GameObject.Instantiate(MainParticles[1]);
+                g.transform.position = waterLocation;
+                g.SetActive(true);
+                yield return new WaitForSeconds(MainParticles[0].GetComponent<ParticleSystem>().main.duration - 1f);
+                MainParticles[0].SetActive(false);
+                yield return new WaitForSeconds(g.GetComponent<ParticleSystem>().main.duration + 1f);
+                Destroy(g);
+                break;
+            case FlagshipStatus.ShipClass.egyptians:
+                break;
+            case FlagshipStatus.ShipClass.orientals:
+                break;
+            case FlagshipStatus.ShipClass.vikings:
+                break;
+
+        }
+        yield return null;
+    }
+
+
+
 
     void OnTriggerEnter(Collider other)
     {

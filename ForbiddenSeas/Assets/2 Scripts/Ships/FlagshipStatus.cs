@@ -34,6 +34,10 @@ public class FlagshipStatus : NetworkBehaviour
     public SyncListBool debuffList = new SyncListBool();
     [SyncVar]
     public SyncListBool buffList = new SyncListBool();
+    [SyncVar]
+    public float m_mainDistance;
+    [SyncVar]
+    public float m_specialDistance;
 
     public StatusHUD statusHUD;
     public Player m_Me;
@@ -61,6 +65,9 @@ public class FlagshipStatus : NetworkBehaviour
                 m_special = Pirates.specAttackDmg;
                 m_mainCD = Pirates.mainAttackCD;
                 m_specialCD = Pirates.specAttackCD;
+                m_mainDistance = Pirates.mainDistance;
+                m_specialDistance = Pirates.specialDistance;
+
                 break;
 
             case 1:
@@ -72,6 +79,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_special = Vikings.specAttackDmg;
                 m_mainCD = Vikings.mainAttackCD;
                 m_specialCD = Vikings.specAttackCD;
+                m_mainDistance = Vikings.mainDistance;
+                m_specialDistance = Vikings.specialDistance;
                 break;
 
             case 2:
@@ -83,6 +92,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_special = Egyptians.specAttackDmg;
                 m_mainCD = Egyptians.mainAttackCD;
                 m_specialCD = Egyptians.specAttackCD;
+                m_mainDistance = Egyptians.mainDistance;
+                m_specialDistance = Egyptians.specialDistance;
                 break;
 
             case 3:
@@ -94,6 +105,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_special = Orientals.specAttackDmg;
                 m_mainCD = Orientals.mainAttackCD;
                 m_specialCD = Orientals.specAttackCD;
+                m_mainDistance = Orientals.mainDistance;
+                m_specialDistance = Orientals.specialDistance;
                 break;
 
             default:
@@ -142,7 +155,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
         m_Health = m_MaxHealth;
-        TargetRpcRespawn(GetComponent<NetworkIdentity>().connectionToClient);
+        RpcRespawn();
 
     }
 
@@ -163,10 +176,33 @@ public class FlagshipStatus : NetworkBehaviour
         }
     }
 
-    [TargetRpc]
-    public void TargetRpcRespawn(NetworkConnection u)
+    [ClientRpc]
+    public void RpcRespawn()
     {
+        GetComponent<Animator>().SetTrigger("isDead");
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+
+        yield return new WaitUntil(() => sonoMortissimo);
+        GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
+        sonoMortissimo = false;
+        yield return new WaitWhile(() => GetComponent<Player>().barca_isMoving);
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         transform.position = GetComponent<Player>().m_SpawnPoint;
+        GetComponent<Animator>().SetTrigger("Respawn");
+        yield return new WaitForSeconds(2f);
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+    }
+
+
+    public bool sonoMortissimo = false;
+
+    public void Morte()
+    {
+        sonoMortissimo = true;
     }
 
     //status alterati - power-ups
