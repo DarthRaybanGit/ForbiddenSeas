@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class UpadateSpeedIndicator : MonoBehaviour
 {
 
-    public float amount = 1f, maxSpeed = 1f, actualSpeed = 1f;
-    private Image bar;
+    private float amount = 1f, maxSpeed = 1f, actualSpeed = 1f;
     private bool prontiPartenzaVia = false;
 
     void Start()
     {
-        bar = GetComponent<Image>();
         StartCoroutine(WaitforReady());
     }
 
