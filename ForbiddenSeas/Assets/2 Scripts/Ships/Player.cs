@@ -130,10 +130,13 @@ public class Player : NetworkBehaviour {
         switch (p)
         {
             case PowerUP.REGEN:
+                GetComponent<FlagshipStatus>().Regen();
                 break;
             case PowerUP.DAMAGE_UP:
+                GetComponent<FlagshipStatus>().DamageUp();
                 break;
             case PowerUP.SPEED_UP:
+                GetComponent<FlagshipStatus>().SpeedUp();
                 break;
         }
     }

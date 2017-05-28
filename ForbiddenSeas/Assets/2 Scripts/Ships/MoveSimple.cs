@@ -130,7 +130,18 @@ public class MoveSimple : NetworkBehaviour {
     void Cmd_ProvidePositionToServer(float x, float z, float rotation)
     {
         //Debug.Log("####### " + x + " ###### " + z );
+        syncPosX = x;
+        syncPosZ = z;
+        syncRotY = rotation;
         Rpc_SetPosition(x, z, rotation);
+
+
+    }
+
+    IEnumerator updateOnServer()
+    {
+        yield return new WaitForFixedUpdate();
+        LerpPosition();
     }
 
     [ClientRpc]

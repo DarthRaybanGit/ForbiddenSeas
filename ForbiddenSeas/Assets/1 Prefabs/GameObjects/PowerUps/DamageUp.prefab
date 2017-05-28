@@ -124,7 +124,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: cae693cc1be2ca24a9e4e6190c88a8a9, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!111 &111574104015545400
@@ -139,7 +139,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 7e1748e89b4a34749b67ad838a1f96f7, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &114119609682277786
@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   m_rot: {x: 15, y: 30, z: 45}
+  m_Inner: {fileID: 1355582914338586}
+  m_Boundaries: {fileID: 1225761708892340}
   m_health: 5000
 --- !u!114 &114307837453404382
 MonoBehaviour:
@@ -201,7 +203,7 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 4.1
+  m_OrthographicSize: 0.00000001
   m_Material: {fileID: 2100000, guid: 47baba1731f836e4aa41d3bd15d486ac, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2

@@ -43,7 +43,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_Me = gameObject.GetComponent<Player>();
         statusHUD = GameObject.FindGameObjectWithTag("StatusHUD").GetComponent<StatusHUD>();
 
-        
+
         if(isLocalPlayer)
             StartCoroutine(DmgOverTime());
     }
@@ -121,7 +121,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void OnDeath()
     {
-        
+
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
@@ -250,8 +250,7 @@ public class FlagshipStatus : NetworkBehaviour
         buffList[(int)BuffStatus.yohoho] = false;
     }
 
-    [Command]
-    public void CmdRegen()
+    public void Regen()
     {
         m_DoT += Symbols.REGEN_AMOUNT;
         StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)BuffTiming.REGEN_DURATION));

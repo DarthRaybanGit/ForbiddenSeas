@@ -9,16 +9,21 @@ public class PowerUp : NetworkBehaviour {
     public Vector3 m_rot = new Vector3(15, 30, 45);
 
     public NetworkInstanceId playerInside;
+    public bool m_LockForFirstInside = false;
+
+    public GameObject m_Inner;
+    public GameObject m_Boundaries;
+
 
     [SyncVar]
     public float m_health = 5000;
 
-    public void Start()
+
+    public override void OnStartClient()
     {
         if (type == PowerUP.DAMAGE_UP)
             transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
     }
-
 
     public void OnTriggerEnter(Collider other)
     {
@@ -35,22 +40,58 @@ public class PowerUp : NetworkBehaviour {
                     other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
                 }
             }
-            else if(type == PowerUP.DAMAGE_UP && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
+            else if(type == PowerUP.DAMAGE_UP && !m_LockForFirstInside && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
             {
                 Debug.Log("Toccato un powerUp da " + other.gameObject.GetComponent<Player>().netId);
-                powerUpFill(other.gameObject.GetComponentInParent<NetworkIdentity>().netId);
+                StartCoroutine(powerUpFill(other.gameObject.GetComponent<Player>().netId));
             }
     }
 
-    public void OnTriggerStay(Collider other)
-    {
 
+    public void OnTriggerExit(Collider other)
+    {
+        if (type == PowerUP.DAMAGE_UP && other.gameObject.CompareTag("Player"))
+        {
+            if(!isServer && m_Inner.GetComponent<Animation>().isPlaying)
+                m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = -3.0f;
+            m_LockForFirstInside = false;
+        }
     }
 
     IEnumerator powerUpFill(NetworkInstanceId who)
     {
         yield return new WaitForSeconds(0.2f);
-        transform.GetChild(1).gameObject.GetComponent<Animation>().Play();
+        if (!m_LockForFirstInside)
+        {
+            m_LockForFirstInside = true;
+            playerInside = who;
+
+            //Invio da startare l'animazione solo al client...forse è meglio
+            if (isServer)
+            {
+                yield return new WaitForSeconds((int)FixedDelayInGame.DAMAGEUP_TIME);
+                if (m_LockForFirstInside)
+                {
+                    Debug.Log("Power up ottenuto da " + who);
+                    NetworkServer.FindLocalObject(who).GetComponent<Player>().CatchAPowerUp(PowerUP.DAMAGE_UP);
+                    //Play animation di rewarding in client.
+                    RpcAnimatePowerUPGained();
+                    killMe();
+                }
+            }
+            else
+            {
+                m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = 1.0f;
+                m_Inner.GetComponent<Animation>().Play();
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void RpcAnimatePowerUPGained()
+    {
+
+        //Aggiungere i particles.
 
     }
 
