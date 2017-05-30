@@ -2,29 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Compass : MonoBehaviour {
+public class Compass : MonoBehaviour
+{
+    Transform treasure;
+    Vector3 northDirection;
+    bool start = false;
 
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(SearchTreasure());
+	void Start ()
+    {
+        StartCoroutine(StartSearchTreasure());
 	}
 
-    IEnumerator SearchTreasure()
+    IEnumerator StartSearchTreasure()
     {
         yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered() && LocalGameManager.Instance.m_TreasureIsInGame);
-
-        //Da fare il nuovo while in cui aggiornare la posizione della bussola! NOT every frame.
 
         GameObject g;
         if (g = LocalGameManager.Instance.WhoAsTheTreasure())
         {
-            Vector3 treasure = g.transform.position;
+            treasure = g.transform;
 
         }
         else
         {
-            g = LocalGameManager.Instance.m_Treasure;
+            treasure = LocalGameManager.Instance.m_Treasure.transform;
+        }
+        start = true;
+    }
+
+    void Update()
+    {
+        if (start)
+        {
+            SearchTreasure();
+            UpdateCompass();
         }
     }
 
+    void SearchTreasure()
+    {
+        GameObject g;
+        if (g = LocalGameManager.Instance.WhoAsTheTreasure())
+        {
+            treasure = g.transform;
+        }
+        else
+        {
+            treasure = LocalGameManager.Instance.m_Treasure.transform;
+        }
+    }
+
+    void UpdateCompass()
+    {
+        northDirection.z = LocalGameManager.Instance.m_LocalPlayer.transform.eulerAngles.y;
+        Vector3 diff = LocalGameManager.Instance.m_LocalPlayer.transform.position - treasure.position;
+
+        Quaternion direction = Quaternion.LookRotation(diff);
+
+        direction.z = -direction.y;
+        direction.y = 0f;
+        direction.x = 0f;
+
+        transform.localRotation = direction * Quaternion.Euler(northDirection);
+    }
 }
