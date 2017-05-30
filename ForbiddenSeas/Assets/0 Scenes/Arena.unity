@@ -116,7 +116,7 @@ RectTransform:
   m_GameObject: {fileID: 1947354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 583939044}
   - {fileID: 1586695885}
@@ -5854,6 +5854,7 @@ GameObject:
   - component: {fileID: 638966443}
   - component: {fileID: 638966446}
   - component: {fileID: 638966445}
+  - component: {fileID: 638966447}
   m_Layer: 5
   m_Name: SpecialAttack
   m_TagString: Untagged
@@ -5900,7 +5901,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 26d0a287c555346b4be996c25424417d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39d328419ab1048c4b228ee9d8f0c9bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5940,6 +5941,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02014aa6ea48349a3b42b7c1319c357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &638966447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638966441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06af37d0f0a44a9f8e867f1cb5b1501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMain: 0
+  iconsMain: []
+  iconsSpec:
+  - {fileID: 21300000, guid: 39d328419ab1048c4b228ee9d8f0c9bd, type: 3}
+  - {fileID: 21300000, guid: dfc48cfef9b834dba9dfeb3f81ac241d, type: 3}
+  - {fileID: 21300000, guid: 7780abe9069aa429d83c6f2471899489, type: 3}
+  - {fileID: 21300000, guid: d2ca8d9eca5384fb2beb87ac261fe6d2, type: 3}
 --- !u!1001 &653493513
 Prefab:
   m_ObjectHideFlags: 0
@@ -7979,7 +7998,7 @@ RectTransform:
   m_GameObject: {fileID: 922058459}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 413702940}
   - {fileID: 1347540918}
@@ -9989,7 +10008,7 @@ RectTransform:
   m_GameObject: {fileID: 1056070602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 1026349174}
   - {fileID: 96809960}
@@ -12288,7 +12307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 5.5, y: 0}
   m_SizeDelta: {x: 165, y: 165}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333358756
@@ -12709,7 +12728,7 @@ RectTransform:
   m_GameObject: {fileID: 1365215432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 531915606}
   - {fileID: 1432674248}
@@ -26308,6 +26327,7 @@ GameObject:
   - component: {fileID: 1954518694}
   - component: {fileID: 1954518697}
   - component: {fileID: 1954518696}
+  - component: {fileID: 1954518698}
   m_Layer: 5
   m_Name: MainAttack
   m_TagString: Untagged
@@ -26394,6 +26414,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02014aa6ea48349a3b42b7c1319c357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1954518698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1954518692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a06af37d0f0a44a9f8e867f1cb5b1501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMain: 1
+  iconsMain:
+  - {fileID: 21300000, guid: 26d0a287c555346b4be996c25424417d, type: 3}
+  - {fileID: 21300000, guid: 96e1679f3929c4e4f9b67aae7559ad44, type: 3}
+  - {fileID: 21300000, guid: e44e57e91b98c4222be0b2eade3a1e34, type: 3}
+  - {fileID: 21300000, guid: bf874f1861b6143eea0fd299cfdde8f1, type: 3}
+  iconsSpec: []
 --- !u!1 &1956569299
 GameObject:
   m_ObjectHideFlags: 0
