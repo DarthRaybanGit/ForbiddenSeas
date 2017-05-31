@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class Player : NetworkBehaviour {
+public class Player : NetworkBehaviour
+{
 
     public GameObject[] m_AdmiralList = new GameObject[4];
     public GameObject m_LocalCamera;
@@ -236,6 +237,7 @@ public class Player : NetworkBehaviour {
     {
         if (m_HasTreasure)
         {
+            GameObject.FindGameObjectWithTag("TreasureUI").SetActive(false);
             m_HasTreasure = false;
             m_LocalTreasure.SetActive(false);
             LocalGameManager.Instance.m_TreasureIsInGame = false;
