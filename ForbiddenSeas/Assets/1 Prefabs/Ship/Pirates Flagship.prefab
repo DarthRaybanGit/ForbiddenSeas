@@ -2793,8 +2793,7 @@ MonoBehaviour:
   GlobalSUI: {fileID: 0}
   statusHUD: {fileID: 0}
   MainParticles:
-  - {fileID: 1684412368284316}
-  - {fileID: 1860947440074702, guid: 342afd5cb22f35e479a12dcf77247de4, type: 2}
+  - {fileID: 1565490748449482}
 --- !u!114 &114353414015100942
 MonoBehaviour:
   m_ObjectHideFlags: 1
