@@ -184,15 +184,8 @@ public class CombatSystem : NetworkBehaviour
             case FlagshipStatus.ShipClass.pirates:
                 MainParticles[0].SetActive(false);
                 MainParticles[0].SetActive(true);
-                yield return new WaitForSeconds(1f);
-                waterLocation = transform.position + transform.forward * GetComponent<FlagshipStatus>().m_mainDistance;
-                GameObject g = GameObject.Instantiate(MainParticles[1]);
-                g.transform.position = waterLocation;
-                g.SetActive(true);
-                yield return new WaitForSeconds(MainParticles[0].GetComponent<ParticleSystem>().main.duration - 1f);
+                yield return new WaitForSeconds(MainParticles[0].GetComponent<ParticleSystem>().main.duration + 1f);
                 MainParticles[0].SetActive(false);
-                yield return new WaitForSeconds(g.GetComponent<ParticleSystem>().main.duration + 1f);
-                Destroy(g);
                 break;
             case FlagshipStatus.ShipClass.egyptians:
                 break;
