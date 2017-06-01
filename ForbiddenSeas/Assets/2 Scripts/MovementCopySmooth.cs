@@ -10,21 +10,26 @@ public class MovementCopySmooth : MonoBehaviour {
 	public float smooth=0.1f;
 	public float Angle = 15f;
 	public bool wait = false;
+    public bool gameStart = false;
+
+    public Animator anim;
 
 	void Start () {
-		StartCoroutine(waitEveryone());
+		//StartCoroutine(waitEveryone());
 
 	}
 
-	IEnumerator waitEveryone()
+	public IEnumerator waitEveryone()
 	{
 		yield return new WaitUntil (() => LocalGameManager.Instance.IsEveryPlayerRegistered ());
-		player = LocalGameManager.Instance.m_LocalPlayer;
+        anim.SetTrigger("ToShip");
+        player = LocalGameManager.Instance.m_LocalPlayer;
 		transform.position = player.transform.position;
 		wait = true;
+
 	}
 
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (!wait)
@@ -39,6 +44,8 @@ public class MovementCopySmooth : MonoBehaviour {
 
 
 	}
+
+
 
 
 }
