@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class LocalGameManager : NetworkBehaviour
 {
@@ -313,10 +314,10 @@ public class LocalGameManager : NetworkBehaviour
             Player pl = g ? g.GetComponent<Player>() : null;
             if (pl)
             {
-                if (isLocalPlayer && playerId == m_LocalPlayer.GetComponent<Player>().netId)
+                if (playerId == m_LocalPlayer.GetComponent<Player>().netId)
                 {
-                    GameObject.FindGameObjectWithTag("TreasureUI").SetActive(true);
-                }
+                    GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = true;
+                        }
                 pl.m_LocalTreasure.SetActive(true);
                 pl.m_HasTreasure = true;
 

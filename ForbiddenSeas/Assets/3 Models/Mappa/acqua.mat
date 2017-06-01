@@ -134,8 +134,14 @@ Material:
         name: _RampThreshold
       second: 0.5
     - first:
+        name: _RandomHeight
+      second: 0.4
+    - first:
+        name: _RandomSpeed
+      second: 0.17
+    - first:
         name: _Shininess
-      second: 0.79
+      second: 6.82
     - first:
         name: _SmoothnessTextureChannel
       second: 1
@@ -152,12 +158,21 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _WaveHeight
+      second: 0.1
+    - first:
+        name: _WaveLength
+      second: 1
+    - first:
+        name: _WaveSpeed
+      second: 1
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.8235294, g: 0.92697763, b: 1, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _ColorTint
       second: {r: 1, g: 1, b: 1, a: 1}
@@ -172,4 +187,4 @@ Material:
       second: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 0.5055147, g: 0.7209686, b: 0.8088235, a: 1}
+      second: {r: 0.316609, g: 0.7289287, b: 0.89705884, a: 1}

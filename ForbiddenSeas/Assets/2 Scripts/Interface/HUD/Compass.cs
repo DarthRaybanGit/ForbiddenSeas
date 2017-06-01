@@ -34,8 +34,11 @@ public class Compass : MonoBehaviour
     {
         if (start)
         {
-            SearchTreasure();
-            UpdateCompass();
+            if (LocalGameManager.Instance.m_TreasureIsInGame)
+            {
+                SearchTreasure();
+                UpdateCompass();
+            }
         }
     }
 

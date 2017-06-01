@@ -195,6 +195,17 @@ public class FlagshipStatus : NetworkBehaviour
         GetComponent<Animator>().SetTrigger("Respawn");
         yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        if (isLocalPlayer)
+        {
+            Debug.Log("Voglio rivivere.");
+            CmdIwantoToLive();
+        }
+    }
+
+    [Command]
+    public void CmdIwantoToLive()
+    {
+        m_isDead = false;
     }
 
 

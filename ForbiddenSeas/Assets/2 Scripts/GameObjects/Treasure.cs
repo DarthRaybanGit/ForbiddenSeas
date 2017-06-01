@@ -16,7 +16,7 @@ public class Treasure : NetworkBehaviour {
     {
         if (isServer)
         {
-            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0 && !other.gameObject.GetComponent<Player>().m_HasTreasure)
+            if (other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead && !other.gameObject.GetComponent<Player>().m_HasTreasure)
             {
                 Debug.Log("Toccato il tesoro!");
                 other.gameObject.GetComponent<Player>().CatchTheTreasure();

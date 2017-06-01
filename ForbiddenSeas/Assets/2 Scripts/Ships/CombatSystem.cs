@@ -15,6 +15,7 @@ public class CombatSystem : NetworkBehaviour
     public StatusHUD statusHUD;
 
     public GameObject[] MainParticles;
+    public GameObject[] SpecialParticles;
     private Vector3 waterLocation;
 
     void Awake()
@@ -173,29 +174,81 @@ public class CombatSystem : NetworkBehaviour
 
     public void SparoMain()
     {
-        StartCoroutine(startParticle());
+        StartCoroutine(startParticle(true));
     }
 
-    IEnumerator startParticle()
+    IEnumerator startParticle(bool main)
     {
-
-        switch (GetComponent<FlagshipStatus>().shipClass)
+        if (main)
         {
-            case FlagshipStatus.ShipClass.pirates:
-                MainParticles[0].SetActive(false);
-                MainParticles[0].SetActive(true);
-                yield return new WaitForSeconds(MainParticles[0].GetComponent<ParticleSystem>().main.duration + 1f);
-                MainParticles[0].SetActive(false);
-                break;
-            case FlagshipStatus.ShipClass.egyptians:
-                break;
-            case FlagshipStatus.ShipClass.orientals:
-                break;
-            case FlagshipStatus.ShipClass.vikings:
-                break;
+            switch (GetComponent<FlagshipStatus>().shipClass)
+            {
+                case FlagshipStatus.ShipClass.pirates:
+                    GameObject g = GameObject.Instantiate(MainParticles[1], transform);
+                    MainParticles[0].SetActive(false);
+                    MainParticles[0].SetActive(true);
+                    g.transform.SetParent(null);
+                    g.SetActive(true);
 
+                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
+                    StartCoroutine(shutdownParticle(MainParticles[1].GetComponent<ParticleSystem>().main.duration, g));
+                    break;
+                case FlagshipStatus.ShipClass.egyptians:
+                    break;
+                case FlagshipStatus.ShipClass.orientals:
+                    break;
+                case FlagshipStatus.ShipClass.vikings:
+                    break;
+
+            }
         }
+        else
+        {
+            switch (GetComponent<FlagshipStatus>().shipClass)
+            {
+                case FlagshipStatus.ShipClass.pirates:
+                    GameObject g = GameObject.Instantiate(SpecialParticles[1], transform);
+                    SpecialParticles[0].SetActive(false);
+                    SpecialParticles[0].SetActive(true);
+
+                    g.SetActive(true);
+
+
+                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
+                    StartCoroutine(shutdownParticle(SpecialParticles[1].GetComponent<ParticleSystem>().main.duration, g));
+                    yield return new WaitForSeconds(0.3f);
+                    g.transform.SetParent(null);
+                    break;
+                case FlagshipStatus.ShipClass.egyptians:
+                    break;
+                case FlagshipStatus.ShipClass.orientals:
+                    break;
+                case FlagshipStatus.ShipClass.vikings:
+                    break;
+
+            }
+        }
+
         yield return null;
+    }
+
+    IEnumerator shutdownParticle(float time, GameObject g)
+    {
+        yield return new WaitForSeconds(time);
+        if (!g.GetComponentInParent<Player>())
+        {
+            Destroy(g);
+        }
+        else
+        {
+            g.SetActive(false);
+        }
+
+    }
+
+    public void SparoSpecial()
+    {
+        StartCoroutine(startParticle(false));
     }
 
 

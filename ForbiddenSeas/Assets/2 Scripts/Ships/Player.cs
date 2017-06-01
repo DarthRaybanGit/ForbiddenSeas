@@ -185,9 +185,8 @@ public class Player : NetworkBehaviour
         Vector3 futureSpawn = gameObject.transform.position + Vector3.forward;
         RpcHideTreasure();
         Destroy(LocalGameManager.Instance.m_Treasure);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
 
-        Destroy(LocalGameManager.Instance.m_Treasure);
         LocalGameManager.Instance.m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
         LocalGameManager.Instance.m_Treasure.transform.position = futureSpawn;
 
@@ -237,7 +236,7 @@ public class Player : NetworkBehaviour
     {
         if (m_HasTreasure)
         {
-            GameObject.FindGameObjectWithTag("TreasureUI").SetActive(false);
+            GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = false;
             m_HasTreasure = false;
             m_LocalTreasure.SetActive(false);
             LocalGameManager.Instance.m_TreasureIsInGame = false;
