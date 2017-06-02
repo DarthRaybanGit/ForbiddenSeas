@@ -23,6 +23,7 @@ public class InitializeCamera : StateMachineBehaviour {
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         LocalGameManager.Instance.m_CutIsPlaying = false;
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasHUD.transform, "FadeIn");
+        LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().gapTime = Time.timeSinceLevelLoad;
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasEtichette.transform, "FadeIn");
 
     }
