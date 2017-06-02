@@ -142,6 +142,39 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf5b40c6d665e3640b139f8cb018a083, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &92419594 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 1ff173d7907674602bd6b23fc3567595, type: 3}
+  m_PrefabInternal: {fileID: 1851343820}
+--- !u!114 &92419599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 92419594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be860f722009fca439b7a4907c7982e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  speed: 0.005
+--- !u!54 &92419600
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 92419594}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &209405943
 GameObject:
   m_ObjectHideFlags: 0
