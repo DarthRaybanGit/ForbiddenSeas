@@ -6,19 +6,19 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DarkWood
-  m_Shader: {fileID: 4800000, guid: 9ec7ccbd4289d0543939f61121224d93, type: 3}
-  m_ShaderKeywords: TCP2_SPEC
-  m_LightmapFlags: 4
+  m_Name: skybox
+  m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
     - first:
-        name: <noninit>
+        name: _BackTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8c72b5f09d75d4dfeb9e0f5d8e8cbe50, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -46,9 +46,27 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _DownTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _FrontTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 8c72b5f09d75d4dfeb9e0f5d8e8cbe50, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _LeftTex
+      second:
+        m_Texture: {fileID: 2800000, guid: c14ea544fb5974db28e9c728b9c51101, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -76,15 +94,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Ramp
+        name: _RightTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c14ea544fb5974db28e9c728b9c51101, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _UpTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 61503a7c798ad472bb77e58b06115d73, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: <noninit>
-      second: 1
     - first:
         name: _BumpScale
       second: 1
@@ -98,11 +119,14 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _Exposure
+      second: 1
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.63
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
@@ -119,20 +143,11 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _RampSmooth
-      second: 0.1
-    - first:
-        name: _RampThreshold
-      second: 0.5
-    - first:
-        name: _Shininess
-      second: 0.87
+        name: _Rotation
+      second: 47.2
     - first:
         name: _SmoothnessTextureChannel
       second: 0
-    - first:
-        name: _SpecSmooth
-      second: 0.05
     - first:
         name: _SpecularHighlights
       second: 1
@@ -147,20 +162,11 @@ Material:
       second: 1
     m_Colors:
     - first:
-        name: <noninit>
-      second: {r: 0.42647058, g: 0, b: 0, a: 1}
-    - first:
         name: _Color
-      second: {r: 0.50735295, g: 0, b: 0, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _HColor
-      second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
-    - first:
-        name: _SColor
-      second: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        name: _Tint
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

@@ -6,10 +6,14 @@ using UnityEngine.UI;
 using System;
 
 
-public class OutGameCanvasControl : MonoBehaviour {
+public class OutGameCanvasControl : MonoBehaviour
+{
 
     public GameObject m_ConnectButtons;
     public GameObject m_LobbyButtons;
+    public GameObject m_OtherPlayers;
+    public Animation logo;
+    private int currentSelectedClass = 0;
 
 
 	public void StartConnectionAsServer()
@@ -23,7 +27,7 @@ public class OutGameCanvasControl : MonoBehaviour {
         OnlineManager.s_Singleton.StartClient();
         m_ConnectButtons.SetActive(false);
         m_LobbyButtons.SetActive(true);
-
+        SelectionStart();
     }
 
     public void StartConnectionAsHost()
@@ -46,8 +50,37 @@ public class OutGameCanvasControl : MonoBehaviour {
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
     }
 
+    public void UnHideButtons()
+    {
+        m_ConnectButtons.SetActive(true);
+    }
 
+    private void SelectionStart()
+    {
+        Camera.main.GetComponent<CameraController>().moveCamera(0);
+        m_OtherPlayers.SetActive(true);
+        logo.Play("LogoBack");
+        SelectClass(0);
+    }
 
+    public void nextClassSelect()
+    {
+        if (currentSelectedClass == 3)
+            return;
+        
+        currentSelectedClass++;
+        Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
+        SelectClass(currentSelectedClass);
+    }
 
+    public void prevClassSelect()
+    {
+        if (currentSelectedClass == 0)
+            return;
+        
+        currentSelectedClass--;
+        Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
+        SelectClass(currentSelectedClass);
+    }
 
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114049144551314640}
   - component: {fileID: 114753260350949088}
   - component: {fileID: 65490168677079568}
+  - component: {fileID: 111987739741155724}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -129,9 +130,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108263141705070}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.051873077, z: -0, w: 0.9986537}
+  m_LocalPosition: {x: -15.16, y: -0.15, z: -188.12}
+  m_LocalScale: {x: 0.85935503, y: 0.85935503, z: 0.85935503}
   m_Children:
   - {fileID: 4421002317775442}
   - {fileID: 4116701352880780}
@@ -139,7 +140,7 @@ Transform:
   - {fileID: 4078937743788776}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.13874012, y: 5.9470005, z: -0.086114585}
 --- !u!4 &4421002317775442
 Transform:
   m_ObjectHideFlags: 1
@@ -179,7 +180,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2eecf1e649afc4a57b44e3a54bd9ea93, type: 2}
+  - {fileID: 2100000, guid: ee20c839658c14290accab39b53da5cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,7 +242,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2eecf1e649afc4a57b44e3a54bd9ea93, type: 2}
+  - {fileID: 2100000, guid: ee20c839658c14290accab39b53da5cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -330,6 +331,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1257262, y: 2.0535102, z: 1.565721}
   m_Center: {x: 0.012431383, y: 0.98544765, z: -0.022934675}
+--- !u!111 &111987739741155724
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1108263141705070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 0a6d3886f3a4340d1aa56a87f016b968, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 0a6d3886f3a4340d1aa56a87f016b968, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114049144551314640
 MonoBehaviour:
   m_ObjectHideFlags: 1
