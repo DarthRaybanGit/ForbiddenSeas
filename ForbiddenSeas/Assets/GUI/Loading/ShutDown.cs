@@ -17,8 +17,11 @@ public class ShutDown : StateMachineBehaviour {
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         LocalGameManager.Instance.m_LoadingCompleted = true;
-        Debug.Log("Spegniti!");
+        //Debug.Log("Spegniti!");
+        if (animator.gameObject.name.Equals("LoadingPane"))
+            Camera.main.gameObject.GetComponent<Animator>().SetTrigger("Start");
         animator.gameObject.SetActive(false);
+
 
 	}
 

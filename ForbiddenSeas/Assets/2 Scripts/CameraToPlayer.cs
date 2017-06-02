@@ -13,7 +13,7 @@ public class CameraToPlayer : MonoBehaviour {
     {
         LocalGameManager.Instance.m_CanvasHUD = m_CanvasInGame;
         LocalGameManager.Instance.m_CanvasEtichette = m_CanvasEtichette;
-        StartCoroutine(waitForPlaying());
+
     }
 
     IEnumerator waitForPlaying()
