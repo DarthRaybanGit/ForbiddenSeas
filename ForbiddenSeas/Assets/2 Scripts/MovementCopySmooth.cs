@@ -19,10 +19,10 @@ public class MovementCopySmooth : MonoBehaviour {
 
 	}
 
+
 	public IEnumerator waitEveryone()
 	{
-		yield return new WaitUntil (() => LocalGameManager.Instance.IsEveryPlayerRegistered ());
-        anim.SetTrigger("ToShip");
+		yield return new WaitUntil (() => LocalGameManager.Instance.GameCanStart());
         player = LocalGameManager.Instance.m_LocalPlayer;
 		transform.position = player.transform.position;
 		wait = true;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Utility
 {
@@ -15,5 +16,33 @@ public static class Utility
             }
         }
         return null;
+    }
+
+
+    public static void recursivePlayAnimation(Transform t, string animation)
+    {
+        foreach (Transform tt in t)
+        {
+            if (tt.gameObject.GetComponent<Text>() && tt.gameObject.GetComponent<Animation>())
+            {
+                if (!tt.gameObject.GetComponent<Animation>().GetClip("Text" + animation))
+                    tt.gameObject.GetComponent<Animation>().Play();
+                else
+                    tt.gameObject.GetComponent<Animation>().Play("Text" + animation);
+            }
+            else if (tt.gameObject.GetComponent<Image>() && tt.gameObject.GetComponent<Animation>())
+            {
+                if (!tt.gameObject.GetComponent<Animation>().GetClip(animation))
+                    tt.gameObject.GetComponent<Animation>().Play();
+                else
+                    tt.gameObject.GetComponent<Animation>().Play(animation);
+            }
+
+
+            if (tt.childCount > 0)
+            {
+                recursivePlayAnimation(tt, animation);
+            }
+        }
     }
 }

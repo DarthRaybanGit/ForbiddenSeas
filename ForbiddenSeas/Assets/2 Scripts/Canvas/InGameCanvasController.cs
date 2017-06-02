@@ -5,13 +5,15 @@ using UnityEngine.UI;
 using System;
 
 
-public class InGameCanvasController : MonoBehaviour {
+public class InGameCanvasController : MonoBehaviour
+{
 
     public GameObject m_Clock;
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         m_Clock.transform.SetParent(transform);
         m_Clock.SetActive(true);
     }
@@ -25,4 +27,6 @@ public class InGameCanvasController : MonoBehaviour {
             m_Clock.GetComponent<Text>().text = String.Format("{0,2:D2}:{1,2:D2}", minutes, Mathf.FloorToInt(time - minutes * 60));
         }
     }
+
+
 }

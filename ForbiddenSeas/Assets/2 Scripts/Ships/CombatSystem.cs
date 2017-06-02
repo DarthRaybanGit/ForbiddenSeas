@@ -153,6 +153,7 @@ public class CombatSystem : NetworkBehaviour
             GetComponent<Animator>().SetTrigger(tag.Equals("MAP") ? "MainAttack" : "SpecAttack");
 
         }
+
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(true);
 
     }
@@ -162,6 +163,10 @@ public class CombatSystem : NetworkBehaviour
     {
         //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(false);
+        if (tag.Equals("MAP") || tag.Equals("SAP"))
+        {
+            StartCoroutine(CreaScia(tag.Equals("MAP") ? true : false));
+        }
         /*
         if (tag.Equals("MA"))
             waterLocation = transform.position + transform.forward * GetComponent<FlagshipStatus>().m_mainDistance;
@@ -172,25 +177,16 @@ public class CombatSystem : NetworkBehaviour
     }
 
 
-    public void SparoMain()
+    IEnumerator CreaScia(bool which)
     {
-        StartCoroutine(startParticle(true));
-    }
-
-    IEnumerator startParticle(bool main)
-    {
-        if (main)
+        if (which)
         {
             switch (GetComponent<FlagshipStatus>().shipClass)
             {
                 case FlagshipStatus.ShipClass.pirates:
                     GameObject g = GameObject.Instantiate(MainParticles[1], transform);
-                    MainParticles[0].SetActive(false);
-                    MainParticles[0].SetActive(true);
                     g.transform.SetParent(null);
                     g.SetActive(true);
-
-                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
                     StartCoroutine(shutdownParticle(MainParticles[1].GetComponent<ParticleSystem>().main.duration, g));
                     break;
                 case FlagshipStatus.ShipClass.egyptians:
@@ -208,16 +204,59 @@ public class CombatSystem : NetworkBehaviour
             {
                 case FlagshipStatus.ShipClass.pirates:
                     GameObject g = GameObject.Instantiate(SpecialParticles[1], transform);
-                    SpecialParticles[0].SetActive(false);
-                    SpecialParticles[0].SetActive(true);
-
                     g.SetActive(true);
-
-
-                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     StartCoroutine(shutdownParticle(SpecialParticles[1].GetComponent<ParticleSystem>().main.duration, g));
                     yield return new WaitForSeconds(0.3f);
                     g.transform.SetParent(null);
+                    break;
+                case FlagshipStatus.ShipClass.egyptians:
+                    break;
+                case FlagshipStatus.ShipClass.orientals:
+                    break;
+                case FlagshipStatus.ShipClass.vikings:
+                    break;
+
+            }
+        }
+        yield return null;
+    }
+
+
+    public void SparoMain()
+    {
+        StartCoroutine(startParticle(true));
+    }
+
+    IEnumerator startParticle(bool main)
+    {
+        if (main)
+        {
+            switch (GetComponent<FlagshipStatus>().shipClass)
+            {
+                case FlagshipStatus.ShipClass.pirates:
+
+                    MainParticles[0].SetActive(false);
+                    MainParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
+                    break;
+                case FlagshipStatus.ShipClass.egyptians:
+                    break;
+                case FlagshipStatus.ShipClass.orientals:
+                    break;
+                case FlagshipStatus.ShipClass.vikings:
+                    break;
+
+            }
+        }
+        else
+        {
+            switch (GetComponent<FlagshipStatus>().shipClass)
+            {
+                case FlagshipStatus.ShipClass.pirates:
+
+                    SpecialParticles[0].SetActive(false);
+                    SpecialParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.egyptians:
                     break;

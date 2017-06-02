@@ -53,7 +53,7 @@ public class PlayerFloatingName : MonoBehaviour
 
     IEnumerator WaitForReady()
     {
-        yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
+        yield return new WaitUntil(() => LocalGameManager.Instance.GameCanStart());
 
 
         Debug.Log("Sto cercando i player!");
@@ -76,11 +76,11 @@ public class PlayerFloatingName : MonoBehaviour
         amount = (float)target.gameObject.GetComponent<FlagshipStatus>().m_Health;
         if (amount <= total * 0.2f)
         {
-            bar.color = new Color(1f, 54f/255f, 54f/255f);
+            bar.color = new Color(1f, 54f/255f, 54f/255f, bar.color.a);
         }
         else
         {
-            bar.color = new Color(167f/255f, 251f/255f, 109f/255f);
+            bar.color = new Color(167f/255f, 251f/255f, 109f/255f, bar.color.a);
         }
 
         bar.fillAmount = 1f / total * amount;

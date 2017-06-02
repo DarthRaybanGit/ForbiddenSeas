@@ -32,6 +32,16 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_TreasureIsInGame = false;
     public GameObject[] m_Ports;
 
+
+    public GameObject m_CanvasHUD;
+    public GameObject m_CanvasEtichette;
+
+
+    public bool m_CutIsPlaying = false;
+    public bool m_IsWindowOver = false;
+    public bool m_LoadingCompleted = false;
+
+
     //Server
     public bool[] m_PowerUp = { false, false, false};
 
@@ -336,4 +346,10 @@ public class LocalGameManager : NetworkBehaviour
 
 
 
+
+
+    public bool GameCanStart()
+    {
+        return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();
+    }
 }
