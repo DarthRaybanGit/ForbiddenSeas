@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class LocalGameManager : NetworkBehaviour
 {
@@ -30,6 +31,16 @@ public class LocalGameManager : NetworkBehaviour
     public GameObject m_Treasure;
     public bool m_TreasureIsInGame = false;
     public GameObject[] m_Ports;
+
+
+    public GameObject m_CanvasHUD;
+    public GameObject m_CanvasEtichette;
+
+
+    public bool m_CutIsPlaying = false;
+    public bool m_IsWindowOver = false;
+    public bool m_LoadingCompleted = false;
+
 
     //Server
     public bool[] m_PowerUp = { false, false, false};
@@ -313,10 +324,10 @@ public class LocalGameManager : NetworkBehaviour
             Player pl = g ? g.GetComponent<Player>() : null;
             if (pl)
             {
-                if (isLocalPlayer && playerId == m_LocalPlayer.GetComponent<Player>().netId)
+                if (playerId == m_LocalPlayer.GetComponent<Player>().netId)
                 {
-                    GameObject.FindGameObjectWithTag("TreasureUI").SetActive(true);
-                }
+                    GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = true;
+                        }
                 pl.m_LocalTreasure.SetActive(true);
                 pl.m_HasTreasure = true;
 
@@ -335,4 +346,10 @@ public class LocalGameManager : NetworkBehaviour
 
 
 
+
+
+    public bool GameCanStart()
+    {
+        return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();
+    }
 }

@@ -26,7 +26,7 @@ public class UpadateSpeedIndicator : MonoBehaviour
     {
         if (!prontiPartenzaVia)
             return;
-        
+
         actualSpeed = LocalGameManager.Instance.m_LocalPlayer.GetComponent<MoveSimple>().ActualSpeed;
 
         amount = 135f / maxSpeed * actualSpeed;

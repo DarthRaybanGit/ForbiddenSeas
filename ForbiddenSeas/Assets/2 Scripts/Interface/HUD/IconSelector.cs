@@ -7,7 +7,7 @@ public class IconSelector : MonoBehaviour
 {
 
     public Sprite[] icons;
-	
+
     void Start()
     {
         StartCoroutine(WaitforReady());

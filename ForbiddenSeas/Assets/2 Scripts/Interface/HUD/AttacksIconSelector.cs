@@ -22,6 +22,6 @@ public class AttacksIconSelector : MonoBehaviour
             GetComponent<Image>().sprite = iconsMain[(int)LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().shipClass];
         else
             GetComponent<Image>().sprite = iconsSpec[(int)LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().shipClass];
-        
+
     }
 }

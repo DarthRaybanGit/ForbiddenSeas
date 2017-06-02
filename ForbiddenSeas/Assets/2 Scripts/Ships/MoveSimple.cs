@@ -38,6 +38,8 @@ public class MoveSimple : NetworkBehaviour {
     public float syncRotY;
     private Vector3 lastRot;
     public float rotThreshold;
+    [Range(1,5)]
+    public float RotSpeedFactor;
 
     public void Start()
     {
@@ -102,13 +104,28 @@ public class MoveSimple : NetworkBehaviour {
 		}
         //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 
-        rb.AddForce(transform.forward * ActualSpeed * -1);
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart())
+        {
+            rb.AddForce(transform.forward * ActualSpeed * -1);
 
-        rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
+            rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
 
-        var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
-		transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
-		rb.angularVelocity = Vector3.zero;
+
+
+            /*
+            var desiredRotation=Quaternion.Euler(new Vector3(0f,transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability , Input.GetAxis ("Horizontal") * 10f * Factor * -1));
+            transform.rotation= Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
+            */
+
+
+            var desiredRotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability / ((Mathf.Clamp(ActualSpeed, maxSpeed/RotSpeedFactor, maxSpeed)/maxSpeed) ), 0f));
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
+
+            transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(new Vector3(transform.GetChild(0).rotation.eulerAngles.x, transform.GetChild(0).rotation.eulerAngles.y, Input.GetAxis("Horizontal") * 10f * Factor)), Time.deltaTime * smoothTime);
+
+        }
+
+        rb.angularVelocity = Vector3.zero;
         if(animator)
             animator.SetFloat ("Speed", ActualSpeed / maxSpeed);
         //Debug.Log (State / numberOfScroll);
