@@ -145,10 +145,10 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HColor
-      second: {r: 0.9044118, g: 0.4056553, b: 0.4056553, a: 1}
+      second: {r: 0.9044118, g: 0.6429946, b: 0.4056553, a: 1}
     - first:
         name: _SColor
-      second: {r: 0.52205884, g: 0.38002813, b: 0.38002813, a: 1}
+      second: {r: 0.52205884, g: 0.5005094, b: 0.38002813, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
