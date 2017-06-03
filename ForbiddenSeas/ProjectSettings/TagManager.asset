@@ -27,6 +27,8 @@ TagManager:
   - StatusHUD
   - Arena
   - TreasureUI
+  - RespawnMessage
+  - Avviso
   layers:
   - Default
   - TransparentFX
