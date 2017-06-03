@@ -171,7 +171,7 @@ public class LocalGameManager : NetworkBehaviour
         int count = 0;
         for(; count < m_Ports.Length; count++)
         {
-            m_Ports[count] = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PORTO], OnlineManager.s_Singleton.m_PortSpawnPosition[count].position, Quaternion.identity);
+            m_Ports[count] = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PORTO], OnlineManager.s_Singleton.m_PortSpawnPosition[count].position, OnlineManager.s_Singleton.m_PortSpawnPosition[count].rotation);
         }
 
 
