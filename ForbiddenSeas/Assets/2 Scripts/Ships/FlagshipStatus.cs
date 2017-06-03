@@ -183,7 +183,7 @@ public class FlagshipStatus : NetworkBehaviour
         StartCoroutine(Respawn());
     }
 
-    IEnumerator Respawn()
+    public IEnumerator Respawn()
     {
 
         yield return new WaitUntil(() => sonoMortissimo);

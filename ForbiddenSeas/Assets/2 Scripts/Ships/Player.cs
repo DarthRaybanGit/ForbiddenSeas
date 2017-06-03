@@ -19,6 +19,11 @@ public class Player : NetworkBehaviour
     public Vector3 m_SpawnPoint;
     public Text m_reputationTextUI;
     public Text m_scoreTextUI;
+    public GameObject m_Avviso;
+
+
+    [SyncVar]
+    public bool m_InsideArena = true;
 
     [SyncVar]
     public int m_score = 0;
@@ -56,6 +61,7 @@ public class Player : NetworkBehaviour
                 LocalGameManager.Instance.m_GameIsStarted = true;
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
+                m_Avviso = GameObject.FindGameObjectWithTag("Avviso");
             }
 
         }
@@ -206,6 +212,43 @@ public class Player : NetworkBehaviour
         TargetRpcUpdateScoreUI(GetComponent<NetworkIdentity>().connectionToClient);
         RpcHideTreasure();
         StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
+
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (!g.GetComponent<Player>().m_InsideArena)
+            {
+                RpcResetPlayerPosition(g.GetComponent<Player>().netId, netId);
+            }
+        }
+    }
+
+    IEnumerator RespawnPlayerOutsideArena(Player p)
+    {
+        yield return new WaitForSeconds(3f);
+        p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        p.gameObject.transform.position = p.m_SpawnPoint;
+        if (p.netId == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
+        {
+            Utility.recursivePlayAnimation(m_Avviso.gameObject.transform, "FadeOut");
+        }
+        yield return new WaitForSeconds(1f);
+        p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        p.m_InsideArena = true;
+    }
+
+    [ClientRpc]
+    public void RpcResetPlayerPosition(NetworkInstanceId p, NetworkInstanceId who)
+    {
+        if(p == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
+        {
+            m_Avviso.GetComponent<Text>().enabled = true;
+            m_Avviso.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To Arena!"  : ClientScene.FindLocalObject(who).GetComponent<Player>().playerId + " has scored an ARRH!...To Arena!";
+            m_Avviso.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
+            m_Avviso.transform.GetChild(0).gameObject.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To Arena!" : ClientScene.FindLocalObject(who).GetComponent<Player>().playerId + " has scored an ARRH!...To Arena!";
+            Utility.recursivePlayAnimation(m_Avviso.gameObject.transform, "FadeIn");
+        }
+
+        StartCoroutine(RespawnPlayerOutsideArena(ClientScene.FindLocalObject(p).GetComponent<Player>()));
     }
 
     [TargetRpc]
