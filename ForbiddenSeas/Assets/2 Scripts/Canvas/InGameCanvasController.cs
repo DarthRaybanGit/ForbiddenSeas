@@ -23,7 +23,7 @@ public class InGameCanvasController : MonoBehaviour
     {
         if (LocalGameManager.Instance.m_GameIsStarted && (LocalGameManager.Instance.m_timeIsSynced || LocalGameManager.Instance.m_serverTimeSended))
         {
-            float time = LocalGameManager.Instance.syncedTime() - gapTime;
+            float time = LocalGameManager.Instance.syncedTime() <= 0 ? 0 : LocalGameManager.Instance.syncedTime();
             int minutes = Mathf.FloorToInt(time / 60);
             m_Clock.GetComponent<Text>().text = String.Format("{0,2:D2}:{1,2:D2}", minutes, Mathf.FloorToInt(time - minutes * 60));
         }

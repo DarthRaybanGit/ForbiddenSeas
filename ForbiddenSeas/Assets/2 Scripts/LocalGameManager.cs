@@ -135,7 +135,9 @@ public class LocalGameManager : NetworkBehaviour
     public void RpcNotifyServerTime(float time)
     {
         Debug.Log("Sto notificando il time");
-        m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
+        //m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
+        m_ServerOffsetTime = time;
+
         m_timeIsSynced = true;
         m_serverTimeSended = true;
 
@@ -144,7 +146,7 @@ public class LocalGameManager : NetworkBehaviour
 
     public float syncedTime()
     {
-        return isServer ? Time.timeSinceLevelLoad  : Time.timeSinceLevelLoad + m_ServerOffsetTime;
+        return Time.timeSinceLevelLoad - m_ServerOffsetTime;
     }
 
 
@@ -159,7 +161,7 @@ public class LocalGameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds((int)FixedDelayInGame.TREASURE_FIRST_SPAWN);
         //Risincronizza il time per sicurezza
-        LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
+        LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
 
         m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
 
@@ -202,7 +204,7 @@ public class LocalGameManager : NetworkBehaviour
         {
             yield return new WaitForSeconds((int)FixedDelayInGame.POWERUP_SPAWN);
             //Risincronizza il time per sicurezza
-            LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
+            LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
             Debug.Log("PowerUp SPAWN!!!");
 
             count = 0;
@@ -265,10 +267,12 @@ public class LocalGameManager : NetworkBehaviour
             //Start Game!
             Debug.Log("START GAME!!!");
             LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send);
+            /*
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
             StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
             LocalGameManager.Instance.m_serverTimeSended = true;
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
+            */
         }
     }
 
