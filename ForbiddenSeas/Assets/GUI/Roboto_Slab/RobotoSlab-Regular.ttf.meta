@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 42308ff4e88c84296a4eeaa89160ef98
+timeCreated: 1496441242
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Roboto Slab
+  fontNames:
+  - Roboto Slab
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 23e3e333411444ade8ac9a7b30d07df8, type: 3}
+  - {fileID: 12800000, guid: 348cf9c760f65415e8243098f8d14933, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

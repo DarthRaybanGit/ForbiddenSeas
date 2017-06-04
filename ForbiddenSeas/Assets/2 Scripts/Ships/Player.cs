@@ -7,10 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Player : NetworkBehaviour
 {
-
+    public int playerId;
+    public string playerName;
     public GameObject[] m_AdmiralList = new GameObject[4];
     public GameObject m_LocalCamera;
-    public int playerId;
+
 
     public bool m_HasTreasure = false;
     public GameObject m_LocalTreasure;
