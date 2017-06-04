@@ -233,6 +233,7 @@ public class Player : NetworkBehaviour
             if (!g.GetComponent<Player>().m_InsideArena)
             {
                 RpcResetPlayerPosition(g.GetComponent<Player>().netId, netId);
+                g.GetComponent<Player>().m_InsideArena = true;
             }
         }
     }
@@ -248,7 +249,6 @@ public class Player : NetworkBehaviour
         }
         yield return new WaitForSeconds(1f);
         p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        p.m_InsideArena = true;
         yield return new WaitUntil(() => !m_Avviso.GetComponent<Animation>().isPlaying);
         m_Avviso.GetComponent<Text>().enabled = false;
 
