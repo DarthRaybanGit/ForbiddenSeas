@@ -1256,13 +1256,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217936268}
   m_TextComponent: {fileID: 358780546}
   m_Placeholder: {fileID: 1279750923}
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 4
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
   m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
+  m_CaretWidth: 2
   m_ReadOnly: 0
 --- !u!114 &217936268
 MonoBehaviour:
@@ -2488,7 +2488,7 @@ MonoBehaviour:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b, type: 2}
   - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
-  - {fileID: 0}
+  - {fileID: 1481870578708136, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
   - {fileID: 1694748985517856, guid: 3e49985e113e9894895dc1f4db2376dc, type: 2}
   - {fileID: 1906551762036520, guid: 479d8dbca8679cf408e9f374663e4c2a, type: 2}
   - {fileID: 1319198098063744, guid: 640c09e667655d74c8ddece0bf6deca6, type: 2}
