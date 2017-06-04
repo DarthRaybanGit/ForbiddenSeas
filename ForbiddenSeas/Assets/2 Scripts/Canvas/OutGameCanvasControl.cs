@@ -12,6 +12,8 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject m_ConnectButtons;
     public GameObject m_LobbyButtons;
     public GameObject m_OtherPlayers;
+    public GameObject m_InputName;
+    public GameObject m_ReadyButton;
     public Animation logo;
     private int currentSelectedClass = 0;
 
@@ -26,10 +28,9 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void StartConnectionAsClient()
     {
-        OnlineManager.s_Singleton.StartClient();
+        m_InputName.SetActive(true);
         m_ConnectButtons.SetActive(false);
-        m_LobbyButtons.SetActive(true);
-        SelectionStart();
+
     }
 
     public void StartConnectionAsHost()
@@ -48,6 +49,8 @@ public class OutGameCanvasControl : MonoBehaviour
     IEnumerator waitPlayer(int n, bool first)
     {
         yield return new WaitForSeconds(first ? 3f : 0.2f);
+        if (first)
+            m_LobbyButtons.transform.GetChild(0).gameObject.GetComponent<Button>().interactable = true;
         Debug.Log("Settaggio");
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().CmdsetLocalName(m_PlayerName);
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().setLocalClass(n);
@@ -97,6 +100,11 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void SetName(InputField t)
     {
+
         m_PlayerName = t.text;
+        OnlineManager.s_Singleton.StartClient();
+        m_LobbyButtons.SetActive(true);
+        SelectionStart();
+        m_InputName.SetActive(false);
     }
 }
