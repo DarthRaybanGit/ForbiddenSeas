@@ -10,6 +10,8 @@ public class LocalGameManager : NetworkBehaviour
     public static LocalGameManager Instance = null;
 
     public GameObject m_LocalPlayer;
+    public bool m_PlayerSetted = false;
+    public bool m_PlayerSettedRemote = false;
 
     public Dictionary<int,int> m_PlayersID;
     public GameObject[] m_Players;
@@ -58,6 +60,13 @@ public class LocalGameManager : NetworkBehaviour
     public override void OnStartServer()
     {
         m_Ports = new GameObject[4];
+    }
+
+    [TargetRpc]
+    public void TargetRpcNotifyClientConnection(NetworkConnection nc)
+    {
+        m_PlayerSettedRemote = true;
+        Debug.Log("Cazzo");
     }
 
     [ClientRpc]

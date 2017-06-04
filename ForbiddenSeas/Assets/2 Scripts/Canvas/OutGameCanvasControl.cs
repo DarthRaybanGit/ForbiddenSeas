@@ -15,6 +15,8 @@ public class OutGameCanvasControl : MonoBehaviour
     public Animation logo;
     private int currentSelectedClass = 0;
 
+    public string m_PlayerName = "Player";
+
 
 	public void StartConnectionAsServer()
     {
@@ -37,9 +39,17 @@ public class OutGameCanvasControl : MonoBehaviour
         m_LobbyButtons.SetActive(true);
     }
 
-    public void SelectClass(int n)
+    public void SelectClass(int n, bool first = false)
     {
         Debug.Log("Selected class " + n);
+        StartCoroutine(waitPlayer(n, first));
+    }
+
+    IEnumerator waitPlayer(int n, bool first)
+    {
+        yield return new WaitForSeconds(first ? 3f : 0.2f);
+        Debug.Log("Settaggio");
+        LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().CmdsetLocalName(m_PlayerName);
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().setLocalClass(n);
     }
 
@@ -60,14 +70,14 @@ public class OutGameCanvasControl : MonoBehaviour
         Camera.main.GetComponent<CameraController>().moveCamera(0);
         m_OtherPlayers.SetActive(true);
         logo.Play("LogoBack");
-        SelectClass(0);
+        SelectClass(0, true);
     }
 
     public void nextClassSelect()
     {
         if (currentSelectedClass == 3)
             return;
-        
+
         currentSelectedClass++;
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
         SelectClass(currentSelectedClass);
@@ -77,10 +87,16 @@ public class OutGameCanvasControl : MonoBehaviour
     {
         if (currentSelectedClass == 0)
             return;
-        
+
         currentSelectedClass--;
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
         SelectClass(currentSelectedClass);
     }
 
+
+
+    public void SetName(InputField t)
+    {
+        m_PlayerName = t.text;
+    }
 }

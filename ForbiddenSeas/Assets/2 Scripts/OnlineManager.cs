@@ -39,15 +39,55 @@ public class OnlineManager : NetworkLobbyManager {
 
         int cc = lobbyPlayer.GetComponent<PlayerManager>().m_LocalClass;
         gamePlayer.GetComponent<Player>().SetClass(cc);
+        gamePlayer.GetComponent<Player>().playerName = lobbyPlayer.GetComponent<PlayerManager>().m_PlayerName;
+        for(int i = 0; i < lobbySlots.Length; i++)
+        {
+            if(lobbySlots[i] && lobbySlots[i].GetComponent<PlayerManager>().netId == lobbyPlayer.GetComponent<PlayerManager>().netId)
+            {
+                gamePlayer.GetComponent<Player>().playerId = i + 1;
+            }
+        }
+
         return true;
     }
 
     public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
     {
         if (!currentPlayers.ContainsKey(conn.connectionId))
+        {
             currentPlayers.Add(conn.connectionId, new int[10]);
 
-        return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+        }
+        GameObject g = base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+        int count = 0;
+        for(int i = 0; i < lobbySlots.Length; i++)
+        {
+            if (lobbySlots[i])
+                count++;
+        }
+        Debug.Log("Si è connesso " + conn.connectionId + " il numero di player attuali è " + count);
+
+        StartCoroutine(waitForLobbyFill(conn, count + 1));
+
+        return g;
+    }
+
+    IEnumerator waitForLobbyFill(NetworkConnection conn, int n)
+    {
+        while (true)
+        {
+            yield return new WaitForFixedUpdate();
+            int count = 0;
+            for (int i = 0; i < lobbySlots.Length; i++)
+            {
+                if (lobbySlots[i])
+                    count++;
+            }
+            if (count >= n)
+                break;
+        }
+        LocalGameManager.Instance.TargetRpcNotifyClientConnection(conn);
+
     }
 
     //Modify Player Info

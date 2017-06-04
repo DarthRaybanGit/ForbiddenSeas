@@ -72,6 +72,7 @@ MonoBehaviour:
     type: 2}
   m_LocalClassViewer: {fileID: 0}
   m_LocalClassViewerIndex: 99
+  m_PlayerName: Connecting...
 --- !u!114 &114846023152476650
 MonoBehaviour:
   m_ObjectHideFlags: 1

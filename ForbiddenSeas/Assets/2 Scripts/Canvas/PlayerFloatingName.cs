@@ -29,8 +29,8 @@ public class PlayerFloatingName : MonoBehaviour
             {
                 targetPos = Camera.main.WorldToScreenPoint(target.position);
                 transform.position = targetPos + offset;
-                transform.GetChild(1).GetComponent<Text>().text = "L.Player " + id; //da sostituire con player name
-                transform.GetChild(2).GetComponent<Text>().text = "L.Player " + id;
+                transform.GetChild(1).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName; //da sostituire con player name
+                transform.GetChild(2).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName;
 
             }
             else
@@ -42,8 +42,8 @@ public class PlayerFloatingName : MonoBehaviour
                 if (Camera.main.WorldToScreenPoint(target.position).z < 0)
                     targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
                 transform.position = targetPos;
-                transform.GetChild(1).GetComponent<Text>().text = "Player " + id; //da sostituire con player name
-                transform.GetChild(2).GetComponent<Text>().text = "Player " + id;
+                transform.GetChild(1).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName; //da sostituire con player name
+                transform.GetChild(2).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName;
             }
             FillBar();
             transform.GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<FlagshipStatus>().m_Health;
@@ -64,10 +64,19 @@ public class PlayerFloatingName : MonoBehaviour
         }
         else
         {
-            target = LocalGameManager.Instance.GetPlayer(id).transform;
-            Debug.Log("Ho trovato il player " + target.name + " " + target.GetComponent<Player>().netId);
+            foreach(GameObject g in LocalGameManager.Instance.m_Players)
+            {
+                if(g.GetComponent<Player>().playerId == id)
+                {
+                    target = g.transform;
+                    break;
+                }
+
+            }
+            Debug.Log("Ho trovato il player " + target.GetComponent<Player>().playerName + " " + target.GetComponent<Player>().playerId);
             trovato = true;
             total = (float)target.GetComponent<FlagshipStatus>().m_Health;
+            target.gameObject.GetComponent<Player>().myTag = gameObject;
         }
     }
 

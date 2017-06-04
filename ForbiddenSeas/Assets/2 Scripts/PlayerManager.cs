@@ -16,6 +16,9 @@ public class PlayerManager : NetworkBehaviour {
     public GameObject m_LocalClassViewer;
     public int m_LocalClassViewerIndex = 99;
 
+    [SyncVar]
+    public string m_PlayerName;
+
     private List<GameObject> m_ToSpawn;
 
     public void Awake()
@@ -25,8 +28,12 @@ public class PlayerManager : NetworkBehaviour {
 
     public void Start()
     {
-        if(isLocalPlayer)
+        if (isLocalPlayer)
+        {
             LocalGameManager.Instance.m_LocalPlayer = gameObject;
+            LocalGameManager.Instance.m_PlayerSetted = true;
+        }
+
         if (isServer)
         {
             LocalGameManager.Instance.m_LocalClassViewer = GameObject.FindGameObjectsWithTag("ClassViewer");
@@ -45,6 +52,12 @@ public class PlayerManager : NetworkBehaviour {
             Debug.Log("Sto chiedendo al server di impostare la mia classe a " + playerClass);
             CmdSetLocalClass(playerClass);
         }
+    }
+
+    [Command]
+    public void CmdsetLocalName(string localname)
+    {
+        m_PlayerName = localname;
     }
 
 

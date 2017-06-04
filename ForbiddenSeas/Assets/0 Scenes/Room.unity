@@ -244,7 +244,7 @@ RectTransform:
   m_LocalScale: {x: 0.7931225, y: 0.7931225, z: 0.7931225}
   m_Children: []
   m_Father: {fileID: 1194562917}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -364,11 +364,11 @@ RectTransform:
   m_LocalScale: {x: 0.7931225, y: 0.7931225, z: 0.7931225}
   m_Children: []
   m_Father: {fileID: 1194562917}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250.5, y: -18}
+  m_AnchoredPosition: {x: 250.49994, y: -18}
   m_SizeDelta: {x: 389.99, y: 109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &37969975
@@ -1266,7 +1266,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707684536}
+        m_MethodName: SetName
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 217936267}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.InputField, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -4631,6 +4642,7 @@ GameObject:
   - component: {fileID: 1082601436}
   - component: {fileID: 1082601435}
   - component: {fileID: 1082601437}
+  - component: {fileID: 1082601438}
   m_Layer: 5
   m_Name: Player 1
   m_TagString: Untagged
@@ -4705,6 +4717,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0.33088237, g: 0.18003894, b: 0.18003894, a: 0.672}
   m_EffectDistance: {x: -4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1082601438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1082601433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edf27a9e919241448d472ed1bd75765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: 1
+  m_PlayerName: {fileID: 1991185157}
+  m_Class: {fileID: 1082601435}
+  sprites:
+  - {fileID: 21300000, guid: 69416f0d1e3b24c61aaa15299db1cdde, type: 3}
+  - {fileID: 21300000, guid: 6ac21b012c7064ca091ebc88be4232a8, type: 3}
+  - {fileID: 21300000, guid: 7735cd433c4cb4adab23d4ff2042bc99, type: 3}
+  - {fileID: 21300000, guid: 98b6239be3087487bb0acd2e9eac1c16, type: 3}
 --- !u!1 &1092835606
 GameObject:
   m_ObjectHideFlags: 0
@@ -5367,6 +5398,7 @@ GameObject:
   - component: {fileID: 1194562919}
   - component: {fileID: 1194562918}
   - component: {fileID: 1194562920}
+  - component: {fileID: 1194562921}
   m_Layer: 5
   m_Name: Player 2
   m_TagString: Untagged
@@ -5384,8 +5416,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 28585234}
   - {fileID: 37969974}
+  - {fileID: 28585234}
   m_Father: {fileID: 1429042141}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5441,6 +5473,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0.33088237, g: 0.18003894, b: 0.18003894, a: 0.672}
   m_EffectDistance: {x: -4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1194562921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1194562916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edf27a9e919241448d472ed1bd75765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: 2
+  m_PlayerName: {fileID: 37969976}
+  m_Class: {fileID: 1194562918}
+  sprites:
+  - {fileID: 21300000, guid: 69416f0d1e3b24c61aaa15299db1cdde, type: 3}
+  - {fileID: 21300000, guid: 6ac21b012c7064ca091ebc88be4232a8, type: 3}
+  - {fileID: 21300000, guid: 7735cd433c4cb4adab23d4ff2042bc99, type: 3}
+  - {fileID: 21300000, guid: 98b6239be3087487bb0acd2e9eac1c16, type: 3}
 --- !u!1 &1207611726
 GameObject:
   m_ObjectHideFlags: 0
@@ -6738,6 +6789,7 @@ MonoBehaviour:
   m_LobbyButtons: {fileID: 1064755129}
   m_OtherPlayers: {fileID: 0}
   logo: {fileID: 0}
+  m_PlayerName: Player
 --- !u!1 &1429042140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6786,6 +6838,7 @@ GameObject:
   - component: {fileID: 1433718952}
   - component: {fileID: 1433718951}
   - component: {fileID: 1433718953}
+  - component: {fileID: 1433718954}
   m_Layer: 5
   m_Name: Player 3
   m_TagString: Untagged
@@ -6860,6 +6913,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0.33088237, g: 0.18003894, b: 0.18003894, a: 0.672}
   m_EffectDistance: {x: -4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1433718954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433718949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edf27a9e919241448d472ed1bd75765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: 3
+  m_PlayerName: {fileID: 750480122}
+  m_Class: {fileID: 1433718951}
+  sprites:
+  - {fileID: 21300000, guid: 69416f0d1e3b24c61aaa15299db1cdde, type: 3}
+  - {fileID: 21300000, guid: 6ac21b012c7064ca091ebc88be4232a8, type: 3}
+  - {fileID: 21300000, guid: 7735cd433c4cb4adab23d4ff2042bc99, type: 3}
+  - {fileID: 21300000, guid: 98b6239be3087487bb0acd2e9eac1c16, type: 3}
 --- !u!1 &1438078523
 GameObject:
   m_ObjectHideFlags: 0
@@ -8196,6 +8268,7 @@ MonoBehaviour:
   m_LobbyButtons: {fileID: 1064755129}
   m_OtherPlayers: {fileID: 1429042140}
   logo: {fileID: 1427973294}
+  m_PlayerName: Player
 --- !u!1 &1708957789
 GameObject:
   m_ObjectHideFlags: 0
@@ -9611,6 +9684,7 @@ GameObject:
   - component: {fileID: 1937637704}
   - component: {fileID: 1937637703}
   - component: {fileID: 1937637705}
+  - component: {fileID: 1937637706}
   m_Layer: 5
   m_Name: Player 4
   m_TagString: Untagged
@@ -9685,6 +9759,25 @@ MonoBehaviour:
   m_EffectColor: {r: 0.33088237, g: 0.18003894, b: 0.18003894, a: 0.672}
   m_EffectDistance: {x: -4, y: 4}
   m_UseGraphicAlpha: 1
+--- !u!114 &1937637706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937637701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edf27a9e919241448d472ed1bd75765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: 4
+  m_PlayerName: {fileID: 372236383}
+  m_Class: {fileID: 1937637703}
+  sprites:
+  - {fileID: 21300000, guid: 69416f0d1e3b24c61aaa15299db1cdde, type: 3}
+  - {fileID: 21300000, guid: 6ac21b012c7064ca091ebc88be4232a8, type: 3}
+  - {fileID: 21300000, guid: 7735cd433c4cb4adab23d4ff2042bc99, type: 3}
+  - {fileID: 21300000, guid: 98b6239be3087487bb0acd2e9eac1c16, type: 3}
 --- !u!1 &1939264018
 GameObject:
   m_ObjectHideFlags: 0

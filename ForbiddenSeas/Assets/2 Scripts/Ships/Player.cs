@@ -7,8 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Player : NetworkBehaviour
 {
+    [SyncVar]
     public int playerId;
+    [SyncVar]
     public string playerName;
+
     public GameObject[] m_AdmiralList = new GameObject[4];
     public GameObject m_LocalCamera;
 
@@ -20,6 +23,8 @@ public class Player : NetworkBehaviour
     public Text m_reputationTextUI;
     public Text m_scoreTextUI;
     public GameObject m_Avviso;
+
+    public GameObject myTag;
 
 
     [SyncVar]
