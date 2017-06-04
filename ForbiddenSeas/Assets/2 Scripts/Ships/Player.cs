@@ -110,6 +110,21 @@ public class Player : NetworkBehaviour
 
     }
 
+    [Command]
+    public void CmdRequestTimetoServer()
+    {
+        if (!LocalGameManager.Instance.m_serverTimeSended)
+        {
+            LocalGameManager.Instance.m_serverTimeSended = true;
+            Debug.Log("Start Game LOOP!!!");
+            StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
+            StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
+            LocalGameManager.Instance.m_ServerOffsetTime = Time.timeSinceLevelLoad;
+            LocalGameManager.Instance.RpcNotifyServerTime(LocalGameManager.Instance.m_ServerOffsetTime);
+        }
+
+    }
+
     public void ImOnline(int connectionID)
     {
         Debug.Log("Sta notificando il player " + connectionID);
@@ -228,11 +243,14 @@ public class Player : NetworkBehaviour
         p.gameObject.transform.position = p.m_SpawnPoint;
         if (p.netId == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
         {
-            Utility.recursivePlayAnimation(m_Avviso.gameObject.transform, "FadeOut");
+            Utility.recursivePlayAnimation(m_Avviso.transform, "FadeOut");
         }
         yield return new WaitForSeconds(1f);
         p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         p.m_InsideArena = true;
+        yield return new WaitUntil(() => !m_Avviso.GetComponent<Animation>().isPlaying && !m_Avviso.GetComponentInChildren<Animation>().isPlaying);
+        m_Avviso.GetComponent<Text>().enabled = false;
+        m_Avviso.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = false;
     }
 
     [ClientRpc]
@@ -244,7 +262,7 @@ public class Player : NetworkBehaviour
             m_Avviso.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To Arena!"  : ClientScene.FindLocalObject(who).GetComponent<Player>().playerId + " has scored an ARRH!...To Arena!";
             m_Avviso.transform.GetChild(0).gameObject.GetComponent<Text>().enabled = true;
             m_Avviso.transform.GetChild(0).gameObject.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To Arena!" : ClientScene.FindLocalObject(who).GetComponent<Player>().playerId + " has scored an ARRH!...To Arena!";
-            Utility.recursivePlayAnimation(m_Avviso.gameObject.transform, "FadeIn");
+            Utility.recursivePlayAnimation(m_Avviso.transform, "FadeIn");
         }
 
         StartCoroutine(RespawnPlayerOutsideArena(ClientScene.FindLocalObject(p).GetComponent<Player>()));
