@@ -96,9 +96,11 @@ public class OnlineManager : NetworkLobbyManager {
         SetPlayerInfoLoadedFlag(conn, false);
 
         pl.transform.SetParent(g.transform);
+        /*
         NetworkTransformChild ntc = g.GetComponent<NetworkTransformChild>();
         ntc.target = pl.transform;
         ntc.enabled = true;
+        */
 
         NetworkServer.ReplacePlayerForConnection(conn, pl, playerControllerId);
 
