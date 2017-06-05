@@ -312,7 +312,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_IsEmpty: 0
   m_Events:
-  - time: 3.9666667
+  - time: 3.8333333
     functionName: searchPlayer
     data: 
     objectReferenceParameter: {fileID: 0}

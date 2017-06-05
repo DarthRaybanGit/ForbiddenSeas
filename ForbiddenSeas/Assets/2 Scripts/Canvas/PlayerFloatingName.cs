@@ -25,7 +25,7 @@ public class PlayerFloatingName : MonoBehaviour
     {
         if(trovato && target)
         {
-            if (LocalGameManager.Instance.GetPlayer(id).GetComponent<Player>().isThisPlayerLocal())
+            if (target.gameObject.GetComponent<Player>().isLocalPlayer)
             {
                 targetPos = Camera.main.WorldToScreenPoint(target.position);
                 transform.position = targetPos + offset;
@@ -40,7 +40,11 @@ public class PlayerFloatingName : MonoBehaviour
                 if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
                     targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
                 if (Camera.main.WorldToScreenPoint(target.position).z < 0)
+                {
                     targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
+                    //Debug.Log("Trick");
+                }
+
                 transform.position = targetPos;
                 transform.GetChild(1).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName; //da sostituire con player name
                 transform.GetChild(2).GetComponent<Text>().text = target.gameObject.GetComponent<Player>().playerName;

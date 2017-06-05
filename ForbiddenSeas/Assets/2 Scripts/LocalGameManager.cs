@@ -26,6 +26,7 @@ public class LocalGameManager : NetworkBehaviour
     //Variabili per la sincronizzazione del tempo di gioco
     public bool m_serverTimeSended = false;
     public bool m_timeIsSynced = false;
+    public float m_gapFromStart;
     public float m_ServerOffsetTime;
 
     public static float m_MatchEndTime;
@@ -150,11 +151,14 @@ public class LocalGameManager : NetworkBehaviour
     //Funzioni per la sincronizzazione del timestamp del server sui clients.
 
     [ClientRpc]
-    public void RpcNotifyServerTime(float time)
+    public void RpcNotifyServerTime(float time, bool first)
     {
-        Debug.Log("Sto notificando il time");
+        Debug.Log("Sto notificando il time " + time);
         //m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
-        m_ServerOffsetTime = time;
+        if(first)
+            m_gapFromStart = Time.timeSinceLevelLoad;
+
+        m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
 
         m_timeIsSynced = true;
         m_serverTimeSended = true;
@@ -164,7 +168,7 @@ public class LocalGameManager : NetworkBehaviour
 
     public float syncedTime()
     {
-        return Time.timeSinceLevelLoad - m_ServerOffsetTime;
+        return isServer ? Time.timeSinceLevelLoad : Time.timeSinceLevelLoad + m_ServerOffsetTime - m_gapFromStart;
     }
 
 
@@ -179,7 +183,8 @@ public class LocalGameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds((int)FixedDelayInGame.TREASURE_FIRST_SPAWN);
         //Risincronizza il time per sicurezza
-        LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
+        //m_ServerOffsetTime = Time.timeSinceLevelLoad;
+        LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad, false);
 
         m_Treasure = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.TREASURE]);
 
@@ -227,7 +232,7 @@ public class LocalGameManager : NetworkBehaviour
         {
             yield return new WaitForSeconds((int)FixedDelayInGame.COIN_SPAWN);
             //Risincronizza il time per sicurezza
-            LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
+            LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad, false);
 
 
             toSpawn = searchWhichCoinToSpawn();
@@ -268,7 +273,7 @@ public class LocalGameManager : NetworkBehaviour
         {
             if (!b)
             {
-                GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[count].position, Quaternion.identity);
+                GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[count].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count].transform.rotation);
                 NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
                 m_PowerUp[count] = true;
             }
@@ -279,7 +284,7 @@ public class LocalGameManager : NetworkBehaviour
         {
             yield return new WaitForSeconds((int)FixedDelayInGame.POWERUP_SPAWN);
             //Risincronizza il time per sicurezza
-            LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
+            LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad, false);
             Debug.Log("PowerUp SPAWN!!!");
 
             count = 0;
