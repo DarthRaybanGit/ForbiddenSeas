@@ -123,11 +123,12 @@ public class Player : NetworkBehaviour
         {
             LocalGameManager.Instance.m_serverTimeSended = true;
             Debug.Log("Start Game LOOP!!!");
+            LocalGameManager.Instance.m_ServerOffsetTime = Time.timeSinceLevelLoad;
+            LocalGameManager.Instance.RpcNotifyServerTime(LocalGameManager.Instance.m_ServerOffsetTime, true);
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
             StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
             StartCoroutine(LocalGameManager.Instance.c_LoopCoins());
-            LocalGameManager.Instance.m_ServerOffsetTime = Time.timeSinceLevelLoad;
-            LocalGameManager.Instance.RpcNotifyServerTime(LocalGameManager.Instance.m_ServerOffsetTime);
+
         }
 
     }
@@ -149,7 +150,7 @@ public class Player : NetworkBehaviour
     public void CmdAskForCurrentTime()
     {
         LocalGameManager.Instance.m_serverTimeSended = true;
-        LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
+        LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad, false);
     }
 
     [Server]

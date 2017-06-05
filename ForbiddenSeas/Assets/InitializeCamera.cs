@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InitializeCamera : StateMachineBehaviour {
 
@@ -23,9 +24,15 @@ public class InitializeCamera : StateMachineBehaviour {
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         LocalGameManager.Instance.m_CutIsPlaying = false;
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasHUD.transform, "FadeIn");
-        LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().CmdRequestTimetoServer();
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasEtichette.transform, "FadeIn");
+        LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().CmdRequestTimetoServer();
 
+    }
+
+    IEnumerator delayedTime()
+    {
+        yield return new WaitForSeconds(1f);
+        LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().CmdRequestTimetoServer();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

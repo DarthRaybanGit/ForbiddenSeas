@@ -44,11 +44,11 @@ public class CoolDownIndicator : MonoBehaviour
 
     public void OnGlobalPressed()
     {
-        anim.Play();
+        anim.Play("GlobalCoolDown");
     }
 
     public void NotAvailable()
     {
-        anim.Play();
+        anim.Play("NotAvailable");
     }
 }
