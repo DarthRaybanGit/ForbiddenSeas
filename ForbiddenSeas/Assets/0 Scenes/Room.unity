@@ -1197,7 +1197,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &217936266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1210,12 +1210,12 @@ RectTransform:
   m_Children:
   - {fileID: 1279750922}
   - {fileID: 358780545}
-  m_Father: {fileID: 360320650}
+  m_Father: {fileID: 1707684535}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 164}
+  m_AnchoredPosition: {x: -660, y: -416}
   m_SizeDelta: {x: 384.39, y: 86.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217936267
@@ -1837,7 +1837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &360320650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1850,7 +1850,6 @@ RectTransform:
   m_Children:
   - {fileID: 1800508594}
   - {fileID: 1728689659}
-  - {fileID: 217936266}
   m_Father: {fileID: 1707684535}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5564,7 +5563,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
@@ -6718,7 +6717,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1707684535}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6788,6 +6787,7 @@ MonoBehaviour:
   m_ConnectButtons: {fileID: 360320649}
   m_LobbyButtons: {fileID: 1064755129}
   m_OtherPlayers: {fileID: 0}
+  m_InputName: {fileID: 0}
   logo: {fileID: 0}
   m_PlayerName: Player
 --- !u!1 &1429042140
@@ -6820,7 +6820,7 @@ RectTransform:
   - {fileID: 1433718950}
   - {fileID: 1937637702}
   m_Father: {fileID: 1707684535}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -8243,6 +8243,7 @@ RectTransform:
   m_Children:
   - {fileID: 1064755130}
   - {fileID: 360320650}
+  - {fileID: 217936266}
   - {fileID: 1427973291}
   - {fileID: 1429042141}
   m_Father: {fileID: 0}
@@ -8267,6 +8268,7 @@ MonoBehaviour:
   m_ConnectButtons: {fileID: 360320649}
   m_LobbyButtons: {fileID: 1064755129}
   m_OtherPlayers: {fileID: 1429042140}
+  m_InputName: {fileID: 217936265}
   logo: {fileID: 1427973294}
   m_PlayerName: Player
 --- !u!1 &1708957789
@@ -10353,6 +10355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LocalPlayer: {fileID: 1330158076786248, guid: 0cb99fa1a883f874e98c063877ab29b4,
     type: 2}
+  m_PlayerSetted: 0
+  m_PlayerSettedRemote: 0
   m_Players: []
   m_PlayerRegistered: 0
   m_LocalClassViewer: []

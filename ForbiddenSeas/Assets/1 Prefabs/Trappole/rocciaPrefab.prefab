@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23247983473516092}
   - component: {fileID: 64675907879564348}
   m_Layer: 0
-  m_Name: roccia
+  m_Name: rocciaPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
