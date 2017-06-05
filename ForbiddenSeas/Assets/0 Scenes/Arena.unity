@@ -9516,6 +9516,7 @@ GameObject:
   - component: {fileID: 829725149}
   - component: {fileID: 829725148}
   - component: {fileID: 829725151}
+  - component: {fileID: 829725152}
   m_Layer: 0
   m_Name: Clock
   m_TagString: Untagged
@@ -9595,6 +9596,20 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &829725152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829725147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5019608, g: 0.39607847, b: 0.2901961, a: 1}
+  m_EffectDistance: {x: -4, y: 4}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &831015047
 Prefab:
   m_ObjectHideFlags: 0
@@ -13360,6 +13375,7 @@ GameObject:
   - component: {fileID: 1079476558}
   - component: {fileID: 1079476557}
   - component: {fileID: 1079476559}
+  - component: {fileID: 1079476560}
   m_Layer: 0
   m_Name: Reputation
   m_TagString: ReputationUI
@@ -13441,6 +13457,20 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1079476560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1079476555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5019608, g: 0.39607847, b: 0.2901961, a: 1}
+  m_EffectDistance: {x: -4, y: 4}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &1079643876
 Prefab:
   m_ObjectHideFlags: 0
@@ -34081,6 +34111,7 @@ GameObject:
   - component: {fileID: 2079017660}
   - component: {fileID: 2079017659}
   - component: {fileID: 2079017661}
+  - component: {fileID: 2079017662}
   m_Layer: 0
   m_Name: ARRH
   m_TagString: ScoreUI
@@ -34160,6 +34191,20 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &2079017662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079017657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5019608, g: 0.39607847, b: 0.2901961, a: 1}
+  m_EffectDistance: {x: -4, y: 4}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &2081078752
 Prefab:
   m_ObjectHideFlags: 0
