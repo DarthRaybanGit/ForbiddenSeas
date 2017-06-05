@@ -24,7 +24,7 @@ public class ShowInGameStats : MonoBehaviour
     {
         for (int i = 0; i < LocalGameManager.Instance.m_Players.Length; i++)
         {
-            //names[i].text = LocalGameManager.Instance.GetPlayer(i+1).GetComponent<Player>().playerName;
+            names[i].text = LocalGameManager.Instance.GetPlayer(i+1).GetComponent<Player>().playerName;
             kills[i].text = LocalGameManager.Instance.m_playerKills[i].ToString();
             arrhs[i].text = LocalGameManager.Instance.m_playerArrh[i].ToString();
             deaths[i].text = LocalGameManager.Instance.m_playerDeaths[i].ToString();

@@ -66,22 +66,7 @@ public class LocalGameManager : NetworkBehaviour
         }
         DontDestroyOnLoad(transform.gameObject);
         m_PlayersID = new Dictionary<int, int>();
-        //inizializzo gli arrh dei players
-        if (isServer)
-        {
-            m_playerArrh.Add(0);
-            m_playerArrh.Add(0);
-            m_playerArrh.Add(0);
-            m_playerArrh.Add(0);
-            m_playerDeaths.Add(0);
-            m_playerDeaths.Add(0);
-            m_playerDeaths.Add(0);
-            m_playerDeaths.Add(0);
-            m_playerKills.Add(0);
-            m_playerKills.Add(0);
-            m_playerKills.Add(0);
-            m_playerKills.Add(0);
-        }
+
     }
 
     public override void OnStartServer()
@@ -93,14 +78,11 @@ public class LocalGameManager : NetworkBehaviour
     public void TargetRpcNotifyClientConnection(NetworkConnection nc)
     {
         m_PlayerSettedRemote = true;
-        //Debug.Log("Cazzo");
     }
 
     [ClientRpc]
     public void RpcNotifyPlayersInGame(NetworkInstanceId[] players)
     {
-        //Debug.Log("Sto registrando " + players.Length + " players");
-
         StartCoroutine(registrazione(players));
     }
 
@@ -368,6 +350,21 @@ public class LocalGameManager : NetworkBehaviour
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
             */
         }
+
+        //inizializzo gli arrh dei players
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+
     }
 
 
