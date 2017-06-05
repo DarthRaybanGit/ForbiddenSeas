@@ -51,6 +51,13 @@ public class LocalGameManager : NetworkBehaviour
     public GameObject[] m_Coins;
     public bool[] m_CoinsPresence;
 
+    [SyncVar]
+    public SyncListInt m_playerArrh = new SyncListInt();
+    [SyncVar]
+    public SyncListInt m_playerKills = new SyncListInt();
+    [SyncVar]
+    public SyncListInt m_playerDeaths = new SyncListInt();
+
     private void Awake()
     {
         if (Instance == null)
@@ -59,7 +66,22 @@ public class LocalGameManager : NetworkBehaviour
         }
         DontDestroyOnLoad(transform.gameObject);
         m_PlayersID = new Dictionary<int, int>();
-
+        //inizializzo gli arrh dei players
+        if (isServer)
+        {
+            m_playerArrh.Add(0);
+            m_playerArrh.Add(0);
+            m_playerArrh.Add(0);
+            m_playerArrh.Add(0);
+            m_playerDeaths.Add(0);
+            m_playerDeaths.Add(0);
+            m_playerDeaths.Add(0);
+            m_playerDeaths.Add(0);
+            m_playerKills.Add(0);
+            m_playerKills.Add(0);
+            m_playerKills.Add(0);
+            m_playerKills.Add(0);
+        }
     }
 
     public override void OnStartServer()
@@ -419,11 +441,7 @@ public class LocalGameManager : NetworkBehaviour
             }
         }
     }
-
-
-
-
-
+        
     public bool GameCanStart()
     {
         return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();

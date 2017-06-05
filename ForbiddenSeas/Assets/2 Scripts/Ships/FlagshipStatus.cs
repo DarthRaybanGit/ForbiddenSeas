@@ -141,7 +141,6 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void OnDeath()
     {
-
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
@@ -158,6 +157,7 @@ public class FlagshipStatus : NetworkBehaviour
             //Increase Opponent Kill Count
         }
         m_isDead = true;
+        LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId]++;
         m_reputation += ReputationValues.KILLED;
         m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
