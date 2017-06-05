@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 199706823537573156}
   - component: {fileID: 135895827646473050}
   - component: {fileID: 114595380208680472}
+  - component: {fileID: 114007838802676278}
   m_Layer: 0
   m_Name: Moneta
   m_TagString: Untagged
@@ -99,6 +100,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114007838802676278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251094977506110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc84aff70701df4b9bbc19ef9f1816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IndexInPool: 0
 --- !u!114 &114595380208680472
 MonoBehaviour:
   m_ObjectHideFlags: 1

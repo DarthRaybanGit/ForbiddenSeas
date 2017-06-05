@@ -46,6 +46,7 @@ public class LocalGameManager : NetworkBehaviour
     //Server
     public bool[] m_PowerUp = { false, false, false};
     public float m_CoinsRadius;
+    public float m_CoinsDisplacement;
     public int m_CoinNumbers = 50;
     public GameObject[] m_Coins;
     public bool[] m_CoinsPresence;
@@ -209,9 +210,10 @@ public class LocalGameManager : NetworkBehaviour
 
         foreach (int i in toSpawn)
         {
-            float z = Mathf.Sin(i) * m_CoinsRadius;
-            float x = Mathf.Cos(i) * m_CoinsRadius;
+            float z = Mathf.Sin(i) * m_CoinsRadius + Random.Range(-m_CoinsDisplacement, m_CoinsDisplacement);
+            float x = Mathf.Cos(i) * m_CoinsRadius + Random.Range(-m_CoinsDisplacement, m_CoinsDisplacement);
             GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN], new Vector3(x, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.position.y, z), OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.rotation);
+            g.GetComponent<Coin>().m_IndexInPool = i;
             NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
             m_Coins[i] = g;
             m_CoinsPresence[i] = true;
@@ -230,10 +232,12 @@ public class LocalGameManager : NetworkBehaviour
 
             foreach (int i in toSpawn)
             {
-                float z = Mathf.Sin(i) * m_CoinsRadius;
-                float x = Mathf.Cos(i) * m_CoinsRadius;
+                float z = Mathf.Sin(i) * m_CoinsRadius + Random.Range(-10, 10);
+                float x = Mathf.Cos(i) * m_CoinsRadius + Random.Range(-10, 10);
                 GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN], new Vector3(x, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.position.y, z), OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.rotation);
+                g.GetComponent<Coin>().m_IndexInPool = i;
                 NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+                m_Coins[i] = g;
                 m_CoinsPresence[i] = true;
             }
 
