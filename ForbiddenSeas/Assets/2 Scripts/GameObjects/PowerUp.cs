@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 public class PowerUp : NetworkBehaviour {
 
     public PowerUP type;
-    public Vector3 m_rot = new Vector3(15, 30, 45);
-
     public NetworkInstanceId playerInside;
     public bool m_LockForFirstInside = false;
 
