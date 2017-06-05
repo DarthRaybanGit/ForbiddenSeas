@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 111270661672099168}
   - component: {fileID: 198157839124322206}
   - component: {fileID: 199706823537573156}
+  - component: {fileID: 135895827646473050}
+  - component: {fileID: 114595380208680472}
   m_Layer: 0
   m_Name: Moneta
   m_TagString: Untagged
@@ -97,6 +99,50 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114595380208680472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251094977506110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 244
+    i1: 118
+    i2: 119
+    i3: 91
+    i4: 19
+    i5: 139
+    i6: 228
+    i7: 26
+    i8: 59
+    i9: 194
+    i10: 241
+    i11: 111
+    i12: 184
+    i13: 189
+    i14: 66
+    i15: 151
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!135 &135895827646473050
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251094977506110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.08217804
+  m_Center: {x: 0.000003952533, y: 0.00021448052, z: -0.00010880826}
 --- !u!198 &198157839124322206
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -152,7 +198,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1297225467
+  randomSeed: -344107537
   InitialModule:
     serializedVersion: 3
     enabled: 1

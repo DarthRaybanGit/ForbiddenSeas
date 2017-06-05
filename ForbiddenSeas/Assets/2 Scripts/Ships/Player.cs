@@ -125,6 +125,7 @@ public class Player : NetworkBehaviour
             Debug.Log("Start Game LOOP!!!");
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
             StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
+            StartCoroutine(LocalGameManager.Instance.c_LoopCoins());
             LocalGameManager.Instance.m_ServerOffsetTime = Time.timeSinceLevelLoad;
             LocalGameManager.Instance.RpcNotifyServerTime(LocalGameManager.Instance.m_ServerOffsetTime);
         }

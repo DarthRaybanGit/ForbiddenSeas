@@ -46,7 +46,8 @@ public enum FixedDelayInGame
     PLAYERS_DELAY = 5,
     COUNTDOWN_START = 5,
     YOHOHO_UPDATE_INTERVAL = 1,
-    YOHOHO_FULLFY_SPAN = 120
+    YOHOHO_FULLFY_SPAN = 120,
+    COIN_SPAWN = 60
 }
 
 public enum BuffTiming
@@ -84,7 +85,9 @@ public enum SpawnIndex
     PORTO,
     REGEN,
     SPEED_UP,
-    DAMAGE_UP
+    DAMAGE_UP,
+    COIN,
+    MINA
 }
 
 public class Symbols

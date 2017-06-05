@@ -43,9 +43,12 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_IsWindowOver = false;
     public bool m_LoadingCompleted = false;
 
-
     //Server
     public bool[] m_PowerUp = { false, false, false};
+    public float m_CoinsRadius;
+    public int m_CoinNumbers = 50;
+    public GameObject[] m_Coins;
+    public bool[] m_CoinsPresence;
 
     private void Awake()
     {
@@ -55,6 +58,7 @@ public class LocalGameManager : NetworkBehaviour
         }
         DontDestroyOnLoad(transform.gameObject);
         m_PlayersID = new Dictionary<int, int>();
+
     }
 
     public override void OnStartServer()
@@ -66,31 +70,31 @@ public class LocalGameManager : NetworkBehaviour
     public void TargetRpcNotifyClientConnection(NetworkConnection nc)
     {
         m_PlayerSettedRemote = true;
-        Debug.Log("Cazzo");
+        //Debug.Log("Cazzo");
     }
 
     [ClientRpc]
     public void RpcNotifyPlayersInGame(NetworkInstanceId[] players)
     {
-        Debug.Log("Sto registrando " + players.Length + " players");
+        //Debug.Log("Sto registrando " + players.Length + " players");
 
         StartCoroutine(registrazione(players));
     }
 
     IEnumerator registrazione(NetworkInstanceId[] play)
     {
-        Debug.Log("Localmente " + GameObject.FindGameObjectsWithTag("Player").Length);
+        //Debug.Log("Localmente " + GameObject.FindGameObjectsWithTag("Player").Length);
 
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Player").Length == play.Length);
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         LocalGameManager.Instance.m_Players = new GameObject[players.Length];
 
-        Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length);
+        //Debug.Log("Ho trovato " + players.Length + " giocatori. " + m_Players.Length);
 
         for(int i = 0; i < play.Length; i++)
         {
-            Debug.Log("ID: " + play[i] + " Object " + ClientScene.FindLocalObject(play[i]));
+            //Debug.Log("ID: " + play[i] + " Object " + ClientScene.FindLocalObject(play[i]));
             LocalGameManager.Instance.m_Players[i] = ClientScene.FindLocalObject(play[i]);
             //LocalGameManager.Instance.m_Players[i].GetComponent<Player>().playerId = i;
         }
@@ -194,6 +198,60 @@ public class LocalGameManager : NetworkBehaviour
     }
 
     [Server]
+    public IEnumerator c_LoopCoins()
+    {
+        m_Coins = new GameObject[m_CoinNumbers];
+        m_CoinsPresence = new bool[m_CoinNumbers];
+
+        List<int> toSpawn = searchWhichCoinToSpawn();
+
+        Debug.Log("Coin SPAWN!!! " + toSpawn.Count);
+
+        foreach (int i in toSpawn)
+        {
+            float z = Mathf.Sin(i) * m_CoinsRadius;
+            float x = Mathf.Cos(i) * m_CoinsRadius;
+            GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN], new Vector3(x, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.position.y, z), OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.rotation);
+            NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+            m_Coins[i] = g;
+            m_CoinsPresence[i] = true;
+        }
+
+        while (LocalGameManager.Instance.m_GameIsStarted)
+        {
+            yield return new WaitForSeconds((int)FixedDelayInGame.COIN_SPAWN);
+            //Risincronizza il time per sicurezza
+            LocalGameManager.Instance.RpcNotifyServerTime(m_ServerOffsetTime);
+
+
+            toSpawn = searchWhichCoinToSpawn();
+
+            Debug.Log("Coin SPAWN!!! " + toSpawn.Count);
+
+            foreach (int i in toSpawn)
+            {
+                float z = Mathf.Sin(i) * m_CoinsRadius;
+                float x = Mathf.Cos(i) * m_CoinsRadius;
+                GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN], new Vector3(x, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.position.y, z), OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.COIN].transform.rotation);
+                NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+                m_CoinsPresence[i] = true;
+            }
+
+        }
+    }
+
+    private List<int> searchWhichCoinToSpawn()
+    {
+        List<int> monete = new List<int>();
+        for (int i = 0; i < m_CoinsPresence.Length; i++)
+        {
+            if (!m_CoinsPresence[i])
+                monete.Add(i);
+        }
+        return monete;
+    }
+
+    [Server]
     public IEnumerator c_LoopPowerUp()
     {
         int count = 0;
@@ -266,11 +324,12 @@ public class LocalGameManager : NetworkBehaviour
                 count++;
             }
 
+            /*
             foreach (NetworkInstanceId i in to_Send)
             {
                 Debug.Log("Sto per inviare " + i);
             }
-
+            */
 
 
             //Start Game!
