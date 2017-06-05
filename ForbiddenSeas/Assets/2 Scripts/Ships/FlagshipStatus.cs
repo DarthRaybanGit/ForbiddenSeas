@@ -38,6 +38,8 @@ public class FlagshipStatus : NetworkBehaviour
     public float m_mainDistance;
     [SyncVar]
     public float m_specialDistance;
+    [SyncVar]
+    public float m_defense;
 
     public StatusHUD statusHUD;
     public Player m_Me;
@@ -67,7 +69,7 @@ public class FlagshipStatus : NetworkBehaviour
                 m_specialCD = Pirates.specAttackCD;
                 m_mainDistance = Pirates.mainDistance;
                 m_specialDistance = Pirates.specialDistance;
-
+                m_defense = Pirates.defense;
                 break;
 
             case 1:
@@ -81,6 +83,7 @@ public class FlagshipStatus : NetworkBehaviour
                 m_specialCD = Vikings.specAttackCD;
                 m_mainDistance = Vikings.mainDistance;
                 m_specialDistance = Vikings.specialDistance;
+                m_defense = Vikings.defense;
                 break;
 
             case 2:
@@ -94,6 +97,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_specialCD = Egyptians.specAttackCD;
                 m_mainDistance = Egyptians.mainDistance;
                 m_specialDistance = Egyptians.specialDistance;
+                m_defense = Egyptians.defense;
+
                 break;
 
             case 3:
@@ -107,6 +112,8 @@ public class FlagshipStatus : NetworkBehaviour
                 m_specialCD = Orientals.specAttackCD;
                 m_mainDistance = Orientals.mainDistance;
                 m_specialDistance = Orientals.specialDistance;
+                m_defense = Orientals.defense;
+
                 break;
 
             default:

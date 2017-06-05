@@ -304,11 +304,11 @@ public class CombatSystem : NetworkBehaviour
             {
                 case "mainAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
-                    GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
                     break;
                 case "specialAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
-                    GetComponent<FlagshipStatus>().CmdTakeDamage(dmg, LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject).ToString());
                     break;
                 case "Miasma":
                     bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
