@@ -2504,6 +2504,7 @@ MonoBehaviour:
   - {fileID: 1319198098063744, guid: 640c09e667655d74c8ddece0bf6deca6, type: 2}
   - {fileID: 1039782963185754, guid: ff9ce719f5e50ab46a29e64fd08cbaf8, type: 2}
   - {fileID: 1251094977506110, guid: f476775b138be41a3bc2f16fb8bd4297, type: 2}
+  - {fileID: 1887395134150656, guid: e4ceddfd77a504c95ab626a44535e9f2, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -10377,8 +10378,9 @@ MonoBehaviour:
   m_IsWindowOver: 0
   m_LoadingCompleted: 0
   m_PowerUp: 000000
-  m_CoinsRadius: 60
-  m_CoinNumbers: 50
+  m_CoinsRadius: 140
+  m_CoinsDisplacement: 20
+  m_CoinNumbers: 72
   m_Coins: []
   m_CoinsPresence: 
 --- !u!4 &2043742207

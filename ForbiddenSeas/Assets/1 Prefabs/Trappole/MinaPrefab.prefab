@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4901281567080316}
+  - component: {fileID: 114448918513679700}
   m_Layer: 0
   m_Name: MinaPrefab
   m_TagString: Untagged
@@ -125,6 +126,38 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114448918513679700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887395134150656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 228
+    i1: 206
+    i2: 221
+    i3: 253
+    i4: 119
+    i5: 165
+    i6: 4
+    i7: 201
+    i8: 90
+    i9: 182
+    i10: 38
+    i11: 164
+    i12: 69
+    i13: 53
+    i14: 233
+    i15: 242
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!135 &135448737115231706
 SphereCollider:
   m_ObjectHideFlags: 1
