@@ -226,8 +226,8 @@ public class Player : NetworkBehaviour
     [Server]
     public void ScoreAnARRH()
     {
-        Debug.Log("Player " + (int)netId.Value + " ha segnato un ARRH!");
-
+        
+        LocalGameManager.Instance.m_playerArrh[playerId]++;
         m_score++;
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.ARRH;
         TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);

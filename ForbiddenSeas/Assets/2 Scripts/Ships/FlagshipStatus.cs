@@ -130,18 +130,21 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Command]
-    public void CmdTakeDamage(int dmg, string a_name, string da_name)
+    public void CmdTakeDamage(int dmg, string a_name, int da_playerId)
     {
         m_Health -= dmg;
-        RpcTakenDamage(a_name, da_name);
+        //RpcTakenDamage(a_name, da_playerId);
 
         if (m_Health <= 0)
+        {
             OnDeath();
+            if(da_playerId != -1)
+                LocalGameManager.Instance.m_playerKills[da_playerId]++;
+        }
     }
 
     public void OnDeath()
     {
-
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
@@ -158,6 +161,7 @@ public class FlagshipStatus : NetworkBehaviour
             //Increase Opponent Kill Count
         }
         m_isDead = true;
+        LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId]++;
         m_reputation += ReputationValues.KILLED;
         m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
@@ -166,11 +170,12 @@ public class FlagshipStatus : NetworkBehaviour
 
     }
 
+    /*
     [ClientRpc]
-    void RpcTakenDamage(string a, string da)
+    void RpcTakenDamage(string a, int da)
     {
         Debug.Log("io sono: player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString() + " Colpito " + a + " da " + da);
-    }
+    }*/
 
     //metodo DoT && HoT
     private IEnumerator DmgOverTime()
@@ -179,7 +184,7 @@ public class FlagshipStatus : NetworkBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), "DoT");
+            CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), -1);
         }
     }
 

@@ -52,6 +52,13 @@ public class LocalGameManager : NetworkBehaviour
     public GameObject[] m_Coins;
     public bool[] m_CoinsPresence;
 
+    [SyncVar]
+    public SyncListInt m_playerArrh = new SyncListInt();
+    [SyncVar]
+    public SyncListInt m_playerKills = new SyncListInt();
+    [SyncVar]
+    public SyncListInt m_playerDeaths = new SyncListInt();
+
     private void Awake()
     {
         if (Instance == null)
@@ -72,14 +79,11 @@ public class LocalGameManager : NetworkBehaviour
     public void TargetRpcNotifyClientConnection(NetworkConnection nc)
     {
         m_PlayerSettedRemote = true;
-        //Debug.Log("Cazzo");
     }
 
     [ClientRpc]
     public void RpcNotifyPlayersInGame(NetworkInstanceId[] players)
     {
-        //Debug.Log("Sto registrando " + players.Length + " players");
-
         StartCoroutine(registrazione(players));
     }
 
@@ -351,6 +355,21 @@ public class LocalGameManager : NetworkBehaviour
             LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
             */
         }
+
+        //inizializzo gli arrh dei players
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerArrh.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerDeaths.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+        m_playerKills.Add(0);
+
     }
 
 
@@ -424,11 +443,7 @@ public class LocalGameManager : NetworkBehaviour
             }
         }
     }
-
-
-
-
-
+        
     public bool GameCanStart()
     {
         return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();
