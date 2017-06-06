@@ -15,7 +15,8 @@ public class PowerUp : NetworkBehaviour {
     public GameObject m_EmitterBound;
     public GameObject m_EmitterGain;
 
-
+    [SyncVar]
+    public int m_maxHealth = 5000;
     [SyncVar]
     public int m_health = 5000;
 
