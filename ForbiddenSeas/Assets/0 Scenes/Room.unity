@@ -12767,6 +12767,7 @@ MonoBehaviour:
   m_GameGeneralLoopIsStarted: 0
   m_serverTimeSended: 0
   m_timeIsSynced: 0
+  m_gapFromStart: 0
   m_ServerOffsetTime: 0
   m_Treasure: {fileID: 0}
   m_TreasureIsInGame: 0
