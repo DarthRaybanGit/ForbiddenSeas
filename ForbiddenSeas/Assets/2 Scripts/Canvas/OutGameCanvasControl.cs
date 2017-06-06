@@ -14,6 +14,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject m_OtherPlayers;
     public GameObject m_InputName;
     public GameObject m_ReadyButton;
+    public GameObject[] m_stats;
     public Animation logo;
     private int currentSelectedClass = 0;
 
@@ -80,8 +81,9 @@ public class OutGameCanvasControl : MonoBehaviour
     {
         if (currentSelectedClass == 3)
             return;
+        m_stats[currentSelectedClass].SetActive(false);
+        m_stats[++currentSelectedClass].SetActive(true);
 
-        currentSelectedClass++;
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
         SelectClass(currentSelectedClass);
     }
@@ -91,7 +93,9 @@ public class OutGameCanvasControl : MonoBehaviour
         if (currentSelectedClass == 0)
             return;
 
-        currentSelectedClass--;
+        m_stats[currentSelectedClass].SetActive(false);
+        m_stats[--currentSelectedClass].SetActive(true);
+
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
         SelectClass(currentSelectedClass);
     }
