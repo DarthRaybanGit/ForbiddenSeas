@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: powerup
   m_Shader: {fileID: 4800000, guid: 9ec7ccbd4289d0543939f61121224d93, type: 3}
-  m_ShaderKeywords: TCP2_SPEC_TOON _EMISSION
+  m_ShaderKeywords: TCP2_SPEC _ALPHABLEND_ON _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -87,7 +87,7 @@ Material:
       second: 1
     - first:
         name: _DstBlend
-      second: 0
+      second: 10
     - first:
         name: _GlossMapScale
       second: 1
@@ -102,7 +102,7 @@ Material:
       second: 1
     - first:
         name: _Mode
-      second: 0
+      second: 2
     - first:
         name: _OcclusionStrength
       second: 1
@@ -111,44 +111,44 @@ Material:
       second: 0.02
     - first:
         name: _RampSmooth
-      second: 1
+      second: 0.58
     - first:
         name: _RampThreshold
       second: 1
     - first:
         name: _Shininess
-      second: 0.1
+      second: 0.16
     - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
         name: _SpecSmooth
-      second: 0.05
+      second: 1
     - first:
         name: _SpecularHighlights
       second: 1
     - first:
         name: _SrcBlend
-      second: 1
+      second: 5
     - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
-      second: 1
+      second: 0
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.29411763, g: 1, b: 0.32819477, a: 1}
+      second: {r: 0.09913793, g: 0.8455882, b: 0, a: 0.553}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _HColor
-      second: {r: 0.69115037, g: 0.9044118, b: 0.4056553, a: 1}
+      second: {r: 0.8742393, g: 1, b: 0.7058823, a: 1}
     - first:
         name: _SColor
-      second: {r: 0.38002813, g: 0.52205884, b: 0.39276195, a: 1}
+      second: {r: 0.28006056, g: 0.5147059, b: 0.30109778, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.5, g: 0.5, b: 0.5, a: 1}

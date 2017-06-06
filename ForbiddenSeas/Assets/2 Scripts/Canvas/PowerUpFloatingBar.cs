@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PowerUpFloatingBar : MonoBehaviour
 {
     public bool isSpeedUp = false;
+    public float distance = 30f;
     public Transform target;
     public Vector2 offset;
     Vector2 targetPos;
@@ -16,11 +17,19 @@ public class PowerUpFloatingBar : MonoBehaviour
     {
         target = transform.parent;
         transform.SetParent(GameObject.Find("Etichette").transform);
-        bar = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+        bar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+        total = target.gameObject.GetComponent<PowerUp>().m_maxHealth;
     }
 
     void Update ()
     {
+        if (!target.gameObject)
+            Destroy(gameObject);
+        
+        bool isClose = Vector3.Distance(LocalGameManager.Instance.m_LocalPlayer.transform.position, target.position) < distance;
+        transform.GetChild(0).gameObject.SetActive(isClose);
+        if (!isClose)
+            return;
         targetPos = Camera.main.WorldToScreenPoint(target.position);
         targetPos += offset;
 
@@ -35,8 +44,8 @@ public class PowerUpFloatingBar : MonoBehaviour
         transform.position = targetPos;
 
         FillBar();
-        transform.GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
-        transform.GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
+        transform.GetChild(0).GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
+        transform.GetChild(0).GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
     }
 
     void FillBar()
