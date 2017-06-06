@@ -45,7 +45,6 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_LoadingCompleted = false;
 
     //Server
-    public bool[] m_PowerUp = { false, false, false};
     public float m_CoinsRadius;
     public float m_CoinsDisplacement;
     public int m_CoinNumbers = 50;
@@ -265,41 +264,21 @@ public class LocalGameManager : NetworkBehaviour
     }
 
     [Server]
-    public IEnumerator c_LoopPowerUp()
+    public IEnumerator c_LoopPowerUp(float delay, SpawnIndex which)
     {
-        int count = 0;
-        //Controllare se un power up è già presente oppure no in quel caso non spawnare nulla.
-        foreach (bool b in m_PowerUp)
-        {
-            if (!b)
-            {
-                GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[count].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count].transform.rotation);
-                NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
-                m_PowerUp[count] = true;
-            }
-            count++;
-        }
+        yield return new WaitForSeconds(delay);
+        GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)which], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[(int) (which - SpawnIndex.REGEN)].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)which].transform.rotation);
 
-        while (LocalGameManager.Instance.m_GameIsStarted)
-        {
-            yield return new WaitForSeconds((int)FixedDelayInGame.POWERUP_SPAWN);
-            //Risincronizza il time per sicurezza
-            LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad, false);
-            Debug.Log("PowerUp SPAWN!!!");
+        NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
+    }
 
-            count = 0;
-            //Controllare se un power up è già presente oppure no in quel caso non spawnare nulla.
-            foreach(bool b in m_PowerUp)
-            {
-                if (!b)
-                {
-                    GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.REGEN + count], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[count].position, Quaternion.identity);
-                    NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
-                    m_PowerUp[count] = true;
-                }
-                count++;
-            }
-        }
+    [Server]
+    public IEnumerator c_LoopMines(float delay, int which)
+    {
+        yield return new WaitForSeconds(delay);
+        GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.MINA], OnlineManager.s_Singleton.m_MinesSpawnPosition[which].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.MINA].transform.rotation);
+        g.GetComponentInChildren<Mina>().which = which;
+        NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
     }
 
     [Server]
@@ -443,7 +422,7 @@ public class LocalGameManager : NetworkBehaviour
             }
         }
     }
-        
+
     public bool GameCanStart()
     {
         return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();

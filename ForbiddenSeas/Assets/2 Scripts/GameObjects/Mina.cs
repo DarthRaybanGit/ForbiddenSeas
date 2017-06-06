@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class Mina : NetworkBehaviour {
 
     public int m_Danno;
+    public int which;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,6 +27,7 @@ public class Mina : NetworkBehaviour {
     IEnumerator shutDownMe()
     {
         yield return new WaitForSeconds(2.5f);
+        LocalGameManager.Instance.c_LoopMines((int)FixedDelayInGame.MINE_SPAWN, which);
         Destroy(gameObject);
     }
 }
