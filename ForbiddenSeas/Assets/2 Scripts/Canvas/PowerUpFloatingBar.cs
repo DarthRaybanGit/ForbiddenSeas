@@ -12,8 +12,6 @@ public class PowerUpFloatingBar : MonoBehaviour
     public float amount = 1f, total = 1f;
     Image bar;
 
-    public bool trovato = false;
-
     void Start()
     {
         target = transform.parent;
@@ -23,26 +21,22 @@ public class PowerUpFloatingBar : MonoBehaviour
 
     void Update ()
     {
-        if(trovato && target)
+        targetPos = Camera.main.WorldToScreenPoint(target.position);
+        targetPos += offset;
+
+        if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
+            targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
+        
+        if (Camera.main.WorldToScreenPoint(target.position).z < 0)
         {
-
-            targetPos = Camera.main.WorldToScreenPoint(target.position);
-            targetPos += offset;
-
-            if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
-                targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
-            
-            if (Camera.main.WorldToScreenPoint(target.position).z < 0)
-            {
-                targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
-            }
-
-            transform.position = targetPos;
-
-            FillBar();
-            transform.GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
-            transform.GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
+            targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
         }
+
+        transform.position = targetPos;
+
+        FillBar();
+        transform.GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
+        transform.GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
     }
 
     void FillBar()

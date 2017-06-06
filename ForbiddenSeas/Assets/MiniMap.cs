@@ -50,13 +50,19 @@ public class MiniMap : MonoBehaviour
     {
         if (ready)
         {
-            if (isTreasure)   
+            Quaternion rot;
+            if (isTreasure)
+            {
                 normalizedPlayerPos = (SearchTreasure().position) / 427.5f * 150f;
+                rot = SearchTreasure().rotation;
+            }
             else
+            {
                 normalizedPlayerPos = (LocalGameManager.Instance.GetPlayer(player).transform.position) / 427.5f * 150f;
+                rot = LocalGameManager.Instance.GetPlayer(player).transform.rotation;
+            }
 
             GetComponent<RectTransform>().anchoredPosition = new Vector2(normalizedPlayerPos.x, normalizedPlayerPos.z);
-            Quaternion rot = LocalGameManager.Instance.GetPlayer(player).transform.rotation;
             rot.z = -rot.y;
             rot.y = 0f;
             rot.x = 0f;
