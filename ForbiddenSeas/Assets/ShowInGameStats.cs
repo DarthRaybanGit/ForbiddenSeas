@@ -9,6 +9,8 @@ public class ShowInGameStats : MonoBehaviour
     public Text [] arrhs;
     public Text [] kills;
     public Text [] deaths;
+    public Image [] classes;
+    public Sprite [] sprites;
 
     void Update()
     {
@@ -28,6 +30,7 @@ public class ShowInGameStats : MonoBehaviour
             kills[i].text = LocalGameManager.Instance.m_playerKills[i].ToString();
             arrhs[i].text = LocalGameManager.Instance.m_playerArrh[i].ToString();
             deaths[i].text = LocalGameManager.Instance.m_playerDeaths[i].ToString();
+            classes[i].sprite = sprites[(int)LocalGameManager.Instance.GetPlayer(i+1).GetComponent<FlagshipStatus>().shipClass];
         }
     }
 }
