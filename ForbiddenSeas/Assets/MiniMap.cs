@@ -23,16 +23,24 @@ public class MiniMap : MonoBehaviour
 
         if (player > LocalGameManager.Instance.m_Players.Length)
             Destroy(gameObject);
-
-        if (LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().playerId == player)
-            GetComponent<Image>().color = Color.green;
-        else
-            GetComponent<Image>().color = Color.red;
-
+        
         if (isTreasure)
         {
             yield return new WaitUntil(() => LocalGameManager.Instance.m_TreasureIsInGame);
             GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            if (LocalGameManager.Instance.GetPlayerId(LocalGameManager.Instance.m_LocalPlayer) == player)
+            {
+                GetComponent<Image>().color = Color.green;
+                transform.GetChild(0).GetComponent<Image>().color = Color.green;
+            }
+            else
+            {
+                GetComponent<Image>().color = Color.red;
+                transform.GetChild(0).GetComponent<Image>().color = Color.red;
+            }
         }
         ready = true;
     }
@@ -48,8 +56,15 @@ public class MiniMap : MonoBehaviour
                 normalizedPlayerPos = (LocalGameManager.Instance.GetPlayer(player).transform.position) / 427.5f * 150f;
 
             GetComponent<RectTransform>().anchoredPosition = new Vector2(normalizedPlayerPos.x, normalizedPlayerPos.z);
+            Quaternion rot = LocalGameManager.Instance.GetPlayer(player).transform.rotation;
+            rot.z = -rot.y;
+            rot.y = 0f;
+            rot.x = 0f;
+
+            GetComponent<RectTransform>().rotation = rot;
         }
 	}
+
 
     private Transform SearchTreasure()
     {

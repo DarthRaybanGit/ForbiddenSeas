@@ -17,7 +17,7 @@ public class PowerUp : NetworkBehaviour {
 
 
     [SyncVar]
-    public float m_health = 5000;
+    public int m_health = 5000;
 
 
     public override void OnStartClient()
