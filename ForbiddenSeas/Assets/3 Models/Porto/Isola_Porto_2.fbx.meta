@@ -6,10 +6,41 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Drittto_corto
+    100004: MAre
+    100006: Porto
+    100008: Porto.001
+    100010: Porto_MeshPart0
+    100012: Porto_MeshPart1
+    100014: Plane
     400000: //RootNode
+    400002: Drittto_corto
+    400004: MAre
+    400006: Porto
+    400008: Porto.001
+    400010: Porto_MeshPart0
+    400012: Porto_MeshPart1
+    400014: Plane
     2300000: //RootNode
+    2300002: Drittto_corto
+    2300004: MAre
+    2300006: Porto.001
+    2300008: Porto_MeshPart0
+    2300010: Porto_MeshPart1
+    2300012: Plane
     3300000: //RootNode
+    3300002: Drittto_corto
+    3300004: MAre
+    3300006: Porto.001
+    3300008: Porto_MeshPart0
+    3300010: Porto_MeshPart1
+    3300012: Plane
     4300000: Drittto_corto
+    4300002: Porto.001
+    4300004: MAre
+    4300006: Porto_MeshPart0
+    4300008: Porto_MeshPart1
+    4300010: Plane
   materials:
     importMaterials: 1
     materialName: 0

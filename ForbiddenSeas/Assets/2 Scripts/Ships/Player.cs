@@ -226,7 +226,7 @@ public class Player : NetworkBehaviour
     [Server]
     public void ScoreAnARRH()
     {
-        
+
         LocalGameManager.Instance.m_playerArrh[playerId]++;
         m_score++;
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.ARRH;
@@ -267,7 +267,7 @@ public class Player : NetworkBehaviour
         if(p == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
         {
             m_Avviso.GetComponent<Text>().enabled = true;
-            m_Avviso.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To Arena!"  : ClientScene.FindLocalObject(who).GetComponent<Player>().playerId + " has scored an ARRH!...To Arena!";
+            m_Avviso.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To the Arena!"  : ClientScene.FindLocalObject(who).GetComponent<Player>().playerName + " has scored an ARRH!...To the Arena!";
             Utility.recursivePlayAnimation(m_Avviso.transform, "FadeIn");
         }
 

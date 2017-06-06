@@ -6,10 +6,20 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Drittto_corto.001
+    100004: Porto
     400000: //RootNode
+    400002: Drittto_corto.001
+    400004: Porto
     2300000: //RootNode
+    2300002: Drittto_corto.001
+    2300004: Porto
     3300000: //RootNode
+    3300002: Drittto_corto.001
+    3300004: Porto
     4300000: Drittto_corto
+    4300002: Drittto_corto.001
+    4300004: Porto
   materials:
     importMaterials: 1
     materialName: 0
