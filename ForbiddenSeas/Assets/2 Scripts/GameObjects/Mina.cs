@@ -8,26 +8,33 @@ public class Mina : NetworkBehaviour {
     public int m_Danno;
     public int which;
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
         if (isServer)
         {
-            if (collision.gameObject.GetComponent<Player>() && !collision.gameObject.GetComponent<FlagshipStatus>().m_isDead)
+            if (other.gameObject.GetComponent<Player>() && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead)
             {
-                GetComponent<MeshRenderer>().enabled = false;
-                transform.GetChild(0).gameObject.SetActive(true);
-                GetComponent<Collider>().enabled = false;
-                collision.gameObject.GetComponent<FlagshipStatus>().PrendiDannoDaEnemy(m_Danno);
+                RpcExplode();
+                other.gameObject.GetComponent<FlagshipStatus>().PrendiDannoDaEnemy(m_Danno);
                 StartCoroutine(shutDownMe());
 
             }
         }
     }
 
+    [ClientRpc]
+    public void RpcExplode()
+    {
+        GetComponentInChildren<MeshRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(true);
+        GetComponentInChildren<Collider>().enabled = false;
+    }
+
     IEnumerator shutDownMe()
     {
-        yield return new WaitForSeconds(2.5f);
-        LocalGameManager.Instance.c_LoopMines((int)FixedDelayInGame.MINE_SPAWN, which);
+        yield return new WaitForSeconds(3f);
+        LocalGameManager.Instance.StartCoroutine(LocalGameManager.Instance.c_LoopMines((int)FixedDelayInGame.MINE_SPAWN, which));
         Destroy(gameObject);
     }
 }

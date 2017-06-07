@@ -264,18 +264,24 @@ public class LocalGameManager : NetworkBehaviour
     }
 
     [Server]
-    public IEnumerator c_LoopPowerUp(float delay, SpawnIndex which)
+    public IEnumerator c_LoopPowerUp(int delay, SpawnIndex which)
     {
+        Debug.Log("Mi preparo a spawnare un power up " + delay);
+
         yield return new WaitForSeconds(delay);
+
+        Debug.Log("Sto spawnando un power up");
         GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)which], OnlineManager.s_Singleton.m_PowerUpSpawnPosition[(int) (which - SpawnIndex.REGEN)].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)which].transform.rotation);
 
         NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);
     }
 
     [Server]
-    public IEnumerator c_LoopMines(float delay, int which)
+    public IEnumerator c_LoopMines(int delay, int which)
     {
+        Debug.Log("Mi preparo a spawnare una mina " + delay);
         yield return new WaitForSeconds(delay);
+        Debug.Log("Sto spawnando una mina");
         GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.MINA], OnlineManager.s_Singleton.m_MinesSpawnPosition[which].position, OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.MINA].transform.rotation);
         g.GetComponentInChildren<Mina>().which = which;
         NetworkServer.Spawn(g, g.GetComponent<NetworkIdentity>().assetId);

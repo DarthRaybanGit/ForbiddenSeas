@@ -114,7 +114,7 @@ public class PowerUp : NetworkBehaviour {
 
     public void killMe()
     {
-        LocalGameManager.Instance.c_LoopPowerUp((int)FixedDelayInGame.POWERUP_SPAWN, SpawnIndex.REGEN + (int)type);
+        LocalGameManager.Instance.StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp((int)FixedDelayInGame.POWERUP_SPAWN, SpawnIndex.REGEN + (int)type));
         Destroy(gameObject);
     }
 }
