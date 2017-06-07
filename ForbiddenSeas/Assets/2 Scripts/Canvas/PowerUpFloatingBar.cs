@@ -15,17 +15,23 @@ public class PowerUpFloatingBar : MonoBehaviour
 
     void Start()
     {
-        target = transform.parent;
-        transform.SetParent(GameObject.Find("Etichette").transform);
-        bar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
-        total = target.gameObject.GetComponent<PowerUp>().m_maxHealth;
+        if (!LocalGameManager.Instance.isServer)
+        {
+            target = transform.parent;
+            transform.SetParent(GameObject.Find("Etichette").transform);
+            bar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+            total = target.gameObject.GetComponent<PowerUp>().m_maxHealth;
+        }
     }
 
     void Update ()
     {
-        if (!target.gameObject)
+        if (LocalGameManager.Instance.isServer)
+            return;
+
+        if (!target)
             Destroy(gameObject);
-        
+
         bool isClose = Vector3.Distance(LocalGameManager.Instance.m_LocalPlayer.transform.position, target.position) < distance;
         transform.GetChild(0).gameObject.SetActive(isClose);
         if (!isClose)
@@ -35,7 +41,7 @@ public class PowerUpFloatingBar : MonoBehaviour
 
         if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
             targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
-        
+
         if (Camera.main.WorldToScreenPoint(target.position).z < 0)
         {
             targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);

@@ -8,6 +8,11 @@ public class Coin : NetworkBehaviour {
 
     public int m_IndexInPool;
 
+    public override void OnStartClient()
+    {
+        GetComponentInChildren<Animation>().Play();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (isServer)

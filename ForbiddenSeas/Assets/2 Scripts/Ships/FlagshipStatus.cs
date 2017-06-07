@@ -132,14 +132,28 @@ public class FlagshipStatus : NetworkBehaviour
     [Command]
     public void CmdTakeDamage(int dmg, string a_name, int da_playerId)
     {
-        m_Health -= dmg;
+
+
+        m_Health = Mathf.Clamp(m_Health - dmg, -50, m_MaxHealth);
         //RpcTakenDamage(a_name, da_playerId);
+
 
         if (m_Health <= 0)
         {
             OnDeath();
             if(da_playerId != -1)
                 LocalGameManager.Instance.m_playerKills[da_playerId]++;
+        }
+    }
+
+    public void PrendiDannoDaEnemy(int dmg)
+    {
+        m_Health -= dmg;
+
+
+        if (m_Health <= 0)
+        {
+            OnDeath();
         }
     }
 

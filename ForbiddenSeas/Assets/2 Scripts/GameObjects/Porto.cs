@@ -5,15 +5,16 @@ using UnityEngine.Networking;
 
 public class Porto : NetworkBehaviour {
 
-    public void OnCollisionEnter(Collision collision)
+
+    public void OnTriggerEnter(Collider other)
     {
         if (isServer)
         {
-            if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Player>().m_HasTreasure && collision.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
+            if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<Player>().m_HasTreasure && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
             {
                 Debug.Log("Toccato il porto!");
-                collision.gameObject.GetComponent<Player>().m_HasTreasure = false;
-                collision.gameObject.GetComponent<Player>().ScoreAnARRH();
+                other.gameObject.GetComponent<Player>().m_HasTreasure = false;
+                other.gameObject.GetComponent<Player>().ScoreAnARRH();
             }
         }
     }

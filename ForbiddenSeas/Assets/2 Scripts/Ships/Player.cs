@@ -126,8 +126,14 @@ public class Player : NetworkBehaviour
             LocalGameManager.Instance.m_ServerOffsetTime = Time.timeSinceLevelLoad;
             LocalGameManager.Instance.RpcNotifyServerTime(LocalGameManager.Instance.m_ServerOffsetTime, true);
             StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
-            StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
+            for(int i = 0; i <= (int)PowerUP.DAMAGE_UP; i++)
+                StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp(0, SpawnIndex.REGEN + i));
             StartCoroutine(LocalGameManager.Instance.c_LoopCoins());
+
+            for(int i = 0; i < OnlineManager.s_Singleton.m_MinesSpawnPosition.Length; i++)
+            {
+                StartCoroutine(LocalGameManager.Instance.c_LoopMines(2, i));
+            }
 
         }
 
@@ -156,7 +162,6 @@ public class Player : NetworkBehaviour
     [Server]
     public void CatchAPowerUp(PowerUP p)
     {
-        LocalGameManager.Instance.m_PowerUp[(int)p] = false;
         switch (p)
         {
             case PowerUP.REGEN:
