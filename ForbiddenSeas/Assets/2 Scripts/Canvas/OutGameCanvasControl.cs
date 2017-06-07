@@ -51,7 +51,13 @@ public class OutGameCanvasControl : MonoBehaviour
     {
         yield return new WaitForSeconds(first ? 3f : 0.2f);
         if (first)
-            m_LobbyButtons.transform.GetChild(0).gameObject.GetComponent<Button>().interactable = true;
+        {
+            foreach(Transform t in m_LobbyButtons.transform)
+            {
+                t.gameObject.GetComponent<Button>().interactable = true;
+            }
+        }
+
         Debug.Log("Settaggio");
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().CmdsetLocalName(m_PlayerName);
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().setLocalClass(n);
