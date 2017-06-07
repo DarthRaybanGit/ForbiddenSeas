@@ -3136,6 +3136,10 @@ MonoBehaviour:
   - {fileID: 4391909495498356, guid: 2ca0ad41cead0c84ca29eede4471edbe, type: 2}
   - {fileID: 4864069822921288, guid: 643476c20f169fd4d825780f8e3e5105, type: 2}
   - {fileID: 4960565330602394, guid: be9e51871beb0b24ba088011069f6a95, type: 2}
+  - {fileID: 4236703680347052, guid: 451829394b169344686daff306ab4098, type: 2}
+  - {fileID: 4803140063155456, guid: 81d329bac8ad1fb449e0e1fa36eb0116, type: 2}
+  - {fileID: 4122993173137810, guid: 8a763647d9f25f545b0b43df5e5ac015, type: 2}
+  - {fileID: 4217926176068730, guid: 0f9d8343e0043df439f898fed0e6946e, type: 2}
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
@@ -9076,6 +9080,26 @@ Transform:
   m_Father: {fileID: 16602152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1513165026 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1643447441934508, guid: 069887f4bca5c95499b874e5128df7d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1918268673}
+--- !u!111 &1513165028
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1513165026}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c99dc087ecaf5174180b6e9529e9881f, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c99dc087ecaf5174180b6e9529e9881f, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1515754654
 GameObject:
   m_ObjectHideFlags: 0
@@ -11610,7 +11634,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4230620931221350, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4230620931221350, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11720,10 +11744,23 @@ Prefab:
       propertyPath: m_AssetId.i15
       value: 212
       objectReference: {fileID: 0}
+    - target: {fileID: 4082597228710888, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082597228710888, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082597228710888, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114548767665466078, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
     - {fileID: 65334471921600872, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
     - {fileID: 114013187216874626, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
+    - {fileID: 111839409055569662, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 069887f4bca5c95499b874e5128df7d4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1922824751
@@ -12790,7 +12827,6 @@ MonoBehaviour:
   m_CutIsPlaying: 0
   m_IsWindowOver: 0
   m_LoadingCompleted: 0
-  m_PowerUp: 000000
   m_CoinsRadius: 140
   m_CoinsDisplacement: 20
   m_CoinNumbers: 72

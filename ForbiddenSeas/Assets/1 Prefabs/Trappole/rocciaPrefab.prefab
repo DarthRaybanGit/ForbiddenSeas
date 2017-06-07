@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4705202770176978}
   - component: {fileID: 33574116847426704}
   - component: {fileID: 23247983473516092}
-  - component: {fileID: 64675907879564348}
+  - component: {fileID: 136827800221663044}
   m_Layer: 0
   m_Name: rocciaPrefab
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1615096634478136}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.59, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,8 +80,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1615096634478136}
   m_Mesh: {fileID: 4300000, guid: 5448ec56331914c06a3b62e7051f1360, type: 3}
---- !u!64 &64675907879564348
-MeshCollider:
+--- !u!136 &136827800221663044
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -89,8 +89,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 5448ec56331914c06a3b62e7051f1360, type: 3}
+  m_Radius: 0.00397509
+  m_Height: 0.015
+  m_Direction: 0
+  m_Center: {x: 0.001, y: 0, z: 0.0015}

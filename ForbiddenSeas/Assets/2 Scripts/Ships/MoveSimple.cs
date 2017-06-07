@@ -41,6 +41,8 @@ public class MoveSimple : NetworkBehaviour {
     [Range(1,5)]
     public float RotSpeedFactor;
 
+    public bool DontPush = false;
+
     public void Start()
     {
         syncPosX = GetComponent<Transform>().position.x;
@@ -104,7 +106,7 @@ public class MoveSimple : NetworkBehaviour {
 		}
         //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 
-        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart())
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush)
         {
             rb.AddForce(transform.forward * ActualSpeed * -1);
 
