@@ -95,7 +95,7 @@ public class Symbols
 {
     public const int PLAYER_NOT_SET = -1;
     public const float mainAttackDelay = 0.7f;
-    public const float specAttackDelay = 0.7f;
+    public const float specAttackDelay = 0.5f;
     public const int REGEN_AMOUNT = -50;
 }
 
