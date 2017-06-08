@@ -54,7 +54,8 @@ public class OutGameCanvasControl : MonoBehaviour
         {
             foreach(Transform t in m_LobbyButtons.transform)
             {
-                t.gameObject.GetComponent<Button>().interactable = true;
+                if(t.gameObject.GetComponent<Button>())
+                    t.gameObject.GetComponent<Button>().interactable = true;
             }
         }
 

@@ -89,11 +89,13 @@ public class PlayerFloatingName : MonoBehaviour
         amount = (float)target.gameObject.GetComponent<FlagshipStatus>().m_Health;
         if (amount <= total * 0.2f)
         {
-            bar.color = new Color(1f, 54f/255f, 54f/255f, bar.color.a);
+            bar.color = new Color(1f, 54f /255f,  54f /255f, bar.color.a);
+
+
         }
         else
         {
-            bar.color = new Color(167f/255f, 251f/255f, 109f/255f, bar.color.a);
+            bar.color = new Color(target.gameObject.GetComponent<Player>().isLocalPlayer ? 167f / 255f : 234f / 255f, target.gameObject.GetComponent<Player>().isLocalPlayer ? 251f / 255f : 101f / 255f, target.gameObject.GetComponent<Player>().isLocalPlayer ? 109f / 255f : 1f, bar.color.a);
         }
 
         bar.fillAmount = 1f / total * amount;

@@ -23,7 +23,7 @@ public class MiniMap : MonoBehaviour
 
         if (player > LocalGameManager.Instance.m_Players.Length)
             Destroy(gameObject);
-        
+
         if (isTreasure)
         {
             yield return new WaitUntil(() => LocalGameManager.Instance.m_TreasureIsInGame);
@@ -83,7 +83,7 @@ public class MiniMap : MonoBehaviour
         else
         {
             GetComponent<Image>().color = Color.yellow;
-            return LocalGameManager.Instance.m_Treasure.transform;
+            return LocalGameManager.Instance.m_Treasure ? LocalGameManager.Instance.m_Treasure.transform : LocalGameManager.Instance.transform;
         }
     }
 }
