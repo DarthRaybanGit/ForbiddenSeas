@@ -59,11 +59,11 @@ public class PowerUpFloatingBar : MonoBehaviour
         amount = (float)target.gameObject.GetComponent<PowerUp>().m_health;
         if (amount <= total * 0.2f)
         {
-            bar.color = new Color(1f, 54f/255f, 54f/255f, bar.color.a);
+            bar.color = new Color(1f, 54f / 255f, 54f / 255f, bar.color.a);
         }
         else
         {
-            bar.color = new Color(167f/255f, 251f/255f, 109f/255f, bar.color.a);
+            bar.color = new Color(1f, 141f / 255f, 0f / 255f, bar.color.a);
         }
 
         bar.fillAmount = 1f / total * amount;

@@ -244,7 +244,7 @@ public class Player : NetworkBehaviour
         {
             if (!g.GetComponent<Player>().m_InsideArena)
             {
-                RpcResetPlayerPosition(g.GetComponent<Player>().netId, netId);
+                TargetRpcResetPlayerPosition(g.GetComponent<NetworkIdentity>().connectionToClient, netId);
                 g.GetComponent<Player>().m_InsideArena = true;
             }
         }
@@ -266,17 +266,17 @@ public class Player : NetworkBehaviour
 
     }
 
-    [ClientRpc]
-    public void RpcResetPlayerPosition(NetworkInstanceId p, NetworkInstanceId who)
+    [TargetRpc]
+    public void TargetRpcResetPlayerPosition(NetworkConnection conn, NetworkInstanceId p)
     {
         if(p == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
         {
             m_Avviso.GetComponent<Text>().enabled = true;
-            m_Avviso.GetComponent<Text>().text = (p == who) ? "You have scored an ARRH!...To the Arena!"  : ClientScene.FindLocalObject(who).GetComponent<Player>().playerName + " has scored an ARRH!...To the Arena!";
+            m_Avviso.GetComponent<Text>().text = (p == netId) ? "You have scored an ARRH!...To the Arena!"  : ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has scored an ARRH!...To the Arena!";
             Utility.recursivePlayAnimation(m_Avviso.transform, "FadeIn");
         }
 
-        StartCoroutine(RespawnPlayerOutsideArena(ClientScene.FindLocalObject(p).GetComponent<Player>()));
+        StartCoroutine(RespawnPlayerOutsideArena(LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>()));
     }
 
     [TargetRpc]
