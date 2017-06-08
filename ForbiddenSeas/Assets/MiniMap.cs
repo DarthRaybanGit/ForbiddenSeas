@@ -27,19 +27,19 @@ public class MiniMap : MonoBehaviour
         if (isTreasure)
         {
             yield return new WaitUntil(() => LocalGameManager.Instance.m_TreasureIsInGame);
-            GetComponent<Image>().color = Color.yellow;
+            GetComponent<Image>().color = new Color(1f, 0.92f, 0.016f, GetComponent<Image>().color.a);
         }
         else
         {
             if (LocalGameManager.Instance.GetPlayerId(LocalGameManager.Instance.m_LocalPlayer) == player)
             {
-                GetComponent<Image>().color = Color.green;
-                transform.GetChild(0).GetComponent<Image>().color = Color.green;
+                GetComponent<Image>().color = new Color(0,1,0, GetComponent<Image>().color.a);
+                transform.GetChild(0).GetComponent<Image>().color = new Color(0, 1, 0, transform.GetChild(0).GetComponent<Image>().color.a);
             }
             else
             {
-                GetComponent<Image>().color = Color.red;
-                transform.GetChild(0).GetComponent<Image>().color = Color.red;
+                GetComponent<Image>().color = new Color(1, 0, 0, GetComponent<Image>().color.a);
+                transform.GetChild(0).GetComponent<Image>().color = new Color(1, 0, 0, transform.GetChild(0).GetComponent<Image>().color.a);
             }
         }
         ready = true;
@@ -77,12 +77,12 @@ public class MiniMap : MonoBehaviour
         GameObject g;
         if (g = LocalGameManager.Instance.WhoAsTheTreasure())
         {
-            GetComponent<Image>().color = Color.magenta;
+            GetComponent<Image>().color = new Color(1f, 0f, 1f, GetComponent<Image>().color.a);
             return g.transform;
         }
         else
         {
-            GetComponent<Image>().color = Color.yellow;
+            GetComponent<Image>().color = new Color(1f, 0.92f, 0.016f, GetComponent<Image>().color.a);
             return LocalGameManager.Instance.m_Treasure ? LocalGameManager.Instance.m_Treasure.transform : LocalGameManager.Instance.transform;
         }
     }

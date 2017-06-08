@@ -19,7 +19,7 @@ public class InGameCanvasController : MonoBehaviour
         m_Clock.SetActive(true);
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         if (LocalGameManager.Instance.m_GameIsStarted && (LocalGameManager.Instance.m_timeIsSynced || LocalGameManager.Instance.m_serverTimeSended))
         {
