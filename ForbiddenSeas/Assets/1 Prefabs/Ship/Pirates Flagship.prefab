@@ -1902,7 +1902,7 @@ Transform:
   m_GameObject: {fileID: 1636755277287750}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 49.999985, z: 49.999985}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4040176363968592}
   m_RootOrder: 0
@@ -2930,7 +2930,7 @@ Transform:
   m_GameObject: {fileID: 1187029977395840}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 49.999985, z: 49.999985}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4040176363968592}
   m_RootOrder: 1
@@ -3721,18 +3721,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc73fcb3d9308c4793c887e3aca7bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
+  playerName: 
   m_AdmiralList:
   - {fileID: 1869087919111540}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
   - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b, type: 2}
   m_LocalCamera: {fileID: 1401329760740216}
-  playerId: 0
   m_HasTreasure: 0
   m_LocalTreasure: {fileID: 1791591790436726}
   m_SpawnPoint: {x: 0, y: 0, z: 0}
   m_reputationTextUI: {fileID: 0}
   m_scoreTextUI: {fileID: 0}
+  m_Avviso: {fileID: 0}
+  myTag: {fileID: 0}
+  m_InsideArena: 1
   m_score: 0
   m_Class: 0
   barca_isMoving: 0
@@ -3804,6 +3808,7 @@ MonoBehaviour:
   syncRotY: 0
   rotThreshold: 1
   RotSpeedFactor: 2
+  DontPush: 0
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3830,6 +3835,7 @@ MonoBehaviour:
   m_specialCD: 0
   m_mainDistance: 0
   m_specialDistance: 0
+  m_defense: 0
   statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
   sonoMortissimo: 0
@@ -3896,7 +3902,7 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 2.65
+  m_OrthographicSize: 5.27
   m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
