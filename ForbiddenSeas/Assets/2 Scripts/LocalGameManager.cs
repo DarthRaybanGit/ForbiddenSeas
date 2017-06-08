@@ -28,6 +28,7 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_timeIsSynced = false;
     public float m_gapFromStart;
     public float m_ServerOffsetTime;
+    public float m_GameStartTime;
 
     public static float m_MatchEndTime;
 
@@ -167,7 +168,7 @@ public class LocalGameManager : NetworkBehaviour
 
     public float syncedTime()
     {
-        return isServer ? Time.timeSinceLevelLoad : Time.timeSinceLevelLoad + m_ServerOffsetTime - m_gapFromStart;
+        return isServer ? Time.timeSinceLevelLoad - m_GameStartTime : Time.timeSinceLevelLoad + m_ServerOffsetTime - m_gapFromStart;
     }
 
 

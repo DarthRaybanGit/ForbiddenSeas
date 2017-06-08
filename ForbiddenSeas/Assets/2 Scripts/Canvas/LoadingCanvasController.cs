@@ -7,11 +7,15 @@ public class LoadingCanvasController : MonoBehaviour {
 
     public GameObject m_LoadingPane;
     public GameObject m_Wheel;
+    public GameObject m_CanvasHUD;
+    public GameObject m_CanvasEtichette;
 
 
 
     // Use this for initialization
     void Start () {
+        Utility.recursiveSetAlphaChannel(m_CanvasHUD.transform);
+        Utility.recursiveSetAlphaChannel(m_CanvasEtichette.transform);
         StartCoroutine(loadingGame());
 	}
 

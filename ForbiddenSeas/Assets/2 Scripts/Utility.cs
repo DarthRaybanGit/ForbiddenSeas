@@ -45,4 +45,27 @@ public static class Utility
             }
         }
     }
+
+    public static void recursiveSetAlphaChannel(Transform t)
+    {
+        foreach (Transform tt in t)
+        {
+            if (tt.gameObject.GetComponent<Text>())
+            {
+                tt.gameObject.GetComponent<Text>().color = new Color(tt.gameObject.GetComponent<Text>().color.r, tt.gameObject.GetComponent<Text>().color.g, tt.gameObject.GetComponent<Text>().color.b, 0);
+            }
+            else if (tt.gameObject.GetComponent<Image>())
+            {
+                tt.gameObject.GetComponent<Image>().color = new Color(tt.gameObject.GetComponent<Image>().color.r, tt.gameObject.GetComponent<Image>().color.g, tt.gameObject.GetComponent<Image>().color.b, 0);
+            }
+
+
+            if (tt.childCount > 0)
+            {
+                recursiveSetAlphaChannel(tt);
+            }
+        }
+    }
+
+
 }
