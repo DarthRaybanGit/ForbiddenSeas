@@ -297,6 +297,10 @@ public class Player : NetworkBehaviour
                 pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text += "...To the Arena!";
                 StartCoroutine(RespawnPlayerOutsideArena(pl));
             }
+            else
+            {
+                pl.StartCoroutine(pl.shutdownAvviso());
+            }
 
         }
 
