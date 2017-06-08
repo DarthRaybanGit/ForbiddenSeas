@@ -240,14 +240,13 @@ public class Player : NetworkBehaviour
         RpcHideTreasure();
         StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
 
-        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            if (!g.GetComponent<Player>().m_InsideArena)
-            {
-                TargetRpcResetPlayerPosition(g.GetComponent<NetworkIdentity>().connectionToClient, netId);
-                g.GetComponent<Player>().m_InsideArena = true;
-            }
-        }
+        RpcArrhScoredBy(netId);
+    }
+
+    [Command]
+    public void CmdImIntheArenaNow()
+    {
+        m_InsideArena = true;
     }
 
     IEnumerator RespawnPlayerOutsideArena(Player p)
@@ -255,6 +254,8 @@ public class Player : NetworkBehaviour
         yield return new WaitForSeconds(3f);
         p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         p.gameObject.transform.position = p.m_SpawnPoint;
+        CmdImIntheArenaNow();
+
         if (p.netId == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
         {
             Utility.recursivePlayAnimation(m_Avviso.transform, "FadeOut");
@@ -266,17 +267,29 @@ public class Player : NetworkBehaviour
 
     }
 
-    [TargetRpc]
-    public void TargetRpcResetPlayerPosition(NetworkConnection conn, NetworkInstanceId p)
+    [ClientRpc]
+    public void RpcArrhScoredBy(NetworkInstanceId p)
     {
+        m_Avviso.GetComponent<Text>().enabled = true;
+
         if(p == LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkIdentity>().netId)
         {
-            m_Avviso.GetComponent<Text>().enabled = true;
-            m_Avviso.GetComponent<Text>().text = (p == netId) ? "You have scored an ARRH!...To the Arena!"  : ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has scored an ARRH!...To the Arena!";
-            Utility.recursivePlayAnimation(m_Avviso.transform, "FadeIn");
+            m_Avviso.GetComponent<Text>().text = "You have scored an ARRH!...To the Arena!";
+            StartCoroutine(RespawnPlayerOutsideArena(this));
+        }
+        else
+        {
+            m_Avviso.GetComponent<Text>().text = ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has scored an ARRH!";
+
+            if (m_InsideArena)
+            {
+                m_Avviso.GetComponent<Text>().text += "...To the Arena!";
+                StartCoroutine(RespawnPlayerOutsideArena(this));
+            }
         }
 
-        StartCoroutine(RespawnPlayerOutsideArena(LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>()));
+        Utility.recursivePlayAnimation(m_Avviso.transform, "FadeIn");
+
     }
 
     [TargetRpc]
