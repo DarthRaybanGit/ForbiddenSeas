@@ -1442,7 +1442,7 @@ Transform:
   m_GameObject: {fileID: 1042574377898910}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4040176363968592}
   m_RootOrder: 0
@@ -2031,7 +2031,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649425479731978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2093,7 +2093,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1337400159862984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2217,7 +2217,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1042574377898910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -2390,20 +2390,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc73fcb3d9308c4793c887e3aca7bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
+  playerName: 
   m_AdmiralList:
   - {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb, type: 2}
   - {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12, type: 2}
   - {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476, type: 2}
   - {fileID: 1869087919111540}
   m_LocalCamera: {fileID: 1401329760740216}
-  playerId: 0
   m_HasTreasure: 0
   m_LocalTreasure: {fileID: 0}
   m_SpawnPoint: {x: 0, y: 0, z: 0}
   m_reputationTextUI: {fileID: 0}
   m_scoreTextUI: {fileID: 0}
+  m_Avviso: {fileID: 0}
+  myTag: {fileID: 0}
+  m_InsideArena: 1
   m_score: 0
   m_Class: 0
+  barca_isMoving: 0
 --- !u!114 &114143520851380954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2420,6 +2425,8 @@ MonoBehaviour:
   GlobalMUI: {fileID: 0}
   GlobalSUI: {fileID: 0}
   statusHUD: {fileID: 0}
+  MainParticles: []
+  SpecialParticles: []
 --- !u!114 &114660679311915734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2446,6 +2453,8 @@ MonoBehaviour:
   threshold: 0.1
   syncRotY: 0
   rotThreshold: 1
+  RotSpeedFactor: 0
+  DontPush: 0
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,8 +2479,12 @@ MonoBehaviour:
   m_special: 0
   m_mainCD: 0
   m_specialCD: 0
+  m_mainDistance: 0
+  m_specialDistance: 0
+  m_defense: 0
   statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
+  sonoMortissimo: 0
 --- !u!114 &114789289762858792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2535,7 +2548,7 @@ Projector:
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 2.51
+  m_OrthographicSize: 5.02
   m_Material: {fileID: 2100000, guid: 68a01709eacfd4e65846bcb568411b6f, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
