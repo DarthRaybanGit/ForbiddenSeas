@@ -14,7 +14,7 @@ public class MoveSimple : NetworkBehaviour {
 	private float Acceleration = 0.03f;
 	private float deceleration = 0.1f;
 	public float Factor=0;
-	private float Scroll = 0;
+	//private float Scroll = 0;
 	private float smoothTime=20f;
 	private Rigidbody rb;
 	public float numberOfScroll = 20f;
