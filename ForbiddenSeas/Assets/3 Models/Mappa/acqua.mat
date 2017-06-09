@@ -277,7 +277,7 @@ Material:
       second: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
     - first:
         name: _RefrColor
-      second: {r: 0, g: 0.6234938, b: 0.75, a: 1}
+      second: {r: 0.10272493, g: 0.5980321, b: 0.6985294, a: 1}
     - first:
         name: _SColor
       second: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 1}
