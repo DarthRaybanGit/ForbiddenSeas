@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -47731,7 +47731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1032562961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50659,6 +50659,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 0fe101854ed197d49bb0150da61a2cec, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 0fe101854ed197d49bb0150da61a2cec, type: 2}
+  - {fileID: 7400000, guid: febda4965734342c1a0dd0e731119e19, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -71932,6 +71933,7 @@ GameObject:
   - component: {fileID: 1591230708}
   - component: {fileID: 1591230707}
   - component: {fileID: 1591230710}
+  - component: {fileID: 1591230712}
   m_Layer: 0
   m_Name: Camera_Server
   m_TagString: MainCamera
@@ -71962,7 +71964,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -72084,6 +72086,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CanvasInGame: {fileID: 413010480}
   m_CanvasEtichette: {fileID: 1420659949}
+--- !u!45 &1591230712
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1591230702}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 4faea94fa604546b582a2712418b6e3a, type: 2}
 --- !u!1 &1598503698
 GameObject:
   m_ObjectHideFlags: 0
