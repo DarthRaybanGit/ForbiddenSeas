@@ -29,6 +29,7 @@ TagManager:
   - TreasureUI
   - RespawnMessage
   - Avviso
+  - Stats
   layers:
   - Default
   - TransparentFX

@@ -62,7 +62,8 @@ public static class Utility
 
             if (tt.childCount > 0)
             {
-                recursiveSetAlphaChannel(tt);
+                if(!tt.gameObject.tag.Equals("Stats"))
+                    recursiveSetAlphaChannel(tt);
             }
         }
     }
