@@ -234,7 +234,7 @@ public class Player : NetworkBehaviour
     public void ScoreAnARRH()
     {
 
-        LocalGameManager.Instance.m_playerArrh[playerId]++;
+        LocalGameManager.Instance.m_playerArrh[playerId - 1]++;
         m_score++;
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.ARRH;
         TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);

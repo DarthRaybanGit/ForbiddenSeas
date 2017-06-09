@@ -11,8 +11,8 @@ public class MoveSimple : NetworkBehaviour {
 	public Camera cam;
 	public int State=0;
 	public float ActualSpeed = 0f;
-	private float Acceleration = 0.03f;
-	private float deceleration = 0.1f;
+	public float Acceleration = 0.03f;
+	public float deceleration = 0.1f;
 	public float Factor=0;
 	//private float Scroll = 0;
 	private float smoothTime=20f;
@@ -42,6 +42,8 @@ public class MoveSimple : NetworkBehaviour {
     public float RotSpeedFactor;
 
     public bool DontPush = false;
+
+    public float SpeedFactor;
 
     public void Start()
     {
@@ -112,7 +114,7 @@ public class MoveSimple : NetworkBehaviour {
         {
 
 
-            rb.AddForce(transform.forward * ActualSpeed * -1);
+            rb.AddForce(transform.forward * -1 * ActualSpeed * SpeedFactor);
 
             rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
 

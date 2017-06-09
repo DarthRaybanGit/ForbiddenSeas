@@ -184,7 +184,7 @@ public class FlagshipStatus : NetworkBehaviour
             //Increase Opponent Kill Count
         }
         m_isDead = true;
-        LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId]++;
+        LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId - 1]++;
         m_reputation += ReputationValues.KILLED;
         m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);

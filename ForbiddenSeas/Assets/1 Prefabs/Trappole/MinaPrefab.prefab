@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Danno: 385
   which: 0
-  m_ExplosionStrength: 5200
+  m_ExplosionStrength: 800
   m_ExplosionRadius: 3
 --- !u!135 &135051825098334724
 SphereCollider:
