@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: acqua
-  m_Shader: {fileID: 4800000, guid: 1cac2e0bcc34e4b3cbb4bd85982eba83, type: 3}
+  m_Name: acquaCanali
+  m_Shader: {fileID: 4800000, guid: a71aa2e89512a43f08ac7a575bd9c3d6, type: 3}
   m_ShaderKeywords: TCP2_SPEC_TOON _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -119,6 +119,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _RefractionTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ShoreTex
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -246,6 +252,9 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
+        name: _Foam
+      second: {r: 0.1, g: 0.375, b: 0, a: 0}
+    - first:
         name: _GAmplitude
       second: {r: 0.3, g: 0.35, b: 0.25, a: 0.25}
     - first:
@@ -277,7 +286,7 @@ Material:
       second: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
     - first:
         name: _RefrColor
-      second: {r: 0.10272493, g: 0.5980321, b: 0.6985294, a: 1}
+      second: {r: 0, g: 0.6234938, b: 0.75, a: 1}
     - first:
         name: _SColor
       second: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 1}
