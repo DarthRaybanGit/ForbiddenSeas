@@ -60,7 +60,7 @@ Material:
     - first:
         name: _Fresnel
       second:
-        m_Texture: {fileID: 2800000, guid: 5b5c5575fd4c74abd9f7b30862fb76a3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 047330f39d11745ad0004adb8d76c639, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -177,10 +177,10 @@ Material:
       second: 0.17
     - first:
         name: _ReflDistort
-      second: 0.44
+      second: 1.5
     - first:
         name: _RefrDistort
-      second: 0.4
+      second: 1.5
     - first:
         name: _Shininess
       second: 6.82
@@ -207,7 +207,7 @@ Material:
       second: 1.77
     - first:
         name: _WaveScale
-      second: 0.0353
+      second: 0.02
     - first:
         name: _WaveSpeed
       second: 1
@@ -217,7 +217,7 @@ Material:
     m_Colors:
     - first:
         name: WaveSpeed
-      second: {r: -15.8, g: 9, b: -15.45, a: -7}
+      second: {r: -6.34, g: 5.7, b: -5.89, a: -3}
     - first:
         name: _AnimationDirection
       second: {r: 1, g: 1, b: 1, a: 1}
@@ -268,7 +268,7 @@ Material:
       second: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
     - first:
         name: _HorizonColor
-      second: {r: 0, g: 0.6824269, b: 1, a: 1}
+      second: {r: 0.003921569, g: 0.5176471, b: 0.75686276, a: 1}
     - first:
         name: _InvFadeParemeter
       second: {r: 0.15, g: 0.15, b: 0.5, a: 1}
@@ -277,7 +277,7 @@ Material:
       second: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
     - first:
         name: _RefrColor
-      second: {r: 0.34, g: 0.85, b: 0.92, a: 1}
+      second: {r: 0, g: 0.6234938, b: 0.75, a: 1}
     - first:
         name: _SColor
       second: {r: 0.102941155, g: 0.102941155, b: 0.102941155, a: 1}
