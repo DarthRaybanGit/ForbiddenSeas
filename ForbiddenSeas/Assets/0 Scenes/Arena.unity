@@ -9373,7 +9373,7 @@ GameObject:
   - component: {fileID: 202635545}
   m_Layer: 5
   m_Name: Avviso
-  m_TagString: Untagged
+  m_TagString: Avviso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47731,7 +47731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1032562961
 MonoBehaviour:
   m_ObjectHideFlags: 0

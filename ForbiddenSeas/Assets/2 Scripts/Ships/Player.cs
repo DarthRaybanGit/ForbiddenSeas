@@ -251,20 +251,20 @@ public class Player : NetworkBehaviour
         m_InsideArena = true;
     }
 
-    IEnumerator RespawnPlayerOutsideArena(Player p)
+    IEnumerator RespawnPlayerOutsideArena()
     {
-        p.StartCoroutine(p.shutdownAvviso());
-        p.gameObject.GetComponent<MoveSimple>().ActualSpeed = 0;
-        p.gameObject.GetComponent<MoveSimple>().DontPush = true;
+        StartCoroutine(shutdownAvviso());
+        gameObject.GetComponent<MoveSimple>().ActualSpeed = 0;
+        gameObject.GetComponent<MoveSimple>().DontPush = true;
 
         yield return new WaitForSeconds(Symbols.arrhCelebrationTimeLength);
-        p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-        p.gameObject.transform.position = p.m_SpawnPoint;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        gameObject.transform.position = m_SpawnPoint;
         CmdImIntheArenaNow();
 
         yield return new WaitForSeconds(1f);
-        p.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        p.gameObject.GetComponent<MoveSimple>().DontPush = false;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        gameObject.GetComponent<MoveSimple>().DontPush = false;
     }
 
 
@@ -286,7 +286,7 @@ public class Player : NetworkBehaviour
         if(p == pl.netId)
         {
             pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "You have scored an ARRH!...To the Arena!";
-            StartCoroutine(RespawnPlayerOutsideArena(pl));
+            StartCoroutine(RespawnPlayerOutsideArena());
         }
         else
         {
@@ -295,7 +295,7 @@ public class Player : NetworkBehaviour
             if (!pl.m_InsideArena)
             {
                 pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text += "...To the Arena!";
-                StartCoroutine(RespawnPlayerOutsideArena(pl));
+                pl.StartCoroutine(pl.RespawnPlayerOutsideArena());
             }
             else
             {
