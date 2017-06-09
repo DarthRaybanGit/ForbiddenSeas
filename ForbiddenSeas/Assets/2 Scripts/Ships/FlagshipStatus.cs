@@ -44,6 +44,8 @@ public class FlagshipStatus : NetworkBehaviour
     public StatusHUD statusHUD;
     public Player m_Me;
 
+    public bool sonoMortissimo = false;
+
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
@@ -162,7 +164,14 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
-            StartCoroutine(m_Me.LostTheTreasure());
+            if(m_Me.m_InsideArena)
+                StartCoroutine(m_Me.LostTheTreasure());
+            else
+            {
+                m_Me.RpcHideTreasure();
+                StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
+            }
+
         }
         if (!m_isDead)
         {
@@ -217,14 +226,16 @@ public class FlagshipStatus : NetworkBehaviour
         sonoMortissimo = false;
         yield return new WaitWhile(() => GetComponent<Player>().barca_isMoving);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-        transform.position = GetComponent<Player>().m_SpawnPoint;
+        Debug.Log("Si Blocca qui " + Time.time);
         GetComponent<Animator>().SetTrigger("Respawn");
         yield return new WaitForSeconds(2f);
+        Debug.Log("Riprende qui " + Time.time);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         if (isLocalPlayer)
         {
             Debug.Log("Voglio rivivere.");
             CmdIwantoToLive();
+            transform.position = GetComponent<Player>().m_SpawnPoint;
         }
     }
 
@@ -235,10 +246,11 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
 
-    public bool sonoMortissimo = false;
+
 
     public void Morte()
     {
+        Debug.Log("#######CAZZZOOOOO " + m_Me.playerName);
         sonoMortissimo = true;
     }
 

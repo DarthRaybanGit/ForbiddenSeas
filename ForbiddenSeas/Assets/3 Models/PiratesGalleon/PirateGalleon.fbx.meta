@@ -174,7 +174,8 @@ ModelImporter:
       - time: 0.99139786
         functionName: Morte
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 1869087919111540, guid: 5fb1b5e4652f94924bf3d64dd2f906bb,
+          type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

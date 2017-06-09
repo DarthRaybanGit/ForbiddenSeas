@@ -370,7 +370,7 @@ public class Player : NetworkBehaviour
         if (barca.GetComponent<Player>())
             barca.GetComponent<Player>().barca_isMoving = true;
 
-        while (Vector3.Distance(barca.transform.position, end) > 0.01f)
+        while (Vector3.Distance(barca.transform.position, end) > 0.05f)
         {
             float distCovered = (Time.time - startTime) * speed;
             float fracJourney = distCovered / journeyLength;

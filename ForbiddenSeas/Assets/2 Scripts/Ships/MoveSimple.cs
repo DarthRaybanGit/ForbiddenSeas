@@ -75,39 +75,41 @@ public class MoveSimple : NetworkBehaviour {
             return;
         }
 
-		if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
-			State = State < numberOfScroll ? State + 1 : State;
-		}
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0.0) {
-			State = State > 0 ? State - 1 : State;
-		}
-		if (State / numberOfScroll == SpeedLevel.STOP)
-			Factor = SpeedLevel.STOP;
-		else
-		{
-			if (State / numberOfScroll == SpeedLevel.FULL)
-				Factor = SpeedLevel.FULL;
-			else
-			{
-				if (State / numberOfScroll >= SpeedLevel.HALF)
-					Factor = SpeedLevel.HALF;
-				else
-					Factor = SpeedLevel.SLOW;
-			}
-		}
-		if (ActualSpeed < maxSpeed * State / numberOfScroll)
-			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, Acceleration);
-		else
-		{
-			if (ActualSpeed > 0.9f)
-				ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, deceleration);
-			else
-				ActualSpeed = 0;
-		}
-        //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
-
         if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush)
         {
+
+            if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
+			    State = State < numberOfScroll ? State + 1 : State;
+		    }
+		    if (Input.GetAxis ("Mouse ScrollWheel") < 0.0) {
+			    State = State > 0 ? State - 1 : State;
+		    }
+		    if (State / numberOfScroll == SpeedLevel.STOP)
+			    Factor = SpeedLevel.STOP;
+		    else
+		    {
+			    if (State / numberOfScroll == SpeedLevel.FULL)
+				    Factor = SpeedLevel.FULL;
+			    else
+			    {
+				    if (State / numberOfScroll >= SpeedLevel.HALF)
+					    Factor = SpeedLevel.HALF;
+				    else
+					    Factor = SpeedLevel.SLOW;
+			    }
+		    }
+		    if (ActualSpeed < maxSpeed * State / numberOfScroll)
+			    ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, Acceleration);
+		    else
+		    {
+			    if (ActualSpeed > 0.9f)
+				    ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed * State / numberOfScroll, deceleration);
+			    else
+				    ActualSpeed = 0;
+		    }
+        //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
+
+
             rb.AddForce(transform.forward * ActualSpeed * -1);
 
             rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
@@ -128,8 +130,9 @@ public class MoveSimple : NetworkBehaviour {
         }
 
         rb.angularVelocity = Vector3.zero;
+
         if(animator)
-            animator.SetFloat ("Speed", ActualSpeed / maxSpeed);
+            animator.SetFloat("Speed", ActualSpeed / maxSpeed);
         //Debug.Log (State / numberOfScroll);
 
         TransmitPosition();

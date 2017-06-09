@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadingCanvasController : MonoBehaviour {
 
@@ -10,6 +11,25 @@ public class LoadingCanvasController : MonoBehaviour {
     public GameObject m_CanvasHUD;
     public GameObject m_CanvasEtichette;
 
+
+    private void Awake()
+    {
+        recursiveActiveImage(transform);
+    }
+
+    public void recursiveActiveImage(Transform t)
+    {
+        foreach (Transform tt in t)
+        {
+            if (tt.gameObject.GetComponent<Image>())
+                tt.gameObject.GetComponent<Image>().enabled = true;
+
+            if (tt.childCount > 0)
+            {
+                recursiveActiveImage(tt);
+            }
+        }
+    }
 
 
     // Use this for initialization
