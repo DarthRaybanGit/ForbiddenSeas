@@ -30,7 +30,12 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void StartConnectionAsClient()
     {
-        NetworkManager.singleton.networkAddress = indirizzoIP.text;
+        string ip = indirizzoIP.text;
+
+        if (ip.Length < 2)
+            ip = "localhost";
+        
+        NetworkManager.singleton.networkAddress = ip;
         m_InputName.SetActive(true);
         m_ConnectButtons.SetActive(false);
 
