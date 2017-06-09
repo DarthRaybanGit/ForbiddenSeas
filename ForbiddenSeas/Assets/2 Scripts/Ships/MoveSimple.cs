@@ -75,8 +75,7 @@ public class MoveSimple : NetworkBehaviour {
             return;
         }
 
-        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush)
-        {
+
 
             if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {
 			    State = State < numberOfScroll ? State + 1 : State;
@@ -108,6 +107,9 @@ public class MoveSimple : NetworkBehaviour {
 				    ActualSpeed = 0;
 		    }
         //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
+
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush)
+        {
 
 
             rb.AddForce(transform.forward * ActualSpeed * -1);

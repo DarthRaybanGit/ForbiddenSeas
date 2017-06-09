@@ -31,7 +31,7 @@ public class MiniMap : MonoBehaviour
         }
         else
         {
-            if (LocalGameManager.Instance.GetPlayerId(LocalGameManager.Instance.m_LocalPlayer) == player)
+            if (LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().playerId == player)
             {
                 GetComponent<Image>().color = new Color(0,1,0, GetComponent<Image>().color.a);
                 transform.GetChild(0).GetComponent<Image>().color = new Color(0, 1, 0, transform.GetChild(0).GetComponent<Image>().color.a);

@@ -207,7 +207,7 @@ public class FlagshipStatus : NetworkBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            CmdTakeDamage(m_DoT, "Player " + LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), -1);
+            CmdTakeDamage(m_DoT, "Player " + gameObject.GetComponent<Player>().playerName, -1);
         }
     }
 

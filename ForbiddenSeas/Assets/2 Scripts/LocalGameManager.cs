@@ -116,8 +116,17 @@ public class LocalGameManager : NetworkBehaviour
         if (!m_PlayerRegistered)
             return null;
 
-        return (playerId) > m_Players.Length || playerId <= 0 ? null : m_Players[playerId - 1];
+        foreach(GameObject g in m_Players)
+        {
+            if (g && g.GetComponent<Player>())
+                if (g.GetComponent<Player>().playerId == playerId)
+                    return g;
+        }
+
+        return null;
     }
+
+
 
     public GameObject GetPlayerFromNetID(NetworkInstanceId netID)
     {
@@ -131,21 +140,6 @@ public class LocalGameManager : NetworkBehaviour
         }
 
         return null;
-    }
-
-    public int GetPlayerId(GameObject player_go)
-    {
-        if (!player_go || !player_go.CompareTag("Player") || !m_PlayerRegistered)
-            return Symbols.PLAYER_NOT_SET;
-
-        int i;
-
-        for(i = 0; i < m_Players.Length; i++)
-        {
-            if (m_Players[i].GetComponent<Player>().netId == player_go.GetComponent<Player>().netId)
-                return i + 1;
-        }
-        return Symbols.PLAYER_NOT_SET;
     }
 
     //Funzioni per la sincronizzazione del timestamp del server sui clients.
@@ -381,7 +375,7 @@ public class LocalGameManager : NetworkBehaviour
     {
         if (IsEveryPlayerRegistered())
         {
-            return GetPlayerId(me);
+            return (me && me.GetComponent<Player>()) ? me.GetComponent<Player>().playerId : Symbols.PLAYER_NOT_SET;
         }
         else
             return Symbols.PLAYER_NOT_SET;
