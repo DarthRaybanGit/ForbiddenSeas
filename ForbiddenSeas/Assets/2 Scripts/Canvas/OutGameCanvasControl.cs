@@ -16,6 +16,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject m_ReadyButton;
     public GameObject[] m_stats;
     public Animation logo;
+    public InputField indirizzoIP;
     private int currentSelectedClass = 0;
 
     public string m_PlayerName = "Player";
@@ -29,6 +30,7 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void StartConnectionAsClient()
     {
+        NetworkManager.singleton.networkAddress = indirizzoIP.text;
         m_InputName.SetActive(true);
         m_ConnectButtons.SetActive(false);
 
