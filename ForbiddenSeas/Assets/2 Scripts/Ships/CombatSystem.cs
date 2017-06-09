@@ -31,41 +31,43 @@ public class CombatSystem : NetworkBehaviour
     {
         if (!isLocalPlayer)
             return;
-
-        if (Input.GetMouseButtonDown(0))
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart())
         {
-            GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
-            if (!mainCoolDown && !fire)
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Sparo main");
-                fire = true;
-                mainCoolDown = true;
-                StartCoroutine(GlobalCoolDown(SpecUI));
-                CmdMainAttack(LocalGameManager.Instance.GetPlayerId(gameObject), "MA");
-                Debug.Log("main cd: "+ GetComponent<FlagshipStatus>().m_mainCD);
-                MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
+                GlobalMUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
+                if (!mainCoolDown && !fire)
+                {
+                    Debug.Log("Sparo main");
+                    fire = true;
+                    mainCoolDown = true;
+                    StartCoroutine(GlobalCoolDown(SpecUI));
+                    CmdMainAttack(GetComponent<Player>().playerId, "MA");
+                    Debug.Log("main cd: " + GetComponent<FlagshipStatus>().m_mainCD);
+                    MainUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_mainCD);
+                }
+                else
+                {
+                    MainUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
+                }
             }
-            else
-            {
-                MainUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
-            }
-        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            GlobalSUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
-            if (!specCoolDown && !fire)
+            if (Input.GetMouseButtonDown(1))
             {
-                Debug.Log("Sparo special");
-                fire = true;
-                specCoolDown = true;
-                StartCoroutine(GlobalCoolDown(MainUI));
-                CmdSpecialAttack(LocalGameManager.Instance.GetPlayerId(gameObject), "SA");
-                SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
-            }
-            else
-            {
-                SpecUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
+                GlobalSUI.GetComponent<CoolDownIndicator>().OnGlobalPressed();
+                if (!specCoolDown && !fire)
+                {
+                    Debug.Log("Sparo special");
+                    fire = true;
+                    specCoolDown = true;
+                    StartCoroutine(GlobalCoolDown(MainUI));
+                    CmdSpecialAttack(GetComponent<Player>().playerId, "SA");
+                    SpecUI.GetComponent<CoolDownIndicator>().OnCoolDown(GetComponent<FlagshipStatus>().m_specialCD);
+                }
+                else
+                {
+                    SpecUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
+                }
             }
         }
     }
@@ -304,11 +306,11 @@ public class CombatSystem : NetworkBehaviour
             {
                 case "mainAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
-                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject));
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                     break;
                 case "specialAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
-                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), LocalGameManager.Instance.GetPlayerId(gameObject).ToString(), LocalGameManager.Instance.GetPlayerId(other.transform.parent.parent.gameObject));
+                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                     break;
                 case "Miasma":
                     bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
