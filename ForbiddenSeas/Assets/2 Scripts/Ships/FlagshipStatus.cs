@@ -144,7 +144,7 @@ public class FlagshipStatus : NetworkBehaviour
         {
             OnDeath();
             if(da_playerId != -1)
-                LocalGameManager.Instance.m_playerKills[da_playerId]++;
+                LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
         }
     }
 
