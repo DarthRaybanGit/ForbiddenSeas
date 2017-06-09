@@ -271,8 +271,8 @@ public class Player : NetworkBehaviour
     public IEnumerator shutdownAvviso()
     {
         yield return new WaitForSeconds(Symbols.avvisoTimeLength);
-        Utility.recursivePlayAnimation(m_Avviso.transform, "FadeOut");
-        yield return new WaitUntil(() => !m_Avviso.GetComponent<Animation>().isPlaying);
+        Utility.recursivePlayAnimation(m_Avviso.transform, "FadeOut", "Avviso");
+        yield return new WaitUntil(() => !m_Avviso.GetComponentInChildren<Animation>().isPlaying);
         m_Avviso.transform.GetChild(0).gameObject.SetActive(false);
     }
 

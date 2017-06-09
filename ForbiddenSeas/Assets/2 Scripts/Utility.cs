@@ -19,7 +19,7 @@ public static class Utility
     }
 
 
-    public static void recursivePlayAnimation(Transform t, string animation)
+    public static void recursivePlayAnimation(Transform t, string animation, string optional = "")
     {
         foreach (Transform tt in t)
         {
@@ -33,7 +33,15 @@ public static class Utility
             else if (tt.gameObject.GetComponent<Image>() && tt.gameObject.GetComponent<Animation>())
             {
                 if (!tt.gameObject.GetComponent<Animation>().GetClip(animation))
-                    tt.gameObject.GetComponent<Animation>().Play();
+                {
+                    if (!optional.Equals(""))
+                    {
+                        if (tt.gameObject.GetComponent<Animation>().GetClip(animation + optional))
+                            tt.gameObject.GetComponent<Animation>().Play(animation + optional);
+                    }
+                    else
+                        tt.gameObject.GetComponent<Animation>().Play();
+                }
                 else
                     tt.gameObject.GetComponent<Animation>().Play(animation);
             }
