@@ -3027,7 +3027,7 @@ MonoBehaviour:
   m_NetworkPort: 7777
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: localhost
+  m_NetworkAddress: 169.254.239.89
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
@@ -12830,6 +12830,7 @@ MonoBehaviour:
   m_timeIsSynced: 0
   m_gapFromStart: 0
   m_ServerOffsetTime: 0
+  m_GameStartTime: 0
   m_Treasure: {fileID: 0}
   m_TreasureIsInGame: 0
   m_Ports: []
