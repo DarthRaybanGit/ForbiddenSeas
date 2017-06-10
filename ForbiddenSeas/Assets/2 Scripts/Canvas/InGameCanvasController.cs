@@ -9,6 +9,7 @@ public class InGameCanvasController : MonoBehaviour
 {
 
     public GameObject m_Clock;
+    public bool partitaFinita = false;
 
     public float gapTime;
 
@@ -30,8 +31,9 @@ public class InGameCanvasController : MonoBehaviour
 
             if (LocalGameManager.Instance.isServer)
             {
-                if(time >= (int)FixedDelayInGame.END_GAME)
+                if(time >= (int)FixedDelayInGame.END_GAME && !partitaFinita)
                 {
+                    partitaFinita = true;
                     int player = -1;
                     //Fine partita.
                     int max = LocalGameManager.Instance.m_playerArrh[0];

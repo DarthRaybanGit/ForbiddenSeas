@@ -49,7 +49,7 @@ public enum FixedDelayInGame
     YOHOHO_FULLFY_SPAN = 120,
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
-    END_GAME = 480
+    END_GAME = 120
 }
 
 public enum BuffTiming
