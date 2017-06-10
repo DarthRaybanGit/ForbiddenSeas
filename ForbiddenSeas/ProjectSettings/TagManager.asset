@@ -30,6 +30,9 @@ TagManager:
   - RespawnMessage
   - Avviso
   - Stats
+  - end
+  - hud
+  - etichette
   layers:
   - Default
   - TransparentFX

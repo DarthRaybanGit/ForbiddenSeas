@@ -13319,6 +13319,7 @@ MonoBehaviour:
   m_CoinNumbers: 72
   m_Coins: []
   m_CoinsPresence: 
+  win: {fileID: 21300000, guid: 8817ab2654aa44b8e9dd8b7331d89b8e, type: 3}
 --- !u!4 &2043742207
 Transform:
   m_ObjectHideFlags: 0
