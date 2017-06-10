@@ -246,8 +246,6 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
 
-
-
     public void Morte()
     {
         Debug.Log("#######CAZZZOOOOO " + m_Me.playerName);
@@ -282,11 +280,18 @@ public class FlagshipStatus : NetworkBehaviour
     [Server]
     public void DamageUp()
     {
+        TargetRpcDmgUp(GetComponent<NetworkIdentity>().connectionToClient);
+    }
+
+    [TargetRpc]
+    public void TargetRpcDmgUp(NetworkConnection c)
+    {
         StartCoroutine(DmgUp());
     }
 
     IEnumerator DmgUp()
     {
+        Debug.Log("dmgUP now");
         buffList[(int)BuffStatus.dmgUp] = true;
         int currentMain = m_main;
         int currentSpec = m_special;
@@ -298,10 +303,17 @@ public class FlagshipStatus : NetworkBehaviour
         m_main = currentMain;
         m_special = currentSpec;
         buffList[(int)BuffStatus.dmgUp] = false;
+        Debug.Log("end dmgUP");
     }
 
     [Server]
     public void SpeedUp()
+    {
+        TargetRpcSpeedUp(GetComponent<NetworkIdentity>().connectionToClient);
+    }
+
+    [TargetRpc]
+    public void TargetRpcSpeedUp(NetworkConnection c)
     {
         StartCoroutine(IESpeedUp());
     }

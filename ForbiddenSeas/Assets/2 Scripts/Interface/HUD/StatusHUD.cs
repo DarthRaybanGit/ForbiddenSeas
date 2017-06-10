@@ -36,6 +36,7 @@ public class StatusHUD : MonoBehaviour
 
     public IEnumerator ActivateBuff(int buff, float sec)
     {
+        Debug.Log("activate buff");
         int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().buffList);
         pos[max - 1].gameObject.SetActive(true);
         pos[max - 1].sprite = spriteBuff[buff];
