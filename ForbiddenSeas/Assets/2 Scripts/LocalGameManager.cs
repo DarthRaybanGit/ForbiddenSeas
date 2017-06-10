@@ -75,6 +75,7 @@ public class LocalGameManager : NetworkBehaviour
         m_Ports = new GameObject[4];
     }
 
+
     [TargetRpc]
     public void TargetRpcNotifyClientConnection(NetworkConnection nc)
     {
@@ -147,12 +148,17 @@ public class LocalGameManager : NetworkBehaviour
     [ClientRpc]
     public void RpcNotifyServerTime(float time, bool first)
     {
-        Debug.Log("Sto notificando il time " + time);
+        Debug.Log("Il server mi ha inviato il suo timing " + time);
         //m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
-        if(first)
-            m_gapFromStart = Time.timeSinceLevelLoad;
+        if (first)
+        {
+            m_gapFromStart = time;
+            Debug.Log("Per caricare la scena ci ho messo " + m_gapFromStart);
+        }
 
         m_ServerOffsetTime = time - Time.timeSinceLevelLoad;
+
+        Debug.Log("Il mio offset dal server è diventato " + m_ServerOffsetTime);
 
         m_timeIsSynced = true;
         m_serverTimeSended = true;
@@ -427,5 +433,12 @@ public class LocalGameManager : NetworkBehaviour
     public bool GameCanStart()
     {
         return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();
+    }
+
+
+    [ClientRpc]
+    public void RpcPartitaConclusa(int id)
+    {
+        Debug.Log("Ha vinto il player " + id + ", " + GetPlayer(id).GetComponent<Player>().playerName);
     }
 }
