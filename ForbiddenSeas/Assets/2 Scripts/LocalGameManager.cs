@@ -435,10 +435,22 @@ public class LocalGameManager : NetworkBehaviour
         return !m_CutIsPlaying && !m_IsWindowOver && IsEveryPlayerRegistered();
     }
 
+    public Sprite win;
 
     [ClientRpc]
     public void RpcPartitaConclusa(int id)
     {
         Debug.Log("Ha vinto il player " + id + ", " + GetPlayer(id).GetComponent<Player>().playerName);
+
+        GetPlayer(id).GetComponent<CombatSystem>().enabled = false;
+        GetPlayer(id).GetComponent<MoveSimple>().enabled = false;
+
+        GameObject.FindGameObjectWithTag("etichette").SetActive(false);
+        GameObject.FindGameObjectWithTag("hud").SetActive(false);
+
+        GameObject end = GameObject.FindGameObjectWithTag("end");
+
+        if (GetComponent<Player>().playerId == id)
+            end.transform.GetChild(0).GetComponent<Image>().sprite = win;
     }
 }
