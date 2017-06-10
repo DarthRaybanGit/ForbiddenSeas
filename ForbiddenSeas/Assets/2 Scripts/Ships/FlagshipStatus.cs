@@ -291,6 +291,8 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator DmgUp()
     {
+        bool check = buffList[(int)BuffStatus.dmgUp];
+
         Debug.Log("dmgUP now");
         buffList[(int)BuffStatus.dmgUp] = true;
         int currentMain = m_main;
@@ -298,7 +300,7 @@ public class FlagshipStatus : NetworkBehaviour
 
         m_main += (m_main / (int)BuffValue.DmgUpValue);
         m_special += (m_special / (int)BuffValue.DmgUpValue);
-        statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION);
+        statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION, check);
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         m_main = currentMain;
         m_special = currentSpec;
@@ -320,10 +322,11 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator IESpeedUp()
     {
+        bool check = buffList[(int)BuffStatus.speedUp];
         buffList[(int)BuffStatus.speedUp] = true;
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed / (float)BuffValue.SpeedUpValue);
-        statusHUD.ActivateBuff((int)BuffStatus.speedUp, (float)BuffTiming.SPEED_UP_DURATION);
+        statusHUD.ActivateBuff((int)BuffStatus.speedUp, (float)BuffTiming.SPEED_UP_DURATION, check);
         yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
         m_maxSpeed = currentSpeed;
         buffList[(int)BuffStatus.speedUp] = false;

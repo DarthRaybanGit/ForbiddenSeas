@@ -34,9 +34,10 @@ public class StatusHUD : MonoBehaviour
         neg[max -1].gameObject.SetActive(false);
     }
 
-    public IEnumerator ActivateBuff(int buff, float sec)
+    public IEnumerator ActivateBuff(int buff, float sec, bool check)
     {
         Debug.Log("activate buff");
+        yield return new WaitWhile(() => check.Equals(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().buffList[buff]));
         int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().buffList);
         pos[max - 1].gameObject.SetActive(true);
         pos[max - 1].sprite = spriteBuff[buff];
