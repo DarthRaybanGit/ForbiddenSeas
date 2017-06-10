@@ -18705,6 +18705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Clock: {fileID: 829725147}
+  partitaFinita: 0
   gapTime: 0
 --- !u!114 &413010482
 MonoBehaviour:

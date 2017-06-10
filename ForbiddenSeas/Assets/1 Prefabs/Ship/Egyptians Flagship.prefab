@@ -733,6 +733,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1582297949282182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4945649351915912}
+  - component: {fileID: 119029782084933802}
+  m_Layer: 10
+  m_Name: Ombra
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1591413923490482
 GameObject:
   m_ObjectHideFlags: 1
@@ -1040,6 +1056,7 @@ Transform:
   m_LocalPosition: {x: 84.88, y: 0.06, z: -22.58414}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4945649351915912}
   - {fileID: 4057546884658500}
   - {fileID: 4836507093067246}
   - {fileID: 4497648523442520}
@@ -1061,7 +1078,7 @@ Transform:
   m_Children:
   - {fileID: 4961807423526686}
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4053813108873826
 Transform:
@@ -1093,7 +1110,7 @@ Transform:
   - {fileID: 4901983924423550}
   - {fileID: 4480672798108716}
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4072670754145550
 Transform:
@@ -1385,7 +1402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4223526873800774
 Transform:
@@ -1575,7 +1592,7 @@ Transform:
   m_Children:
   - {fileID: 4405224878994822}
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4502156868233366
 Transform:
@@ -1822,7 +1839,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 23, y: 180.00002, z: 0}
 --- !u!4 &4869531601378412
 Transform:
@@ -1835,7 +1852,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!4 &4894360364489764
 Transform:
@@ -1890,6 +1907,19 @@ Transform:
   m_Father: {fileID: 4971370373436818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4945649351915912
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582297949282182}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4949026110522600
 Transform:
   m_ObjectHideFlags: 1
@@ -2343,6 +2373,8 @@ MonoBehaviour:
   statusHUD: {fileID: 0}
   MainParticles: []
   SpecialParticles: []
+  PrimaryWeapon: {fileID: 0}
+  SecondWeapon: {fileID: 0}
 --- !u!114 &114660679311915734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2360,6 +2392,8 @@ MonoBehaviour:
   cam: {fileID: 20091067108358248}
   State: 0
   ActualSpeed: 0
+  Acceleration: 0.03
+  deceleration: 0.1
   Factor: 0
   numberOfScroll: 20
   animator: {fileID: 0}
@@ -2371,6 +2405,7 @@ MonoBehaviour:
   rotThreshold: 1
   RotSpeedFactor: 0
   DontPush: 0
+  SpeedFactor: 0
 --- !u!114 &114714280644948776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2433,6 +2468,24 @@ MonoBehaviour:
     i15: 18
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!119 &119029782084933802
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582297949282182}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 100
+  m_FieldOfView: 60
+  m_AspectRatio: 1
+  m_Orthographic: 0
+  m_OrthographicSize: 10
+  m_Material: {fileID: 2100000, guid: 39687fb062db141cdbc5d0a27d3f0903, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!119 &119646464695659470
 Projector:
   m_ObjectHideFlags: 1
