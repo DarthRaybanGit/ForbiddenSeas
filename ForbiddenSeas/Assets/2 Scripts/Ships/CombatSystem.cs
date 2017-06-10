@@ -18,6 +18,9 @@ public class CombatSystem : NetworkBehaviour
     public GameObject[] SpecialParticles;
     private Vector3 waterLocation;
 
+    public GameObject PrimaryWeapon;
+    public GameObject SecondWeapon;
+
     void Awake()
     {
         MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
@@ -152,12 +155,33 @@ public class CombatSystem : NetworkBehaviour
         //Debug.Log("trigger playerId: "+playerId + "go: " + Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).name);
         if(tag.Equals("MAP") || tag.Equals("SAP"))
         {
-            GetComponent<Animator>().SetTrigger(tag.Equals("MAP") ? "MainAttack" : "SpecAttack");
+            if (tag.Equals("MAP"))
+            {
+                GetComponent<Animator>().SetTrigger("MainAttack");
+            }
+            else
+            {
+
+                GetComponent<Animator>().SetTrigger("SpecAttack");
+            }
+
 
         }
 
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(playerId), tag).SetActive(true);
 
+    }
+
+    public void DeactivateSecondaryWeapon()
+    {
+        Debug.Log("Deattiva");
+        SecondWeapon.SetActive(false);
+    }
+
+    public void ActivateSecondaryWeapon()
+    {
+        Debug.Log("Attiva");
+        SecondWeapon.SetActive(true);
     }
 
     [ClientRpc]
