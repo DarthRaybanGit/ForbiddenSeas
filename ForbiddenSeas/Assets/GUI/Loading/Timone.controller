@@ -27,7 +27,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114300362851445470
+--- !u!114 &114779976959395442
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -95,7 +95,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1101845484308777732}
   m_StateMachineBehaviours:
-  - {fileID: 114300362851445470}
+  - {fileID: 114779976959395442}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

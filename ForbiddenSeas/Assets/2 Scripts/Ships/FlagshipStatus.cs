@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+
 
 public class FlagshipStatus : NetworkBehaviour
 {
@@ -43,6 +45,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     public StatusHUD statusHUD;
     public Player m_Me;
+    public GameObject Ombra;
 
     public bool sonoMortissimo = false;
 
@@ -215,41 +218,98 @@ public class FlagshipStatus : NetworkBehaviour
     public void RpcRespawn()
     {
         GetComponent<Animator>().SetTrigger("isDead");
-        StartCoroutine(Respawn());
     }
 
     public IEnumerator Respawn()
     {
 
-        yield return new WaitUntil(() => sonoMortissimo);
+        //yield return new WaitUntil(() => sonoMortissimo);
         GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
         sonoMortissimo = false;
-        yield return new WaitWhile(() => GetComponent<Player>().barca_isMoving);
+        yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        if (Ombra)
+            Ombra.GetComponent<Projector>().enabled = false;
         Debug.Log("Si Blocca qui " + Time.time);
         GetComponent<Animator>().SetTrigger("Respawn");
         yield return new WaitForSeconds(2f);
         Debug.Log("Riprende qui " + Time.time);
-        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        transform.position = GetComponent<Player>().m_SpawnPoint;
+
         if (isLocalPlayer)
         {
+            GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             Debug.Log("Voglio rivivere.");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
+            GetComponent<MoveSimple>().TransmitPosition();
         }
     }
 
     [Command]
     public void CmdIwantoToLive()
     {
-        m_isDead = false;
+        //Start CountDown
+        TargetRpcCountDownRespawn(GetComponent<NetworkIdentity>().connectionToClient);
+        StartCoroutine(CountDownRespawn());
     }
 
+    IEnumerator CountDownRespawn()
+    {
+        yield return new WaitForSeconds((int)FixedDelayInGame.PLAYERS_RESPAWN);
+        m_isDead = false;
+        RpcImBack();
+    }
+
+    [ClientRpc]
+    public void RpcImBack()
+    {
+        StartCoroutine(ResetLocationInfo());
+    }
+
+    IEnumerator ResetLocationInfo()
+    {
+        GetComponent<MoveSimple>().canSync = false;
+
+        yield return new WaitForFixedUpdate();
+
+        if (GetComponent<Player>().myTag)
+            GetComponent<Player>().myTag.SetActive(true);
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        if (Ombra)
+            Ombra.GetComponent<Projector>().enabled = true;
+        yield return new WaitForFixedUpdate();
+        GetComponent<MoveSimple>().canSync = true;
+    }
+
+    [TargetRpc]
+    public void TargetRpcCountDownRespawn(NetworkConnection nc)
+    {
+        LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.transform.GetChild(1).gameObject.GetComponent<Text>().text = ((int) FixedDelayInGame.PLAYERS_RESPAWN).ToString() ;
+        LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.GetComponent<Animation>().Play("DeathGUI");
+        StartCoroutine(StartCountDownLocal());
+
+    }
+
+    IEnumerator StartCountDownLocal()
+    {
+        for(int i = (int)FixedDelayInGame.PLAYERS_RESPAWN; i > 0; i--)
+        {
+            yield return new WaitForSeconds(1f);
+            LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.transform.GetChild(1).gameObject.GetComponent<Text>().text = i.ToString();
+        }
+        LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.transform.GetChild(1).gameObject.GetComponent<Text>().text = "GO!";
+        yield return new WaitForSeconds(1f);
+        LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.GetComponent<Animation>().Play("DeathGUI_Respawn");
+    }
 
     public void Morte()
     {
-        Debug.Log("#######CAZZZOOOOO " + m_Me.playerName);
+        Debug.Log("#######Sto Morendo " + m_Me.playerName);
         sonoMortissimo = true;
+        if(GetComponent<Player>().myTag)
+            GetComponent<Player>().myTag.SetActive(false);
+        StartCoroutine(Respawn());
     }
 
     //status alterati - power-ups

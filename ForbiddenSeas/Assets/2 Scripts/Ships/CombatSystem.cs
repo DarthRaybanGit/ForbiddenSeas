@@ -33,7 +33,11 @@ public class CombatSystem : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer)
+        {
+
             return;
+        }
+
         if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart())
         {
             if (Input.GetMouseButtonDown(0))
@@ -321,7 +325,7 @@ public class CombatSystem : NetworkBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && !GetComponent<FlagshipStatus>().m_isDead)
         {
             if (other.gameObject.Equals(gameObject))
                 return;
@@ -350,5 +354,6 @@ public class CombatSystem : NetworkBehaviour
                     return;
             }
         }
+
     }
 }

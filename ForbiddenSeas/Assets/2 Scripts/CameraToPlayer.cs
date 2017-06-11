@@ -26,10 +26,11 @@ public class CameraToPlayer : MonoBehaviour {
     {
         if (!LocalGameManager.Instance.isServer)
         {
-            GetComponent<Animator>().SetTrigger("ToShip");
+
             GameObject player = LocalGameManager.Instance.m_LocalPlayer;
             transform.position = player.transform.position;
-
+            GetComponent<Animator>().SetTrigger("ToShip");
+            m_CanvasInGame.GetComponent<InGameCanvasController>().CountDownStart.GetComponent<Animator>().SetTrigger("Start");
             StartCoroutine(GetComponentInParent<MovementCopySmooth>().waitEveryone());
         }
 

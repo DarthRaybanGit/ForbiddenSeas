@@ -450,7 +450,8 @@ public class LocalGameManager : NetworkBehaviour
 
         GameObject end = GameObject.FindGameObjectWithTag("end");
 
-        if (GetComponent<Player>().playerId == id)
+        if (LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().playerId == id)
             end.transform.GetChild(0).GetComponent<Image>().sprite = win;
+        end.GetComponent<Animation>().Play();
     }
 }

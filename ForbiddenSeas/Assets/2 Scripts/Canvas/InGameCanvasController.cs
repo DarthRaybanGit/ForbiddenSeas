@@ -9,6 +9,10 @@ public class InGameCanvasController : MonoBehaviour
 {
 
     public GameObject m_Clock;
+    public GameObject CountDownRespawn;
+    public GameObject CountDownStart;
+
+
     public bool partitaFinita = false;
 
     public float gapTime;
@@ -53,7 +57,7 @@ public class InGameCanvasController : MonoBehaviour
                         if(g.Length > 0)
                         {
                             GameObject winner = null;
-                            int max_Rep = g[0].GetComponent<FlagshipStatus>().m_reputation;
+                            int max_Rep = 0;
 
                             foreach(GameObject gg in g)
                             {
@@ -64,6 +68,7 @@ public class InGameCanvasController : MonoBehaviour
                             if(winner == null)
                             {
                                 //è un fottuto pareggio
+                                Debug.Log("Pareggio");
                             }else
                             {
                                 LocalGameManager.Instance.RpcPartitaConclusa(winner.GetComponent<Player>().playerId);

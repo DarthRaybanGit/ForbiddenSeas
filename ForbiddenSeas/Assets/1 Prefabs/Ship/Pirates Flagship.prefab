@@ -4008,6 +4008,7 @@ MonoBehaviour:
   syncPosX: 0
   syncPosZ: 0
   threshold: 0.1
+  canSync: 1
   syncRotY: 0
   rotThreshold: 1
   RotSpeedFactor: 2
@@ -4042,6 +4043,7 @@ MonoBehaviour:
   m_defense: 0
   statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
+  Ombra: {fileID: 1635257256312942}
   sonoMortissimo: 0
 --- !u!114 &114789289762858792
 MonoBehaviour:
@@ -4175,7 +4177,7 @@ Projector:
   m_Material: {fileID: 2100000, guid: 70b4fe0ea377b144ca3b79b67684c8ee, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
 --- !u!119 &119883488327159464
 Projector:
   m_ObjectHideFlags: 1
@@ -4193,7 +4195,7 @@ Projector:
   m_Material: {fileID: 2100000, guid: 70b4fe0ea377b144ca3b79b67684c8ee, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1025
 --- !u!124 &124621395307139734
 Behaviour:
   m_ObjectHideFlags: 1

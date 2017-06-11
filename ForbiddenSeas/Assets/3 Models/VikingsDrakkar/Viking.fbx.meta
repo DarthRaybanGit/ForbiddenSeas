@@ -239,17 +239,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Still0
-      takeName: Armature|Still
+      name: Armature|Death
+      takeName: Armature|Death
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -261,7 +261,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.9889625
+        functionName: Morte
+        data: 
+        objectReferenceParameter: {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

@@ -32,7 +32,7 @@ public class MoveSimple : NetworkBehaviour {
     private Vector3 lastPos;
     public float threshold = 0.5f;
 
-
+    public bool canSync = true;
 
 
     public float syncRotY;
@@ -73,7 +73,20 @@ public class MoveSimple : NetworkBehaviour {
 
         if (!isLocalPlayer)
         {
-            LerpPosition();
+            if (canSync)
+            {
+                if (!isServer)
+                    LerpPosition();
+                else
+                    StartCoroutine(updateOnServer());
+            }
+
+            else
+            {
+                transform.position = new Vector3(syncPosX, 0f, syncPosZ);
+                transform.rotation = Quaternion.Euler(new Vector3(0f, syncRotY, 0f));
+            }
+
             return;
         }
 
@@ -126,21 +139,22 @@ public class MoveSimple : NetworkBehaviour {
             */
 
 
-            var desiredRotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability / ((Mathf.Clamp(ActualSpeed, maxSpeed/RotSpeedFactor, maxSpeed)/maxSpeed) ), 0f));
+            var desiredRotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y + Input.GetAxis("Horizontal") * Time.deltaTime * rotSpeed * maneuvrability / ((Mathf.Clamp(ActualSpeed, maxSpeed / RotSpeedFactor, maxSpeed) / maxSpeed)), 0f));
             transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * smoothTime);
 
             transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(new Vector3(transform.GetChild(0).rotation.eulerAngles.x, transform.GetChild(0).rotation.eulerAngles.y, Input.GetAxis("Horizontal") * 10f * Factor)), Time.deltaTime * smoothTime);
 
+
+
+            rb.angularVelocity = Vector3.zero;
+
+            if (animator)
+                animator.SetFloat("Speed", ActualSpeed / maxSpeed);
+            //Debug.Log (State / numberOfScroll);
+
+            TransmitPosition();
+
         }
-
-        rb.angularVelocity = Vector3.zero;
-
-        if(animator)
-            animator.SetFloat("Speed", ActualSpeed / maxSpeed);
-        //Debug.Log (State / numberOfScroll);
-
-        TransmitPosition();
-
     }
 
 
@@ -148,8 +162,8 @@ public class MoveSimple : NetworkBehaviour {
     void LerpPosition()
     {
         //Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
-        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), Time.fixedDeltaTime * lerpRate);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), Time.deltaTime * smoothTime);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), lerpRate);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), smoothTime);
     }
 
     [Command]
@@ -178,7 +192,7 @@ public class MoveSimple : NetworkBehaviour {
         syncRotY = rot;
     }
 
-    void TransmitPosition()
+    public void TransmitPosition()
     {
         //Debug.Log("###########"+Vector3.Distance(myTransform.position, lastPos));
         if (isLocalPlayer && (Vector3.Distance(myTransform.position, lastPos) > threshold || Vector3.Distance(transform.rotation.eulerAngles, lastRot) > rotThreshold))
