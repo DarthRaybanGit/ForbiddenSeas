@@ -338,9 +338,25 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Server]
-    public void DamageUp()
+    public void DamageUp(int player)
     {
+        RpcDmgUpParticle(player);
         TargetRpcDmgUp(GetComponent<NetworkIdentity>().connectionToClient);
+    }
+
+    [ClientRpc]
+    public void RpcDmgUpParticle(int player)
+    {
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(true);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play();
+        StartCoroutine(EndDmgUpParticle(player));
+    }
+
+    IEnumerator EndDmgUpParticle(int player)
+    {
+        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
     }
 
     [TargetRpc]
