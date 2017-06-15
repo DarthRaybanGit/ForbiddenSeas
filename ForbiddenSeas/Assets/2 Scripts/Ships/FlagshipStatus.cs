@@ -360,7 +360,7 @@ public class FlagshipStatus : NetworkBehaviour
 
         m_main += (m_main / (int)BuffValue.DmgUpValue);
         m_special += (m_special / (int)BuffValue.DmgUpValue);
-        statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION, check);
+        StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION, check));
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         m_main = currentMain;
         m_special = currentSpec;
