@@ -160,8 +160,12 @@ public class OnlineManager : NetworkLobbyManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        RpcToTheLobby();
-        Invoke("ServerReturnToLobby", 5f);
+        if (LocalGameManager.Instance.m_GameIsStarted)
+        {
+            Debug.Log("Qualcuno si è disconnesso " + conn.connectionId + 1);
+            RpcToTheLobby();
+            Invoke("ServerReturnToLobby", 5f);
+        }
         base.OnServerDisconnect(conn);
     }
 
