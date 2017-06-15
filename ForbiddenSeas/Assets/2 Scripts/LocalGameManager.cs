@@ -465,10 +465,8 @@ public class LocalGameManager : NetworkBehaviour
         Utility.recursivePlayAnimation(g.transform, "FadeIn");
         LocalGameManager.Instance.m_IsWindowOver = true;
         LocalGameManager.Instance.m_CanvasHUD.SetActive(false);
+        OnlineManager.s_Singleton.StopClient();
+        Destroy(this);
     }
 
-    public void ResetManager()
-    {
-
-    }
 }

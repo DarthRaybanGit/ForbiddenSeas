@@ -22,6 +22,9 @@ public class OnlineManager : NetworkLobbyManager {
 
     public GameObject m_GamePlayer;
 
+
+    public bool gameInPlay = false;
+
     void Start()
     {
         s_Singleton = this;
