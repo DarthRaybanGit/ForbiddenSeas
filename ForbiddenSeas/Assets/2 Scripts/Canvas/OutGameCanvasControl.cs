@@ -19,10 +19,35 @@ public class OutGameCanvasControl : MonoBehaviour
     public InputField indirizzoIP;
     private int currentSelectedClass = 0;
 
+    public GameObject LocalGameManagerPrefab;
+
     public string m_PlayerName = "Player";
 
+    public void Start()
+    {
+        Debug.Log("Lobby Start");
+        if (LocalGameManager.Instance.m_GameIsStarted)
+        {
 
-	public void StartConnectionAsServer()
+
+
+            if (LocalGameManager.Instance.isClient)
+            {
+
+                for (int i = 0; i < OnlineManager.s_Singleton.lobbySlots.Length; i++)
+                {
+                    if (OnlineManager.s_Singleton.lobbySlots[i].isLocalPlayer)
+                    {
+                        LocalGameManager.Instance.m_LocalPlayer = OnlineManager.s_Singleton.lobbySlots[i].gameObject;
+                    }
+                }
+                SelectionStart();
+            }
+        }
+
+    }
+
+    public void StartConnectionAsServer()
     {
         if (OnlineManager.s_Singleton.StartServer()) Debug.Log("Server initialized correctly."); else Debug.Log("Server initialization fault.");
         m_ConnectButtons.SetActive(false);
@@ -34,7 +59,7 @@ public class OutGameCanvasControl : MonoBehaviour
 
         if (ip.Length < 2)
             ip = "localhost";
-        
+
         NetworkManager.singleton.networkAddress = ip;
         m_InputName.SetActive(true);
         m_ConnectButtons.SetActive(false);

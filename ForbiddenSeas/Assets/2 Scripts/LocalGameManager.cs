@@ -454,4 +454,21 @@ public class LocalGameManager : NetworkBehaviour
             end.transform.GetChild(0).GetComponent<Image>().sprite = win;
         end.GetComponent<Animation>().Play();
     }
+
+    [ClientRpc]
+    public void RpcToTheLobby()
+    {
+        GameObject g = GameObject.FindGameObjectWithTag("Finish");
+        Utility.recursiveSetAlphaChannel(g.transform);
+        g.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+        g.transform.GetChild(1).gameObject.GetComponent<Text>().enabled = true;
+        Utility.recursivePlayAnimation(g.transform, "FadeIn");
+        LocalGameManager.Instance.m_IsWindowOver = true;
+        LocalGameManager.Instance.m_CanvasHUD.SetActive(false);
+    }
+
+    public void ResetManager()
+    {
+
+    }
 }

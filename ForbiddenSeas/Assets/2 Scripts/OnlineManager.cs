@@ -163,20 +163,11 @@ public class OnlineManager : NetworkLobbyManager {
         if (LocalGameManager.Instance.m_GameIsStarted)
         {
             Debug.Log("Qualcuno si è disconnesso " + conn.connectionId + 1);
-            RpcToTheLobby();
+            LocalGameManager.Instance.RpcToTheLobby();
             Invoke("ServerReturnToLobby", 5f);
         }
         base.OnServerDisconnect(conn);
     }
 
-    [ClientRpc]
-    public void RpcToTheLobby()
-    {
-        GameObject g = GameObject.FindGameObjectWithTag("Finish");
-        Utility.recursiveSetAlphaChannel(g.transform);
-        g.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-        g.transform.GetChild(1).gameObject.GetComponent<Text>().enabled = true;
-        Utility.recursivePlayAnimation(g.transform, "FadeIn");
-        LocalGameManager.Instance.m_IsWindowOver = true;
-    }
+
 }
