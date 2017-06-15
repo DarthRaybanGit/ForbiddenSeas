@@ -167,10 +167,21 @@ public class OnlineManager : NetworkLobbyManager {
         {
             Debug.Log("Qualcuno si è disconnesso " + conn.connectionId + 1);
             LocalGameManager.Instance.RpcToTheLobby();
-            Invoke("ServerReturnToLobby", 5f);
+
+            StartCoroutine(toLobby());
         }
         base.OnServerDisconnect(conn);
     }
 
+
+    IEnumerator toLobby()
+    {
+        yield return new WaitForSeconds(3f);
+        ServerReturnToLobby();
+        Destroy(LocalGameManager.Instance);
+        yield return new WaitForSeconds(1f);
+        StopServer();
+        StartServer();
+    }
 
 }

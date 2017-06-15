@@ -466,7 +466,9 @@ public class LocalGameManager : NetworkBehaviour
         LocalGameManager.Instance.m_IsWindowOver = true;
         LocalGameManager.Instance.m_CanvasHUD.SetActive(false);
         OnlineManager.s_Singleton.StopClient();
-        Destroy(this);
+
+        OnlineManager.Shutdown();
+        Destroy(this.gameObject);
     }
 
 }

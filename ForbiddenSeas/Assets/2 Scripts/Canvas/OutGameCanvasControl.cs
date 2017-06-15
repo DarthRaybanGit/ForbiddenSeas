@@ -25,6 +25,7 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void Start()
     {
+        /*
         Debug.Log("Lobby Start");
         if (LocalGameManager.Instance.m_GameIsStarted)
         {
@@ -41,7 +42,7 @@ public class OutGameCanvasControl : MonoBehaviour
                 }
                 SelectionStart();
             }
-        }
+        }*/
 
     }
 
