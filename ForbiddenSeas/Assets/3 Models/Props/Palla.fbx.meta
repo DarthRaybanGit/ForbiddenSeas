@@ -28,6 +28,7 @@ ModelImporter:
     2300008: Icosphere
     2300010: Icosphere.001
     2300012: Moneta
+    2300014: //RootNode
     3300000: Barile
     3300002: Cone
     3300004: Cube
@@ -35,6 +36,7 @@ ModelImporter:
     3300008: Icosphere
     3300010: Icosphere.001
     3300012: Moneta
+    3300014: //RootNode
     4300000: Icosphere.001
     4300002: Cylinder
     4300004: Cube

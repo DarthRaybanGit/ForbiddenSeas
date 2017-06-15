@@ -30,7 +30,13 @@ public class StatusHUD : MonoBehaviour
         int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().debuffList);
         neg[max-1].gameObject.SetActive(true);
         neg[max-1].sprite = spriteDebuff[debuff];
-        yield return new WaitForSeconds(sec);
+
+        while (sec > 0)
+        {
+            sec--;
+            yield return new WaitForSeconds(1f);
+            neg[max - 1].GetComponentInChildren<Text>().text = ((int)sec).ToString();
+        }
         neg[max -1].gameObject.SetActive(false);
     }
 
@@ -41,7 +47,13 @@ public class StatusHUD : MonoBehaviour
         int max = FlagshipStatus.maxNumberStatus(LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().buffList);
         pos[max - 1].gameObject.SetActive(true);
         pos[max - 1].sprite = spriteBuff[buff];
-        yield return new WaitForSeconds(sec);
+
+        while (sec > 0)
+        {
+            sec--;
+            yield return new WaitForSeconds(1f);
+            pos[max - 1].GetComponentInChildren<Text>().text = ((int)sec).ToString();
+        }
         pos[max-1].gameObject.SetActive(false);
     }
 }
