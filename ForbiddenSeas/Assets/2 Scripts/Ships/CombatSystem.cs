@@ -92,7 +92,7 @@ public class CombatSystem : NetworkBehaviour
             if(g.GetComponent<PowerUp>().m_health <= 0)
             {
                 Debug.Log("Toccato un powerUp da " + netId);
-                gameObject.GetComponentInParent<Player>().CatchAPowerUp(g.GetComponent<PowerUp>().type);
+                gameObject.GetComponentInParent<Player>().CatchAPowerUp(g.GetComponent<PowerUp>().type, gameObject.GetComponentInParent<Player>().playerId);
                 g.GetComponent<PowerUp>().killMe();
             }
         }

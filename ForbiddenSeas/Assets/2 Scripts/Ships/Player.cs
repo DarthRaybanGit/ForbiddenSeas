@@ -162,7 +162,7 @@ public class Player : NetworkBehaviour
     }
 
     [Server]
-    public void CatchAPowerUp(PowerUP p)
+    public void CatchAPowerUp(PowerUP p, int player)
     {
         switch (p)
         {
@@ -170,7 +170,7 @@ public class Player : NetworkBehaviour
                 GetComponent<FlagshipStatus>().Regen();
                 break;
             case PowerUP.DAMAGE_UP:
-                GetComponent<FlagshipStatus>().DamageUp();
+                GetComponent<FlagshipStatus>().DamageUp(player);
                 break;
             case PowerUP.SPEED_UP:
                 GetComponent<FlagshipStatus>().SpeedUp();
