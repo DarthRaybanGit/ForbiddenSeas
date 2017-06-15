@@ -29,8 +29,6 @@ public class OutGameCanvasControl : MonoBehaviour
         if (LocalGameManager.Instance.m_GameIsStarted)
         {
 
-
-
             if (LocalGameManager.Instance.isClient)
             {
 
