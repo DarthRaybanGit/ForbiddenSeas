@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInternal: {fileID: 0}
   m_Name: DamageUp
   serializedVersion: 6
-  m_Legacy: 0
+  m_Legacy: 1
   m_Compressed: 0
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
@@ -53,7 +53,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.r
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -93,7 +93,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.g
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -133,7 +133,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.b
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -173,7 +173,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.a
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -183,31 +183,7 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings:
-    - path: 779454066
-      attribute: 1303350129
-      script: {fileID: 0}
-      classID: 137
-      customType: 22
-      isPPtrCurve: 0
-    - path: 779454066
-      attribute: 1571785585
-      script: {fileID: 0}
-      classID: 137
-      customType: 22
-      isPPtrCurve: 0
-    - path: 779454066
-      attribute: 1840221041
-      script: {fileID: 0}
-      classID: 137
-      customType: 22
-      isPPtrCurve: 0
-    - path: 779454066
-      attribute: 2108656497
-      script: {fileID: 0}
-      classID: 137
-      customType: 22
-      isPPtrCurve: 0
+    genericBindings: []
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -267,7 +243,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.r
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -307,7 +283,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.g
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -347,7 +323,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.b
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -387,7 +363,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Color.a
-    path: PirateGalleon/Plane
+    path: 
     classID: 137
     script: {fileID: 0}
   m_EulerEditorCurves: []
