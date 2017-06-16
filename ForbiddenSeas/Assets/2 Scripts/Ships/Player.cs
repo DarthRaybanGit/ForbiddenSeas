@@ -176,6 +176,8 @@ public class Player : NetworkBehaviour
                 GetComponent<FlagshipStatus>().SpeedUp(player);
                 break;
         }
+        GetComponent<FlagshipStatus>().m_reputation += ReputationValues.POWERUP;
+        TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
     }
 
 

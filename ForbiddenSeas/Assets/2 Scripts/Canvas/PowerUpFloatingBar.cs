@@ -22,12 +22,19 @@ public class PowerUpFloatingBar : MonoBehaviour
             bar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
             total = target.gameObject.GetComponent<PowerUp>().m_maxHealth;
         }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     void Update ()
     {
         if (LocalGameManager.Instance.isServer)
+        {
             return;
+        }
+
 
         if (!target)
             Destroy(gameObject);

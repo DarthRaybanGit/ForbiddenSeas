@@ -33,6 +33,14 @@ public class EndGameStats : MonoBehaviour
 
     public void returnToLobby()
     {
-        //nfewjin nj doicarjtu pa, no dearsweoy myojirtu arrh!
+        LocalGameManager.Instance.m_CanvasHUD.SetActive(false);
+
+        GameObject g = LocalGameManager.Instance.gameObject;
+
+        Destroy(LocalGameManager.Instance);
+        Destroy(g);
+
+        OnlineManager.s_Singleton.StopClient();
+
     }
 }

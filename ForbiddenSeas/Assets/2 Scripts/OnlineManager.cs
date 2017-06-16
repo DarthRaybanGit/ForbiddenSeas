@@ -126,12 +126,12 @@ public class OnlineManager : NetworkLobbyManager {
         return checksum == currentPlayers.Keys.Count;
     }
 
-    private int count = 0;
+    private int connessioni = 0;
 
     public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
     {
-        SetPlayerInfoRespawnLocation(conn, count);
-        count++;
+        SetPlayerInfoRespawnLocation(conn, connessioni);
+        connessioni++;
         GameObject pl = GameObject.Instantiate(m_AdmiralList[conn.playerControllers.ToArray()[0].gameObject.GetComponent<PlayerManager>().m_LocalClass], m_SpawnPosition[currentPlayers[conn.connectionId][(int)PlayerInfo.SPAWN_POSITION]].position, Quaternion.identity);
 
         GameObject g = GameObject.Instantiate(gamePlayerPrefab);
@@ -163,25 +163,74 @@ public class OnlineManager : NetworkLobbyManager {
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        if (LocalGameManager.Instance.m_GameIsStarted)
+        if (LocalGameManager.Instance.m_GameIsStarted && !LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().partitaFinita)
         {
             Debug.Log("Qualcuno si è disconnesso " + conn.connectionId + 1);
             LocalGameManager.Instance.RpcToTheLobby();
 
             StartCoroutine(toLobby());
         }
+        else if (LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().partitaFinita)
+        {
+            Debug.Log("La partita è finita e qualcuno si è disconnesso, sono rimasti " + countActivePlayers() + " giocatori.");
+
+            StartCoroutine(checkForOtherPlayerInside());
+        }
         base.OnServerDisconnect(conn);
     }
 
 
-    IEnumerator toLobby()
+    private int countActivePlayers()
     {
-        yield return new WaitForSeconds(3f);
+        int count = 0;
+        for(int i = 0; i < lobbySlots.Length; i++)
+        {
+            if (lobbySlots[i])
+                count++;
+        }
+        return count;
+    }
+
+
+    public IEnumerator checkForOtherPlayerInside()
+    {
+        yield return new WaitForSeconds(2f);
+        if (countActivePlayers() < 1)
+        {
+            Debug.Log("Tutti Disconnessi Yeah!");
+            Destroy(LocalGameManager.Instance.m_CanvasHUD);
+            Destroy(LocalGameManager.Instance.m_CanvasEtichette);
+
+            Destroy(LocalGameManager.Instance);
+            yield return new WaitForSeconds(1f);
+            Debug.Log("Sto spegnendo il server");
+            StopServer();
+            yield return new WaitUntil(() => !isNetworkActive);
+            m_playerPlacement = new GameObject[4];
+            currentPlayers = new Dictionary<int, int[]>();
+            connessioni = 0;
+            Debug.Log("Server in riavvio");
+            StartServer();
+            Debug.Log("Server riavviato");
+        }
+    }
+
+    public IEnumerator toLobby()
+    {
+        yield return new WaitForSeconds(2f);
         ServerReturnToLobby();
         Destroy(LocalGameManager.Instance);
         yield return new WaitForSeconds(1f);
+        Debug.Log("Sto spegnendo il server");
         StopServer();
+        yield return new WaitUntil(() => !isNetworkActive);
+        m_playerPlacement = new GameObject[4];
+        currentPlayers = new Dictionary<int, int[]>();
+        connessioni = 0;
+        Debug.Log("Server in riavvio");
         StartServer();
+        Debug.Log("Server riavviato");
+
     }
 
 }

@@ -147,7 +147,22 @@ public class FlagshipStatus : NetworkBehaviour
         {
             OnDeath();
             if(da_playerId != -1)
+            {
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
+                foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    if(g && g.GetComponent<FlagshipStatus>())
+                    {
+                        if (g.GetComponent<Player>().playerId == da_playerId)
+                        {
+                            g.GetComponent<FlagshipStatus>().m_reputation += ReputationValues.KILL;
+                            g.GetComponent<Player>().TargetRpcUpdateReputationUI(g.GetComponent<NetworkIdentity>().connectionToClient);
+                        }
+                    }
+                }
+
+            }
+
         }
     }
 
