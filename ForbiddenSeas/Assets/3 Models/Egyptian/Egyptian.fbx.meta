@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b6a314182635a414792b4c3fc910de46
-timeCreated: 1497115174
+guid: 017c76943c76d884a833afea53559e96
+timeCreated: 1497624010
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -68,10 +68,11 @@ ModelImporter:
     400058: Treasure
     400060: Treasure_end
     4300000: Cube.001
-    7400000: Armature.001|Idle
-    7400002: Armature.001|MaxSpeed
-    7400004: Armature.001|NormalAttack
-    7400006: Armature.001|SpecialAttack
+    7400000: Armature.001|Death
+    7400002: Armature.001|Idle
+    7400004: Armature.001|MaxSpeed
+    7400006: Armature.001|NormalAttack
+    7400008: Armature.001|SpecialAttack
     9500000: //RootNode
     13700000: Cube.001
   materials:
@@ -95,6 +96,104 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations:
+    - serializedVersion: 16
+      name: Armature.001|Death
+      takeName: Armature.001|Death
+      firstFrame: 0
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 1
+        functionName: Morte
+        data: 
+        objectReferenceParameter: {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature.001
+        weight: 1
+      - path: Armature.001/Bone
+        weight: 1
+      - path: Armature.001/Bone/Bone.001
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.001_L.001
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.001_L.001/Bone.001_L.001_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.001_R.001
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.001_R.001/Bone.001_R.001_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.003
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.003/Bone.004
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.003/Bone.004/Bone.004_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/Bone.005_L.001
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/Bone.005_L.001/Bone.005_L.001_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/Bone.005_R.001
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/Bone.005_R.001/Bone.005_R.001_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/EyeControl
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.002/Bone.005/EyeControl/EyeControl_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.007
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.007/Bone.007_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.008
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.008/Bone.008_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.009
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.009/Bone.009_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.010
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.010/Bone.006
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Bone.010/Bone.006/Bone.006_end
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Treasure
+        weight: 1
+      - path: Armature.001/Bone/Bone.001/Treasure/Treasure_end
+        weight: 1
+      - path: Cube.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Armature.001|Idle
       takeName: Armature.001|Idle
