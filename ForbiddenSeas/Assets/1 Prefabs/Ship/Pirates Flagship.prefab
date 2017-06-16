@@ -1786,7 +1786,7 @@ GameObject:
   - component: {fileID: 199056383146321010}
   m_Layer: 10
   m_Name: DmgUpParticles
-  m_TagString: Untagged
+  m_TagString: dmgUP_Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1850,7 +1850,7 @@ GameObject:
   - component: {fileID: 4097137143515420}
   m_Layer: 10
   m_Name: ParticlesRegen
-  m_TagString: Untagged
+  m_TagString: regen_Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

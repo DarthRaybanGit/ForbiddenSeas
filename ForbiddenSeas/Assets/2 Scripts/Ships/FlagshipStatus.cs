@@ -385,9 +385,23 @@ public class FlagshipStatus : NetworkBehaviour
     }
 
     [Server]
-    public void SpeedUp()
+    public void SpeedUp(int player)
     {
+        RpcSpeedUpParticle(player);
         TargetRpcSpeedUp(GetComponent<NetworkIdentity>().connectionToClient);
+    }
+
+    [ClientRpc]
+    public void RpcSpeedUpParticle(int player)
+    {
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(true);
+        StartCoroutine(EndSpeedUpParticle(player));
+    }
+
+    IEnumerator EndSpeedUpParticle(int player)
+    {
+        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(false);
     }
 
     [TargetRpc]
@@ -426,10 +440,24 @@ public class FlagshipStatus : NetworkBehaviour
         buffList[(int)BuffStatus.yohoho] = false;
     }
 
-    public void Regen()
+    public void Regen(int player)
     {
         m_DoT += Symbols.REGEN_AMOUNT;
+        RpcRegenParticle(player);
         StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)BuffTiming.REGEN_DURATION));
+    }
+
+    [ClientRpc]
+    public void RpcRegenParticle(int player)
+    {
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(true);
+        StartCoroutine(EndSpeedUpParticle(player));
+    }
+
+    IEnumerator EndRegenParticle(int player)
+    {
+        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(false);
     }
 
     private IEnumerator resetDoT(int dmg, float duration)
