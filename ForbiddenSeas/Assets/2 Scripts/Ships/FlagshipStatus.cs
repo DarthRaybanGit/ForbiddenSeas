@@ -371,7 +371,7 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Material>().color = Color.white;
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Renderer>().material.color = Color.white;
     }
 
     [TargetRpc]

@@ -313,7 +313,7 @@ public class LocalGameManager : NetworkBehaviour
         }
         else
         {
-            NetworkInstanceId[] to_Send = new NetworkInstanceId[OnlineManager.s_Singleton.currentPlayers.Keys.Count];
+            NetworkInstanceId[] to_Send = new NetworkInstanceId[GameObject.FindGameObjectsWithTag("Player").Length];
 
             int count = 0;
 

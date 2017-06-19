@@ -180,7 +180,7 @@ public class OnlineManager : NetworkLobbyManager {
     }
 
 
-    private int countActivePlayers()
+    public int countActivePlayers()
     {
         int count = 0;
         for(int i = 0; i < lobbySlots.Length; i++)
