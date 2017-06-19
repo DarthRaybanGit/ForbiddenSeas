@@ -88,9 +88,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4901281567080316}
-  - component: {fileID: 114448918513679700}
   - component: {fileID: 135892250675145434}
-  - component: {fileID: 114718472617238958}
+  - component: {fileID: 114632928060895502}
+  - component: {fileID: 114847032622932338}
   m_Layer: 0
   m_Name: MinaPrefab
   m_TagString: Untagged
@@ -382,7 +382,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114448918513679700
+--- !u!114 &114632928060895502
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneId:
-    m_Value: 1
+    m_Value: 0
   m_AssetId:
     i0: 228
     i1: 206
@@ -414,7 +414,7 @@ MonoBehaviour:
     i15: 242
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114718472617238958
+--- !u!114 &114847032622932338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

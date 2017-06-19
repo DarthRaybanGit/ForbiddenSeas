@@ -57,11 +57,11 @@ Transform:
   m_GameObject: {fileID: 1830504433631974}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children: []
   m_Father: {fileID: 4877680824996496}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 122, z: 0}
 --- !u!4 &4877680824996496
 Transform:
   m_ObjectHideFlags: 1
@@ -183,7 +183,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08217804
+  m_Radius: 0.86
   m_Center: {x: 0.000003952533, y: 0.00021448052, z: -0.00010880826}
 --- !u!198 &198683300998039054
 ParticleSystem:

@@ -23,6 +23,9 @@ public class Player : NetworkBehaviour
     public Text m_reputationTextUI;
     public Text m_scoreTextUI;
     public GameObject m_Avviso_ARRH;
+    public GameObject m_Avviso_Kill;
+    public GameObject m_Avviso_PowerUp;
+    public bool isAvvisoOn = false;
 
     public GameObject myTag;
 
@@ -67,6 +70,9 @@ public class Player : NetworkBehaviour
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
                 m_Avviso_ARRH = GameObject.FindGameObjectWithTag("Avviso_ARRH");
+                m_Avviso_Kill = GameObject.FindGameObjectWithTag("Avviso_Kill");
+                m_Avviso_PowerUp = GameObject.FindGameObjectWithTag("Avviso_PowerUp");
+
             }
 
         }
@@ -274,6 +280,7 @@ public class Player : NetworkBehaviour
     {
         yield return new WaitForSeconds(Symbols.avvisoTimeLength);
         Utility.recursivePlayAnimation(m_Avviso_ARRH.transform, "FadeOut", "Avviso");
+        isAvvisoOn = false;
         yield return new WaitUntil(() => !m_Avviso_ARRH.GetComponentInChildren<Animation>().isPlaying);
         m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(false);
     }
@@ -281,6 +288,17 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcArrhScoredBy(NetworkInstanceId p)
     {
+        Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        pl.StartCoroutine(pl.ArrhScoredBy(p));
+
+    }
+
+    public IEnumerator ArrhScoredBy(NetworkInstanceId p)
+    {
+        if (isAvvisoOn)
+        {
+            yield return new WaitWhile(() => isAvvisoOn);
+        }
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(pl.m_Avviso_ARRH.transform);
         pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(true);
@@ -303,11 +321,71 @@ public class Player : NetworkBehaviour
             {
                 pl.StartCoroutine(pl.shutdownAvviso());
             }
-
         }
 
         Utility.recursivePlayAnimation(pl.m_Avviso_ARRH.transform, "FadeIn");
+    }
 
+    [ClientRpc]
+    public void RpcAvvisoKill(NetworkInstanceId playerKilled, NetworkInstanceId killer)
+    {
+        Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        pl.StartCoroutine(AvvisoKill(playerKilled, killer));
+    }
+        
+    public IEnumerator AvvisoKill(NetworkInstanceId playerKilled, NetworkInstanceId killer)
+    {
+        if (isAvvisoOn)
+        {
+            yield return new WaitWhile(() => isAvvisoOn);
+        }
+        Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        Utility.recursiveSetAlphaChannel(io.m_Avviso_Kill.transform);
+        io.m_Avviso_Kill.transform.GetChild(0).gameObject.SetActive(true);
+
+        if(playerKilled == io.netId)
+        {
+            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(killer).GetComponent<Player>().playerName + " have killed you!";
+        }
+        if(killer == io.netId)
+        {
+            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text =  "You killed " + ClientScene.FindLocalObject(playerKilled).GetComponent<Player>().playerName + "!";
+        }
+        if(killer != io.netId && playerKilled != io.netId)
+        {
+            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text =  ClientScene.FindLocalObject(killer).GetComponent<Player>().playerName + " has killed " + ClientScene.FindLocalObject(playerKilled).GetComponent<Player>().playerName + "!";
+        }
+        io.StartCoroutine(io.shutdownAvviso());
+        Utility.recursivePlayAnimation(io.m_Avviso_ARRH.transform, "FadeIn");
+    }
+
+    [ClientRpc]
+    public void RpcAvvisoPowerUp(NetworkInstanceId p, string p_up)
+    {
+        Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        pl.StartCoroutine(AvvisoPowerUp(p, p_up));
+    }
+        
+    public IEnumerator AvvisoPowerUp(NetworkInstanceId p, string p_up)
+    {
+        if (isAvvisoOn)
+        {
+            yield return new WaitWhile(() => isAvvisoOn);
+        }
+        Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        Utility.recursiveSetAlphaChannel(io.m_Avviso_PowerUp.transform);
+        io.m_Avviso_PowerUp.transform.GetChild(0).gameObject.SetActive(true);
+
+        if(p == io.netId)
+        {
+            io.m_Avviso_PowerUp.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "You gained " + p_up + "!";
+        }
+        else
+        {
+            io.m_Avviso_PowerUp.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has gained " + p_up + "!";
+        }
+        io.StartCoroutine(io.shutdownAvviso());
+        Utility.recursivePlayAnimation(io.m_Avviso_ARRH.transform, "FadeIn");
     }
 
     [TargetRpc]

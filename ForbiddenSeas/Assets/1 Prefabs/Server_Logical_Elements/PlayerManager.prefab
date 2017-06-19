@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4700145655896900}
-  - component: {fileID: 114505990880895904}
-  - component: {fileID: 114846023152476650}
-  - component: {fileID: 114484061703916484}
+  - component: {fileID: 114213917036718738}
+  - component: {fileID: 114811070100249450}
+  - component: {fileID: 114809761971989994}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: GameManager
@@ -42,38 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114484061703916484
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1330158076786248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLobbyGUI: 0
---- !u!114 &114505990880895904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1330158076786248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55872d259f0e95d428bfa62c7a41f40e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LocalClass: 0
-  m_ClassViewerPrefab: {fileID: 1971321780712888, guid: 8d78d26c3c892b64f9632bbc62bb881c,
-    type: 2}
-  m_PlayerPrefab: {fileID: 1710344792123396, guid: 8e5a73881955d7f49b5c5427b67b7881,
-    type: 2}
-  m_LocalClassViewer: {fileID: 0}
-  m_LocalClassViewerIndex: 99
-  m_PlayerName: Connecting...
---- !u!114 &114846023152476650
+--- !u!114 &114213917036718738
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,4 +73,35 @@ MonoBehaviour:
     i14: 41
     i15: 180
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114809761971989994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330158076786248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLobbyGUI: 0
+--- !u!114 &114811070100249450
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330158076786248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55872d259f0e95d428bfa62c7a41f40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LocalClass: 0
+  m_ClassViewerPrefab: {fileID: 1971321780712888, guid: 8d78d26c3c892b64f9632bbc62bb881c,
+    type: 2}
+  m_PlayerPrefab: {fileID: 1710344792123396, guid: 8e5a73881955d7f49b5c5427b67b7881,
+    type: 2}
+  m_LocalClassViewer: {fileID: 0}
+  m_LocalClassViewerIndex: 99
+  m_PlayerName: Connecting...

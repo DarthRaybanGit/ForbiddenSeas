@@ -38,6 +38,7 @@ TagManager:
   - Manager
   - Avviso_Kill
   - Avviso_PowerUp
+  - spdUP_Particle
   layers:
   - Default
   - TransparentFX
