@@ -399,7 +399,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.3646409
+        functionName: SparoMain
+        data: 
+        objectReferenceParameter: {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -670,6 +678,14 @@ ModelImporter:
         messageOptions: 0
       - time: 1
         functionName: DeactivateSecondaryWeapon
+        data: 
+        objectReferenceParameter: {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.55801105
+        functionName: SparoSpecial
         data: 
         objectReferenceParameter: {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476,
           type: 2}
