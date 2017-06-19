@@ -450,10 +450,12 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator IEYohoho()
     {
+        bool check = buffList[(int)BuffStatus.yohoho];
         buffList[(int)BuffStatus.yohoho] = true;
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed / (float)BuffValue.YohohoSpeed);
         m_DoT += (int)BuffValue.YohohoRegen;
+        statusHUD.ActivateBuff((int)BuffStatus.yohoho, (float)BuffTiming.YOHOHO_DURATION, check);
         yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
         m_maxSpeed = currentSpeed;
         m_DoT -= (int)BuffValue.YohohoRegen;

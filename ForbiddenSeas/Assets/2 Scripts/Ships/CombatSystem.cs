@@ -18,6 +18,8 @@ public class CombatSystem : NetworkBehaviour
     public GameObject[] SpecialParticles;
     private Vector3 waterLocation;
 
+    public GameObject YohohoParticle;
+
     public GameObject PrimaryWeapon;
     public GameObject SecondWeapon;
 
@@ -76,7 +78,37 @@ public class CombatSystem : NetworkBehaviour
                     SpecUI.transform.parent.GetComponent<CoolDownIndicator>().NotAvailable();
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if(GetComponent<FlagshipStatus>().m_yohoho == 100)
+                {
+                    CmdAttivaYohoho();
+                }
+            }
+
+
         }
+    }
+
+    [Command]
+    public void CmdAttivaYohoho()
+    {
+        GetComponent<FlagshipStatus>().Yohoho();
+        RpcYohohoParticle();
+    }
+
+    [ClientRpc]
+    public void RpcYohohoParticle()
+    {
+        StartCoroutine(activateYohohoParticle());
+    }
+
+    IEnumerator activateYohohoParticle()
+    {
+        YohohoParticle.SetActive(true);
+        yield return new WaitForSeconds((int) BuffTiming.YOHOHO_DURATION);
+        YohohoParticle.SetActive(false);
     }
 
     [Command]
