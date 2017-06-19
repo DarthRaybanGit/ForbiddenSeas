@@ -254,6 +254,7 @@ public class CombatSystem : NetworkBehaviour
 
     public void SparoMain()
     {
+        Debug.Log("SparoMain");
         StartCoroutine(startParticle(true));
     }
 
@@ -270,10 +271,19 @@ public class CombatSystem : NetworkBehaviour
                     StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.egyptians:
+                    MainParticles[0].SetActive(false);
+                    MainParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.orientals:
+                    MainParticles[0].SetActive(false);
+                    MainParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.vikings:
+                    MainParticles[0].SetActive(false);
+                    MainParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
                     break;
 
             }
@@ -289,10 +299,19 @@ public class CombatSystem : NetworkBehaviour
                     StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.egyptians:
+                    SpecialParticles[0].SetActive(false);
+                    SpecialParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.orientals:
+                    SpecialParticles[0].SetActive(false);
+                    SpecialParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.vikings:
+                    SpecialParticles[0].SetActive(false);
+                    SpecialParticles[0].SetActive(true);
+                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
 
             }
