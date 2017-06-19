@@ -22,7 +22,7 @@ public class Player : NetworkBehaviour
     public Vector3 m_SpawnPoint;
     public Text m_reputationTextUI;
     public Text m_scoreTextUI;
-    public GameObject m_Avviso;
+    public GameObject m_Avviso_ARRH;
 
     public GameObject myTag;
 
@@ -66,7 +66,7 @@ public class Player : NetworkBehaviour
                 LocalGameManager.Instance.m_GameIsStarted = true;
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
-                m_Avviso = GameObject.FindGameObjectWithTag("Avviso");
+                m_Avviso_ARRH = GameObject.FindGameObjectWithTag("Avviso_ARRH");
             }
 
         }
@@ -273,30 +273,30 @@ public class Player : NetworkBehaviour
     public IEnumerator shutdownAvviso()
     {
         yield return new WaitForSeconds(Symbols.avvisoTimeLength);
-        Utility.recursivePlayAnimation(m_Avviso.transform, "FadeOut", "Avviso");
-        yield return new WaitUntil(() => !m_Avviso.GetComponentInChildren<Animation>().isPlaying);
-        m_Avviso.transform.GetChild(0).gameObject.SetActive(false);
+        Utility.recursivePlayAnimation(m_Avviso_ARRH.transform, "FadeOut", "Avviso");
+        yield return new WaitUntil(() => !m_Avviso_ARRH.GetComponentInChildren<Animation>().isPlaying);
+        m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     [ClientRpc]
     public void RpcArrhScoredBy(NetworkInstanceId p)
     {
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
-        Utility.recursiveSetAlphaChannel(pl.m_Avviso.transform);
-        pl.m_Avviso.transform.GetChild(0).gameObject.SetActive(true);
+        Utility.recursiveSetAlphaChannel(pl.m_Avviso_ARRH.transform);
+        pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(true);
 
         if(p == pl.netId)
         {
-            pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "You have scored an ARRH!...To the Arena!";
+            pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "You have scored an ARRH!...To the Arena!";
             StartCoroutine(RespawnPlayerOutsideArena());
         }
         else
         {
-            pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has scored an ARRH!";
+            pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has scored an ARRH!";
 
             if (!pl.m_InsideArena)
             {
-                pl.m_Avviso.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text += "...To the Arena!";
+                pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text += "...To the Arena!";
                 pl.StartCoroutine(pl.RespawnPlayerOutsideArena());
             }
             else
@@ -306,7 +306,7 @@ public class Player : NetworkBehaviour
 
         }
 
-        Utility.recursivePlayAnimation(pl.m_Avviso.transform, "FadeIn");
+        Utility.recursivePlayAnimation(pl.m_Avviso_ARRH.transform, "FadeIn");
 
     }
 
