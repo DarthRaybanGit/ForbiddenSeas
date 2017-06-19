@@ -148,6 +148,7 @@ public class FlagshipStatus : NetworkBehaviour
             OnDeath();
             if(da_playerId != -1)
             {
+                GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
                 foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
                 {
