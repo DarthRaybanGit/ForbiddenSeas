@@ -70,6 +70,9 @@ public class Player : NetworkBehaviour
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
                 m_Avviso_ARRH = GameObject.FindGameObjectWithTag("Avviso_ARRH");
+                m_Avviso_Kill = GameObject.FindGameObjectWithTag("Avviso_Kill");
+                m_Avviso_PowerUp = GameObject.FindGameObjectWithTag("Avviso_PowerUp");
+
             }
 
         }
@@ -360,10 +363,10 @@ public class Player : NetworkBehaviour
     public void RpcAvvisoPowerUp(NetworkInstanceId p, string p_up)
     {
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
-        pl.StartCoroutine(RpcAvvisoPowerUp(p, p_up));
+        pl.StartCoroutine(AvvisoPowerUp(p, p_up));
     }
         
-    public IEnumerator RpcAvvisoPowerUp(NetworkInstanceId p, string p_up)
+    public IEnumerator AvvisoPowerUp(NetworkInstanceId p, string p_up)
     {
         if (isAvvisoOn)
         {
