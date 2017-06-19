@@ -363,7 +363,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void RpcDmgUpParticle(int player)
     {
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(true);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play(0);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("DamageUp");
         StartCoroutine(EndDmgUpParticle(player));
     }
 
@@ -409,7 +409,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcSpeedUpParticle(int player)
     {
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play(1);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("SpeedUp");
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(true);
         StartCoroutine(EndSpeedUpParticle(player));
     }
