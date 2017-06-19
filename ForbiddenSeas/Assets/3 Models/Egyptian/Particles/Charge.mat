@@ -7,7 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Charge
+<<<<<<< HEAD
   m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+=======
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> 633c5aca8afa1292d2ed4e0d72b6d875f7f3208a
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +52,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0d393223b86893a4ba3c4c776545a9d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -130,4 +134,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _TintColor
-      second: {r: 0, g: 0.7931037, b: 1, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
