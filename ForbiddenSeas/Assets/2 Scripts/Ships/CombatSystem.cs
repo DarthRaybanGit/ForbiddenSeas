@@ -278,7 +278,10 @@ public class CombatSystem : NetworkBehaviour
                 case FlagshipStatus.ShipClass.orientals:
                     MainParticles[0].SetActive(false);
                     MainParticles[0].SetActive(true);
+                    MainParticles[1].SetActive(false);
                     StartCoroutine(shutdownParticle(MainParticles[0].GetComponent<ParticleSystem>().main.duration, MainParticles[0]));
+                    yield return new WaitForSeconds(MainParticles[0].GetComponent<ParticleSystem>().main.duration - 1f);
+                    MainParticles[1].SetActive(true);
                     break;
                 case FlagshipStatus.ShipClass.vikings:
                     MainParticles[0].SetActive(false);
@@ -305,8 +308,11 @@ public class CombatSystem : NetworkBehaviour
                     break;
                 case FlagshipStatus.ShipClass.orientals:
                     SpecialParticles[0].SetActive(false);
+                    SpecialParticles[1].SetActive(false);
                     SpecialParticles[0].SetActive(true);
                     StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
+                    yield return new WaitForSeconds(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration - 1f);
+                    SpecialParticles[1].SetActive(true);
                     break;
                 case FlagshipStatus.ShipClass.vikings:
                     SpecialParticles[0].SetActive(false);

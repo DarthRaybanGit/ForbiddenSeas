@@ -401,7 +401,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.3646409
-        functionName: MainSparo
+        functionName: SparoMain
         data: 
         objectReferenceParameter: {fileID: 1869087919111540, guid: edc3a8ee792654bd4b726e31a2eb6476,
           type: 2}
