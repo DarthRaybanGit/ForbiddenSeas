@@ -371,7 +371,7 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Material>().color = Color.white;
     }
 
     [TargetRpc]
@@ -427,6 +427,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator IESpeedUp()
     {
+        Camera.main.transform.GetChild(0).gameObject.SetActive(true);
         bool check = buffList[(int)BuffStatus.speedUp];
         buffList[(int)BuffStatus.speedUp] = true;
         float currentSpeed = m_maxSpeed;
@@ -435,6 +436,7 @@ public class FlagshipStatus : NetworkBehaviour
         yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
         m_maxSpeed = currentSpeed;
         buffList[(int)BuffStatus.speedUp] = false;
+        Camera.main.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     [Server]
