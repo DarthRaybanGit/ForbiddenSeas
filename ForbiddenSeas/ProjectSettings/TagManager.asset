@@ -28,7 +28,7 @@ TagManager:
   - Arena
   - TreasureUI
   - RespawnMessage
-  - Avviso
+  - Avviso_ARRH
   - Stats
   - end
   - hud
@@ -36,6 +36,8 @@ TagManager:
   - regen_Particle
   - dmgUP_Particle
   - Manager
+  - Avviso_Kill
+  - Avviso_PowerUp
   layers:
   - Default
   - TransparentFX
