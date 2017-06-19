@@ -63,7 +63,8 @@ public class OnlineManager : NetworkLobbyManager {
             currentPlayers.Add(conn.connectionId, new int[10]);
 
         }
-        GameObject g = base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+        //GameObject g = base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+        /*
         int count = 0;
         for(int i = 0; i < lobbySlots.Length; i++)
         {
@@ -73,8 +74,8 @@ public class OnlineManager : NetworkLobbyManager {
         Debug.Log("Si è connesso " + conn.connectionId + " il numero di player attuali è " + count);
 
         StartCoroutine(waitForLobbyFill(conn, count + 1));
-
-        return g;
+        */
+        return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
     }
 
     IEnumerator waitForLobbyFill(NetworkConnection conn, int n)
@@ -92,7 +93,6 @@ public class OnlineManager : NetworkLobbyManager {
                 break;
         }
         LocalGameManager.Instance.TargetRpcNotifyClientConnection(conn);
-
     }
 
     //Modify Player Info

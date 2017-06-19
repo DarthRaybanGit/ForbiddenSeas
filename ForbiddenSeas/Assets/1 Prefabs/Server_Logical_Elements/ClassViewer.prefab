@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4078772783846912}
   - component: {fileID: 33661240742212980}
   - component: {fileID: 23269060674105660}
-  - component: {fileID: 114971805823526394}
-  - component: {fileID: 114321296084998408}
+  - component: {fileID: 114539862771865478}
+  - component: {fileID: 114779469978508674}
   m_Layer: 0
   m_Name: ClassViewer
   m_TagString: Untagged
@@ -81,20 +81,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971321780712888}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114321296084998408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1971321780712888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f3d12e952c16b41adbc2417feb9ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_LocalClassViewer: {r: 1, g: 1, b: 1, a: 0}
-  m_PlayerOwner: {fileID: 0}
---- !u!114 &114971805823526394
+--- !u!114 &114539862771865478
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,21 +95,34 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 141
-    i1: 120
-    i2: 210
-    i3: 108
-    i4: 60
-    i5: 137
-    i6: 43
-    i7: 100
-    i8: 249
-    i9: 99
-    i10: 43
-    i11: 188
-    i12: 98
-    i13: 187
-    i14: 136
-    i15: 28
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114779469978508674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971321780712888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f3d12e952c16b41adbc2417feb9ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LocalClassViewer: {r: 1, g: 1, b: 1, a: 0}
+  m_PlayerOwner: {fileID: 0}
