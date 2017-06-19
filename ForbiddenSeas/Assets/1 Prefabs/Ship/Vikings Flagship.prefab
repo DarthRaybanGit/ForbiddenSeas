@@ -1883,7 +1883,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922279346019368}
-  m_LocalRotation: {x: 0.6516691, y: -0.27445862, z: -0.65166885, w: -0.27445874}
+  m_LocalRotation: {x: 0.65166914, y: -0.27445865, z: -0.6516689, w: -0.27445877}
   m_LocalPosition: {x: -0.010538681, y: 0.016392319, z: 0.0008638296}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
   m_Children:
@@ -2777,8 +2777,10 @@ MonoBehaviour:
   GlobalMUI: {fileID: 0}
   GlobalSUI: {fileID: 0}
   statusHUD: {fileID: 0}
-  MainParticles: []
-  SpecialParticles: []
+  MainParticles:
+  - {fileID: 1698879858873456}
+  SpecialParticles:
+  - {fileID: 1305155891662150}
   PrimaryWeapon: {fileID: 0}
   SecondWeapon: {fileID: 1296863312441918}
 --- !u!114 &114660679311915734
