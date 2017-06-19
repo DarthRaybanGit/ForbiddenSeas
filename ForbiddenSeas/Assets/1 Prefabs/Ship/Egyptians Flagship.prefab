@@ -992,8 +992,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.06, z: -10.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4945649351915912}
   - {fileID: 4399672845384412}
+  - {fileID: 4945649351915912}
   - {fileID: 4836507093067246}
   - {fileID: 4497648523442520}
   - {fileID: 4216251998151296}
@@ -1317,7 +1317,7 @@ Transform:
   - {fileID: 4140859596870878}
   - {fileID: 4918242204559074}
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4405224878994822
 Transform:
@@ -1765,7 +1765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4031181710060198}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4961807423526686
 Transform:
@@ -2140,7 +2140,10 @@ MonoBehaviour:
   m_SpawnPoint: {x: 0, y: 0, z: 0}
   m_reputationTextUI: {fileID: 0}
   m_scoreTextUI: {fileID: 0}
-  m_Avviso: {fileID: 0}
+  m_Avviso_ARRH: {fileID: 0}
+  m_Avviso_Kill: {fileID: 0}
+  m_Avviso_PowerUp: {fileID: 0}
+  isAvvisoOn: 0
   myTag: {fileID: 0}
   m_InsideArena: 1
   m_score: 0

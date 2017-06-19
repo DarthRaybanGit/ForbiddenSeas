@@ -471,7 +471,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void RpcRegenParticle(int player)
     {
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(true);
-        StartCoroutine(EndSpeedUpParticle(player));
+        StartCoroutine(EndRegenParticle(player));
     }
 
     IEnumerator EndRegenParticle(int player)
