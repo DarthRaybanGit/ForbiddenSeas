@@ -363,7 +363,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void RpcDmgUpParticle(int player)
     {
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(true);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play();
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play(0);
         StartCoroutine(EndDmgUpParticle(player));
     }
 
@@ -409,6 +409,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcSpeedUpParticle(int player)
     {
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play(1);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(true);
         StartCoroutine(EndSpeedUpParticle(player));
     }
@@ -417,6 +418,8 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(false);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Material>().color = Color.white;
+
     }
 
     [TargetRpc]
