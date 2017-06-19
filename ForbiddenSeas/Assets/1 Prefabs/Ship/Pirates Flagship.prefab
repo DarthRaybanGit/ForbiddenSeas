@@ -4063,6 +4063,9 @@ MonoBehaviour:
   m_reputationTextUI: {fileID: 0}
   m_scoreTextUI: {fileID: 0}
   m_Avviso_ARRH: {fileID: 0}
+  m_Avviso_Kill: {fileID: 0}
+  m_Avviso_PowerUp: {fileID: 0}
+  isAvvisoOn: 0
   myTag: {fileID: 0}
   m_InsideArena: 1
   m_score: 0

@@ -49,16 +49,16 @@ public enum FixedDelayInGame
     YOHOHO_FULLFY_SPAN = 120,
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
-    END_GAME = 120,
+    END_GAME = 3000,
     PLAYERS_RESPAWN = 30
 }
 
 public enum BuffTiming
 {
-    YOHOHO_DURATION = 5,
-    REGEN_DURATION = 20,
-    SPEED_UP_DURATION = 20,
-    DAMAGE_UP_DURATION = 20,
+    YOHOHO_DURATION = 10,
+    REGEN_DURATION = 30,
+    SPEED_UP_DURATION = 30,
+    DAMAGE_UP_DURATION = 30,
 }
 
 public enum BuffValue

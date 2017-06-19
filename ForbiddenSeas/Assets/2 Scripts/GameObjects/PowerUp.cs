@@ -35,7 +35,8 @@ public class PowerUp : NetworkBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-            if (type == PowerUP.REGEN || type == PowerUP.SPEED_UP)
+
+            if (!isServer && (type == PowerUP.REGEN || type == PowerUP.SPEED_UP))
             {
                 if (other.tag.Equals("mainAttack") || other.tag.Equals("specialAttack"))
                 {
@@ -45,7 +46,8 @@ public class PowerUp : NetworkBehaviour {
                     else
                         dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
 
-                    other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
+                    if(other.gameObject.GetComponentInParent<Player>().isLocalPlayer)
+                        other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
                 }
             }
             else if(type == PowerUP.DAMAGE_UP && !m_LockForFirstInside && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
