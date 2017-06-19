@@ -88,6 +88,7 @@ public class PowerUp : NetworkBehaviour {
                     Debug.Log("Power up ottenuto da " + who);
                     NetworkServer.FindLocalObject(who).GetComponent<Player>().CatchAPowerUp(PowerUP.DAMAGE_UP, NetworkServer.FindLocalObject(who).GetComponent<Player>().playerId);
                     //Play animation di rewarding in client.
+                    NetworkServer.FindLocalObject(who).GetComponent<Player>().RpcAvvisoPowerUp(who, "DamageUP");
                     RpcAnimatePowerUPGained();
                     yield return new WaitForSeconds(3.5f);
                     killMe();

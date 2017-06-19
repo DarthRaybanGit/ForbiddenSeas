@@ -79,8 +79,6 @@ public class Player : NetworkBehaviour
 
     }
 
-
-
     public override void OnStartServer()
     {
         m_SpawnPoint = transform.position;
@@ -203,7 +201,6 @@ public class Player : NetworkBehaviour
         m_HasTreasure = true;
         LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
         StartCoroutine(yohohoBarGrow(this));
-
 
     }
 
