@@ -57,9 +57,9 @@ public class Orientals
     public const int maxHealth = 1400;
     public const float maxSpeed = 10f;
     public const float maneuverability = ManeuverabilityLevel.LOW;
-    public const int mainAttackDmg = 250;
-    public const float mainAttackCD = 2f;
-    public const int specAttackDmg = 10;
+    public const int mainAttackDmg = 300;
+    public const float mainAttackCD = 2.2f;
+    public const int specAttackDmg = 105;
     public const float specAttackCD = 10f;
     public const float defense = 0.15f;
     public const float mainDistance = -22f;
