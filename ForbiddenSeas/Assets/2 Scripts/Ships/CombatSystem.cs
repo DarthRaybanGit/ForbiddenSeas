@@ -337,7 +337,7 @@ public class CombatSystem : NetworkBehaviour
                 case FlagshipStatus.ShipClass.egyptians:
                     SpecialParticles[0].SetActive(false);
                     SpecialParticles[0].SetActive(true);
-                    StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
+                    //StartCoroutine(shutdownParticle(SpecialParticles[0].GetComponent<ParticleSystem>().main.duration, SpecialParticles[0]));
                     break;
                 case FlagshipStatus.ShipClass.orientals:
                     SpecialParticles[0].SetActive(false);
