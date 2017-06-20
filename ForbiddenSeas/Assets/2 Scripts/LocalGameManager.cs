@@ -193,8 +193,8 @@ public class LocalGameManager : NetworkBehaviour
 
         Debug.Log("Tesoro Spawn!!!");
         NetworkServer.Spawn(m_Treasure);
-        //Aprire le porte dei canali.
-
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RpcAvvisoSpawnT();
+        
         //Spawn dei Porti
         int count = 0;
         for(; count < m_Ports.Length; count++)
