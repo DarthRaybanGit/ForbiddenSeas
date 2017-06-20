@@ -8356,6 +8356,7 @@ MonoBehaviour:
   m_gapFromStart: 0
   m_ServerOffsetTime: 0
   m_GameStartTime: 0
+  m_TreasureClip: {fileID: 8300000, guid: b0dfe02980f3a5845aa5a4d13b013fb3, type: 3}
   m_Treasure: {fileID: 0}
   m_TreasureIsInGame: 0
   m_Ports: []
@@ -8364,7 +8365,7 @@ MonoBehaviour:
   m_CutIsPlaying: 0
   m_IsWindowOver: 0
   m_LoadingCompleted: 0
-  Coin: {fileID: 8300000, guid: 7c13626f2daf68b4891f644750fe0493, type: 3}
+  m_CoinClip: {fileID: 8300000, guid: 7c13626f2daf68b4891f644750fe0493, type: 3}
   m_CoinsRadius: 140
   m_CoinsDisplacement: 20
   m_CoinNumbers: 72
