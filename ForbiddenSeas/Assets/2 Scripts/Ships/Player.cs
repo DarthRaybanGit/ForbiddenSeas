@@ -73,7 +73,7 @@ public class Player : NetworkBehaviour
                 m_Avviso_ARRH = GameObject.FindGameObjectWithTag("Avviso_ARRH");
                 m_Avviso_Kill = GameObject.FindGameObjectWithTag("Avviso_Kill");
                 m_Avviso_PowerUp = GameObject.FindGameObjectWithTag("Avviso_PowerUp");
-                m_Avviso_Treasure = GameObject.FindGameObjectWithTag("Avviso_Treasure");
+                m_Avviso_Treasure = GameObject.FindGameObjectWithTag("Avviso_Tesoro");
             }
 
         }
@@ -386,7 +386,7 @@ public class Player : NetworkBehaviour
     public void RpcAvvisoTreasure(NetworkInstanceId p)
     {
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
-        pl.StartCoroutine(AvvisoTreasure(p));
+        pl.StartCoroutine(pl.AvvisoTreasure(p));
     }
 
     public IEnumerator AvvisoTreasure(NetworkInstanceId p)
@@ -396,7 +396,7 @@ public class Player : NetworkBehaviour
             yield return new WaitWhile(() => isAvvisoOn);
         }
         Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
-        Utility.recursiveSetAlphaChannel(io.m_Avviso_PowerUp.transform);
+        Utility.recursiveSetAlphaChannel(io.m_Avviso_Treasure.transform);
         io.m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(true);
 
         if(p == io.netId)
