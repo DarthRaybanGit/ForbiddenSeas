@@ -18,7 +18,7 @@ public class Coin : NetworkBehaviour {
         if (isServer)
         {
             if (other.gameObject.GetComponent<Player>())
-            {
+            {				
                 other.gameObject.GetComponent<FlagshipStatus>().m_reputation += ReputationValues.COIN;
                 other.gameObject.GetComponent<Player>().TargetRpcUpdateReputationUI(other.gameObject.GetComponent<NetworkIdentity>().connectionToClient);
                 LocalGameManager.Instance.m_CoinsPresence[m_IndexInPool] = false;
