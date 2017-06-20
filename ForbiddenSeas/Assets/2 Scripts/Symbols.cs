@@ -11,9 +11,9 @@ public class SpeedLevel
 
 public class ManeuverabilityLevel
 {
-    public const float LOW = 0.8f;
-    public const float MID = 0.9f;
-    public const float HIGH = 1f;
+    public const float LOW = 1.6f;
+    public const float MID = 1.8f;
+    public const float HIGH = 2f;
 }
 
 public class SpeedLevelRatio
@@ -50,7 +50,7 @@ public enum FixedDelayInGame
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
     END_GAME = 480,
-    PLAYERS_RESPAWN = 30
+    PLAYERS_RESPAWN = 10
 }
 
 public enum BuffTiming

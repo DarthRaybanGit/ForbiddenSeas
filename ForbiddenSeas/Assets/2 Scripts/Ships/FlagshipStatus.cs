@@ -240,21 +240,21 @@ public class FlagshipStatus : NetworkBehaviour
     {
 
         //yield return new WaitUntil(() => sonoMortissimo);
-        if(shipClass != ShipClass.egyptians)
-            GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
+        //GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
         sonoMortissimo = false;
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         if (Ombra)
             Ombra.SetActive(false);
         Debug.Log("Si Blocca qui " + Time.time);
         GetComponent<Animator>().SetTrigger("Respawn");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("Riprende qui " + Time.time);
         transform.position = GetComponent<Player>().m_SpawnPoint;
 
         if (isLocalPlayer)
         {
+            GetComponent<Animator>().SetFloat("Speed", 0);
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             Debug.Log("Voglio rivivere.");
             CmdIwantoToLive();
@@ -267,6 +267,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void CmdIwantoToLive()
     {
         //Start CountDown
+        GetComponent<Player>().m_InsideArena = true;
         TargetRpcCountDownRespawn(GetComponent<NetworkIdentity>().connectionToClient);
         StartCoroutine(CountDownRespawn());
     }
