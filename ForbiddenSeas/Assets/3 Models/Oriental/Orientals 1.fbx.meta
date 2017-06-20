@@ -303,7 +303,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.9666667
-        functionName: Morto
+        functionName: Morte
         data: 
         objectReferenceParameter: {fileID: 1869087919111540, guid: 684ee1569607f42cc9be9633005abc2b,
           type: 2}
