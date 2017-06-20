@@ -38,27 +38,30 @@ public class PowerUpFloatingBar : MonoBehaviour
 
         if (!target)
             Destroy(gameObject);
-
-        bool isClose = Vector3.Distance(LocalGameManager.Instance.m_LocalPlayer.transform.position, target.position) < distance;
-        transform.GetChild(0).gameObject.SetActive(isClose);
-        if (!isClose)
-            return;
-        targetPos = Camera.main.WorldToScreenPoint(target.position);
-        targetPos += offset;
-
-        if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
-            targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
-
-        if (Camera.main.WorldToScreenPoint(target.position).z < 0)
+        else
         {
-            targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
+            bool isClose = Vector3.Distance(LocalGameManager.Instance.m_LocalPlayer.transform.position, target.position) < distance;
+            transform.GetChild(0).gameObject.SetActive(isClose);
+            if (!isClose)
+                return;
+            targetPos = Camera.main.WorldToScreenPoint(target.position);
+            targetPos += offset;
+
+            if (targetPos.y > (Camera.main.pixelHeight * 0.85f))
+                targetPos = new Vector2(targetPos.x, 0.85f * Camera.main.pixelHeight);
+
+            if (Camera.main.WorldToScreenPoint(target.position).z < 0)
+            {
+                targetPos = new Vector2(2f * Camera.main.pixelWidth, 2f * Camera.main.pixelHeight);
+            }
+
+            transform.position = targetPos;
+
+            FillBar();
+            transform.GetChild(0).GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
+            transform.GetChild(0).GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
         }
 
-        transform.position = targetPos;
-
-        FillBar();
-        transform.GetChild(0).GetChild(3).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
-        transform.GetChild(0).GetChild(4).GetComponent<Text>().text = "" + target.gameObject.GetComponent<PowerUp>().m_health;
     }
 
     void FillBar()

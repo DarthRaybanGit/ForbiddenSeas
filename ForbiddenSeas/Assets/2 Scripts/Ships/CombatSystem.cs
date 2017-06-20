@@ -125,6 +125,7 @@ public class CombatSystem : NetworkBehaviour
             {
                 Debug.Log("Toccato un powerUp da " + netId);
                 gameObject.GetComponentInParent<Player>().CatchAPowerUp(g.GetComponent<PowerUp>().type, gameObject.GetComponentInParent<Player>().playerId);
+                gameObject.GetComponentInParent<Player>().RpcAvvisoPowerUp(netId, g.GetComponent<PowerUp>().type == PowerUP.REGEN ? "Regen" : "SpeedUp");
                 g.GetComponent<PowerUp>().killMe();
             }
         }

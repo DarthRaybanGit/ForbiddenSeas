@@ -90,6 +90,7 @@ public class MoveSimple : NetworkBehaviour {
             return;
         }
 
+        maxSpeed = GetComponent<FlagshipStatus>().m_maxSpeed;
 
 
             if (Input.GetAxis ("Mouse ScrollWheel") > 0.0) {

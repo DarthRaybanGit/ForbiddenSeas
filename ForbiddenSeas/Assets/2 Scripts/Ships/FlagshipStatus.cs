@@ -356,8 +356,26 @@ public class FlagshipStatus : NetworkBehaviour
     [Server]
     public void DamageUp(int player)
     {
+        bool check = buffList[(int)BuffStatus.dmgUp];
         RpcDmgUpParticle(player);
-        TargetRpcDmgUp(GetComponent<NetworkIdentity>().connectionToClient);
+        StartCoroutine(DamageUpBuff());
+        TargetRpcDmgUp(GetComponent<NetworkIdentity>().connectionToClient, check);
+    }
+
+    IEnumerator DamageUpBuff()
+    {
+        Debug.Log("dmgUP now");
+        buffList[(int)BuffStatus.dmgUp] = true;
+        int currentMain = m_main;
+        int currentSpec = m_special;
+
+        m_main += (m_main / (int)BuffValue.DmgUpValue);
+        m_special += (m_special / (int)BuffValue.DmgUpValue);
+        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+
+        m_main = currentMain;
+        m_special = currentSpec;
+        buffList[(int)BuffStatus.dmgUp] = false;
     }
 
     [ClientRpc]
@@ -372,102 +390,173 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Renderer>().material.color = Color.white;
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
     }
 
     [TargetRpc]
-    public void TargetRpcDmgUp(NetworkConnection c)
+    public void TargetRpcDmgUp(NetworkConnection c, bool check)
     {
-        StartCoroutine(DmgUp());
+        StartCoroutine(DmgUpIcon(check));
     }
 
-    IEnumerator DmgUp()
+    IEnumerator DmgUpIcon(bool check)
     {
-        bool check = buffList[(int)BuffStatus.dmgUp];
+        //bool check = buffList[(int)BuffStatus.dmgUp];
 
         Debug.Log("dmgUP now");
+        /*
         buffList[(int)BuffStatus.dmgUp] = true;
+
         int currentMain = m_main;
         int currentSpec = m_special;
 
         m_main += (m_main / (int)BuffValue.DmgUpValue);
         m_special += (m_special / (int)BuffValue.DmgUpValue);
+        */
         StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.dmgUp, (float)BuffTiming.DAMAGE_UP_DURATION, check));
+        /*
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+
         m_main = currentMain;
         m_special = currentSpec;
         buffList[(int)BuffStatus.dmgUp] = false;
+        */
         Debug.Log("end dmgUP");
+        yield return null;
     }
 
     [Server]
     public void SpeedUp(int player)
     {
         RpcSpeedUpParticle(player);
-        TargetRpcSpeedUp(GetComponent<NetworkIdentity>().connectionToClient);
+        bool check = buffList[(int)BuffStatus.speedUp];
+        StartCoroutine(SpeedUpBuff());
+        TargetRpcSpeedUp(GetComponent<NetworkIdentity>().connectionToClient, check);
     }
+
+    IEnumerator SpeedUpBuff()
+    {
+
+        buffList[(int)BuffStatus.speedUp] = true;
+        float currentSpeed = m_maxSpeed;
+        m_maxSpeed += (m_maxSpeed * ((float)BuffValue.SpeedUpValue / 100f));
+        yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
+        m_maxSpeed = currentSpeed;
+        buffList[(int)BuffStatus.speedUp] = false;
+    }
+
 
     [ClientRpc]
     public void RpcSpeedUpParticle(int player)
     {
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("SpeedUp");
-        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(true);
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "spdUP_Particle").SetActive(true);
         StartCoroutine(EndSpeedUpParticle(player));
     }
 
     IEnumerator EndSpeedUpParticle(int player)
     {
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
-        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "speedUP_Particle").SetActive(false);
-        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Material>().color = Color.white;
-
+        Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "spdUP_Particle").SetActive(false);
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
+        LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
     }
 
     [TargetRpc]
-    public void TargetRpcSpeedUp(NetworkConnection c)
+    public void TargetRpcSpeedUp(NetworkConnection c, bool check)
     {
-        StartCoroutine(IESpeedUp());
+        Debug.Log("Sto eseguendo lo speedup, sono " + GetComponent<Player>().playerName);
+        StartCoroutine(IESpeedUpIcon(check));
     }
 
-    IEnumerator IESpeedUp()
+    IEnumerator IESpeedUpIcon(bool check)
     {
         Camera.main.transform.GetChild(0).gameObject.SetActive(true);
+        /*
         bool check = buffList[(int)BuffStatus.speedUp];
         buffList[(int)BuffStatus.speedUp] = true;
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed / (float)BuffValue.SpeedUpValue);
-        statusHUD.ActivateBuff((int)BuffStatus.speedUp, (float)BuffTiming.SPEED_UP_DURATION, check);
+        */
+        StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.speedUp, (float)BuffTiming.SPEED_UP_DURATION, check));
         yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
+        /*
         m_maxSpeed = currentSpeed;
         buffList[(int)BuffStatus.speedUp] = false;
+        */
         Camera.main.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     [Server]
     public void Yohoho()
     {
-        StartCoroutine(IEYohoho());
+        GetComponent<FlagshipStatus>().m_yohoho = 0;
+        RpcYohohoParticle(GetComponent<Player>().playerId);
+        bool check = buffList[(int)BuffStatus.yohoho];
+        StartCoroutine(IEYohohoBuff());
+        TargetRpcYohohoIcon(GetComponent<NetworkIdentity>().connectionToClient, check);
     }
 
-    IEnumerator IEYohoho()
+    [TargetRpc]
+    public void TargetRpcYohohoIcon(NetworkConnection c, bool check)
     {
-        bool check = buffList[(int)BuffStatus.yohoho];
+        StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.yohoho, (float)BuffTiming.YOHOHO_DURATION, check));
+    }
+
+    IEnumerator IEYohohoBuff()
+    {
+
         buffList[(int)BuffStatus.yohoho] = true;
         float currentSpeed = m_maxSpeed;
-        m_maxSpeed += (m_maxSpeed / (float)BuffValue.YohohoSpeed);
-        m_DoT += (int)BuffValue.YohohoRegen;
-        statusHUD.ActivateBuff((int)BuffStatus.yohoho, (float)BuffTiming.YOHOHO_DURATION, check);
+        m_maxSpeed += (m_maxSpeed * ((float)BuffValue.YohohoSpeed / 100f));
+        m_DoT += (int)Symbols.YOHOHO_REGEN_AMOUNT;
         yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
         m_maxSpeed = currentSpeed;
-        m_DoT -= (int)BuffValue.YohohoRegen;
+        m_DoT -= (int)Symbols.YOHOHO_REGEN_AMOUNT;
         buffList[(int)BuffStatus.yohoho] = false;
     }
 
+
+    [ClientRpc]
+    public void RpcYohohoParticle(int player)
+    {
+        LocalGameManager.Instance.GetPlayer(player).GetComponent<CombatSystem>().YohohoParticle.SetActive(true);
+        StartCoroutine(EndYohohoParticle(player));
+    }
+
+    IEnumerator EndYohohoParticle(int player)
+    {
+        yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
+        LocalGameManager.Instance.GetPlayer(player).GetComponent<CombatSystem>().YohohoParticle.SetActive(false);
+
+    }
+
+    [Server]
     public void Regen(int player)
     {
+
         m_DoT += Symbols.REGEN_AMOUNT;
         RpcRegenParticle(player);
+        bool check = buffList[(int)BuffStatus.regen];
+        StartCoroutine(RegenRemoteIcon());
         StartCoroutine(resetDoT(Symbols.REGEN_AMOUNT, (float)BuffTiming.REGEN_DURATION));
+        TargetRpcRegenIcon(GetComponent<NetworkIdentity>().connectionToClient, check);
+    }
+
+    IEnumerator RegenRemoteIcon()
+    {
+        buffList[(int)BuffStatus.regen] = true;
+
+        yield return new WaitForSeconds((float)BuffTiming.REGEN_DURATION);
+
+        buffList[(int)BuffStatus.regen] = false;
+    }
+
+    [TargetRpc]
+    public void TargetRpcRegenIcon(NetworkConnection c, bool check)
+    {
+        StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.regen, (float)BuffTiming.REGEN_DURATION, check));
     }
 
     [ClientRpc]

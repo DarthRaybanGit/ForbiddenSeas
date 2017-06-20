@@ -305,7 +305,7 @@ public class LocalGameManager : NetworkBehaviour
 
 
 
-
+        /*
         if (!OnlineManager.s_Singleton.EveryoneIsOnline())
         {
             //Se ci sono tre giocatori si inizia ugualmente
@@ -313,6 +313,7 @@ public class LocalGameManager : NetworkBehaviour
         }
         else
         {
+        */
             NetworkInstanceId[] to_Send = new NetworkInstanceId[GameObject.FindGameObjectsWithTag("Player").Length];
 
             int count = 0;
@@ -334,13 +335,14 @@ public class LocalGameManager : NetworkBehaviour
             //Start Game!
             Debug.Log("START GAME!!!");
             LocalGameManager.Instance.RpcNotifyPlayersInGame(to_Send);
-            /*
-            StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
-            StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
-            LocalGameManager.Instance.m_serverTimeSended = true;
-            LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
-            */
-        }
+        /*
+        StartCoroutine(LocalGameManager.Instance.c_WaitForTreasure());
+        StartCoroutine(LocalGameManager.Instance.c_LoopPowerUp());
+        LocalGameManager.Instance.m_serverTimeSended = true;
+        LocalGameManager.Instance.RpcNotifyServerTime(Time.timeSinceLevelLoad);
+        */
+
+        //}
 
         //inizializzo gli arrh dei players
         m_playerArrh.Add(0);

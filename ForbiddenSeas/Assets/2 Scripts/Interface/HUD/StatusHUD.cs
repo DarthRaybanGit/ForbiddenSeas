@@ -13,7 +13,7 @@ public class StatusHUD : MonoBehaviour
     void Start()
     {
         neg = new Image[2];
-        pos = new Image[3];
+        pos = new Image[4];
 
         neg[0] = transform.GetChild(0).GetComponent<Image>();
         neg[1] = transform.GetChild(1).GetComponent<Image>();
@@ -21,6 +21,9 @@ public class StatusHUD : MonoBehaviour
         pos[0] = transform.GetChild(2).GetComponent<Image>();
         pos[1] = transform.GetChild(3).GetComponent<Image>();
         pos[2] = transform.GetChild(4).GetComponent<Image>();
+        pos[3] = transform.GetChild(5).GetComponent<Image>();
+
+
 
     }
 

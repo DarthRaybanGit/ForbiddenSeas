@@ -26,7 +26,7 @@ public class UpadateBars : MonoBehaviour
         }
         else
         {
-            total = 120f;
+            total = 100f;
             amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
         }
         ready = true;

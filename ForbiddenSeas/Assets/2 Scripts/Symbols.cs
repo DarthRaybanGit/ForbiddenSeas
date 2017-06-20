@@ -43,7 +43,7 @@ public enum FixedDelayInGame
     TREASURE_RESPAWN = 10,
     POWERUP_SPAWN = 60,
     DAMAGEUP_TIME = 10,
-    PLAYERS_DELAY = 5,
+    PLAYERS_DELAY = 15,
     COUNTDOWN_START = 5,
     YOHOHO_UPDATE_INTERVAL = 1,
     YOHOHO_FULLFY_SPAN = 120,
@@ -66,7 +66,7 @@ public enum BuffValue
     RegenValue = 50,
     DmgUpValue = 20,
     SpeedUpValue = 20,
-    YohohoSpeed = 100,
+    YohohoSpeed = 50,
     YohohoRegen = 150
 }
 
@@ -102,6 +102,7 @@ public class Symbols
     public const float arrhCelebrationTimeLength = 2f;
 
     public const int REGEN_AMOUNT = -50;
+    public const int YOHOHO_REGEN_AMOUNT = -150;
 }
 
 public class ReputationValues
