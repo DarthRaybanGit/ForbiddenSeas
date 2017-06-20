@@ -508,9 +508,9 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator YOHOHO_message()
     {
-        GameObject.FindGameObjectWithTag("Yohoho").SetActive(true);
+        GameObject.FindGameObjectWithTag("Yohoho").transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(5f);
-        GameObject.FindGameObjectWithTag("Yohoho").SetActive(false);
+        GameObject.FindGameObjectWithTag("Yohoho").transform.GetChild(0).gameObject.SetActive(false);
     }
 
     IEnumerator IEYohohoBuff()
