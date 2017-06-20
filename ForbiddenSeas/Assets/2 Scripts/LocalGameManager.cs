@@ -32,6 +32,7 @@ public class LocalGameManager : NetworkBehaviour
 
     public static float m_MatchEndTime;
 
+	public AudioClip m_TreasureClip;
     public GameObject m_Treasure;
     public bool m_TreasureIsInGame = false;
     public GameObject[] m_Ports;
@@ -46,6 +47,8 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_LoadingCompleted = false;
 
     //Server
+
+	public AudioClip m_CoinClip;
     public float m_CoinsRadius;
     public float m_CoinsDisplacement;
     public int m_CoinNumbers = 50;
@@ -415,10 +418,11 @@ public class LocalGameManager : NetworkBehaviour
                 if (playerId == m_LocalPlayer.GetComponent<Player>().netId)
                 {
                     GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = true;
-                        }
+					AudioSource Audio = GetComponent<AudioSource> ();
+					Audio.PlayOneShot (m_TreasureClip, 0.75f);
+                }
                 pl.m_LocalTreasure.SetActive(true);
                 pl.m_HasTreasure = true;
-
                 GameObject tr = ClientScene.FindLocalObject(treasure);
                 if (tr)
                 {
@@ -472,5 +476,13 @@ public class LocalGameManager : NetworkBehaviour
         OnlineManager.Shutdown();
         Destroy(this.gameObject);
     }
+
+
+	[TargetRpc]
+	public void TargetRpcCoinSound(NetworkConnection conn)
+	{
+		AudioSource Audio = GetComponent<AudioSource> ();
+		Audio.PlayOneShot (m_CoinClip);
+	}
 
 }
