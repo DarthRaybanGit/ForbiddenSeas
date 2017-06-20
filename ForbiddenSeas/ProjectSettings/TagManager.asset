@@ -39,6 +39,7 @@ TagManager:
   - Avviso_Kill
   - Avviso_PowerUp
   - spdUP_Particle
+  - Avviso_Tesoro
   layers:
   - Default
   - TransparentFX
