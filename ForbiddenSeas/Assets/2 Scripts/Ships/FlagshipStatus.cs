@@ -492,6 +492,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void Yohoho()
     {
         GetComponent<FlagshipStatus>().m_yohoho = 0;
+        StartCoroutine(GetComponent<Player>().yohohoBarGrow(GetComponent<Player>()));
         RpcYohohoParticle(GetComponent<Player>().playerId);
         bool check = buffList[(int)BuffStatus.yohoho];
         StartCoroutine(IEYohohoBuff());
@@ -509,6 +510,7 @@ public class FlagshipStatus : NetworkBehaviour
     IEnumerator YOHOHO_message()
     {
         GameObject.FindGameObjectWithTag("Yohoho").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.FindGameObjectWithTag("Yohoho").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(5f);
         GameObject.FindGameObjectWithTag("Yohoho").transform.GetChild(0).gameObject.SetActive(false);
     }

@@ -389,6 +389,21 @@ public class Player : NetworkBehaviour
         pl.StartCoroutine(pl.AvvisoTreasure(p));
     }
 
+    [ClientRpc]
+    public void RpcAvvisoSpawnT()
+    {
+       
+        Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        Utility.recursiveSetAlphaChannel(io.m_Avviso_Treasure.transform);
+        io.m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(true);
+
+
+        io.m_Avviso_Treasure.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "The treasure has appeared!";
+
+        io.StartCoroutine(io.shutdownAvviso(io.m_Avviso_Treasure.transform));
+        Utility.recursivePlayAnimation(io.m_Avviso_Treasure.transform, "FadeIn");
+    }
+
     public IEnumerator AvvisoTreasure(NetworkInstanceId p)
     {
         if (isAvvisoOn)
