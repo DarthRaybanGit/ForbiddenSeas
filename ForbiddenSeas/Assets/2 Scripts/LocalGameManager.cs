@@ -301,7 +301,7 @@ public class LocalGameManager : NetworkBehaviour
     public IEnumerator c_WaitUntilEveryPlayersOnline()
     {
         float timestamp = Time.time;
-        yield return new WaitUntil(() => OnlineManager.s_Singleton.EveryoneIsOnline() || Time.time > (timestamp + (int)FixedDelayInGame.PLAYERS_DELAY));
+        yield return new WaitUntil(() => OnlineManager.s_Singleton.EveryoneIsOnline());
 
 
 
