@@ -245,7 +245,7 @@ public class FlagshipStatus : NetworkBehaviour
         yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         if (Ombra)
-            Ombra.GetComponent<Projector>().enabled = false;
+            Ombra.SetActive(false);
         Debug.Log("Si Blocca qui " + Time.time);
         GetComponent<Animator>().SetTrigger("Respawn");
         yield return new WaitForSeconds(2f);
@@ -291,9 +291,12 @@ public class FlagshipStatus : NetworkBehaviour
 
         if (GetComponent<Player>().myTag)
             GetComponent<Player>().myTag.SetActive(true);
+
+        transform.position = GetComponent<Player>().m_SpawnPoint;
+
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         if (Ombra)
-            Ombra.GetComponent<Projector>().enabled = true;
+            Ombra.SetActive(true);
         yield return new WaitForFixedUpdate();
         GetComponent<MoveSimple>().canSync = true;
     }
