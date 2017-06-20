@@ -34,7 +34,7 @@ public static class Utility
             {
                 if (!tt.gameObject.GetComponent<Animation>().GetClip(animation))
                 {
-                    if (!optional.Equals(""))
+                    if (optional.Length > 1)
                     {
                         if (tt.gameObject.GetComponent<Animation>().GetClip(animation + optional))
                             tt.gameObject.GetComponent<Animation>().Play(animation + optional);

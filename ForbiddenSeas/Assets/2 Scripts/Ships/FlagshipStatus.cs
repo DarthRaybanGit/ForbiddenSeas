@@ -240,7 +240,8 @@ public class FlagshipStatus : NetworkBehaviour
     {
 
         //yield return new WaitUntil(() => sonoMortissimo);
-        GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
+        if(shipClass != ShipClass.egyptians)
+            GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
         sonoMortissimo = false;
         yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
