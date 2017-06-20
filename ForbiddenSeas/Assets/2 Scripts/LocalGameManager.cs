@@ -46,6 +46,7 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_LoadingCompleted = false;
 
     //Server
+	public AudioClip Coin;
     public float m_CoinsRadius;
     public float m_CoinsDisplacement;
     public int m_CoinNumbers = 50;
@@ -472,5 +473,12 @@ public class LocalGameManager : NetworkBehaviour
         OnlineManager.Shutdown();
         Destroy(this.gameObject);
     }
+
+	[TargetRpc]
+	public void TargetRpcCoinSound(NetworkConnection conn)
+	{
+		AudioSource Audio = GetComponent<AudioSource> ();
+		Audio.PlayOneShot (Coin);
+	}
 
 }
