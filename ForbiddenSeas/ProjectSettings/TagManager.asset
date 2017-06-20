@@ -40,6 +40,7 @@ TagManager:
   - Avviso_PowerUp
   - spdUP_Particle
   - Avviso_Tesoro
+  - Yohoho
   layers:
   - Default
   - TransparentFX

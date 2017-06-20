@@ -502,6 +502,15 @@ public class FlagshipStatus : NetworkBehaviour
     public void TargetRpcYohohoIcon(NetworkConnection c, bool check)
     {
         StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.yohoho, (float)BuffTiming.YOHOHO_DURATION, check));
+        StartCoroutine(YOHOHO_message();
+
+    }
+
+    IEnumerator YOHOHO_message()
+    {
+        GameObject.FindGameObjectWithTag("Yohoho").SetActive(true);
+        yield return new WaitForSeconds(5f);
+        GameObject.FindGameObjectWithTag("Yohoho").SetActive(false);
     }
 
     IEnumerator IEYohohoBuff()
