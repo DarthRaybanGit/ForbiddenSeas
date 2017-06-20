@@ -2447,6 +2447,7 @@ MonoBehaviour:
   m_Avviso_ARRH: {fileID: 0}
   m_Avviso_Kill: {fileID: 0}
   m_Avviso_PowerUp: {fileID: 0}
+  m_Avviso_Treasure: {fileID: 0}
   isAvvisoOn: 0
   myTag: {fileID: 0}
   m_InsideArena: 1
@@ -2786,7 +2787,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2054116846
+  randomSeed: 396970186
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10667,7 +10668,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080245508545784}
   serializedVersion: 5
-  lengthInSec: 3
+  lengthInSec: 2.3
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -10715,7 +10716,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1020390065
+  randomSeed: -2124379059
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13364,7 +13365,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1591765084
+  randomSeed: 860520428
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21281,7 +21282,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 250580248
+  randomSeed: 1629239459
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -26561,7 +26562,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1334185327
+  randomSeed: -1824974811
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -29150,7 +29151,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060121391136620}
   serializedVersion: 5
-  lengthInSec: 3.1
+  lengthInSec: 2.2
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -29198,7 +29199,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2059717656
+  randomSeed: 762394331
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -31835,7 +31836,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 517714177
+  randomSeed: -904039685
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -37013,7 +37014,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 303856412
+  randomSeed: -118969586
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -39686,7 +39687,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 316441455
+  randomSeed: -1520809865
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -42311,14 +42312,14 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360790635537020}
   serializedVersion: 5
-  lengthInSec: 3
-  simulationSpeed: 2
+  lengthInSec: 1.5
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
   autoRandomSeed: 1
   startDelay:
-    scalar: 2.5
+    scalar: 1.2
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -42359,12 +42360,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1613317439
+  randomSeed: 621000020
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 0.7
+      scalar: 0.9
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -42838,7 +42839,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 50
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -42927,7 +42928,7 @@ ParticleSystem:
     time1: 1.2
     time2: 0
     time3: 0
-    m_BurstCount: 0
+    m_BurstCount: 1
   SizeModule:
     enabled: 0
     curve:
@@ -44996,7 +44997,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1590976628
+  randomSeed: 2104447674
   InitialModule:
     serializedVersion: 3
     enabled: 1
