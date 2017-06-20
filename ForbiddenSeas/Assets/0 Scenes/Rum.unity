@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
-  m_OfflineScene: Room
+  m_OfflineScene: Rum
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1971321780712888, guid: 8d78d26c3c892b64f9632bbc62bb881c, type: 2}
@@ -2988,7 +2988,7 @@ MonoBehaviour:
     type: 2}
   m_GamePlayerPrefab: {fileID: 1710344792123396, guid: 8e5a73881955d7f49b5c5427b67b7881,
     type: 2}
-  m_LobbyScene: Room
+  m_LobbyScene: Rum
   m_PlayScene: Arena
   lobbySlots: []
   m_playerPlacement:

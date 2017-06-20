@@ -3764,7 +3764,7 @@ MonoBehaviour:
   m_defense: 0
   statusHUD: {fileID: 0}
   m_Me: {fileID: 0}
-  Ombra: {fileID: 0}
+  Ombra: {fileID: 1474496083662318}
   sonoMortissimo: 0
 --- !u!114 &114789289762858792
 MonoBehaviour:

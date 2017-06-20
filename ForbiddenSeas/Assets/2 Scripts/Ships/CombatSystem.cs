@@ -399,10 +399,10 @@ public class CombatSystem : NetworkBehaviour
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
                     if(other.GetComponentInParent<FlagshipStatus>().shipClass == FlagshipStatus.ShipClass.vikings)
                     {
-                        if (!lockForViking && lastVicking != other.gameObject.GetComponent<Player>().playerId)
+                        if (!lockForViking && lastVicking != other.gameObject.GetComponentInParent<Player>().playerId)
                         {
                             lockForViking = true;
-                            lastVicking = other.gameObject.GetComponent<Player>().playerId;
+                            lastVicking = other.gameObject.GetComponentInParent<Player>().playerId;
                             GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                             StartCoroutine(doppioCollider());
                         }

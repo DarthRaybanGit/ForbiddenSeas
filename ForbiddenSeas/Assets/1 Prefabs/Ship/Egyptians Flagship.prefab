@@ -2477,7 +2477,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 31bdeb522678c46b9a32f758c453a9bb, type: 3}
   m_Controller: {fileID: 9100000, guid: 4ece5f06069e3cc4f9ca931cc704ce59, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2572,7 +2572,7 @@ MonoBehaviour:
   maxSpeed: 0
   maneuvrability: 0
   rotSpeed: 100
-  cam: {fileID: 0}
+  cam: {fileID: 20091067108358248}
   State: 0
   ActualSpeed: 0
   Acceleration: 0.05
@@ -2739,7 +2739,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869087919111540}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: baa9ddc1da1dd6f469fb4f8c96c030cf, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
