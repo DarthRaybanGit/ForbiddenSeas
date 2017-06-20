@@ -502,7 +502,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void TargetRpcYohohoIcon(NetworkConnection c, bool check)
     {
         StartCoroutine(statusHUD.ActivateBuff((int)BuffStatus.yohoho, (float)BuffTiming.YOHOHO_DURATION, check));
-        StartCoroutine(YOHOHO_message();
+        StartCoroutine(YOHOHO_message());
 
     }
 
