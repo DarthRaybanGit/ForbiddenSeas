@@ -25,6 +25,7 @@ public class Player : NetworkBehaviour
     public GameObject m_Avviso_ARRH;
     public GameObject m_Avviso_Kill;
     public GameObject m_Avviso_PowerUp;
+    public GameObject m_Avviso_Treasure;
     public bool isAvvisoOn = false;
 
     public GameObject myTag;
@@ -72,7 +73,7 @@ public class Player : NetworkBehaviour
                 m_Avviso_ARRH = GameObject.FindGameObjectWithTag("Avviso_ARRH");
                 m_Avviso_Kill = GameObject.FindGameObjectWithTag("Avviso_Kill");
                 m_Avviso_PowerUp = GameObject.FindGameObjectWithTag("Avviso_PowerUp");
-
+                m_Avviso_Treasure = GameObject.FindGameObjectWithTag("Avviso_Treasure");
             }
 
         }
@@ -192,7 +193,7 @@ public class Player : NetworkBehaviour
             return;
 
         LocalGameManager.Instance.m_Treasure.SetActive(false);
-        Debug.Log("Il player " + playerId + " ha preso il tesoro!");
+        RpcAvvisoTreasure(netId);
 
         //Debug.Log("Gli sto facendo prendere il tesoro!");
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.TREASURE;
@@ -201,22 +202,18 @@ public class Player : NetworkBehaviour
         m_HasTreasure = true;
         LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
         StartCoroutine(yohohoBarGrow(this));
-
     }
 
     [Server]
     public IEnumerator yohohoBarGrow(Player pl)
     {
-
         while (pl.m_HasTreasure && pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho < 100)
         {
-
             yield return new WaitForSeconds((int)FixedDelayInGame.YOHOHO_UPDATE_INTERVAL);
 
             pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho += 100 / (float)FixedDelayInGame.YOHOHO_FULLFY_SPAN;
             if (pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho > 100)
                 pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho = 100;
-
         }
     }
 
@@ -383,6 +380,35 @@ public class Player : NetworkBehaviour
         }
         io.StartCoroutine(io.shutdownAvviso(io.m_Avviso_PowerUp.transform));
         Utility.recursivePlayAnimation(io.m_Avviso_PowerUp.transform, "FadeIn");
+    }
+
+    [ClientRpc]
+    public void RpcAvvisoTreasure(NetworkInstanceId p)
+    {
+        Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        pl.StartCoroutine(AvvisoTreasure(p));
+    }
+
+    public IEnumerator AvvisoTreasure(NetworkInstanceId p)
+    {
+        if (isAvvisoOn)
+        {
+            yield return new WaitWhile(() => isAvvisoOn);
+        }
+        Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
+        Utility.recursiveSetAlphaChannel(io.m_Avviso_PowerUp.transform);
+        io.m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(true);
+
+        if(p == io.netId)
+        {
+            io.m_Avviso_Treasure.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = "You found the treasure!";
+        }
+        else
+        {
+            io.m_Avviso_Treasure.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(p).GetComponent<Player>().playerName + " has found the treasure!";
+        }
+        io.StartCoroutine(io.shutdownAvviso(io.m_Avviso_Treasure.transform));
+        Utility.recursivePlayAnimation(io.m_Avviso_Treasure.transform, "FadeIn");
     }
 
     [TargetRpc]
