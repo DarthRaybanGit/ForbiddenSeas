@@ -147,7 +147,7 @@ public class MoveSimple : NetworkBehaviour {
 
 
 
-            rb.angularVelocity = Vector3.zero;
+
 
             if (animator)
                 animator.SetFloat("Speed", ActualSpeed / maxSpeed);
@@ -156,6 +156,8 @@ public class MoveSimple : NetworkBehaviour {
             TransmitPosition();
 
         }
+
+        rb.angularVelocity = Vector3.zero;
     }
 
 
