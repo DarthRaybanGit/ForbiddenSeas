@@ -50,7 +50,7 @@ public enum FixedDelayInGame
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
     END_GAME = 480,
-    PLAYERS_RESPAWN = 30
+    PLAYERS_RESPAWN = 10
 }
 
 public enum BuffTiming

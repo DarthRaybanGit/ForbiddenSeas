@@ -379,7 +379,8 @@ public class CombatSystem : NetworkBehaviour
     }
 
 
-
+    bool lockForViking = false;
+    int lastVicking = -1;
 
     void OnTriggerEnter(Collider other)
     {
@@ -396,7 +397,21 @@ public class CombatSystem : NetworkBehaviour
                     break;
                 case "specialAttack":
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
-                    GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                    if(other.GetComponentInParent<FlagshipStatus>().shipClass == FlagshipStatus.ShipClass.vikings)
+                    {
+                        if (!lockForViking && lastVicking != other.gameObject.GetComponent<Player>().playerId)
+                        {
+                            lockForViking = true;
+                            lastVicking = other.gameObject.GetComponent<Player>().playerId;
+                            GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                            StartCoroutine(doppioCollider());
+                        }
+                    }
+                    else
+                    {
+                        GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                    }
+
                     break;
                 case "Miasma":
                     bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
@@ -413,5 +428,13 @@ public class CombatSystem : NetworkBehaviour
             }
         }
 
+    }
+
+
+    IEnumerator doppioCollider()
+    {
+        yield return new WaitForSeconds(0.2f);
+        lockForViking = false;
+        lastVicking = -1;
     }
 }
