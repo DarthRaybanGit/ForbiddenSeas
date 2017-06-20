@@ -324,7 +324,7 @@ public class Player : NetworkBehaviour
     public void RpcAvvisoKill(NetworkInstanceId playerKilled, NetworkInstanceId killer)
     {
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
-        pl.StartCoroutine(AvvisoKill(playerKilled, killer));
+        pl.StartCoroutine(pl.AvvisoKill(playerKilled, killer));
     }
 
     public IEnumerator AvvisoKill(NetworkInstanceId playerKilled, NetworkInstanceId killer)
@@ -392,7 +392,7 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     public void RpcAvvisoSpawnT()
     {
-       
+
         Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(io.m_Avviso_Treasure.transform);
         io.m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(true);

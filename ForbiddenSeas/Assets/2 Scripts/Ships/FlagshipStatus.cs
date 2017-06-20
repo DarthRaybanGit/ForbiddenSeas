@@ -240,12 +240,13 @@ public class FlagshipStatus : NetworkBehaviour
     {
 
         //yield return new WaitUntil(() => sonoMortissimo);
-        GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
+        if(shipClass != ShipClass.egyptians)
+            GetComponent<Player>().SpostaBarca(gameObject, transform.position + Vector3.down, 5f);
         sonoMortissimo = false;
         yield return new WaitForSeconds(2f);
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         if (Ombra)
-            Ombra.GetComponent<Projector>().enabled = false;
+            Ombra.SetActive(false);
         Debug.Log("Si Blocca qui " + Time.time);
         GetComponent<Animator>().SetTrigger("Respawn");
         yield return new WaitForSeconds(2f);
@@ -291,9 +292,12 @@ public class FlagshipStatus : NetworkBehaviour
 
         if (GetComponent<Player>().myTag)
             GetComponent<Player>().myTag.SetActive(true);
+
+        transform.position = GetComponent<Player>().m_SpawnPoint;
+
         GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         if (Ombra)
-            Ombra.GetComponent<Projector>().enabled = true;
+            Ombra.SetActive(true);
         yield return new WaitForFixedUpdate();
         GetComponent<MoveSimple>().canSync = true;
     }
