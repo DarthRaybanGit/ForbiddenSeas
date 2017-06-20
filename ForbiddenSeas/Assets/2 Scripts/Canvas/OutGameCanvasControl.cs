@@ -17,6 +17,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject[] m_stats;
     public Animation logo;
     public InputField indirizzoIP;
+    public InputField n_players;
     private int currentSelectedClass = 0;
 
     public GameObject LocalGameManagerPrefab;
@@ -142,11 +143,15 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void SetName(InputField t)
     {
-
         m_PlayerName = t.text;
         OnlineManager.s_Singleton.StartClient();
         m_LobbyButtons.SetActive(true);
         SelectionStart();
         m_InputName.SetActive(false);
+    }
+
+    public void SetPlayerNumbers()
+    {
+        OnlineManager.s_Singleton.minPlayers = Int32.Parse(n_players.text);
     }
 }
