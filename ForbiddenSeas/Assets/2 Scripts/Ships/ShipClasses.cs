@@ -20,7 +20,7 @@ public class Pirates
 
 public class Egyptians
 {
-    public const string shipName = "War-type Gondola";
+    public const string shipName = "Solar Ship";
     public const int maxHealth = 800;
     public const float maxSpeed = 10f;
     public const float maneuverability = ManeuverabilityLevel.HIGH;
