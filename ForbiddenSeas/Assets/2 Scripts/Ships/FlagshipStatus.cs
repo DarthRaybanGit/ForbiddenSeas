@@ -148,7 +148,7 @@ public class FlagshipStatus : NetworkBehaviour
             OnDeath();
             if(da_playerId != -1)
             {
-                GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
+                //GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
                 foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
                 {
@@ -336,25 +336,42 @@ public class FlagshipStatus : NetworkBehaviour
     //status alterati - power-ups
 
     [Command]
-    public void CmdMiasma()
+    public void CmdMiasma(bool check)
     {
         debuffList[(int)DebuffStatus.poison] = true;
         m_DoT += Orientals.specAttackDmg;
         StartCoroutine(resetDoT(Orientals.specAttackDmg, (float)DebuffTiming.POISON_DURATION));
-    }
-
-    [Command]
-    public void CmdBlind(NetworkIdentity u)
-    {
-        debuffList[(int)DebuffStatus.blind] = true;
-        TargetRpcBlind(u.connectionToClient);
+        TargetRpcMiasma(GetComponent<NetworkIdentity>().connectionToClient, check);
     }
 
     [TargetRpc]
-    private void TargetRpcBlind(NetworkConnection nc)
+    private void TargetRpcMiasma(NetworkConnection nc, bool check1)
+    {
+        StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison, (float)DebuffTiming.POISON_DURATION, check1));
+    }
+
+    [Command]
+    public void CmdBlind(NetworkIdentity u, bool check)
+    {
+        debuffList[(int)DebuffStatus.blind] = true;
+        TargetRpcBlind(u.connectionToClient, check);
+        StartCoroutine(resetBlindStatus());
+
+    }
+
+    [Server]
+    IEnumerator resetBlindStatus()
+    {
+        yield return new WaitForSeconds((float)DebuffTiming.BLIND_DURATION);
+        debuffList[(int)DebuffStatus.blind] = false;
+    }
+
+    [TargetRpc]
+    private void TargetRpcBlind(NetworkConnection nc, bool check1)
     {
         Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
         bl.SetBlind(true);
+        StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind, (float)DebuffTiming.BLIND_DURATION, check1));
         StartCoroutine(resetBlind(bl, (float)DebuffTiming.BLIND_DURATION));
     }
 

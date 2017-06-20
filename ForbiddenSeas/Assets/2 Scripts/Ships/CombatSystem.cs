@@ -415,13 +415,12 @@ public class CombatSystem : NetworkBehaviour
                     break;
                 case "Miasma":
                     bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
-                    GetComponent<FlagshipStatus>().CmdMiasma();
-                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.poison,(float)DebuffTiming.POISON_DURATION, check));
+                    GetComponent<FlagshipStatus>().CmdMiasma(check);
+
                     break;
                 case "RasEye":
                     bool check1 = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.blind];
-                    StartCoroutine(statusHUD.ActivateDebuff((int)DebuffStatus.blind,(float)DebuffTiming.BLIND_DURATION, check1));
-                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>());
+                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>(), check1);
                     break;
                 default:
                     return;
