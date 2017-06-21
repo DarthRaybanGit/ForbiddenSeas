@@ -183,13 +183,15 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
-            if(m_Me.m_InsideArena)
+            //if(m_Me.m_InsideArena)
                 StartCoroutine(m_Me.LostTheTreasure());
+            /*
             else
             {
                 m_Me.RpcHideTreasure();
                 StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
             }
+            */
 
         }
         if (!m_isDead)

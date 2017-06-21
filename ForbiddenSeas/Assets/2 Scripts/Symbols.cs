@@ -96,8 +96,8 @@ public enum SpawnIndex
 public class Symbols
 {
     public const int PLAYER_NOT_SET = -1;
-    public const float mainAttackDelay = 0.7f;
-    public const float specAttackDelay = 0.5f;
+    public const float mainAttackDelay = 0.5f;
+    public const float specAttackDelay = 0.2f;
     public const float avvisoTimeLength = 4f;
     public const float arrhCelebrationTimeLength = 2f;
 
