@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 114143520851380954}
   - component: {fileID: 95746667205782350}
   - component: {fileID: 114829964354204188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Egyptians Flagship
   m_TagString: Player
   m_Icon: {fileID: 0}

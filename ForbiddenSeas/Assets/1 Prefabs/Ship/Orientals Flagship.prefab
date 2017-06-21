@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 114143520851380954}
   - component: {fileID: 95791103329325238}
   - component: {fileID: 114599398802342582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orientals Flagship
   m_TagString: Player
   m_Icon: {fileID: 0}

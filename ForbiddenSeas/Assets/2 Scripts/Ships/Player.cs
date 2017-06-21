@@ -141,7 +141,7 @@ public class Player : NetworkBehaviour
             {
                 StartCoroutine(LocalGameManager.Instance.c_LoopMines(2, i));
             }
-
+            StartCoroutine(yohohoBarGrow(this)); //FIXME
         }
 
     }
@@ -201,7 +201,7 @@ public class Player : NetworkBehaviour
 
         m_HasTreasure = true;
         LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
-        StartCoroutine(yohohoBarGrow(this));
+        //StartCoroutine(yohohoBarGrow(this));
     }
 
     [Server]
