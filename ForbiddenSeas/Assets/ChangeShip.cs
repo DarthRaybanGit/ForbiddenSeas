@@ -9,14 +9,17 @@ public class ChangeShip : MonoBehaviour
 
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (ogcc.vai)
         {
-            ogcc.prevClassSelect();   
-        }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                ogcc.prevClassSelect();   
+            }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ogcc.nextClassSelect();
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ogcc.nextClassSelect();
+            }
         }
 	}
 }
