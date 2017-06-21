@@ -19,6 +19,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public InputField indirizzoIP;
     public InputField n_players;
     private int currentSelectedClass = 0;
+    public bool vai = false;
 
     public GameObject LocalGameManagerPrefab;
 
@@ -82,12 +83,16 @@ public class OutGameCanvasControl : MonoBehaviour
     IEnumerator waitPlayer(int n, bool first)
     {
         yield return new WaitForSeconds(first ? 3f : 0.2f);
+        
         if (first)
         {
             foreach(Transform t in m_LobbyButtons.transform)
             {
-                if(t.gameObject.GetComponent<Button>())
+                if (t.gameObject.GetComponent<Button>())
+                {
                     t.gameObject.GetComponent<Button>().interactable = true;
+                    vai = true;
+                }
             }
         }
 
@@ -118,9 +123,9 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void nextClassSelect()
     {
-        if (currentSelectedClass == 3)
-            return;
         m_stats[currentSelectedClass].SetActive(false);
+        if (currentSelectedClass == 3)
+            currentSelectedClass = -1;
         m_stats[++currentSelectedClass].SetActive(true);
 
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
@@ -129,10 +134,9 @@ public class OutGameCanvasControl : MonoBehaviour
 
     public void prevClassSelect()
     {
-        if (currentSelectedClass == 0)
-            return;
-
         m_stats[currentSelectedClass].SetActive(false);
+        if (currentSelectedClass == 0)
+            currentSelectedClass = 4;
         m_stats[--currentSelectedClass].SetActive(true);
 
         Camera.main.GetComponent<CameraController>().moveCamera(currentSelectedClass);
