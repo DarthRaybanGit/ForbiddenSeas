@@ -50,7 +50,7 @@ public class PowerUp : NetworkBehaviour {
                         other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
                 }
             }
-            else if(type == PowerUP.DAMAGE_UP && !m_LockForFirstInside && other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<FlagshipStatus>().m_Health > 0)
+            else if(type == PowerUP.DAMAGE_UP && !m_LockForFirstInside && other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead)
             {
                 Debug.Log("Toccato un powerUp da " + other.gameObject.GetComponent<Player>().netId);
                 StartCoroutine(powerUpFill(other.gameObject.GetComponent<Player>().netId));
@@ -96,7 +96,7 @@ public class PowerUp : NetworkBehaviour {
             }
             else
             {
-                m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = 1.0f;
+                m_Inner.GetComponent<Animation>()["DamageUPScaling"].speed = 1.5f;
                 m_Inner.GetComponent<Animation>().Play();
                 m_EmitterBound.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                 m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
