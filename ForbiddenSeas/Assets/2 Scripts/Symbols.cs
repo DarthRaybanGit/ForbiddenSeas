@@ -73,7 +73,7 @@ public enum BuffValue
 public enum DebuffTiming
 {
     POISON_DURATION = 15,
-    BLIND_DURATION = 12
+    BLIND_DURATION = 6
 }
 
 //KEEP IT UPDATE
