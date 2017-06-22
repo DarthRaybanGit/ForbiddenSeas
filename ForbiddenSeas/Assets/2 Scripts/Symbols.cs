@@ -46,7 +46,7 @@ public enum FixedDelayInGame
     PLAYERS_DELAY = 15,
     COUNTDOWN_START = 5,
     YOHOHO_UPDATE_INTERVAL = 1,
-    YOHOHO_FULLFY_SPAN = 90,
+    YOHOHO_FULLFY_SPAN = 60,
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
     END_GAME = 480,
