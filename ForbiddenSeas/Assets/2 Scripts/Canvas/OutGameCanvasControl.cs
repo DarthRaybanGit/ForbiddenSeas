@@ -113,6 +113,10 @@ public class OutGameCanvasControl : MonoBehaviour
         m_ConnectButtons.SetActive(true);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     private void SelectionStart()
     {
         Camera.main.GetComponent<CameraController>().moveCamera(0);
