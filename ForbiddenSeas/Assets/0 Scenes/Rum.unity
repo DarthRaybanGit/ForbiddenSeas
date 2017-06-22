@@ -10617,6 +10617,7 @@ MonoBehaviour:
   logo: {fileID: 1427973294}
   indirizzoIP: {fileID: 550796657}
   n_players: {fileID: 936834180}
+  vai: 0
   LocalGameManagerPrefab: {fileID: 1161043834208574, guid: 0e7543250b74b544f95f6be2421d4ba1,
     type: 2}
   m_PlayerName: Player

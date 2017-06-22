@@ -46,7 +46,7 @@ public enum FixedDelayInGame
     PLAYERS_DELAY = 15,
     COUNTDOWN_START = 5,
     YOHOHO_UPDATE_INTERVAL = 1,
-    YOHOHO_FULLFY_SPAN = 90,
+    YOHOHO_FULLFY_SPAN = 60,
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
     END_GAME = 480,
@@ -73,7 +73,7 @@ public enum BuffValue
 public enum DebuffTiming
 {
     POISON_DURATION = 15,
-    BLIND_DURATION = 12
+    BLIND_DURATION = 6
 }
 
 //KEEP IT UPDATE

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementCopySmooth : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class MovementCopySmooth : MonoBehaviour {
 	public float Angle = 15f;
 	public bool wait = false;
     public bool gameStart = false;
+    public GameObject binocolo;
 
     public Animator anim;
 
@@ -41,6 +43,23 @@ public class MovementCopySmooth : MonoBehaviour {
 			EulerAngles.y = Mathf.SmoothDampAngle (EulerAngles.y, player.transform.eulerAngles.y + Input.GetAxis("Horizontal") * Angle, ref velocity, smooth);
 		transform.rotation = Quaternion.Euler (EulerAngles);
 		transform.position = player.transform.position;
+
+		if (Input.GetKey (KeyCode.S)) 
+		{
+			transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = false;
+			transform.GetChild (0).gameObject.tag = "Untagged";
+			player.GetComponent<Player> ().m_LocalCamera.SetActive(true);
+			player.GetComponent<Player> ().m_LocalCamera.tag="MainCamera";
+            binocolo.GetComponent<Image>().enabled = true;
+		}
+		if (Input.GetKeyUp (KeyCode.S)) 
+		{
+			player.GetComponent<Player> ().m_LocalCamera.SetActive (false);
+			player.GetComponent<Player> ().m_LocalCamera.tag = "Untagged";
+			transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = true;
+			transform.GetChild (0).gameObject.tag = "MainCamera";
+            binocolo.GetComponent<Image>().enabled = false;
+		}
 
 
 	}

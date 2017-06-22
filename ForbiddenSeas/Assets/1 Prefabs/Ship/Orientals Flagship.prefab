@@ -699,6 +699,9 @@ GameObject:
   - component: {fileID: 124621395307139734}
   - component: {fileID: 92830921662433430}
   - component: {fileID: 81426501384227344}
+  - component: {fileID: 114658863630583276}
+  - component: {fileID: 114479814144900484}
+  - component: {fileID: 45896175062003906}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2784,13 +2787,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401329760740216}
-  m_LocalRotation: {x: -0.000000037332335, y: 0.97992474, z: -0.19936788, w: -0.00000018349434}
-  m_LocalPosition: {x: -0, y: 2.56, z: 3.71}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.65, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4031181710060198}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 23, y: 180.00002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854147099400966
 Transform:
   m_ObjectHideFlags: 1
@@ -3280,6 +3283,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004663973494976}
   m_Mesh: {fileID: 4300002, guid: d9a3fef19d1b2e94ea46599fa3ac4b71, type: 3}
+--- !u!45 &45896175062003906
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401329760740216}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 4faea94fa604546b582a2712418b6e3a, type: 2}
 --- !u!54 &54360109460913826
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -3684,6 +3695,23 @@ MonoBehaviour:
   YohohoParticle: {fileID: 1138703379373678}
   PrimaryWeapon: {fileID: 0}
   SecondWeapon: {fileID: 0}
+--- !u!114 &114479814144900484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401329760740216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3309686a9fbbe6e42a182d5e0257704c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 0.5
+  threshold: 0
+  blurSpread: 1
+  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
+  contrastCompositeShader: {fileID: 4800000, guid: 273404942eede4ea1883ca1fb2942507,
+    type: 3}
 --- !u!114 &114599398802342582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3703,6 +3731,20 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &114658863630583276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401329760740216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4739c22ef73ad62488fe344c8fe9addd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strengthX: 0.15
+  strengthY: 0
+  fishEyeShader: {fileID: 4800000, guid: 874ceab4425f64bccb1d14032f4452b1, type: 3}
 --- !u!114 &114660679311915734
 MonoBehaviour:
   m_ObjectHideFlags: 1

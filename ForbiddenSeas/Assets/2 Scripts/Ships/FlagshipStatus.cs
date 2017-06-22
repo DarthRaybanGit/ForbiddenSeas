@@ -279,6 +279,8 @@ public class FlagshipStatus : NetworkBehaviour
         yield return new WaitForSeconds((int)FixedDelayInGame.PLAYERS_RESPAWN);
         m_isDead = false;
         RpcImBack();
+		if (LocalGameManager.Instance.m_TreasureOwned)
+			StartCoroutine (GetComponent<Player> ().yohohoBarGrow (GetComponent<Player> (), 0f));
     }
 
     [ClientRpc]
@@ -516,7 +518,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void Yohoho()
     {
         GetComponent<FlagshipStatus>().m_yohoho = 0;
-        StartCoroutine(GetComponent<Player>().yohohoBarGrow(GetComponent<Player>()));
+		StartCoroutine(GetComponent<Player>().yohohoBarGrow(GetComponent<Player>(), (float)BuffTiming.YOHOHO_DURATION));
         RpcYohohoParticle(GetComponent<Player>().playerId);
         bool check = buffList[(int)BuffStatus.yohoho];
         StartCoroutine(IEYohohoBuff());

@@ -83,6 +83,7 @@ public class CombatSystem : NetworkBehaviour
             {
                 if(GetComponent<FlagshipStatus>().m_yohoho == 100)
                 {
+                    GameObject.FindGameObjectWithTag("YohohoTag").transform.GetChild(0).gameObject.SetActive(false);
                     CmdAttivaYohoho();
                 }
             }
