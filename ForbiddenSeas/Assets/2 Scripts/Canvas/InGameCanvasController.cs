@@ -56,16 +56,20 @@ public class InGameCanvasController : MonoBehaviour
                         GameObject[] g = GameObject.FindGameObjectsWithTag("Player");
                         if(g.Length > 0)
                         {
-                            GameObject winner = null;
+                            GameObject winner = gameObject;
                             int max_Rep = 0;
 
                             foreach(GameObject gg in g)
                             {
                                 if (gg.GetComponent<FlagshipStatus>().m_reputation > max_Rep)
+                                {
                                     winner = gg;
+                                    max_Rep = gg.GetComponent<FlagshipStatus>().m_reputation;
+                                }
+
                             }
 
-                            if(winner == null)
+                            if(!winner.GetComponent<Player>())
                             {
                                 //è un fottuto pareggio
                                 Debug.Log("Pareggio");

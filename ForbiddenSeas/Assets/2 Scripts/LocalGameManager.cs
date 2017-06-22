@@ -195,7 +195,7 @@ public class LocalGameManager : NetworkBehaviour
         Debug.Log("Tesoro Spawn!!!");
         NetworkServer.Spawn(m_Treasure);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RpcAvvisoSpawnT();
-        
+
         //Spawn dei Porti
         int count = 0;
         for(; count < m_Ports.Length; count++)
@@ -449,15 +449,15 @@ public class LocalGameManager : NetworkBehaviour
     {
         Debug.Log("Ha vinto il player " + id + ", " + GetPlayer(id).GetComponent<Player>().playerName);
 
-        GetPlayer(id).GetComponent<CombatSystem>().enabled = false;
-        GetPlayer(id).GetComponent<MoveSimple>().enabled = false;
+        m_LocalPlayer.GetComponent<CombatSystem>().enabled = false;
+        m_LocalPlayer.GetComponent<MoveSimple>().enabled = false;
 
         GameObject.FindGameObjectWithTag("etichette").SetActive(false);
         GameObject.FindGameObjectWithTag("hud").SetActive(false);
 
         GameObject end = GameObject.FindGameObjectWithTag("end");
 
-        if (LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().playerId == id)
+        if (m_LocalPlayer.GetComponent<Player>().playerId == id)
             end.transform.GetChild(0).GetComponent<Image>().sprite = win;
         end.GetComponent<Animation>().Play();
     }
