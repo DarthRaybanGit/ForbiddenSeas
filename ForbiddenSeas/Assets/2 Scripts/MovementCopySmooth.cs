@@ -42,6 +42,21 @@ public class MovementCopySmooth : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (EulerAngles);
 		transform.position = player.transform.position;
 
+		if (Input.GetKey (KeyCode.S)) 
+		{
+			transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = false;
+			transform.GetChild (0).gameObject.tag = "Untagged";
+			player.GetComponent<Player> ().m_LocalCamera.SetActive(true);
+			player.GetComponent<Player> ().m_LocalCamera.tag="MainCamera";
+		}
+		if (Input.GetKeyUp (KeyCode.S)) 
+		{
+			player.GetComponent<Player> ().m_LocalCamera.SetActive (false);
+			player.GetComponent<Player> ().m_LocalCamera.tag = "Untagged";
+			transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = true;
+			transform.GetChild (0).gameObject.tag = "MainCamera";
+		}
+
 
 	}
 
