@@ -398,7 +398,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.012121212
+      - time: 0.006715806
         functionName: SparoMain
         data: 
         objectReferenceParameter: {fileID: 1869087919111540, guid: 1bd4696ec0383420d8a259fbb7c2dd12,
