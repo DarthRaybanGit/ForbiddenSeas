@@ -108,8 +108,8 @@ GameObject:
   - component: {fileID: 4342972309156522}
   - component: {fileID: 33037683342103772}
   - component: {fileID: 23956992401868318}
-  - component: {fileID: 111495009693144060}
   - component: {fileID: 135051825098334724}
+  - component: {fileID: 111894379453316488}
   m_Layer: 0
   m_Name: mina
   m_TagString: Untagged
@@ -174,7 +174,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4901281567080316}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 1.53, y: 5.9470005, z: 1.54}
+  m_LocalEulerAnglesHint: {x: 0, y: 5.9470005, z: 0}
 --- !u!4 &4391451111399186
 Transform:
   m_ObjectHideFlags: 1
@@ -367,7 +367,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!111 &111495009693144060
+--- !u!111 &111894379453316488
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -375,9 +375,9 @@ Animation:
   m_GameObject: {fileID: 1912012977032290}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3948664265c61421fa1389d40d7e5c9b, type: 2}
+  m_Animation: {fileID: 7400000, guid: 25c08e4bd680140f18ee31c48f42e463, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 3948664265c61421fa1389d40d7e5c9b, type: 2}
+  - {fileID: 7400000, guid: 25c08e4bd680140f18ee31c48f42e463, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
