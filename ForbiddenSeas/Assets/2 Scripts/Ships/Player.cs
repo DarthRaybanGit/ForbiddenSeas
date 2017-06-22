@@ -212,9 +212,18 @@ public class Player : NetworkBehaviour
             yield return new WaitForSeconds((int)FixedDelayInGame.YOHOHO_UPDATE_INTERVAL);
 
             pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho += 100 / (float)FixedDelayInGame.YOHOHO_FULLFY_SPAN;
-            if (pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho > 100)
+            if (pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho >= 100)
+            {
+                TargetRpcActivateYohohoTag(pl.connectionToClient);
                 pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho = 100;
+            }
         }
+    }
+
+    [TargetRpc]
+    public void TargetRpcActivateYohohoTag(NetworkConnection c)
+    {
+        GameObject.FindGameObjectWithTag("YohohoTag").transform.GetChild(0).gameObject.SetActive(true);
     }
 
     [Server]
