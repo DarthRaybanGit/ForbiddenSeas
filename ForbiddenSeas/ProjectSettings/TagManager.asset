@@ -42,6 +42,7 @@ TagManager:
   - Avviso_Tesoro
   - Yohoho
   - YohohoTag
+  - Binocolo
   layers:
   - Default
   - TransparentFX
