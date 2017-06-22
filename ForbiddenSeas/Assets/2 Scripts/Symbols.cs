@@ -40,8 +40,8 @@ public enum PowerUP
 public enum FixedDelayInGame
 {
     TREASURE_FIRST_SPAWN = 60,
-    TREASURE_RESPAWN = 10,
-    POWERUP_SPAWN = 60,
+    TREASURE_RESPAWN = 15,
+    POWERUP_SPAWN = 45,
     DAMAGEUP_TIME = 8,
     PLAYERS_DELAY = 15,
     COUNTDOWN_START = 5,
@@ -50,12 +50,12 @@ public enum FixedDelayInGame
     COIN_SPAWN = 60,
     MINE_SPAWN = 60,
     END_GAME = 480,
-    PLAYERS_RESPAWN = 10
+    PLAYERS_RESPAWN = 6
 }
 
 public enum BuffTiming
 {
-    YOHOHO_DURATION = 10,
+    YOHOHO_DURATION = 15,
     REGEN_DURATION = 30,
     SPEED_UP_DURATION = 30,
     DAMAGE_UP_DURATION = 30,

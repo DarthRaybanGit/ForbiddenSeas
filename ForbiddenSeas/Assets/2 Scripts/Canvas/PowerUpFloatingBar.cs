@@ -19,6 +19,7 @@ public class PowerUpFloatingBar : MonoBehaviour
         {
             target = transform.parent;
             transform.SetParent(GameObject.Find("Etichette").transform);
+            GetComponent<RectTransform>().localScale = new Vector3(0.7f, 0.7f, 0.7f);
             bar = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
             total = target.gameObject.GetComponent<PowerUp>().m_maxHealth;
         }
