@@ -51,6 +51,8 @@ public class MovementCopySmooth : MonoBehaviour {
 			player.GetComponent<Player> ().m_LocalCamera.SetActive(true);
 			player.GetComponent<Player> ().m_LocalCamera.tag="MainCamera";
             binocolo.GetComponent<Image>().enabled = true;
+            binocolo.GetComponent<Image>().color = Color.white;
+
 		}
 		if (Input.GetKeyUp (KeyCode.S)) 
 		{
