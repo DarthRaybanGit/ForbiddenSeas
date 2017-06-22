@@ -14,6 +14,7 @@ public class Porto : NetworkBehaviour {
             {
                 Debug.Log("Toccato il porto!");
                 other.gameObject.GetComponent<Player>().m_HasTreasure = false;
+				LocalGameManager.Instance.m_TreasureOwned = false;
                 other.gameObject.GetComponent<Player>().ScoreAnARRH();
             }
         }

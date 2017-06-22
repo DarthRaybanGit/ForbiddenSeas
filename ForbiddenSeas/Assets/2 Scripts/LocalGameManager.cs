@@ -35,6 +35,7 @@ public class LocalGameManager : NetworkBehaviour
 	public AudioClip m_TreasureClip;
     public GameObject m_Treasure;
     public bool m_TreasureIsInGame = false;
+	public bool m_TreasureOwned = false;
     public GameObject[] m_Ports;
 
 

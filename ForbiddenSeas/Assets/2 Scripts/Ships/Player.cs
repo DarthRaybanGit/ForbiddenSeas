@@ -140,8 +140,7 @@ public class Player : NetworkBehaviour
             for(int i = 0; i < OnlineManager.s_Singleton.m_MinesSpawnPosition.Length; i++)
             {
                 StartCoroutine(LocalGameManager.Instance.c_LoopMines(2, i));
-            }
-            StartCoroutine(yohohoBarGrow(this)); //FIXME
+            }          
         }
 
     }
@@ -200,14 +199,21 @@ public class Player : NetworkBehaviour
         TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
 
         m_HasTreasure = true;
+		LocalGameManager.Instance.m_TreasureOwned = true;
         LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
         //StartCoroutine(yohohoBarGrow(this));
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player")) 
+		{
+			if (g.GetComponent<Player> ().playerId != playerId)
+				g.GetComponent<Player> ().StartCoroutine (g.GetComponent<Player> ().yohohoBarGrow (g.GetComponent<Player> (), 0f));
+		}
     }
 
     [Server]
-    public IEnumerator yohohoBarGrow(Player pl)
+	public IEnumerator yohohoBarGrow(Player pl, float time)
     {
-        while (pl.m_HasTreasure && pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho < 100)
+		yield return new WaitForSeconds (time);
+		while (!pl.m_HasTreasure && pl.gameObject.GetComponent<FlagshipStatus>().m_yohoho < 100 && !GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.m_TreasureOwned)
         {
             yield return new WaitForSeconds((int)FixedDelayInGame.YOHOHO_UPDATE_INTERVAL);
 
@@ -229,6 +235,7 @@ public class Player : NetworkBehaviour
     [Server]
     public IEnumerator LostTheTreasure()
     {
+		LocalGameManager.Instance.m_TreasureOwned = false;
         Vector3 futureSpawn = gameObject.transform.position + Vector3.forward;
         RpcHideTreasure();
         Destroy(LocalGameManager.Instance.m_Treasure);
