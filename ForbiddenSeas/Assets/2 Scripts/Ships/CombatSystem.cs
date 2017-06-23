@@ -13,6 +13,7 @@ public class CombatSystem : NetworkBehaviour
     public GameObject GlobalMUI;
     public GameObject GlobalSUI;
     public StatusHUD statusHUD;
+    private GameObject danno;
 
     public GameObject[] MainParticles;
     public GameObject[] SpecialParticles;
@@ -30,6 +31,7 @@ public class CombatSystem : NetworkBehaviour
         GlobalMUI = GameObject.FindGameObjectWithTag("GlobalM_UI");
         GlobalSUI = GameObject.FindGameObjectWithTag("GlobalS_UI");
         statusHUD = GameObject.FindGameObjectWithTag("StatusHUD").GetComponent<StatusHUD>();
+        danno = GameObject.FindGameObjectWithTag("Damage");
     }
 
     void Update()
@@ -393,10 +395,12 @@ public class CombatSystem : NetworkBehaviour
             switch (other.tag)
             {
                 case "mainAttack":
+                    danno.GetComponent<Animation>().Play();
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
                     GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                     break;
                 case "specialAttack":
+                    danno.GetComponent<Animation>().Play();
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
                     if(other.GetComponentInParent<FlagshipStatus>().shipClass == FlagshipStatus.ShipClass.vikings)
                     {
