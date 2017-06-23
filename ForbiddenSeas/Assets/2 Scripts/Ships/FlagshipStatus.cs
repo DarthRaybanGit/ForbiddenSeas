@@ -183,6 +183,8 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
+           
+
             //if(m_Me.m_InsideArena)
                 StartCoroutine(m_Me.LostTheTreasure());
             /*
@@ -235,6 +237,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcRespawn()
     {
+        GameObject.FindGameObjectWithTag("Aboard").transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<Animator>().SetTrigger("isDead");
     }
 
