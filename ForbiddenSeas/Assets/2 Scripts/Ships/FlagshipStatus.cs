@@ -619,6 +619,7 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds(duration);
         m_DoT -= dmg;
+		Debug.Log ("dentro DoTreset " + dmg + " danno aggiunto a Dot che ora è " + m_DoT);
         debuffList[(int)DebuffStatus.poison] = false;
     }
 
@@ -689,5 +690,6 @@ public class FlagshipStatus : NetworkBehaviour
 	public void TargetRpcRegenParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndRegenParticle(m_Me.playerId,0f));
+		m_DoT = 0;
 	}
 }
