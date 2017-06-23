@@ -5,7 +5,7 @@ public class Pirates
 {
     public const string shipName = "Pirate Galleon";
     public const int maxHealth = 1000;
-    public const float maxSpeed = 10f;
+    public const float maxSpeed = 10.5f;
 	public const float maneuverability = ManeuverabilityLevel.MID;
     public const int mainAttackDmg = 450;
     public const float mainAttackCD = 2.5f;
@@ -40,7 +40,7 @@ public class Vikings
     public const string shipName = "Drakkar";
     public const int maxHealth = 900;
     public const float maxSpeed = 10f;
-    public const float maneuverability = ManeuverabilityLevel.MID;
+    public const float maneuverability = ManeuverabilityLevel.HIGH;
     public const int mainAttackDmg = 300;
     public const float mainAttackCD = 2.2f;
     public const int specAttackDmg = 500;

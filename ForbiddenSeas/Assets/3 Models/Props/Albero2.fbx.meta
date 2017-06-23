@@ -6,10 +6,49 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Barile
+    100004: Cone
+    100006: Cube
+    100008: Cylinder
+    100010: Cylinder.001
+    100012: Icosphere
+    100014: Icosphere.001
+    100016: Moneta
     400000: //RootNode
+    400002: Barile
+    400004: Cone
+    400006: Cube
+    400008: Cylinder
+    400010: Cylinder.001
+    400012: Icosphere
+    400014: Icosphere.001
+    400016: Moneta
     2300000: //RootNode
+    2300002: Barile
+    2300004: Cone
+    2300006: Cube
+    2300008: Cylinder
+    2300010: Cylinder.001
+    2300012: Icosphere
+    2300014: Icosphere.001
+    2300016: Moneta
     3300000: //RootNode
+    3300002: Barile
+    3300004: Cone
+    3300006: Cube
+    3300008: Cylinder
+    3300010: Cylinder.001
+    3300012: Icosphere
+    3300014: Icosphere.001
+    3300016: Moneta
     4300000: Icosphere
+    4300002: Cylinder.001
+    4300004: Icosphere.001
+    4300006: Cylinder
+    4300008: Cube
+    4300010: Cone
+    4300012: Moneta
+    4300014: Barile
   materials:
     importMaterials: 1
     materialName: 0
