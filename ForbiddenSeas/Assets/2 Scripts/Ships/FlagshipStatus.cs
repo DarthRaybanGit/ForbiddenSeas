@@ -395,8 +395,8 @@ public class FlagshipStatus : NetworkBehaviour
         int currentMain = m_main;
         int currentSpec = m_special;
 
-        m_main += (m_main / (int)BuffValue.DmgUpValue);
-        m_special += (m_special / (int)BuffValue.DmgUpValue);
+        m_main += (m_main /100 * (int)BuffValue.DmgUpValue);
+        m_special += (m_special /100 * (int)BuffValue.DmgUpValue);
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
 
         m_main = currentMain;
