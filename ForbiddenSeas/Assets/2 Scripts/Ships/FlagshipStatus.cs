@@ -17,6 +17,8 @@ public class FlagshipStatus : NetworkBehaviour
 	[SyncVar]
     public float m_maxSpeed;
 
+    public float m_maksuSpeedo;
+
     [SyncVar]
     public int m_Health;
     [SyncVar]
@@ -132,6 +134,7 @@ public class FlagshipStatus : NetworkBehaviour
             buffList.Add(false);
 
         m_Health = m_MaxHealth;
+        m_maksuSpeedo = m_maxSpeed;
     }
 
     [Command]
@@ -183,6 +186,8 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
+           
+            m_maxSpeed = m_maksuSpeedo;
             //if(m_Me.m_InsideArena)
                 StartCoroutine(m_Me.LostTheTreasure());
             /*
@@ -236,6 +241,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcRespawn()
     {
+        GameObject.FindGameObjectWithTag("Aboard").transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<Animator>().SetTrigger("isDead");
     }
 
@@ -259,7 +265,7 @@ public class FlagshipStatus : NetworkBehaviour
         {
             GetComponent<Animator>().SetFloat("Speed", 0);
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-            Debug.Log("Voglio rivivere.");
+            Debug.Log("Voglio rivivere. NOPE");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
             GetComponent<MoveSimple>().TransmitPosition();

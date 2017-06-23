@@ -43,6 +43,8 @@ TagManager:
   - Yohoho
   - YohohoTag
   - Binocolo
+  - Damage
+  - Aboard
   layers:
   - Default
   - TransparentFX

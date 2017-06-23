@@ -190,7 +190,7 @@ public class Player : NetworkBehaviour
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)
             return;
-
+        GetComponent<FlagshipStatus>().m_maxSpeed -= Symbols.SpeedDebuffTreasure;
         LocalGameManager.Instance.m_Treasure.SetActive(false);
         RpcAvvisoTreasure(netId);
 
@@ -463,7 +463,7 @@ public class Player : NetworkBehaviour
     IEnumerator UpdateScoreUI()
     {
         yield return new WaitForSeconds(0.1f);
-        m_scoreTextUI.text = "Score " + m_score.ToString();
+        m_scoreTextUI.text = "ARRH! " + m_score.ToString();
     }
 
     [ClientRpc]
@@ -471,6 +471,7 @@ public class Player : NetworkBehaviour
     {
         if (m_HasTreasure)
         {
+            GameObject.FindGameObjectWithTag("Aboard").transform.GetChild(0).gameObject.SetActive(false);
             GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = false;
             m_HasTreasure = false;
             m_LocalTreasure.SetActive(false);

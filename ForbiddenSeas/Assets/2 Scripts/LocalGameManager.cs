@@ -419,6 +419,7 @@ public class LocalGameManager : NetworkBehaviour
                 if (playerId == m_LocalPlayer.GetComponent<Player>().netId)
                 {
                     GameObject.FindGameObjectWithTag("TreasureUI").GetComponent<Image>().enabled = true;
+                    GameObject.FindGameObjectWithTag("Aboard").transform.GetChild(0).gameObject.SetActive(true);
 					AudioSource Audio = GetComponent<AudioSource> ();
 					Audio.PlayOneShot (m_TreasureClip, 0.75f);
                 }
