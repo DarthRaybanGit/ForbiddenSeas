@@ -174,7 +174,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4901281567080316}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 5.9470005, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.78455997, y: 5.9470005, z: -0.2780801}
 --- !u!4 &4391451111399186
 Transform:
   m_ObjectHideFlags: 1

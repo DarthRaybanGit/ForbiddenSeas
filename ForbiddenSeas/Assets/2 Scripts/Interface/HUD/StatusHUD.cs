@@ -38,6 +38,8 @@ public class StatusHUD : MonoBehaviour
         {
             sec--;
             yield return new WaitForSeconds(1f);
+			if (check.Equals (LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus> ().debuffList [debuff]))
+				break;
             neg[max - 1].GetComponentInChildren<Text>().text = ((int)sec).ToString();
         }
         neg[max -1].gameObject.SetActive(false);
@@ -55,6 +57,8 @@ public class StatusHUD : MonoBehaviour
         {
             sec--;
             yield return new WaitForSeconds(1f);
+			if (check.Equals (LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus> ().buffList [buff]))
+				break;
             pos[max - 1].GetComponentInChildren<Text>().text = ((int)sec).ToString();
         }
         pos[max-1].gameObject.SetActive(false);

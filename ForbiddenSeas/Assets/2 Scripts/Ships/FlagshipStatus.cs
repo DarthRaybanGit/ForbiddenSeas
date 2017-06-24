@@ -17,6 +17,8 @@ public class FlagshipStatus : NetworkBehaviour
 	[SyncVar]
     public float m_maxSpeed;
 
+    public float m_maksuSpeedo;
+
     [SyncVar]
     public int m_Health;
     [SyncVar]
@@ -132,6 +134,7 @@ public class FlagshipStatus : NetworkBehaviour
             buffList.Add(false);
 
         m_Health = m_MaxHealth;
+        m_maksuSpeedo = m_maxSpeed;
     }
 
     [Command]
@@ -183,6 +186,8 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
+           
+            m_maxSpeed = m_maksuSpeedo;
             //if(m_Me.m_InsideArena)
                 StartCoroutine(m_Me.LostTheTreasure());
             /*
@@ -209,6 +214,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_reputation += ReputationValues.KILLED;
         m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
+		NetworkServer.FindLocalObject (m_Me.netId).GetComponent<FlagshipStatus> ().DeathStatus();
         m_Health = m_MaxHealth;
         RpcRespawn();
 
@@ -235,6 +241,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcRespawn()
     {
+        GameObject.FindGameObjectWithTag("Aboard").transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<Animator>().SetTrigger("isDead");
     }
 
@@ -258,7 +265,7 @@ public class FlagshipStatus : NetworkBehaviour
         {
             GetComponent<Animator>().SetFloat("Speed", 0);
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-            Debug.Log("Voglio rivivere.");
+            Debug.Log("Voglio rivivere. NOPE");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
             GetComponent<MoveSimple>().TransmitPosition();
@@ -395,13 +402,16 @@ public class FlagshipStatus : NetworkBehaviour
         int currentMain = m_main;
         int currentSpec = m_special;
 
-        m_main += (m_main / (int)BuffValue.DmgUpValue);
-        m_special += (m_special / (int)BuffValue.DmgUpValue);
+		m_main += (int)(m_main /100f * (int)BuffValue.DmgUpValue);
+		m_special += (int)(m_special /100f * (int)BuffValue.DmgUpValue);
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
 
-        m_main = currentMain;
-        m_special = currentSpec;
-        buffList[(int)BuffStatus.dmgUp] = false;
+		if (buffList[(int)BuffStatus.dmgUp]) 
+		{
+			m_main = currentMain;
+			m_special = currentSpec;
+			buffList [(int)BuffStatus.dmgUp] = false;
+		}
     }
 
     [ClientRpc]
@@ -409,12 +419,12 @@ public class FlagshipStatus : NetworkBehaviour
     {
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(true);
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("DamageUp");
-        StartCoroutine(EndDmgUpParticle(player));
+		StartCoroutine(EndDmgUpParticle(player,(float)BuffTiming.DAMAGE_UP_DURATION));
     }
 
-    IEnumerator EndDmgUpParticle(int player)
+	IEnumerator EndDmgUpParticle(int player, float time)
     {
-        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
@@ -461,29 +471,32 @@ public class FlagshipStatus : NetworkBehaviour
         TargetRpcSpeedUp(GetComponent<NetworkIdentity>().connectionToClient, check);
     }
 
-    IEnumerator SpeedUpBuff()
+	IEnumerator SpeedUpBuff()
     {
 
         buffList[(int)BuffStatus.speedUp] = true;
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed * ((float)BuffValue.SpeedUpValue / 100f));
         yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
-        m_maxSpeed = currentSpeed;
-        buffList[(int)BuffStatus.speedUp] = false;
-    }
 
+		if (buffList[(int)BuffStatus.speedUp]) 
+		{
+			m_maxSpeed = currentSpeed;
+			buffList [(int)BuffStatus.speedUp] = false;
+		}
+    }
 
     [ClientRpc]
     public void RpcSpeedUpParticle(int player)
     {
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("SpeedUp");
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "spdUP_Particle").SetActive(true);
-        StartCoroutine(EndSpeedUpParticle(player));
+		StartCoroutine(EndSpeedUpParticle(player,(float)BuffTiming.SPEED_UP_DURATION));
     }
 
-    IEnumerator EndSpeedUpParticle(int player)
+	IEnumerator EndSpeedUpParticle(int player, float time)
     {
-        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "spdUP_Particle").SetActive(false);
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
@@ -554,17 +567,16 @@ public class FlagshipStatus : NetworkBehaviour
         buffList[(int)BuffStatus.yohoho] = false;
     }
 
-
     [ClientRpc]
     public void RpcYohohoParticle(int player)
     {
         LocalGameManager.Instance.GetPlayer(player).GetComponent<CombatSystem>().YohohoParticle.SetActive(true);
-        StartCoroutine(EndYohohoParticle(player));
+		StartCoroutine(EndYohohoParticle(player,(float)BuffTiming.YOHOHO_DURATION));
     }
 
-    IEnumerator EndYohohoParticle(int player)
+	IEnumerator EndYohohoParticle(int player, float time)
     {
-        yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
+        yield return new WaitForSeconds(time);
         LocalGameManager.Instance.GetPlayer(player).GetComponent<CombatSystem>().YohohoParticle.SetActive(false);
 
     }
@@ -600,12 +612,12 @@ public class FlagshipStatus : NetworkBehaviour
     public void RpcRegenParticle(int player)
     {
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(true);
-        StartCoroutine(EndRegenParticle(player));
+		StartCoroutine(EndRegenParticle(player,(float)BuffTiming.DAMAGE_UP_DURATION));
     }
 
-    IEnumerator EndRegenParticle(int player)
+	IEnumerator EndRegenParticle(int player, float time)
     {
-        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+        yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(false);
     }
 
@@ -613,6 +625,7 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds(duration);
         m_DoT -= dmg;
+		Debug.Log ("dentro DoTreset " + dmg + " danno aggiunto a Dot che ora è " + m_DoT);
         debuffList[(int)DebuffStatus.poison] = false;
     }
 
@@ -634,4 +647,78 @@ public class FlagshipStatus : NetworkBehaviour
         return c;
     }
 
+	[Server]		
+	public void DeathStatus() 
+	{
+		if (buffList [(int)BuffStatus.dmgUp]) 
+		{
+			m_main =(int)( (float)m_main / (1f + (float)BuffValue.DmgUpValue / 100f));		//FIXME discrepanza sul calcolo dell'attacco
+
+			m_special =(int)( (float)m_special / (1f + (float)BuffValue.DmgUpValue / 100f));
+			buffList [(int)BuffStatus.dmgUp] = false;
+			TargetRpcDamageUpParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.dmgUp]);
+		}
+		if (buffList [(int)BuffStatus.speedUp])
+		{
+			m_maxSpeed = m_maxSpeed / (1 + (float)BuffValue.SpeedUpValue / 100f);
+			buffList [(int)BuffStatus.speedUp] = false;
+			TargetRpcSpeedUpParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.speedUp]);
+		}
+		if (buffList [(int)BuffStatus.regen])
+		{
+			buffList [(int)BuffStatus.regen] = false;
+			TargetRpcRegenParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.regen]);
+		}
+		if (buffList [(int)BuffStatus.yohoho]) 
+		{
+			buffList [(int)BuffStatus.yohoho] = false;
+			TargetRpcYohohoParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
+		}
+		if (debuffList [(int)DebuffStatus.blind])
+		{
+			debuffList [(int)DebuffStatus.blind] = false;
+			TargetRpcBlindStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
+		}
+		if (debuffList [(int)DebuffStatus.poison])
+		{
+			debuffList [(int)DebuffStatus.poison] = false;
+			TargetRpcPoisonStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
+		}
+	}
+
+	[TargetRpc]
+	public void TargetRpcSpeedUpParticleStop(NetworkConnection c, bool check)
+	{
+		StartCoroutine(EndSpeedUpParticle(m_Me.playerId,0f));
+		Camera.main.transform.GetChild(0).gameObject.SetActive(false);
+	}
+	[TargetRpc]
+	public void TargetRpcDamageUpParticleStop(NetworkConnection c, bool check)
+	{
+		StartCoroutine(EndDmgUpParticle(m_Me.playerId,0f));
+	}
+	[TargetRpc]
+	public void TargetRpcYohohoParticleStop(NetworkConnection c, bool check)
+	{
+		StartCoroutine(EndYohohoParticle(m_Me.playerId,0f));
+		m_DoT = 0;
+	}
+	[TargetRpc]
+	public void TargetRpcRegenParticleStop(NetworkConnection c, bool check)
+	{
+		StartCoroutine(EndRegenParticle(m_Me.playerId,0f));
+		m_DoT = 0;
+	}
+	[TargetRpc]
+	public void TargetRpcBlindStop(NetworkConnection c, bool check)
+	{
+		Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
+		StartCoroutine(resetBlind(bl,0f));
+	}
+	[TargetRpc]
+	public void TargetRpcPoisonStop(NetworkConnection c, bool check)
+	{
+		//spegnere i particle qua
+		m_DoT = 0;
+	}
 }
