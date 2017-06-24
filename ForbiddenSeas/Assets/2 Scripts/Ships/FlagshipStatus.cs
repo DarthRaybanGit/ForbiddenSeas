@@ -148,8 +148,9 @@ public class FlagshipStatus : NetworkBehaviour
 
         if (m_Health <= 0)
         {
-            OnDeath();
-            if(da_playerId != -1)
+
+            m_Health = 0;
+            if (da_playerId != -1 && !m_isDead)
             {
                 //GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
@@ -166,6 +167,7 @@ public class FlagshipStatus : NetworkBehaviour
                 }
 
             }
+            OnDeath();
 
         }
     }
@@ -177,6 +179,7 @@ public class FlagshipStatus : NetworkBehaviour
 
         if (m_Health <= 0)
         {
+            m_Health = 0;
             OnDeath();
         }
     }
@@ -186,7 +189,7 @@ public class FlagshipStatus : NetworkBehaviour
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)
         {
             m_Me.m_HasTreasure = false;
-           
+
             m_maxSpeed = m_maksuSpeedo;
             //if(m_Me.m_InsideArena)
                 StartCoroutine(m_Me.LostTheTreasure());
@@ -208,14 +211,14 @@ public class FlagshipStatus : NetworkBehaviour
             //Decrease Reputation
             //Increase Death Count
             //Increase Opponent Kill Count
+            LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId - 1]++;
+            m_reputation += ReputationValues.KILLED;
+            m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         }
         m_isDead = true;
-        LocalGameManager.Instance.m_playerDeaths[GetComponent<Player>().playerId - 1]++;
-        m_reputation += ReputationValues.KILLED;
-        m_reputation = (m_reputation < 0) ? 0 : m_reputation;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
 		NetworkServer.FindLocalObject (m_Me.netId).GetComponent<FlagshipStatus> ().DeathStatus();
-        m_Health = m_MaxHealth;
+
         RpcRespawn();
 
     }
@@ -285,6 +288,7 @@ public class FlagshipStatus : NetworkBehaviour
     {
         yield return new WaitForSeconds((int)FixedDelayInGame.PLAYERS_RESPAWN);
         m_isDead = false;
+        m_Health = m_MaxHealth;
         RpcImBack();
 		if (LocalGameManager.Instance.m_TreasureOwned)
 			StartCoroutine (GetComponent<Player> ().yohohoBarGrow (GetComponent<Player> (), 0f));
@@ -406,7 +410,7 @@ public class FlagshipStatus : NetworkBehaviour
 		m_special += (int)(m_special /100f * (int)BuffValue.DmgUpValue);
         yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
 
-		if (buffList[(int)BuffStatus.dmgUp]) 
+		if (buffList[(int)BuffStatus.dmgUp])
 		{
 			m_main = currentMain;
 			m_special = currentSpec;
@@ -479,7 +483,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_maxSpeed += (m_maxSpeed * ((float)BuffValue.SpeedUpValue / 100f));
         yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
 
-		if (buffList[(int)BuffStatus.speedUp]) 
+		if (buffList[(int)BuffStatus.speedUp])
 		{
 			m_maxSpeed = currentSpeed;
 			buffList [(int)BuffStatus.speedUp] = false;
@@ -647,10 +651,10 @@ public class FlagshipStatus : NetworkBehaviour
         return c;
     }
 
-	[Server]		
-	public void DeathStatus() 
+	[Server]
+	public void DeathStatus()
 	{
-		if (buffList [(int)BuffStatus.dmgUp]) 
+		if (buffList [(int)BuffStatus.dmgUp])
 		{
 			m_main =(int)( (float)m_main / (1f + (float)BuffValue.DmgUpValue / 100f));		//FIXME discrepanza sul calcolo dell'attacco
 
@@ -669,7 +673,7 @@ public class FlagshipStatus : NetworkBehaviour
 			buffList [(int)BuffStatus.regen] = false;
 			TargetRpcRegenParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.regen]);
 		}
-		if (buffList [(int)BuffStatus.yohoho]) 
+		if (buffList [(int)BuffStatus.yohoho])
 		{
 			buffList [(int)BuffStatus.yohoho] = false;
 			TargetRpcYohohoParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);

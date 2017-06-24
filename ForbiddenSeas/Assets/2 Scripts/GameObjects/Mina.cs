@@ -10,18 +10,20 @@ public class Mina : NetworkBehaviour {
     public float m_ExplosionStrength;
     public float m_ExplosionRadius;
 
+    public bool exploded = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (isServer)
         {
-            if (other.gameObject.GetComponent<Player>() && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead)
+            if (other.gameObject.GetComponent<Player>() && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead && !exploded)
             {
                 RpcExplode();
                 TargetRpcScosta(other.gameObject.GetComponent<NetworkIdentity>().connectionToClient, other.gameObject.GetComponent<NetworkIdentity>().netId);
                 other.gameObject.GetComponent<FlagshipStatus>().PrendiDannoDaEnemy(m_Danno);
                 StartCoroutine(shutDownMe());
-
+                exploded = true;
             }
         }
     }
