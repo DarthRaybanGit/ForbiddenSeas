@@ -674,6 +674,16 @@ public class FlagshipStatus : NetworkBehaviour
 			buffList [(int)BuffStatus.yohoho] = false;
 			TargetRpcYohohoParticleStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
 		}
+		if (debuffList [(int)DebuffStatus.blind])
+		{
+			debuffList [(int)DebuffStatus.blind] = false;
+			TargetRpcBlindStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
+		}
+		if (debuffList [(int)DebuffStatus.poison])
+		{
+			debuffList [(int)DebuffStatus.poison] = false;
+			TargetRpcPoisonStop (GetComponent<NetworkIdentity> ().connectionToClient,buffList[(int)BuffStatus.yohoho]);
+		}
 	}
 
 	[TargetRpc]
@@ -691,11 +701,24 @@ public class FlagshipStatus : NetworkBehaviour
 	public void TargetRpcYohohoParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndYohohoParticle(m_Me.playerId,0f));
+		m_DoT = 0;
 	}
 	[TargetRpc]
 	public void TargetRpcRegenParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndRegenParticle(m_Me.playerId,0f));
+		m_DoT = 0;
+	}
+	[TargetRpc]
+	public void TargetRpcBlindStop(NetworkConnection c, bool check)
+	{
+		Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
+		StartCoroutine(resetBlind(bl,0f));
+	}
+	[TargetRpc]
+	public void TargetRpcPoisonStop(NetworkConnection c, bool check)
+	{
+		//spegnere i particle qua
 		m_DoT = 0;
 	}
 }
