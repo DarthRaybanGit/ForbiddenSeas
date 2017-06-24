@@ -33,6 +33,9 @@ public class PowerUp : NetworkBehaviour {
 
     }
 
+    private int lastAttacker = -1;
+
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -46,8 +49,12 @@ public class PowerUp : NetworkBehaviour {
                     else
                         dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
 
-                    if(other.gameObject.GetComponentInParent<Player>().isLocalPlayer)
+                    if (other.gameObject.GetComponentInParent<Player>().isLocalPlayer)
+                    {
+
                         other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
+                    }
+
                 }
             }
             else if(type == PowerUP.DAMAGE_UP && !m_LockForFirstInside && other.gameObject.CompareTag("Player") && !other.gameObject.GetComponent<FlagshipStatus>().m_isDead)
