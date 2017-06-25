@@ -29,6 +29,7 @@ public class Player : NetworkBehaviour
     public bool isAvvisoOn = false;
 
     public GameObject myTag;
+	public AudioClip ArrhClip;
 
 
     [SyncVar]
@@ -259,9 +260,17 @@ public class Player : NetworkBehaviour
         TargetRpcUpdateScoreUI(GetComponent<NetworkIdentity>().connectionToClient);
         RpcHideTreasure();
         StartCoroutine(LocalGameManager.Instance.c_RespawnTreasure());
-
+		RpcSoundArrh (netId);
         RpcArrhScoredBy(netId);
     }
+
+	[ClientRpc]
+	public void RpcSoundArrh (NetworkInstanceId p)
+	{
+		AudioSource audio = GetComponentInChildren<AudioSource> ();
+		audio.PlayOneShot (ArrhClip);
+
+	}
 
     [Command]
     public void CmdImIntheArenaNow()

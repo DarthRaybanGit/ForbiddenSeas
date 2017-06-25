@@ -2534,6 +2534,7 @@ MonoBehaviour:
   m_Avviso_Treasure: {fileID: 0}
   isAvvisoOn: 0
   myTag: {fileID: 0}
+  ArrhClip: {fileID: 8300000, guid: 1ac85e230d05f5a4fbc951a0331719fc, type: 3}
   m_InsideArena: 1
   m_score: 0
   m_Class: 0
@@ -2625,6 +2626,7 @@ MonoBehaviour:
   m_MaxHealth: 0
   m_Maneuvrability: 0
   m_maxSpeed: 0
+  m_maksuSpeedo: 0
   m_Health: 0
   m_reputation: 0
   m_yohoho: 0
