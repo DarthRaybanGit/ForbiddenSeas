@@ -441,12 +441,6 @@ public class CombatSystem : NetworkBehaviour
                         GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                         StartCoroutine(doppioCollider());
                     }
-
-                    else
-                    {
-                        GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
-                    }
-
                     break;
                 case "Miasma":
                     bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
@@ -467,7 +461,7 @@ public class CombatSystem : NetworkBehaviour
 
     IEnumerator doppioCollider()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         lockForDoubleAttack = false;
         lastAttacker = -1;
     }

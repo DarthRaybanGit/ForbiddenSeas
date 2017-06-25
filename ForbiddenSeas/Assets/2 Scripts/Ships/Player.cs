@@ -140,7 +140,7 @@ public class Player : NetworkBehaviour
             for(int i = 0; i < OnlineManager.s_Singleton.m_MinesSpawnPosition.Length; i++)
             {
                 StartCoroutine(LocalGameManager.Instance.c_LoopMines(2, i));
-            }          
+            }
         }
 
     }
@@ -202,7 +202,7 @@ public class Player : NetworkBehaviour
 		LocalGameManager.Instance.m_TreasureOwned = true;
         LocalGameManager.Instance.RpcNotifyNewTreasureOwner(netId, LocalGameManager.Instance.m_Treasure.GetComponent<NetworkIdentity>().netId);
         //StartCoroutine(yohohoBarGrow(this));
-		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player")) 
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player"))
 		{
 			if (g.GetComponent<Player> ().playerId != playerId)
 				g.GetComponent<Player> ().StartCoroutine (g.GetComponent<Player> ().yohohoBarGrow (g.GetComponent<Player> (), 0f));
@@ -289,7 +289,10 @@ public class Player : NetworkBehaviour
     public IEnumerator shutdownAvviso(Transform t)
     {
         yield return new WaitForSeconds(Symbols.avvisoTimeLength);
-        Utility.recursivePlayAnimation(t, "FadeOut", "Avviso");
+        //Utility.recursivePlayAnimation(t, "FadeOut", "Avviso");
+        t.GetChild(0).GetChild(0).gameObject.GetComponent<Animation>().Play("FadeOutAvviso");
+        t.GetChild(0).GetChild(1).gameObject.GetComponent<Animation>().Play("TextFadeOut");
+
         isAvvisoOn = false;
         yield return new WaitUntil(() => !t.gameObject.GetComponentInChildren<Animation>().isPlaying);
         t.GetChild(0).gameObject.SetActive(false);
