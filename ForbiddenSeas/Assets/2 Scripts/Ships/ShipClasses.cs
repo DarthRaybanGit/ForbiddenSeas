@@ -24,8 +24,8 @@ public class Egyptians
     public const int maxHealth = 800;
     public const float maxSpeed = 12f;
 	public const float maneuverability = ManeuverabilityLevel.LOW;
-    public const int mainAttackDmg = 400;  //FIXME
-    public const float mainAttackCD = 2.2f;
+    public const int mainAttackDmg = 90;  //FIXME
+    public const float mainAttackCD = 2.7f;
     public const int specAttackDmg = 500;
     public const float specAttackCD = 10f;
     public const float defense = 0.05f;

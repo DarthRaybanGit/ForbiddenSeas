@@ -26,7 +26,7 @@ public class InitializeCamera : StateMachineBehaviour {
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasHUD.transform, "FadeIn");
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasEtichette.transform, "FadeIn");
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().CmdRequestTimetoServer();
-
+        LocalGameManager.Instance.m_canAttack = true;
     }
 
     IEnumerator delayedTime()

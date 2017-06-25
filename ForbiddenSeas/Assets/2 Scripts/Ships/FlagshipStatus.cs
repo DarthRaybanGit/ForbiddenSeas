@@ -146,7 +146,7 @@ public class FlagshipStatus : NetworkBehaviour
         //RpcTakenDamage(a_name, da_playerId);
 
 
-        if (m_Health <= 0)
+        if (m_Health <= 0 && !m_isDead)
         {
 
             m_Health = 0;
@@ -267,7 +267,7 @@ public class FlagshipStatus : NetworkBehaviour
         if (isLocalPlayer)
         {
             GetComponent<Animator>().SetFloat("Speed", 0);
-            GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+
             Debug.Log("Voglio rivivere. NOPE");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
@@ -297,6 +297,7 @@ public class FlagshipStatus : NetworkBehaviour
     [ClientRpc]
     public void RpcImBack()
     {
+
         StartCoroutine(ResetLocationInfo());
     }
 
@@ -329,7 +330,8 @@ public class FlagshipStatus : NetworkBehaviour
 
     IEnumerator StartCountDownLocal()
     {
-        for(int i = (int)FixedDelayInGame.PLAYERS_RESPAWN; i > 0; i--)
+        GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        for (int i = (int)FixedDelayInGame.PLAYERS_RESPAWN; i > 0; i--)
         {
             yield return new WaitForSeconds(1f);
             LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.transform.GetChild(1).gameObject.GetComponent<Text>().text = i.ToString();

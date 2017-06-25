@@ -32,18 +32,25 @@ public static class Utility
             }
             else if (tt.gameObject.GetComponent<Image>() && tt.gameObject.GetComponent<Animation>())
             {
-                if (!tt.gameObject.GetComponent<Animation>().GetClip(animation))
+
+                if (optional.Length > 1)
                 {
-                    if (optional.Length > 1)
+                    if (tt.gameObject.GetComponent<Animation>().GetClip(animation + optional))
                     {
-                        if (tt.gameObject.GetComponent<Animation>().GetClip(animation + optional))
-                            tt.gameObject.GetComponent<Animation>().Play(animation + optional);
+                       tt.gameObject.GetComponent<Animation>().Play(animation + optional);
+
                     }
                     else
                         tt.gameObject.GetComponent<Animation>().Play();
                 }
-                else
+                else if (tt.gameObject.GetComponent<Animation>().GetClip(animation))
+                {
                     tt.gameObject.GetComponent<Animation>().Play(animation);
+                }
+                else
+                {
+                    tt.gameObject.GetComponent<Animation>().Play();
+                }
             }
 
 

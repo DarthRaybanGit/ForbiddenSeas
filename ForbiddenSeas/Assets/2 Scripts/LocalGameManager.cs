@@ -47,6 +47,9 @@ public class LocalGameManager : NetworkBehaviour
     public bool m_IsWindowOver = false;
     public bool m_LoadingCompleted = false;
 
+    public bool m_canAttack = false;
+
+
     //Server
 
 	public AudioClip m_CoinClip;

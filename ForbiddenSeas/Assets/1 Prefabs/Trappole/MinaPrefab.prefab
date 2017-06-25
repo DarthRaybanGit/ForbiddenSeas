@@ -425,10 +425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba82181310ca424298046ed3e0fd525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Danno: 385
+  m_Danno: 300
   which: 0
   m_ExplosionStrength: 500
   m_ExplosionRadius: 3
+  exploded: 0
 --- !u!135 &135051825098334724
 SphereCollider:
   m_ObjectHideFlags: 1

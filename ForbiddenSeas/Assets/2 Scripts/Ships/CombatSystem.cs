@@ -42,7 +42,7 @@ public class CombatSystem : NetworkBehaviour
             return;
         }
 
-        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart())
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && LocalGameManager.Instance.m_canAttack)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -146,11 +146,29 @@ public class CombatSystem : NetworkBehaviour
         RpcSetActiveTrigger(playerId, "MAP");
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
         RpcSetUnactiveTrigger(playerId, "MAP");
-        RpcSetActiveTrigger(playerId, tag);
-        yield return new WaitForSeconds(0.2f);
-        RpcSetUnactiveTrigger(playerId, tag);
+        if(GetComponent<FlagshipStatus>().shipClass == FlagshipStatus.ShipClass.egyptians)
+        {
+            StartCoroutine(continuousAttack(playerId, tag));
+        }else
+        {
+            RpcSetActiveTrigger(playerId, tag);
+            yield return new WaitForSeconds(0.2f);
+            RpcSetUnactiveTrigger(playerId, tag);
+        }
         yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.2f);
         RpcEndMainCoolDown();
+    }
+
+    IEnumerator continuousAttack(int playerId, string tag)
+    {
+        yield return new WaitForSeconds(0.4f);
+        for (int i = 0; i < 5; i++)
+        {
+            RpcSetActiveTrigger(playerId, tag);
+            yield return new WaitForSeconds(0.2f);
+            RpcSetUnactiveTrigger(playerId, tag);
+            //yield return new WaitForSeconds(0.1f);
+        }
     }
 
     [ClientRpc]

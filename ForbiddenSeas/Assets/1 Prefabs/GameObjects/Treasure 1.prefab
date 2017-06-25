@@ -102,9 +102,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4230620931221350}
-  - component: {fileID: 114013187216874626}
-  - component: {fileID: 114548767665466078}
   - component: {fileID: 65334471921600872}
+  - component: {fileID: 114185858723283470}
+  - component: {fileID: 114601923500142074}
   m_Layer: 0
   m_Name: Treasure 1
   m_TagString: Untagged
@@ -542,7 +542,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114013187216874626
+--- !u!114 &114185858723283470
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -574,7 +574,7 @@ MonoBehaviour:
     i15: 212
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114548767665466078
+--- !u!114 &114601923500142074
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
