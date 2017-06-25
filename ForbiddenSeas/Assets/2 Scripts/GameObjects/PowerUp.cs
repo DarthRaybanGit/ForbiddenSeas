@@ -51,8 +51,20 @@ public class PowerUp : NetworkBehaviour {
 
                     if (other.gameObject.GetComponentInParent<Player>().isLocalPlayer)
                     {
+                        if (other.gameObject.GetComponentInParent<FlagshipStatus>().shipClass != FlagshipStatus.ShipClass.egyptians)
+                        {
+                            if (lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId)
+                            {
+                                lastAttacker = other.gameObject.GetComponentInParent<Player>().playerId;
+                                other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
+                                StartCoroutine(resetLastPlayer());
+                            }
 
-                        other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
+                        }
+                        else
+                        {
+                            other.gameObject.GetComponentInParent<CombatSystem>().CmdDamageThis(netId, dmg);
+                        }
                     }
 
                 }
@@ -64,6 +76,12 @@ public class PowerUp : NetworkBehaviour {
             }
     }
 
+
+    IEnumerator resetLastPlayer()
+    {
+        yield return new WaitForSeconds(0.2f);
+        lastAttacker = -1;
+    }
 
     public void OnTriggerExit(Collider other)
     {
@@ -79,7 +97,7 @@ public class PowerUp : NetworkBehaviour {
 
     IEnumerator powerUpFill(NetworkInstanceId who)
     {
-        yield return new WaitForSeconds(0.2f);
+
         if (!m_LockForFirstInside)
         {
             m_LockForFirstInside = true;
@@ -97,7 +115,7 @@ public class PowerUp : NetworkBehaviour {
                     //Play animation di rewarding in client.
                     NetworkServer.FindLocalObject(who).GetComponent<Player>().RpcAvvisoPowerUp(who, "DamageUP");
                     RpcAnimatePowerUPGained();
-                    yield return new WaitForSeconds(3.5f);
+                    yield return new WaitForSeconds(3f);
                     killMe();
                 }
             }
@@ -109,6 +127,7 @@ public class PowerUp : NetworkBehaviour {
                 m_EmitterBound.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             }
         }
+        yield return new WaitForSeconds(0.2f);
     }
 
     [ClientRpc]

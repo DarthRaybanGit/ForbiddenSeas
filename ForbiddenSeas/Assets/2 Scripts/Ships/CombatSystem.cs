@@ -415,18 +415,21 @@ public class CombatSystem : NetworkBehaviour
                 case "mainAttack":
                     danno.GetComponent<Animation>().Play("FadeDanno");
                     dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
-                    if (!lockForDoubleAttack && lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId)
+                    if(other.gameObject.GetComponentInParent<FlagshipStatus>().shipClass != FlagshipStatus.ShipClass.egyptians)
                     {
-                        lockForDoubleAttack = true;
-                        lastAttacker = other.gameObject.GetComponentInParent<Player>().playerId;
-                        GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
-                        StartCoroutine(doppioCollider());
+                        if (!lockForDoubleAttack && lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId)
+                        {
+                            lockForDoubleAttack = true;
+                            lastAttacker = other.gameObject.GetComponentInParent<Player>().playerId;
+                            GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                            StartCoroutine(doppioCollider());
+                        }
                     }
-
                     else
                     {
                         GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
                     }
+
                     break;
                 case "specialAttack":
                     danno.GetComponent<Animation>().Play("FadeDanno");

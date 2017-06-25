@@ -146,7 +146,7 @@ public class FlagshipStatus : NetworkBehaviour
         //RpcTakenDamage(a_name, da_playerId);
 
 
-        if (m_Health <= 0 && !m_isDead)
+        if (m_Health <= 0 )
         {
 
             m_Health = 0;
@@ -165,9 +165,9 @@ public class FlagshipStatus : NetworkBehaviour
                         }
                     }
                 }
-
+                OnDeath();
             }
-            OnDeath();
+
 
         }
     }
