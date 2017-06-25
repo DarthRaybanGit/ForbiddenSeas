@@ -9,6 +9,8 @@ public class PlayerManager : NetworkBehaviour {
 
     [SyncVar]
     public int m_LocalClass = 0;
+    [SyncVar]
+    public bool ready = false;
 
     public GameObject m_ClassViewerPrefab;
     public GameObject m_PlayerPrefab;
@@ -58,6 +60,12 @@ public class PlayerManager : NetworkBehaviour {
     public void CmdsetLocalName(string localname)
     {
         m_PlayerName = localname;
+    }
+
+    [Command]
+    public void CmdImReadyToBegin()
+    {
+        ready = true;
     }
 
 

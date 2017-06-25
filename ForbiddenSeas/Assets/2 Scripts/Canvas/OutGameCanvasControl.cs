@@ -13,7 +13,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject m_LobbyButtons;
     public GameObject m_OtherPlayers;
     public GameObject m_InputName;
-    public GameObject m_ReadyButton;
+    public GameObject m_ReadyText;
     public GameObject[] m_stats;
     public Animation logo;
     public InputField indirizzoIP;
@@ -83,7 +83,7 @@ public class OutGameCanvasControl : MonoBehaviour
     IEnumerator waitPlayer(int n, bool first)
     {
         yield return new WaitForSeconds(first ? 3f : 0.2f);
-        
+
         if (first)
         {
             foreach(Transform t in m_LobbyButtons.transform)
@@ -104,7 +104,9 @@ public class OutGameCanvasControl : MonoBehaviour
     public void ReadyToPlay()
     {
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkLobbyPlayer>().readyToBegin = true;
+        LocalGameManager.Instance.m_LocalPlayer.GetComponent<PlayerManager>().CmdImReadyToBegin();
         m_LobbyButtons.SetActive(false);
+        m_ReadyText.SetActive(true);
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<NetworkLobbyPlayer>().SendReadyToBeginMessage();
     }
 
