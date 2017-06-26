@@ -38,6 +38,8 @@ public class LocalGameManager : NetworkBehaviour
 	public bool m_TreasureOwned = false;
     public GameObject[] m_Ports;
 
+	public AudioClip m_WinClip;
+	public AudioClip m_LoseClip;
 
     public GameObject m_CanvasHUD;
     public GameObject m_CanvasEtichette;
@@ -460,9 +462,15 @@ public class LocalGameManager : NetworkBehaviour
         GameObject.FindGameObjectWithTag("hud").SetActive(false);
 
         GameObject end = GameObject.FindGameObjectWithTag("end");
+		AudioSource audio = GetComponent<AudioSource> ();
 
-        if (m_LocalPlayer.GetComponent<Player>().playerId == id)
-            end.transform.GetChild(0).GetComponent<Image>().sprite = win;
+		if (m_LocalPlayer.GetComponent<Player> ().playerId == id) 
+		{
+			end.transform.GetChild (0).GetComponent<Image> ().sprite = win;
+			audio.PlayOneShot (m_WinClip);
+		} 
+		else
+			audio.PlayOneShot (m_LoseClip);
         end.GetComponent<Animation>().Play();
     }
 

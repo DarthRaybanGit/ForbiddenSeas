@@ -9658,6 +9658,8 @@ MonoBehaviour:
   m_TreasureIsInGame: 0
   m_TreasureOwned: 0
   m_Ports: []
+  m_WinClip: {fileID: 8300000, guid: 01aa746649986714f853828da05c945e, type: 3}
+  m_LoseClip: {fileID: 8300000, guid: e419127aebb4e3f4b8ceb523eeb2e0a8, type: 3}
   m_CanvasHUD: {fileID: 0}
   m_CanvasEtichette: {fileID: 0}
   m_CutIsPlaying: 0
