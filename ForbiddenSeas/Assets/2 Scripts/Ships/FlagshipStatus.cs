@@ -152,7 +152,6 @@ public class FlagshipStatus : NetworkBehaviour
             m_Health = 0;
             if (da_playerId != -1)
             {
-                GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
                 foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
                 {
@@ -165,6 +164,9 @@ public class FlagshipStatus : NetworkBehaviour
                         }
                     }
                 }
+                NetworkInstanceId nid = GetComponent<Player>().netId;
+                NetworkInstanceId nid2 = LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId;
+                GetComponent<Player>().RpcAvvisoKill(nid, nid2);
 
             }
             OnDeath();
