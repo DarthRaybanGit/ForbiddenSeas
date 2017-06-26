@@ -44,6 +44,10 @@ public class UpadateBars : MonoBehaviour
                 if(amount == 100)
                 {
                     GameObject yohoho = GameObject.FindGameObjectWithTag("YohohoTag");
+                    //Da rendere un po più bello
+                    yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.r, yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.g, yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.b, 1f);
+                    yohoho.transform.GetChild(0).GetChild(1).GetComponent<Image>().color = new Color(yohoho.transform.GetChild(0).GetChild(1).GetComponent<Image>().color.r, yohoho.transform.GetChild(0).GetChild(1).GetComponent<Image>().color.g, yohoho.transform.GetChild(0).GetChild(1).GetComponent<Image>().color.b, 154/255);
+                    yohoho.transform.GetChild(0).GetChild(2).GetComponent<Text>().color = new Color(yohoho.transform.GetChild(0).GetChild(2).GetComponent<Text>().color.r, yohoho.transform.GetChild(0).GetChild(2).GetComponent<Text>().color.g, yohoho.transform.GetChild(0).GetChild(2).GetComponent<Text>().color.b, 1f);
                     yohoho.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }

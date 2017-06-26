@@ -146,11 +146,11 @@ public class FlagshipStatus : NetworkBehaviour
         //RpcTakenDamage(a_name, da_playerId);
 
 
-        if (m_Health <= 0 )
+        if (m_Health <= 0 && !m_isDead)
         {
 
             m_Health = 0;
-            if (da_playerId != -1 && !m_isDead)
+            if (da_playerId != -1)
             {
                 //GetComponent<Player>().RpcAvvisoKill(GetComponent<Player>().netId, LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId);
                 LocalGameManager.Instance.m_playerKills[da_playerId - 1]++;
@@ -165,9 +165,9 @@ public class FlagshipStatus : NetworkBehaviour
                         }
                     }
                 }
-                OnDeath();
-            }
 
+            }
+            OnDeath();
 
         }
     }
@@ -237,7 +237,7 @@ public class FlagshipStatus : NetworkBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            CmdTakeDamage(m_DoT, "Player " + gameObject.GetComponent<Player>().playerName, 99);
+            CmdTakeDamage(m_DoT, "Player " + gameObject.GetComponent<Player>().playerName, -1);
         }
     }
 
