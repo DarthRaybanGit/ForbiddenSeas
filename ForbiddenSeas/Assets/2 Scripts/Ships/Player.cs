@@ -301,9 +301,8 @@ public class Player : NetworkBehaviour
         //Utility.recursivePlayAnimation(t, "FadeOut", "Avviso");
         t.GetChild(0).GetChild(0).gameObject.GetComponent<Animation>().Play("FadeOutAvviso");
         t.GetChild(0).GetChild(1).gameObject.GetComponent<Animation>().Play("TextFadeOut");
-
+        yield return new WaitForSeconds(1.5f);
         isAvvisoOn = false;
-        yield return new WaitUntil(() => !t.gameObject.GetComponentInChildren<Animation>().isPlaying);
         t.GetChild(0).gameObject.SetActive(false);
     }
 
