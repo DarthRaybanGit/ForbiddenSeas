@@ -51,10 +51,12 @@ public class LocalGameManager : NetworkBehaviour
 
     public bool m_canAttack = false;
 
+    public bool yohoho_icon = false;
+
 
     //Server
 
-	public AudioClip m_CoinClip;
+    public AudioClip m_CoinClip;
     public float m_CoinsRadius;
     public float m_CoinsDisplacement;
     public int m_CoinNumbers = 50;
@@ -465,11 +467,11 @@ public class LocalGameManager : NetworkBehaviour
 		AudioSource audio = GetComponent<AudioSource> ();
 		Camera.main.gameObject.GetComponent<AudioSource>().Stop();
 
-		if (m_LocalPlayer.GetComponent<Player> ().playerId == id) 
+		if (m_LocalPlayer.GetComponent<Player> ().playerId == id)
 		{
 			end.transform.GetChild (0).GetComponent<Image> ().sprite = win;
 			audio.PlayOneShot (m_WinClip);
-		} 
+		}
 		else
 			audio.PlayOneShot (m_LoseClip);
         end.GetComponent<Animation>().Play();

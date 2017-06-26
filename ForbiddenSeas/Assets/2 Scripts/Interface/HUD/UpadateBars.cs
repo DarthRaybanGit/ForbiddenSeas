@@ -32,6 +32,8 @@ public class UpadateBars : MonoBehaviour
         ready = true;
     }
 
+
+
 	void Update ()
     {
         if (ready)
@@ -41,8 +43,9 @@ public class UpadateBars : MonoBehaviour
             else
             {
                 amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
-                if(amount == 100)
+                if(amount == 100 && !LocalGameManager.Instance.yohoho_icon)
                 {
+                    LocalGameManager.Instance.yohoho_icon = true;
                     GameObject yohoho = GameObject.FindGameObjectWithTag("YohohoTag");
                     //Da rendere un po più bello
                     yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.r, yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.g, yohoho.transform.GetChild(0).GetChild(0).GetComponent<Image>().color.b, 1f);
