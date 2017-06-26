@@ -138,6 +138,16 @@ public class LocalGameManager : NetworkBehaviour
         return null;
     }
 
+    [Server]
+    public GameObject GetPlayerServer(int playerId)
+    {
+        foreach(GameObject g in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (g.GetComponent<Player>() && g.GetComponent<Player>().playerId == playerId)
+                return g;
+        }
+        return null;
+    }
 
 
     public GameObject GetPlayerFromNetID(NetworkInstanceId netID)

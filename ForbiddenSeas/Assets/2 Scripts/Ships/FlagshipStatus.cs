@@ -165,7 +165,7 @@ public class FlagshipStatus : NetworkBehaviour
                     }
                 }
                 NetworkInstanceId nid = GetComponent<Player>().netId;
-                NetworkInstanceId nid2 = LocalGameManager.Instance.GetPlayer(da_playerId).GetComponent<Player>().netId;
+                NetworkInstanceId nid2 = LocalGameManager.Instance.GetPlayerServer(da_playerId).GetComponent<Player>().netId;
                 GetComponent<Player>().RpcAvvisoKill(nid, nid2);
 
             }
@@ -540,6 +540,7 @@ public class FlagshipStatus : NetworkBehaviour
     public void Yohoho()
     {
         GetComponent<FlagshipStatus>().m_yohoho = 0;
+        GetComponent<CombatSystem>().RpcYohohoParticle();
 		StartCoroutine(GetComponent<Player>().yohohoBarGrow(GetComponent<Player>(), (float)BuffTiming.YOHOHO_DURATION));
         RpcYohohoParticle(GetComponent<Player>().playerId);
         bool check = buffList[(int)BuffStatus.yohoho];

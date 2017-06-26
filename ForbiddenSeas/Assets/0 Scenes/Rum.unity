@@ -9666,6 +9666,7 @@ MonoBehaviour:
   m_IsWindowOver: 0
   m_LoadingCompleted: 0
   m_canAttack: 0
+  yohoho_icon: 0
   m_CoinClip: {fileID: 8300000, guid: 7c13626f2daf68b4891f644750fe0493, type: 3}
   m_CoinsRadius: 140
   m_CoinsDisplacement: 20
@@ -13825,7 +13826,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Waiting for everyone are ready to play...
+  m_Text: Waiting for other players...
 --- !u!222 &1941895993
 CanvasRenderer:
   m_ObjectHideFlags: 0
