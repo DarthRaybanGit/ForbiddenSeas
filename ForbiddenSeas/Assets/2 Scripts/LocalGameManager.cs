@@ -454,7 +454,7 @@ public class LocalGameManager : NetworkBehaviour
     public void RpcPartitaConclusa(int id)
     {
         Debug.Log("Ha vinto il player " + id + ", " + GetPlayer(id).GetComponent<Player>().playerName);
-
+        m_LocalPlayer.GetComponent<Animator>().SetFloat("Speed", 0f);
         m_LocalPlayer.GetComponent<CombatSystem>().enabled = false;
         m_LocalPlayer.GetComponent<MoveSimple>().enabled = false;
 

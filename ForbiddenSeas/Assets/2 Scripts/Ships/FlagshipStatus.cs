@@ -237,7 +237,7 @@ public class FlagshipStatus : NetworkBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            CmdTakeDamage(m_DoT, "Player " + gameObject.GetComponent<Player>().playerName, -1);
+            CmdTakeDamage(m_DoT, "Player " + gameObject.GetComponent<Player>().playerName, 99);
         }
     }
 
@@ -267,7 +267,8 @@ public class FlagshipStatus : NetworkBehaviour
         if (isLocalPlayer)
         {
             GetComponent<Animator>().SetFloat("Speed", 0);
-
+            GetComponent<MoveSimple>().ActualSpeed = 0f;
+            GetComponent<MoveSimple>().State = 0;
             Debug.Log("Voglio rivivere. NOPE");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
