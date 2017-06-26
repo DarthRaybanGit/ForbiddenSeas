@@ -87,7 +87,7 @@ public class CombatSystem : NetworkBehaviour
                 {
 
                     GameObject.FindGameObjectWithTag("YohohoTag").transform.GetChild(0).gameObject.SetActive(false);
-                    LocalGameManager.Instance.yohoho_icon = false;
+
                     CmdAttivaYohoho();
                 }
             }
@@ -100,7 +100,7 @@ public class CombatSystem : NetworkBehaviour
     public void CmdAttivaYohoho()
     {
         GetComponent<FlagshipStatus>().Yohoho();
-        RpcYohohoParticle();
+
     }
 
     [ClientRpc]
@@ -113,6 +113,7 @@ public class CombatSystem : NetworkBehaviour
     {
         YohohoParticle.SetActive(true);
         yield return new WaitForSeconds((int) BuffTiming.YOHOHO_DURATION);
+        LocalGameManager.Instance.yohoho_icon = false;
         YohohoParticle.SetActive(false);
     }
 
