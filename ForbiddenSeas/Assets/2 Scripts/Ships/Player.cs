@@ -368,11 +368,11 @@ public class Player : NetworkBehaviour
 
         if(playerKilled == io.netId)
         {
-            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(killer).GetComponent<Player>().playerName + " have killed you!";
+            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text = ClientScene.FindLocalObject(killer).GetComponent<Player>().playerName + " has killed you!";
         }
         if(killer == io.netId)
         {
-            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text =  "You killed " + ClientScene.FindLocalObject(playerKilled).GetComponent<Player>().playerName + "!";
+            io.m_Avviso_Kill.transform.GetChild(0).gameObject.GetComponentInChildren<Text>().text =  "You have killed " + ClientScene.FindLocalObject(playerKilled).GetComponent<Player>().playerName + "!";
         }
         if(killer != io.netId && playerKilled != io.netId)
         {
