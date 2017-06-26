@@ -268,7 +268,7 @@ public class Player : NetworkBehaviour
 	public void RpcSoundArrh (NetworkInstanceId p)
 	{
 		AudioSource audio = GetComponentInChildren<AudioSource> ();
-		audio.PlayOneShot (ArrhClip);
+		audio.PlayOneShot (ArrhClip,1f);
 
 	}
 

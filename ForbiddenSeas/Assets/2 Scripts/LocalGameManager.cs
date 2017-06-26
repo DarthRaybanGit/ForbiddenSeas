@@ -498,7 +498,7 @@ public class LocalGameManager : NetworkBehaviour
 	public void TargetRpcCoinSound(NetworkConnection conn)
 	{
 		AudioSource Audio = GetComponent<AudioSource> ();
-		Audio.PlayOneShot (m_CoinClip);
+		Audio.PlayOneShot (m_CoinClip,0.4f);
 	}
 
 }
