@@ -124,7 +124,7 @@ public class MoveSimple : NetworkBehaviour {
 		    }
         //rb.MovePosition(rb.position + transform.forward* ActualSpeed  * -1*Time.fixedDeltaTime*0.1f);
 
-        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush)
+        if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && !DontPush && LocalGameManager.Instance.m_canAttack)
         {
 
 
