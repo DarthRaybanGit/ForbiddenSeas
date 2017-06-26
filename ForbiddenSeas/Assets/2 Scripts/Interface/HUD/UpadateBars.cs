@@ -39,7 +39,15 @@ public class UpadateBars : MonoBehaviour
             if (isHPbar)
                 amount = (float)LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_Health;
             else
+            {
                 amount = LocalGameManager.Instance.m_LocalPlayer.GetComponent<FlagshipStatus>().m_yohoho;
+                if(amount == 100)
+                {
+                    GameObject yohoho = GameObject.FindGameObjectWithTag("YohohoTag");
+                    yohoho.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
+
 
             bar.fillAmount = 1f / total * amount;
         }
