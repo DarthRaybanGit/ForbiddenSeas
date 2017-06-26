@@ -61,21 +61,36 @@ public class InGameCanvasController : MonoBehaviour
 
                             foreach(GameObject gg in g)
                             {
-                                if (gg.GetComponent<FlagshipStatus>().m_reputation > max_Rep)
+                                if (gg.GetComponent<FlagshipStatus>().m_reputation >= max_Rep)
                                 {
-                                    winner = gg;
                                     max_Rep = gg.GetComponent<FlagshipStatus>().m_reputation;
                                 }
 
                             }
 
-                            if(!winner.GetComponent<Player>())
+                            int giocatori = 0;
+
+                            foreach (GameObject gg in g)
                             {
-                                //è un fottuto pareggio
-                                Debug.Log("Pareggio");
-                            }else
+                                if (gg.GetComponent<FlagshipStatus>().m_reputation == max_Rep)
+                                {
+                                    giocatori++;
+                                    winner = gg;
+                                }
+
+                            }
+
+                            if (winner.GetComponent<Player>())
                             {
-                                LocalGameManager.Instance.RpcPartitaConclusa(winner.GetComponent<Player>().playerId);
+                                if(giocatori == 1)
+                                {
+                                    LocalGameManager.Instance.RpcPartitaConclusa(winner.GetComponent<Player>().playerId);
+                                    Debug.Log("Il vincitore è il player " + winner.GetComponent<Player>().playerName);
+                                }
+                                else
+                                {
+                                    //pareggio
+                                }
                             }
                         }
 
