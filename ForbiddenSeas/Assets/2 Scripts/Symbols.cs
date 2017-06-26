@@ -11,8 +11,8 @@ public class SpeedLevel
 
 public class ManeuverabilityLevel
 {
-    public const float LOW = 1.6f;
-    public const float MID = 1.8f;
+    public const float LOW = 1.5f;
+    public const float MID = 1.75f;
     public const float HIGH = 2f;
 }
 
