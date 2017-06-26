@@ -320,6 +320,7 @@ public class Player : NetworkBehaviour
         {
             yield return new WaitWhile(() => isAvvisoOn);
         }
+        isAvvisoOn = true;
         Player pl = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(pl.m_Avviso_ARRH.transform);
         pl.m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(true);
@@ -360,6 +361,7 @@ public class Player : NetworkBehaviour
         {
             yield return new WaitWhile(() => isAvvisoOn);
         }
+        isAvvisoOn = true;
         Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(io.m_Avviso_Kill.transform);
         io.m_Avviso_Kill.transform.GetChild(0).gameObject.SetActive(true);
@@ -393,6 +395,7 @@ public class Player : NetworkBehaviour
         {
             yield return new WaitWhile(() => isAvvisoOn);
         }
+        isAvvisoOn = true;
         Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(io.m_Avviso_PowerUp.transform);
         io.m_Avviso_PowerUp.transform.GetChild(0).gameObject.SetActive(true);
@@ -437,6 +440,7 @@ public class Player : NetworkBehaviour
         {
             yield return new WaitWhile(() => isAvvisoOn);
         }
+        isAvvisoOn = true;
         Player io = LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>();
         Utility.recursiveSetAlphaChannel(io.m_Avviso_Treasure.transform);
         io.m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(true);

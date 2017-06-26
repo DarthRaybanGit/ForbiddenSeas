@@ -217,9 +217,9 @@ public class FlagshipStatus : NetworkBehaviour
         }
         m_isDead = true;
         GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
-		NetworkServer.FindLocalObject (m_Me.netId).GetComponent<FlagshipStatus> ().DeathStatus();
 
         RpcRespawn();
+		NetworkServer.FindLocalObject (m_Me.netId).GetComponent<FlagshipStatus> ().DeathStatus();
 
     }
 

@@ -463,6 +463,7 @@ public class LocalGameManager : NetworkBehaviour
 
         GameObject end = GameObject.FindGameObjectWithTag("end");
 		AudioSource audio = GetComponent<AudioSource> ();
+		Camera.main.gameObject.GetComponent<AudioSource>().Stop();
 
 		if (m_LocalPlayer.GetComponent<Player> ().playerId == id) 
 		{
