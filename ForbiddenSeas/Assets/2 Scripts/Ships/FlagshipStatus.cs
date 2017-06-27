@@ -634,7 +634,8 @@ public class FlagshipStatus : NetworkBehaviour
     private IEnumerator resetDoT(int dmg, float duration)
     {
         yield return new WaitForSeconds(duration);
-        m_DoT -= dmg;
+		if (!m_isDead && m_DoT!=0)
+        	m_DoT -= dmg;
 		Debug.Log ("dentro DoTreset " + dmg + " danno aggiunto a Dot che ora è " + m_DoT);
         debuffList[(int)DebuffStatus.poison] = false;
     }
