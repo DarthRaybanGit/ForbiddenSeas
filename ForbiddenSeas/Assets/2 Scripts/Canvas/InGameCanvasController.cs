@@ -35,7 +35,7 @@ public class InGameCanvasController : MonoBehaviour
 
             if (LocalGameManager.Instance.isServer)
             {
-                if(time >= (int)FixedDelayInGame.END_GAME && !partitaFinita)
+                if(time >= OnlineManager.s_Singleton.m_matchDuration && !partitaFinita)
                 {
                     partitaFinita = true;
                     int player = -1;
