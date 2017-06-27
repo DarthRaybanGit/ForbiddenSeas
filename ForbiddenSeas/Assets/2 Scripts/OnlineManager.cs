@@ -21,7 +21,7 @@ public class OnlineManager : NetworkLobbyManager {
     public Dictionary<int, int[]> currentPlayers;
 
     public GameObject m_GamePlayer;
-
+    public float m_matchDuration;
 
     public bool gameInPlay = false;
 
@@ -30,6 +30,7 @@ public class OnlineManager : NetworkLobbyManager {
         s_Singleton = this;
         m_playerPlacement = new GameObject[4];
         currentPlayers = new Dictionary<int, int[]>();
+        m_matchDuration = (float)FixedDelayInGame.END_GAME;
     }
 
 
