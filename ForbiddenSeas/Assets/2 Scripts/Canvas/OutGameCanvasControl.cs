@@ -18,6 +18,7 @@ public class OutGameCanvasControl : MonoBehaviour
     public Animation logo;
     public InputField indirizzoIP;
     public InputField n_players;
+    public InputField minutes;
     private int currentSelectedClass = 0;
     public bool vai = false;
 
@@ -163,5 +164,10 @@ public class OutGameCanvasControl : MonoBehaviour
     public void SetPlayerNumbers()
     {
         OnlineManager.s_Singleton.minPlayers = Int32.Parse(n_players.text);
+    }
+
+    public void SetMinutes()
+    {
+        OnlineManager.s_Singleton.m_matchDuration = Int32.Parse(minutes.text) * 60f;
     }
 }
