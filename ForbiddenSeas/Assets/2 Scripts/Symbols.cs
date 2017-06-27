@@ -103,7 +103,7 @@ public class Symbols
 
     public const int REGEN_AMOUNT = -50;
     public const int YOHOHO_REGEN_AMOUNT = -150;
-    public const float SpeedDebuffTreasure = 0.5f;
+    public const float SpeedDebuffTreasure = 9.5f;
 }
 
 public class ReputationValues

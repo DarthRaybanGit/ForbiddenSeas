@@ -191,7 +191,7 @@ public class Player : NetworkBehaviour
     {
         if (!LocalGameManager.Instance.m_Treasure.activeSelf)
             return;
-        GetComponent<FlagshipStatus>().m_maxSpeed -= Symbols.SpeedDebuffTreasure;
+        GetComponent<FlagshipStatus>().m_maxSpeed = Symbols.SpeedDebuffTreasure;
         LocalGameManager.Instance.m_Treasure.SetActive(false);
         RpcAvvisoTreasure(netId);
 
@@ -252,7 +252,7 @@ public class Player : NetworkBehaviour
     [Server]
     public void ScoreAnARRH()
     {
-
+        GetComponent<FlagshipStatus>().m_maxSpeed = GetComponent<FlagshipStatus>().m_maksuSpeedo;
         LocalGameManager.Instance.m_playerArrh[playerId - 1]++;
         m_score++;
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.ARRH;

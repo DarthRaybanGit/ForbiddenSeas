@@ -40,17 +40,27 @@ public class InGameCanvasController : MonoBehaviour
                     partitaFinita = true;
                     int player = -1;
                     //Fine partita.
-                    int max = LocalGameManager.Instance.m_playerArrh[0];
+                    int max = 0;
                     for(int i = 0; i < LocalGameManager.Instance.m_playerArrh.Count; i++)
                     {
                         if(LocalGameManager.Instance.m_playerArrh[i] >= max)
                         {
-                            player = i + 1;
                             max = LocalGameManager.Instance.m_playerArrh[i];
                         }
                     }
 
-                    if(max == 0 || player == -1)
+                    int giocatoriArrh = 0;
+
+                    for (int i = 0; i < LocalGameManager.Instance.m_playerArrh.Count; i++)
+                    {
+                        if (LocalGameManager.Instance.m_playerArrh[i] == max)
+                        {
+                            player = i + 1;
+                            giocatoriArrh++;
+                        }
+                    }
+
+                    if (giocatoriArrh > 1)
                     {
                         //Situazione di paraggio --> Controlla la reputazione
                         GameObject[] g = GameObject.FindGameObjectsWithTag("Player");
@@ -90,6 +100,7 @@ public class InGameCanvasController : MonoBehaviour
                                 else
                                 {
                                     //pareggio
+                                    Debug.Log("I giocatori hanno la stessa reputazione è un pareggio");
                                 }
                             }
                         }
@@ -97,6 +108,7 @@ public class InGameCanvasController : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("Il vincitore è il player " + player);
                         LocalGameManager.Instance.RpcPartitaConclusa(player);
                     }
                 }
