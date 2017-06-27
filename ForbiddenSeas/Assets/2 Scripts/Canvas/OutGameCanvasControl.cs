@@ -14,6 +14,12 @@ public class OutGameCanvasControl : MonoBehaviour
     public GameObject m_OtherPlayers;
     public GameObject m_InputName;
     public GameObject m_ReadyText;
+
+    public GameObject m_StartServer;
+    public GameObject m_NumPlayer;
+    public GameObject m_Minuti;
+
+
     public GameObject[] m_stats;
     public Animation logo;
     public InputField indirizzoIP;
@@ -47,6 +53,18 @@ public class OutGameCanvasControl : MonoBehaviour
             }
         }*/
 
+    }
+
+    public void UnHideServerSettings()
+    {
+        foreach(Transform t in m_ConnectButtons.transform)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        m_NumPlayer.SetActive(true);
+        m_StartServer.SetActive(true);
+        m_Minuti.SetActive(true);
     }
 
     public void StartConnectionAsServer()
