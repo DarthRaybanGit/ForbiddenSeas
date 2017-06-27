@@ -27,7 +27,7 @@ public class InitializeCamera : StateMachineBehaviour {
         Utility.recursivePlayAnimation(LocalGameManager.Instance.m_CanvasEtichette.transform, "FadeIn");
         LocalGameManager.Instance.m_LocalPlayer.GetComponent<Player>().CmdRequestTimetoServer();
         LocalGameManager.Instance.m_canAttack = true;
-		Camera.main.gameObject.GetComponent<AudioSource> ().Play ();
+		Camera.main.gameObject.GetComponent<AudioSource> ().Play();
     }
 
     IEnumerator delayedTime()

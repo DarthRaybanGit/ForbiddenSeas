@@ -660,7 +660,8 @@ public class FlagshipStatus : NetworkBehaviour
 	[Server]
 	public void DeathStatus()
 	{
-		if (buffList [(int)BuffStatus.dmgUp])
+        m_DoT = 0;
+        if (buffList [(int)BuffStatus.dmgUp])
 		{
 			m_main =(int)( (float)m_main / (1f + (float)BuffValue.DmgUpValue / 100f));		//FIXME discrepanza sul calcolo dell'attacco
 
@@ -702,29 +703,33 @@ public class FlagshipStatus : NetworkBehaviour
 		StartCoroutine(EndSpeedUpParticle(m_Me.playerId,0f));
 		Camera.main.transform.GetChild(0).gameObject.SetActive(false);
 	}
+
 	[TargetRpc]
 	public void TargetRpcDamageUpParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndDmgUpParticle(m_Me.playerId,0f));
 	}
+
 	[TargetRpc]
 	public void TargetRpcYohohoParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndYohohoParticle(m_Me.playerId,0f));
-		m_DoT = 0;
 	}
+
 	[TargetRpc]
 	public void TargetRpcRegenParticleStop(NetworkConnection c, bool check)
 	{
 		StartCoroutine(EndRegenParticle(m_Me.playerId,0f));
-		m_DoT = 0;
+
 	}
+
 	[TargetRpc]
 	public void TargetRpcBlindStop(NetworkConnection c, bool check)
 	{
 		Blind bl = GameObject.FindWithTag("Blind").GetComponent<Blind>();
 		StartCoroutine(resetBlind(bl,0f));
 	}
+
 	[TargetRpc]
 	public void TargetRpcPoisonStop(NetworkConnection c, bool check)
 	{

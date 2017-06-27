@@ -92,9 +92,62 @@ public class CombatSystem : NetworkBehaviour
                 }
             }
 
+            if(Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.D))
+            {
+                CmdResetMyLife();
+                transform.position = GetComponent<Player>().m_SpawnPoint;
+                GetComponent<MoveSimple>().TransmitPosition();
+                LocalGameManager.Instance.m_canAttack = true;
+                GetComponent<MoveSimple>().DontPush = false;
+                GetComponent<MoveSimple>().ActualSpeed = 0;
+                GetComponent<MoveSimple>().State = 0;
+                GetComponent<Animator>().SetFloat("Speed", 0);
+
+
+                foreach(Transform t in GameObject.FindGameObjectWithTag("StatusHUD").transform)
+                {
+                    t.gameObject.SetActive(false);
+                }
+
+                GetComponent<Player>().m_Avviso_ARRH.transform.GetChild(0).gameObject.SetActive(false);
+                GetComponent<Player>().m_Avviso_Kill.transform.GetChild(0).gameObject.SetActive(false);
+                GetComponent<Player>().m_Avviso_PowerUp.transform.GetChild(0).gameObject.SetActive(false);
+                GetComponent<Player>().m_Avviso_Treasure.transform.GetChild(0).gameObject.SetActive(false);
+                LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.SetActive(false);
+                LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.SetActive(true);
+                GameObject.FindGameObjectWithTag("YohohoTag").transform.GetChild(0).gameObject.SetActive(false);
+                GameObject.FindGameObjectWithTag("Yohoho").transform.GetChild(0).gameObject.SetActive(false);
+
+            }
 
         }
     }
+
+
+    [Command]
+    public void CmdResetMyLife()
+    {
+        GetComponent<FlagshipStatus>().DeathStatus();
+        for (int i=0; i < GetComponent<FlagshipStatus>().debuffList.Count; i++)
+        {
+            GetComponent<FlagshipStatus>().debuffList[i] = false;
+        }
+
+        for (int i = 0; i < GetComponent<FlagshipStatus>().buffList.Count; i++)
+        {
+            GetComponent<FlagshipStatus>().buffList[i] = false;
+        }
+
+        GetComponent<FlagshipStatus>().m_isDead = false;
+        GetComponent<Player>().m_InsideArena = true;
+        GetComponent<FlagshipStatus>().m_yohoho = 0;
+        GetComponent<FlagshipStatus>().m_Health = GetComponent<FlagshipStatus>().m_MaxHealth;
+        GetComponent<FlagshipStatus>().m_maxSpeed = GetComponent<FlagshipStatus>().m_maksuSpeedo;
+
+        GetComponent<FlagshipStatus>().m_DoT = 0;
+
+    }
+
 
     [Command]
     public void CmdAttivaYohoho()
