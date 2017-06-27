@@ -45,6 +45,7 @@ public class LoadingCanvasController : MonoBehaviour {
         yield return new WaitUntil(() => LocalGameManager.Instance.IsEveryPlayerRegistered());
         m_Wheel.GetComponent<Animator>().SetTrigger("Hide");
         m_LoadingPane.GetComponent<Animator>().SetTrigger("Hide");
+		Camera.main.gameObject.GetComponent<AudioSource> ().Play();
 
     }
 
