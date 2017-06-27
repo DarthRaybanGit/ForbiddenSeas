@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PowerMiniUpMap : MonoBehaviour
 {
-    [Range(1,3)]
+    [Range(0,2)]
     public int p_up;
     private bool ready = false;
     private Vector3 normalizedPowerPos;
