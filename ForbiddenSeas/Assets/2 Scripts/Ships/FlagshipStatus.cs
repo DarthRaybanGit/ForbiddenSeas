@@ -322,11 +322,14 @@ public class FlagshipStatus : NetworkBehaviour
             Ombra.SetActive(true);
         yield return new WaitForFixedUpdate();
         GetComponent<MoveSimple>().canSync = true;
+
+
     }
 
     [TargetRpc]
     public void TargetRpcCountDownRespawn(NetworkConnection nc)
     {
+		GameObject.FindGameObjectWithTag("YohohoTag").transform.GetChild(0).gameObject.SetActive(false);
         LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.transform.GetChild(1).gameObject.GetComponent<Text>().text = ((int) FixedDelayInGame.PLAYERS_RESPAWN).ToString() ;
         LocalGameManager.Instance.m_CanvasHUD.GetComponent<InGameCanvasController>().CountDownRespawn.GetComponent<Animation>().Play("DeathGUI");
         StartCoroutine(StartCountDownLocal());

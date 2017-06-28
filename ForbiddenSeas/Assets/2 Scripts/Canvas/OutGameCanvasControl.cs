@@ -78,7 +78,7 @@ public class OutGameCanvasControl : MonoBehaviour
         string ip = indirizzoIP.text;
 
         if (ip.Length < 2)
-            ip = "localhost";
+            ip = "169.254.239.89";
 
         NetworkManager.singleton.networkAddress = ip;
         m_ConnectButtons.SetActive(false);

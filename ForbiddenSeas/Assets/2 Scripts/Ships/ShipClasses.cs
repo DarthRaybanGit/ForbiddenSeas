@@ -54,7 +54,7 @@ public class Vikings
 public class Orientals
 {
     public const string shipName = "Chinese Junk";
-    public const int maxHealth = 1400;
+    public const int maxHealth = 1200;
     public const float maxSpeed = 10f;
     public const float maneuverability = ManeuverabilityLevel.MID;
     public const int mainAttackDmg = 300;
