@@ -68,6 +68,8 @@ public class Player : NetworkBehaviour
                 LocalGameManager.Instance.m_LocalPlayer = gameObject;
                 CmdStartGeneralLoop((int)this.netId.Value);
                 m_SpawnPoint = transform.position;
+                transform.LookAt(new Vector3(0, 0, 0));
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
                 LocalGameManager.Instance.m_GameIsStarted = true;
                 m_reputationTextUI = GameObject.FindGameObjectWithTag("ReputationUI").GetComponent<Text>();
                 m_scoreTextUI = GameObject.FindGameObjectWithTag("ScoreUI").GetComponent<Text>();
@@ -287,6 +289,9 @@ public class Player : NetworkBehaviour
         yield return new WaitForSeconds(Symbols.arrhCelebrationTimeLength);
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         gameObject.transform.position = m_SpawnPoint;
+        transform.LookAt(new Vector3(0, 0, 0));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
         CmdImIntheArenaNow();
 
         yield return new WaitForSeconds(1f);

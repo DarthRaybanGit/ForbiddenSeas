@@ -274,6 +274,8 @@ public class FlagshipStatus : NetworkBehaviour
             Debug.Log("Voglio rivivere. NOPE");
             CmdIwantoToLive();
             transform.position = GetComponent<Player>().m_SpawnPoint;
+            transform.LookAt(new Vector3(0, 0, 0));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
             GetComponent<MoveSimple>().TransmitPosition();
         }
     }
@@ -413,14 +415,55 @@ public class FlagshipStatus : NetworkBehaviour
 
 		m_main += (int)(m_main /100f * (int)BuffValue.DmgUpValue);
 		m_special += (int)(m_special /100f * (int)BuffValue.DmgUpValue);
-        yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
 
-		if (buffList[(int)BuffStatus.dmgUp])
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= (float)BuffTiming.DAMAGE_UP_DURATION || m_isDead));
+        //yield return new WaitForSeconds((float)BuffTiming.DAMAGE_UP_DURATION);
+
+		if (m_isDead)
 		{
-			m_main = currentMain;
-			m_special = currentSpec;
+			m_main = getMainAttackStats(shipClass);
+			m_special = getSpecAttackStats(shipClass);
 			buffList [(int)BuffStatus.dmgUp] = false;
 		}
+        else
+        {
+            m_main = currentMain;
+            m_special = currentSpec;
+            buffList[(int)BuffStatus.dmgUp] = false;
+        }
+    }
+
+    private int getMainAttackStats(ShipClass sc)
+    {
+        switch (sc)
+        {
+            case ShipClass.pirates:
+                return Pirates.mainAttackDmg;
+            case ShipClass.vikings:
+                return Vikings.mainAttackDmg;
+            case ShipClass.egyptians:
+                return Egyptians.mainAttackDmg;
+            case ShipClass.orientals:
+                return Orientals.mainAttackDmg;
+        }
+        return 0;
+    }
+
+    private int getSpecAttackStats(ShipClass sc)
+    {
+        switch (sc)
+        {
+            case ShipClass.pirates:
+                return Pirates.specAttackDmg;
+            case ShipClass.vikings:
+                return Vikings.specAttackDmg;
+            case ShipClass.egyptians:
+                return Egyptians.specAttackDmg;
+            case ShipClass.orientals:
+                return Orientals.specAttackDmg;
+        }
+        return 0;
     }
 
     [ClientRpc]
@@ -433,7 +476,9 @@ public class FlagshipStatus : NetworkBehaviour
 
 	IEnumerator EndDmgUpParticle(int player, float time)
     {
-        yield return new WaitForSeconds(time);
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= time || m_isDead));
+        //yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "dmgUP_Particle").SetActive(false);
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
@@ -486,13 +531,22 @@ public class FlagshipStatus : NetworkBehaviour
         buffList[(int)BuffStatus.speedUp] = true;
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed * ((float)BuffValue.SpeedUpValue / 100f));
-        yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
 
-		if (buffList[(int)BuffStatus.speedUp])
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= (float)BuffTiming.SPEED_UP_DURATION || m_isDead));
+
+        //yield return new WaitForSeconds((float)BuffTiming.SPEED_UP_DURATION);
+
+		if (m_isDead)
 		{
-			m_maxSpeed = currentSpeed;
+			m_maxSpeed = m_maksuSpeedo;
 			buffList [(int)BuffStatus.speedUp] = false;
 		}
+        else
+        {
+            m_maxSpeed = currentSpeed;
+            buffList[(int)BuffStatus.speedUp] = false;
+        }
     }
 
     [ClientRpc]
@@ -505,7 +559,9 @@ public class FlagshipStatus : NetworkBehaviour
 
 	IEnumerator EndSpeedUpParticle(int player, float time)
     {
-        yield return new WaitForSeconds(time);
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= time || m_isDead));
+        //yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "spdUP_Particle").SetActive(false);
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Stop();
         LocalGameManager.Instance.GetPlayer(player).transform.GetChild(0).GetChild(1).GetComponent<Animation>().Play("ResetColor");
@@ -571,10 +627,23 @@ public class FlagshipStatus : NetworkBehaviour
         float currentSpeed = m_maxSpeed;
         m_maxSpeed += (m_maxSpeed * ((float)BuffValue.YohohoSpeed / 100f));
         m_DoT += (int)Symbols.YOHOHO_REGEN_AMOUNT;
-        yield return new WaitForSeconds((float)BuffTiming.YOHOHO_DURATION);
-        m_maxSpeed = currentSpeed;
-        m_DoT -= (int)Symbols.YOHOHO_REGEN_AMOUNT;
-        buffList[(int)BuffStatus.yohoho] = false;
+
+        float currTime = Time.time;
+
+        yield return new WaitUntil(() => (Time.time - currTime >= (float)BuffTiming.YOHOHO_DURATION || m_isDead));
+
+        if (!m_isDead)
+        {
+            m_maxSpeed = currentSpeed;
+            m_DoT -= (int)Symbols.YOHOHO_REGEN_AMOUNT;
+            buffList[(int)BuffStatus.yohoho] = false;
+        }
+        else
+        {
+            Debug.Log("Sono morto perciò ci pensa la morte a disattivare tutto.");
+            m_maxSpeed = m_maksuSpeedo;
+        }
+
     }
 
     [ClientRpc]
@@ -586,7 +655,9 @@ public class FlagshipStatus : NetworkBehaviour
 
 	IEnumerator EndYohohoParticle(int player, float time)
     {
-        yield return new WaitForSeconds(time);
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= time || m_isDead));
+        //yield return new WaitForSeconds(time);
         LocalGameManager.Instance.GetPlayer(player).GetComponent<CombatSystem>().YohohoParticle.SetActive(false);
 
     }
@@ -627,17 +698,29 @@ public class FlagshipStatus : NetworkBehaviour
 
 	IEnumerator EndRegenParticle(int player, float time)
     {
-        yield return new WaitForSeconds(time);
+        float currTime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currTime >= time || m_isDead));
+        //yield return new WaitForSeconds(time);
         Utility.FindChildWithTag(LocalGameManager.Instance.GetPlayer(player), "regen_Particle").SetActive(false);
     }
 
     private IEnumerator resetDoT(int dmg, float duration)
     {
-        yield return new WaitForSeconds(duration);
-		if (!m_isDead && m_DoT!=0)
-        	m_DoT -= dmg;
-		Debug.Log ("dentro DoTreset " + dmg + " danno aggiunto a Dot che ora è " + m_DoT);
-        debuffList[(int)DebuffStatus.poison] = false;
+        float currtime = Time.time;
+        yield return new WaitUntil(() => (Time.time - currtime >= duration || m_isDead));
+        //yield return new WaitForSeconds(duration);
+		if (!m_isDead)
+        {
+            Debug.Log("Sto resettando il DoT da vivo " + dmg + " danno aggiunto a Dot che ora è " + m_DoT);
+            m_DoT -= dmg;
+            debuffList[(int)DebuffStatus.poison] = false;
+        }
+        else
+        {
+            Debug.Log("Sono morto perciò il DoT viene resettato in altro modo");
+        }
+
+        //debuffList[(int)DebuffStatus.poison] = false;
     }
 
     private IEnumerator resetBlind(Blind bl, float duration)

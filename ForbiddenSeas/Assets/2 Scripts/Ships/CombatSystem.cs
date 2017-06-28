@@ -96,6 +96,10 @@ public class CombatSystem : NetworkBehaviour
             {
                 CmdResetMyLife();
                 transform.position = GetComponent<Player>().m_SpawnPoint;
+
+                transform.LookAt(new Vector3(0, 0, 0));
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 180 + transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
                 GetComponent<MoveSimple>().TransmitPosition();
                 LocalGameManager.Instance.m_canAttack = true;
                 GetComponent<MoveSimple>().DontPush = false;
