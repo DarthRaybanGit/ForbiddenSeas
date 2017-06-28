@@ -42,6 +42,18 @@ public class CombatSystem : NetworkBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LocalGameManager.Instance.m_CanvasHUD.SetActive(false);
+
+            GameObject g = LocalGameManager.Instance.gameObject;
+
+            Destroy(LocalGameManager.Instance);
+            Destroy(g);
+
+            OnlineManager.s_Singleton.StopClient();
+        }
+
         if (!GetComponent<FlagshipStatus>().m_isDead && LocalGameManager.Instance.GameCanStart() && LocalGameManager.Instance.m_canAttack)
         {
             if (Input.GetMouseButtonDown(0))

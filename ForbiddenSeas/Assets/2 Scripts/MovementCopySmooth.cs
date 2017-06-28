@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovementCopySmooth : MonoBehaviour {
-
+public class MovementCopySmooth : MonoBehaviour
+{
 	// Use this for initialization
 	public GameObject player;
 	private float velocity=0f;
@@ -15,12 +15,6 @@ public class MovementCopySmooth : MonoBehaviour {
     public GameObject binocolo;
 
     public Animator anim;
-
-	void Start () {
-		//StartCoroutine(waitEveryone());
-
-	}
-
 
 	public IEnumerator waitEveryone()
 	{
@@ -33,7 +27,8 @@ public class MovementCopySmooth : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate ()
+    {
 		if (!wait)
 			return;
 		Vector3 EulerAngles = transform.rotation.eulerAngles;
@@ -44,7 +39,7 @@ public class MovementCopySmooth : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (EulerAngles);
 		transform.position = player.transform.position;
 
-		if (Input.GetKey (KeyCode.S)) 
+		if (Input.GetKeyDown (KeyCode.S)) 
 		{
 			transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = false;
 			transform.GetChild (0).gameObject.tag = "Untagged";
@@ -62,11 +57,5 @@ public class MovementCopySmooth : MonoBehaviour {
 			transform.GetChild (0).gameObject.tag = "MainCamera";
             binocolo.GetComponent<Image>().enabled = false;
 		}
-
-
 	}
-
-
-
-
 }
