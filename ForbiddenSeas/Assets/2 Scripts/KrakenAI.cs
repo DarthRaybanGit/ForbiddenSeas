@@ -33,9 +33,9 @@ public class KrakenAI : MonoBehaviour {
 	void FixedUpdate () {
 		if (!onMove && !onChase)			//guarda alla posizione dove deve andare
 		{
-			transform.LookAt(players.transform.position);
-			targetPos = players.transform.position;
-			//StartCoroutine (TargetPos ());
+			//transform.LookAt(players.transform.position);
+			//targetPos = players.transform.position;
+			StartCoroutine (TargetPos ());
 			onMove = true;
 		}
 
@@ -48,29 +48,34 @@ public class KrakenAI : MonoBehaviour {
 			ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed , Acceleration);
 		else
 		{
-			if (ActualSpeed > 0.5f)
+			if (ActualSpeed > maxSpeed)
 				ActualSpeed = Mathf.Lerp (ActualSpeed, maxSpeed , deceleration);
 			else
 				ActualSpeed = 0;
 		}
 
-		rb.AddForce(transform.forward * -1 * ActualSpeed * SpeedFactor);
-		rb.velocity = transform.forward * -1 * rb.velocity.magnitude;
-		DesRot=Quaternion.LookRotation(targetPos);
-		transform.rotation=Quaternion.Lerp(transform.rotation,DesRot,Time.deltaTime*20f);
-		transform.position = Vector3.Lerp (transform.position, targetPos, speed * Time.deltaTime);
+		rb.AddForce (transform.forward * ActualSpeed * SpeedFactor);
+		rb.velocity = transform.forward * rb.velocity.magnitude;
+		DesRot = Quaternion.LookRotation (targetPos);
+		transform.rotation = Quaternion.Lerp (transform.rotation, DesRot, Time.deltaTime * 20f);
+			//transform.position = Vector3.Lerp (transform.position, targetPos, speed * Time.deltaTime);
+
+		Debug.Log (Vector3.Distance (transform.position, targetPos));
 		if (Vector3.Distance (transform.position, targetPos) < 5f) 
 		{
 			onMove = false;
 			maxSpeed = 0f;
 		}
+		rb.angularVelocity = Vector3.zero;
 	}
 
-	/*IEnumerator TargetPos()
+	IEnumerator TargetPos()
 	{
+		yield return new WaitForSeconds (5f);
 		transform.LookAt(players.transform.position);
 		targetPos = players.transform.position;
+		onMove = false;
 
-	}*/
+	}
 
 }
