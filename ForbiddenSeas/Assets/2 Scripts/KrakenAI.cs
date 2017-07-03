@@ -56,8 +56,8 @@ public class KrakenAI : MonoBehaviour {
 
 		rb.AddForce (transform.forward * ActualSpeed * SpeedFactor);
 		rb.velocity = transform.forward * rb.velocity.magnitude;
-		DesRot = Quaternion.LookRotation (targetPos);
-		transform.rotation = Quaternion.Lerp (transform.rotation, DesRot, Time.deltaTime * 20f);
+		//DesRot = Quaternion.LookRotation (targetPos);
+		//transform.rotation = Quaternion.Lerp (transform.rotation, DesRot, Time.deltaTime * 20f);
 			//transform.position = Vector3.Lerp (transform.position, targetPos, speed * Time.deltaTime);
 
 		Debug.Log (Vector3.Distance (transform.position, targetPos));
