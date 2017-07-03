@@ -952,6 +952,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1692880726777956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4180519730982532}
+  - component: {fileID: 114134186804756792}
+  m_Layer: 0
+  m_Name: VickingAIEntity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1698879858873456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,6 +1399,7 @@ Transform:
   - {fileID: 4760435309751658}
   - {fileID: 4559101211778586}
   - {fileID: 4430143517292910}
+  - {fileID: 4180519730982532}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1533,6 +1550,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4752739419915458}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4180519730982532
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692880726777956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4195454487615228
 Transform:
@@ -2004,7 +2034,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922279346019368}
-  m_LocalRotation: {x: 0.6516691, y: -0.27445862, z: -0.65166885, w: -0.27445874}
+  m_LocalRotation: {x: 0.65166914, y: -0.27445865, z: -0.6516689, w: -0.27445877}
   m_LocalPosition: {x: -0.010538681, y: 0.016392319, z: 0.0008638296}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
   m_Children:
@@ -3150,6 +3180,35 @@ MonoBehaviour:
   m_score: 0
   m_Class: 0
   barca_isMoving: 0
+--- !u!114 &114134186804756792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692880726777956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Entities.EntityRig" reference="0"
+      includecustomdata="False"><_visualMode>OnWhenSelected</_visualMode><_useUnityMessages>True</_useUnityMessages><_entity
+      reference="1"><_entityName>Vikings Flagship</_entityName><_isActive>True</_isActive><_form
+      sceneobject="b7512d5a-9a27-4d79-92ec-394b1bad3fbc"></_form><_aspects><element0
+      type="RAIN.Entities.Aspects.VisualAspect" reference="2"><_showVisual>True</_showVisual><_aspectName>Player</_aspectName><_isActive>True</_isActive><_aspectColor>0,0.6,0,1</_aspectColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_visualSize>1.6</_visualSize><_mountPoint
+      sceneobject="b7512d5a-9a27-4d79-92ec-394b1bad3fbc" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset></element0></_aspects></_entity></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects: []
+    _serializedCustomData: []
 --- !u!114 &114143520851380954
 MonoBehaviour:
   m_ObjectHideFlags: 1
