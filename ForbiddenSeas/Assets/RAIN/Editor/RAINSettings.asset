@@ -19,11 +19,11 @@ MonoBehaviour:
   _btInspectorFieldWidth: 120
   _navMeshGenerationThreads: 4
   _useSkin: 1
-  _showAdvanced: 0
+  _showAdvanced: 1
   _allowAutoUpdateCheck: 1
   _updateFrequencyHours: 24
   _showWelcomeWindow: 1
   _displayVersionWarning: 1
   _showDeprecatedRAINClasses: 0
   _defaultSerialization: 1
-  _projectSkin: {fileID: 0}
+  _projectSkin: {fileID: 11400000, guid: a2815f1dcaf7c5747b3d93ccb81fa30a, type: 2}
