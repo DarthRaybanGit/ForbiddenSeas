@@ -1,0 +1,1 @@
+<behaviortree version="1.1" repeatuntil="" name="SupportShip_Attacker" debugbreak="False"><sequencer usepriorities="False" repeatuntil="" name="root" debugbreak="False"><decision repeatuntil="" priority="" parametervalues="" parameters="" namespace="(global)" name="decision" debugbreak="False" classname="FlagshipIsAlive"></decision></sequencer></behaviortree>
