@@ -15,9 +15,9 @@ MonoBehaviour:
   HolderNodes:
   - AssetPath: .currentai
     BehaviorTreeName: (No AI Selected)
-    BehaviorTreeID: 0
-    LastUpdate: 636346854129637521
-    LastModified: 636346853975167170
+    BehaviorTreeID: 1
+    LastUpdate: 636346942892532860
+    LastModified: 636346942900000000
     Errored: 0
   - AssetPath: .createxml
     BehaviorTreeName: Create New Behavior Tree
@@ -25,11 +25,17 @@ MonoBehaviour:
     LastUpdate: 0
     LastModified: 0
     Errored: 0
+  - AssetPath: Assets/AI/BehaviorTrees/PiranhasTree.txt
+    BehaviorTreeName: PiranhasTree
+    BehaviorTreeID: 1
+    LastUpdate: 636346942892532860
+    LastModified: 636346942900000000
+    Errored: 0
   - AssetPath: Assets/AI/BehaviorTrees/SupportShip_Attacker.txt
     BehaviorTreeName: SupportShip_Attacker
-    BehaviorTreeID: 1
-    LastUpdate: 636346854129637521
-    LastModified: 636346853975167170
+    BehaviorTreeID: 0
+    LastUpdate: 0
+    LastModified: 0
     Errored: 0
   TreeState:
     _branchRepo:
@@ -43,7 +49,7 @@ MonoBehaviour:
       _focused: 0
     - _fields:
       - _field: name
-        _currentValue: SupportShip_Attacker
+        _currentValue: PiranhasTree
         _recordChange: 1
         _changed: 0
       - _field: open
@@ -77,8 +83,8 @@ MonoBehaviour:
       _type: 4
       _stateIndex: 1
       _parent: 0
-      _lastUpdate: 636346854129637521
-      _children: 02000000
+      _lastUpdate: 636346942892532860
+      _children: 03000000
       _variables: 
       _focused: 0
     - _fields:
@@ -120,14 +126,14 @@ MonoBehaviour:
         _changed: 0
       _type: 20
       _stateIndex: 2
-      _parent: 1
-      _lastUpdate: 636346854129642743
-      _children: 03000000
+      _parent: 0
+      _lastUpdate: 0
+      _children: 
       _variables: 
-      _focused: 0
+      _focused: 1
     - _fields:
       - _field: name
-        _currentValue: decision
+        _currentValue: root
         _recordChange: 1
         _changed: 0
       - _field: open
@@ -158,27 +164,23 @@ MonoBehaviour:
         _currentValue: 
         _recordChange: 1
         _changed: 0
-      - _field: namespace
-        _currentValue: (global)
+      - _field: fail
+        _currentValue: any
         _recordChange: 1
         _changed: 0
-      - _field: classname
-        _currentValue: FlagshipIsAlive
+      - _field: succeed
+        _currentValue: all
         _recordChange: 1
         _changed: 0
-      - _field: parameters
-        _currentValue: 
+      - _field: tiebreaker
+        _currentValue: fail
         _recordChange: 1
         _changed: 0
-      - _field: parametervalues
-        _currentValue: 
-        _recordChange: 1
-        _changed: 0
-      _type: 6
+      _type: 16
       _stateIndex: 3
-      _parent: 2
-      _lastUpdate: 0
+      _parent: 1
+      _lastUpdate: 636346942892532860
       _children: 
       _variables: 
-      _focused: 0
+      _focused: 1
     _freeList: 
