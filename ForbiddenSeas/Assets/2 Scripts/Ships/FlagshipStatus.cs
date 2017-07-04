@@ -827,4 +827,23 @@ public class FlagshipStatus : NetworkBehaviour
 		//spegnere i particle qua
 		m_DoT = 0;
 	}
+
+    bool ready = true;
+    float currentTime = 0f;
+
+    [Server]
+    public void TakeDmgFromPiranha()
+    {
+        if (ready)
+        {
+            ready = false;
+            PrendiDannoDaEnemy((int)EnemyDmg.PIRANHA);
+            currentTime = Time.time;
+        }
+
+        if (!ready && currentTime + 3f < Time.time)
+        {
+            ready = true;
+        }
+    }
 }

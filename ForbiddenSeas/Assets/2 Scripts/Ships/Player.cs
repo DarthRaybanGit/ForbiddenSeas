@@ -144,6 +144,10 @@ public class Player : NetworkBehaviour
             {
                 StartCoroutine(LocalGameManager.Instance.c_LoopMines(2, i));
             }
+                
+            GameObject nw = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRANHA_NW], GameObject.FindGameObjectWithTag("Piranhas").transform);
+            nw.transform.localPosition = new Vector3(-6f, 0f, -43f);
+            NetworkServer.Spawn(nw);
         }
 
     }

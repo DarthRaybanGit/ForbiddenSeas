@@ -45,6 +45,7 @@ TagManager:
   - Binocolo
   - Damage
   - Aboard
+  - Piranhas
   layers:
   - Default
   - TransparentFX
