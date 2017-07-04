@@ -51,6 +51,8 @@ public class FlagshipStatus : NetworkBehaviour
 
     public bool sonoMortissimo = false;
 
+	public bool wait = false;
+
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
@@ -176,7 +178,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void PrendiDannoDaEnemy(int dmg)
     {
-        m_Health -= dmg;
+       
 
 
 		if (m_Health <= 0 && !m_isDead)
@@ -184,6 +186,8 @@ public class FlagshipStatus : NetworkBehaviour
             m_Health = 0;
             OnDeath();
         }
+		if (m_Health>0 && !m_isDead)
+			m_Health -= dmg;
     }
 
     public void OnDeath()

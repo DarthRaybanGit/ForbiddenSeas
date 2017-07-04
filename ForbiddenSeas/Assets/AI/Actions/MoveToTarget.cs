@@ -21,7 +21,7 @@ public class MoveToTarget : RAINAction
 			t = t + g.transform.position;
 			count++;
 		}
-		t /= count;
+		t /=count;
 		Debug.Log (t);
 		ai.WorkingMemory.SetItem ("TargetPos", t);
         return ActionResult.SUCCESS;
