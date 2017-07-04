@@ -29,12 +29,12 @@ public class KrakenDamage : RAINAction
 
 	IEnumerator DoDamage(GameObject g, RAIN.Core.AI ai)
 	{		
-		if (!ai.Body.GetComponent<KrakenInit>().wait) 
+		if (!g.GetComponent<FlagshipStatus>().wait) 
 		{
 			g.GetComponent<FlagshipStatus> ().PrendiDannoDaEnemy (20);
-			ai.Body.GetComponent<KrakenInit>().wait = true;
+			g.GetComponent<FlagshipStatus>().wait = true;
 			yield return new WaitForSeconds (1f);
-			ai.Body.GetComponent<KrakenInit>().wait = false;
+			g.GetComponent<FlagshipStatus>().wait = false;
 		}
 
 	}

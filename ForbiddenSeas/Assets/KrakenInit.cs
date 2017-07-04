@@ -5,7 +5,6 @@ using UnityEngine;
 public class KrakenInit : MonoBehaviour {
 
 	// Use this for initialization
-	public bool wait=false;
 	void Start () {
 		
 	}
