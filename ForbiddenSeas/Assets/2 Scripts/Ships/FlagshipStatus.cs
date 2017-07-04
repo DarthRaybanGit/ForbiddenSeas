@@ -179,7 +179,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_Health -= dmg;
 
 
-        if (m_Health <= 0)
+		if (m_Health <= 0 && !m_isDead)
         {
             m_Health = 0;
             OnDeath();
