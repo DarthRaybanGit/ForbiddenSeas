@@ -1262,6 +1262,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1611557484218574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4915340380081002}
+  - component: {fileID: 114115502203329126}
+  m_Layer: 0
+  m_Name: Entity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1626912774065040
 GameObject:
   m_ObjectHideFlags: 1
@@ -2032,6 +2048,7 @@ Transform:
   - {fileID: 4367351641458658}
   - {fileID: 4498581071322742}
   - {fileID: 4037386323134436}
+  - {fileID: 4915340380081002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3582,6 +3599,19 @@ Transform:
   m_Father: {fileID: 4654600550045602}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4915340380081002
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611557484218574}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4922677680341740
 Transform:
   m_ObjectHideFlags: 1
@@ -4341,6 +4371,37 @@ MonoBehaviour:
     _serializedMetaDocument: <meta></meta>
     _serializedObjects: []
     _serializedCustomData: []
+--- !u!114 &114115502203329126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611557484218574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Entities.EntityRig" reference="0"
+      includecustomdata="False"><_visualMode>OnWhenSelected</_visualMode><_useUnityMessages>True</_useUnityMessages><_entity
+      reference="1"><_entityName>Pirates Flagship</_entityName><_isActive>True</_isActive><_form
+      object="0"></_form><_aspects><element0 type="RAIN.Entities.Aspects.VisualAspect"
+      reference="2"><_showVisual>True</_showVisual><_aspectName>Player</_aspectName><_isActive>True</_isActive><_aspectColor>0.6,0,0,1</_aspectColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_visualSize>0.1</_visualSize><_mountPoint
+      object="1"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset></element0></_aspects></_entity></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects:
+    - {fileID: 1869087919111540}
+    - {fileID: 4031181710060198}
+    _serializedCustomData: []
 --- !u!114 &114130035200792958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4403,6 +4464,8 @@ MonoBehaviour:
   SecondWeapon: {fileID: 0}
   LeftSupportPos: {fileID: 4498581071322742}
   RightSupportPos: {fileID: 4037386323134436}
+  m_NumOfSupport: 0
+  m_SummoningSupport: 0
   LeftSupportShip: {fileID: 0}
   RightSupportShip: {fileID: 0}
 --- !u!114 &114353414015100942

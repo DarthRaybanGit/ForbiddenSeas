@@ -14,7 +14,7 @@ public class SupportShipAttack : RAINAction
 
     public override ActionResult Execute(RAIN.Core.AI ai)
     {
-        Debug.Log("########### 4:Attack " + ai.Body.name + " trovato " + ai.Senses.Match("SupportShipView", "Player")[0].Entity.Form.name);
+        //Debug.Log("########### 4:Attack " + ai.Body.name + " trovato " + ai.Senses.Match("SupportShipView", "Player")[0].Entity.Form.name);
         ai.Body.GetComponent<SupportShip>().Attack();
         return ActionResult.SUCCESS;
     }
