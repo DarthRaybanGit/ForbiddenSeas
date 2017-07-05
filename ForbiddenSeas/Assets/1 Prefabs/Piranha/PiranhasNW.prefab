@@ -615,7 +615,6 @@ GameObject:
   - component: {fileID: 4208661201060804}
   - component: {fileID: 114724524656832416}
   - component: {fileID: 114237579919913682}
-  - component: {fileID: 114032930438745802}
   m_Layer: 0
   m_Name: AI
   m_TagString: Pir1
@@ -1330,6 +1329,7 @@ GameObject:
   - component: {fileID: 4381558934156748}
   - component: {fileID: 114188153072055756}
   - component: {fileID: 114950775043159266}
+  - component: {fileID: 114774977632210612}
   m_Layer: 0
   m_Name: PiranhasNW (1)
   m_TagString: Untagged
@@ -4609,17 +4609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 13
---- !u!114 &114032930438745802
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449008509778638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114033305735006006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5087,6 +5076,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 13
+--- !u!114 &114774977632210612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1916266754612432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114784910129776266
 MonoBehaviour:
   m_ObjectHideFlags: 1
