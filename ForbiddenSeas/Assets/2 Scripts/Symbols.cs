@@ -129,6 +129,7 @@ public class ReputationValues
     public const int POWERUP = 200;
     public const int TREASURE = 500;
     public const int ARRH = 2000;
+    public const int SUPPSUMMON = -500;
 }
 
 public enum EnemyDmg

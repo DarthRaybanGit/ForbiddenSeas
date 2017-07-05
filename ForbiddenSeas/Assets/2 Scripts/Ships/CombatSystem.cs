@@ -24,6 +24,14 @@ public class CombatSystem : NetworkBehaviour
     public GameObject PrimaryWeapon;
     public GameObject SecondWeapon;
 
+    public Transform LeftSupportPos;
+    public Transform RightSupportPos;
+
+    public GameObject LeftSupportShip;
+    public GameObject RightSupportShip;
+
+
+
     void Awake()
     {
         MainUI = GameObject.FindGameObjectWithTag("mainCD_UI");
@@ -104,7 +112,25 @@ public class CombatSystem : NetworkBehaviour
                 }
             }
 
-            if(Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if (GetComponent<FlagshipStatus>().m_reputation > Mathf.Abs(ReputationValues.SUPPSUMMON))
+                {
+
+                    CmdSummonAttackerSupport();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                if (GetComponent<FlagshipStatus>().m_reputation > Mathf.Abs(ReputationValues.SUPPSUMMON))
+                {
+
+                    CmdSummonDefenserSupport();
+                }
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.D))
             {
                 CmdResetMyLife();
                 transform.position = GetComponent<Player>().m_SpawnPoint;
@@ -139,6 +165,21 @@ public class CombatSystem : NetworkBehaviour
         }
     }
 
+
+    [Command]
+    public void CmdSummonAttackerSupport()
+    {
+        GetComponent<FlagshipStatus>().m_reputation += ReputationValues.SUPPSUMMON;
+
+
+    }
+
+    [Command]
+    public void CmdSummonDefenserSupport()
+    {
+        GetComponent<FlagshipStatus>().m_reputation += ReputationValues.SUPPSUMMON;
+
+    }
 
     [Command]
     public void CmdResetMyLife()

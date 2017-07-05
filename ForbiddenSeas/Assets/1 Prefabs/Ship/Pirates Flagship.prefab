@@ -461,6 +461,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1231699914223004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4367351641458658}
+  - component: {fileID: 114516926572627910}
+  m_Layer: 0
+  m_Name: PlayerPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1243285785046742
 GameObject:
   m_ObjectHideFlags: 1
@@ -1064,6 +1080,22 @@ GameObject:
   - component: {fileID: 4915097595829800}
   m_Layer: 10
   m_Name: Bone.009
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1531112401458398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4498581071322742}
+  - component: {fileID: 114001386721838908}
+  m_Layer: 0
+  m_Name: LeftSupport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1685,6 +1717,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1824360964656204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4037386323134436}
+  - component: {fileID: 114774611225063470}
+  m_Layer: 0
+  m_Name: RightSupport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1841780840972882
 GameObject:
   m_ObjectHideFlags: 1
@@ -1981,9 +2029,25 @@ Transform:
   - {fileID: 4291943263724724}
   - {fileID: 4391938242783458}
   - {fileID: 4469084363481126}
+  - {fileID: 4367351641458658}
+  - {fileID: 4498581071322742}
+  - {fileID: 4037386323134436}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4037386323134436
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824360964656204}
+  m_LocalRotation: {x: 0, y: 0.9832549, z: 0, w: 0.18223555}
+  m_LocalPosition: {x: -1.14, y: 0, z: 2.0499992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 159, z: 0}
 --- !u!4 &4040176363968592
 Transform:
   m_ObjectHideFlags: 1
@@ -2496,6 +2560,19 @@ Transform:
   m_Father: {fileID: 4279416135050498}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -162.84, y: 0, z: 0}
+--- !u!4 &4367351641458658
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231699914223004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4372255103246656
 Transform:
   m_ObjectHideFlags: 1
@@ -2780,6 +2857,19 @@ Transform:
   m_Father: {fileID: 4031181710060198}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4498581071322742
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1531112401458398}
+  m_LocalRotation: {x: 0, y: -0.9659258, z: 0, w: 0.2588191}
+  m_LocalPosition: {x: 1.14, y: 0, z: 2.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4031181710060198}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: -150, z: 0}
 --- !u!4 &4525441328228094
 Transform:
   m_ObjectHideFlags: 1
@@ -4224,6 +4314,33 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114001386721838908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1531112401458398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1728340906, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Navigation.Targets.NavigationTargetRig"
+      reference="0" includecustomdata="False"><_visualMode>AlwaysOn</_visualMode><_target
+      reference="1"><_targetName>Navigation Target</_targetName><_targetColor>0,0,0.6,1</_targetColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_mountPoint
+      sceneobject="4045519e-b5f4-4d72-b212-3fbfc87a187d" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_range>0.5</_range></_target></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects: []
+    _serializedCustomData: []
 --- !u!114 &114130035200792958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4284,6 +4401,10 @@ MonoBehaviour:
   YohohoParticle: {fileID: 1586767748355870}
   PrimaryWeapon: {fileID: 0}
   SecondWeapon: {fileID: 0}
+  LeftSupportPos: {fileID: 4498581071322742}
+  RightSupportPos: {fileID: 4037386323134436}
+  LeftSupportShip: {fileID: 0}
+  RightSupportShip: {fileID: 0}
 --- !u!114 &114353414015100942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4320,6 +4441,33 @@ MonoBehaviour:
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   contrastCompositeShader: {fileID: 4800000, guid: 273404942eede4ea1883ca1fb2942507,
     type: 3}
+--- !u!114 &114516926572627910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231699914223004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1728340906, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Navigation.Targets.NavigationTargetRig"
+      reference="0" includecustomdata="False"><_visualMode>AlwaysOn</_visualMode><_target
+      reference="1"><_targetName>Navigation Target</_targetName><_targetColor>0,0,0.6,1</_targetColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_mountPoint
+      sceneobject="4045519e-b5f4-4d72-b212-3fbfc87a187d" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_range>0.1</_range></_target></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects: []
+    _serializedCustomData: []
 --- !u!114 &114626376668693002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4398,6 +4546,34 @@ MonoBehaviour:
   m_Me: {fileID: 0}
   Ombra: {fileID: 1635257256312942}
   sonoMortissimo: 0
+  wait: 0
+--- !u!114 &114774611225063470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824360964656204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1728340906, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Navigation.Targets.NavigationTargetRig"
+      reference="0" includecustomdata="False"><_visualMode>AlwaysOn</_visualMode><_target
+      reference="1"><_targetName>Navigation Target</_targetName><_targetColor>0,0,0.6,1</_targetColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_mountPoint
+      sceneobject="4045519e-b5f4-4d72-b212-3fbfc87a187d" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_range>0.5</_range></_target></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects: []
+    _serializedCustomData: []
 --- !u!114 &114789289762858792
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,16 +20,18 @@ public class SearchEnemyInFireRange : RAINAction
 
         foreach (RAIN.Entities.Aspects.RAINAspect ra in ai.Senses.Match("SupportShipView", "Player"))
         {
-            /*
+
             if(ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
             {
                 enemiesInRange.Add(ra);
             }
-            */
+
+            /*
             if (ra.Entity.Form.GetInstanceID() != ai.Body.GetComponent<SupportShip>().m_Flagship.GetInstanceID())
             {
                 enemiesInRange.Add(ra);
             }
+            */
 
         }
 
