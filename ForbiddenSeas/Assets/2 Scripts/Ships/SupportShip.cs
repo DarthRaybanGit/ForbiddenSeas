@@ -47,21 +47,82 @@ public class SupportShip : NetworkBehaviour {
 
     public GameObject[] MainParticles;
 
+
+
+
+    public float lerpMoveRate = 10;
+    public float lerpRotRate = 20;
+
+
+    public float syncPosX;
+    public float syncPosZ;
+
+
+    private Vector3 lastPos;
+    public float threshold = 0.5f;
+
+    public bool canSync = true;
+
+
+    public float syncRotY;
+    private Vector3 lastRot;
+    public float rotThreshold;
+
     public void Start()
     {
-        InizializeSupportShip(SupportShipType.Attacker, m_Flagship);
+        if (!isServer)
+            m_AI.SetActive(false);
+
+        lastPos = transform.position;
+        lastRot = transform.rotation.eulerAngles;
+        syncPosX = transform.position.x;
+        syncPosZ = transform.position.y;
+        syncRotY = transform.rotation.eulerAngles.y;
     }
 
-    public void InizializeSupportShip(SupportShipType tipo, GameObject owner)
+    private void FixedUpdate()
     {
-        /*
-        if (!isServer)
-            return;
-        */
+        if (isServer)
+        {
+            if ((Vector3.Distance(transform.position, lastPos) > threshold || Vector3.Distance(transform.rotation.eulerAngles, lastRot) > rotThreshold))
+            {
+                RpcTransmitPosition(transform.position.x, transform.position.z, transform.rotation.eulerAngles.y);
+                lastPos = transform.position;
+                lastRot = transform.rotation.eulerAngles;
+            }
+        }
+        else
+        {
+            LerpPosition();
+        }
+    }
 
+    [ClientRpc]
+    void RpcTransmitPosition(float x, float z, float rot)
+    {
+        syncPosX = x;
+        syncPosZ = z;
+        syncRotY = rot;
+    }
+
+    void LerpPosition()
+    {
+        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), lerpMoveRate);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), lerpRotRate);
+    }
+
+
+
+
+    public void InizializeSupportShip(SupportShipType tipo, GameObject owner, Transform dest)
+    {
 
         m_Flagship = owner;
         m_Tipo = tipo;
+        m_Destination = dest;
+
+        if (!isServer)
+            return;
 
         switch ((int)m_Classe)
         {
@@ -137,16 +198,9 @@ public class SupportShip : NetworkBehaviour {
         }
 
         m_AI.GetComponent<RAIN.Core.AIRig>().AI.Body = gameObject;
-        m_AI.GetComponent<RAIN.Core.AIRig>().AI.Senses.GetSensor("FlagShipView").MountPoint = owner.transform;
-        m_AI.GetComponent<RAIN.Core.AIRig>().AI.Senses.GetSensor("SupportShipView").MountPoint = transform;
 
+        m_AI.GetComponent<RAIN.Core.AIRig>().AI.IsActive = true;
         Debug.Log("Eseguito");
-
-
-        m_AI.GetComponent<RAIN.Core.AIRig>().AI.AIInit();
-        m_AI.GetComponent<RAIN.Core.AIRig>().AI.BodyInit();
-
-
 
 
     }
@@ -159,6 +213,7 @@ public class SupportShip : NetworkBehaviour {
     {
         if (!canAttack)
         {
+            StartCoroutine(attivaTrigger());
             canAttack = true;
         }
     }
@@ -167,7 +222,6 @@ public class SupportShip : NetworkBehaviour {
     {
         yield return new WaitForSeconds(0.2f);
         StartCoroutine(MainAttack("MA"));
-        canAttack = false;
     }
 
     private IEnumerator MainAttack(string tag)
@@ -175,7 +229,7 @@ public class SupportShip : NetworkBehaviour {
         RpcSetActiveTrigger("MAP");
         yield return new WaitForSeconds(Symbols.mainAttackDelay);
         RpcSetUnactiveTrigger("MAP");
-        if (GetComponent<FlagshipStatus>().shipClass == FlagshipStatus.ShipClass.egyptians)
+        if (m_Classe == FlagshipStatus.ShipClass.egyptians)
         {
             StartCoroutine(continuousAttack(tag));
         }
@@ -185,7 +239,7 @@ public class SupportShip : NetworkBehaviour {
             yield return new WaitForSeconds(0.2f);
             RpcSetUnactiveTrigger(tag);
         }
-        yield return new WaitForSeconds(GetComponent<FlagshipStatus>().m_mainCD - Symbols.mainAttackDelay - 0.2f);
+        yield return new WaitForSeconds(m_mainCD - Symbols.mainAttackDelay - 0.2f);
         RpcEndMainCoolDown();
     }
 

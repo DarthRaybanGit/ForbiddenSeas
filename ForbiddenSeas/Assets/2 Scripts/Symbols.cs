@@ -103,7 +103,8 @@ public enum SpawnIndex
     MINA,
     PIRANHA_NW,
 	KRAKEN,
-    PIRANHA_NW2
+    PIRANHA_NW2,
+    PIRATES_SUPPORT
 }
 
 public class Symbols
