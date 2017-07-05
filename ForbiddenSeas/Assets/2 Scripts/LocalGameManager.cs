@@ -213,6 +213,11 @@ public class LocalGameManager : NetworkBehaviour
         NetworkServer.Spawn(m_Treasure);
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RpcAvvisoSpawnT();
 
+		//kraken
+		GameObject k = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.KRAKEN]);
+		k.transform.localPosition = new Vector3(0f, 0f, 15f);
+		NetworkServer.Spawn(k);
+
         //Spawn dei Porti
         int count = 0;
         for(; count < m_Ports.Length; count++)
