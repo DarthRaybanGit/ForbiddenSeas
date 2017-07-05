@@ -7,7 +7,7 @@ class PiranhaFlock: MonoBehaviour
     public Transform baricentro;
     public int layer;
 	float tooClose;
-	Vector3 dir;
+	Vector3 dir, dirBack;
 
 	void Start()
     {
@@ -17,10 +17,21 @@ class PiranhaFlock: MonoBehaviour
 
 	void Update()
     {
-		//Move toward calculated direction
-        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
-        transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime);
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        if (Vector3.Distance(transform.position, baricentro.position) >= 10f)
+        {
+            Debug.Log("Back");
+            //transform.position = baricentro.position;
+            transform.LookAt(baricentro.position);
+            transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
+            transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime);
+        }
+
+        //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+
 	}
 
 	public IEnumerator flock()
@@ -30,7 +41,7 @@ class PiranhaFlock: MonoBehaviour
 			Vector3 tmp = Vector3.zero, tmpdir = Vector3.zero;
 
             Collider[] neighbours = Physics.OverlapSphere(transform.position, FlockGlobals.instance.m_sight_radius, layer);
-            tooClose = FlockGlobals.instance.m_sight_radius ;
+            tooClose = FlockGlobals.instance.m_sight_radius;
 
 			tmp += alignment(neighbours);
 			yield return null;

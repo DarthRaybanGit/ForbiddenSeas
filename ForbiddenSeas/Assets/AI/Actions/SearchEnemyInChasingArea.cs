@@ -20,17 +20,17 @@ public class SearchEnemyInChasingArea : RAINAction
 
         foreach (RAIN.Entities.Aspects.RAINAspect ra in ai.Senses.Match("ChasingBoundaries", "Player"))
         {
-            /*
+
             if(ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
             {
                 enemiesInRange.Add(ra);
             }
-            */
+            /*
             if (ra.Entity.Form.GetInstanceID() != ai.Body.GetComponent<SupportShip>().m_Flagship.GetInstanceID())
             {
                 enemiesInRange.Add(ra);
             }
-
+            */
         }
 
         float minDistance = 99999;
@@ -55,7 +55,7 @@ public class SearchEnemyInChasingArea : RAINAction
 
         ai.WorkingMemory.SetItem("Enemy", target, typeof(GameObject));
 
-        Debug.Log("***************** " + target + " posso " + ai.WorkingMemory.GetItem<bool>("canChase"));
+        //Debug.Log("***************** " + target + " posso " + ai.WorkingMemory.GetItem<bool>("canChase"));
         return ActionResult.SUCCESS;
     }
 
