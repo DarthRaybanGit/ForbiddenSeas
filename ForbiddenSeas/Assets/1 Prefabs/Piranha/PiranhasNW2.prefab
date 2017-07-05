@@ -1108,6 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4620650803619918}
   - component: {fileID: 114163455643590930}
+  - component: {fileID: 114024039752921076}
   m_Layer: 0
   m_Name: PiranhasNW2
   m_TagString: Untagged
@@ -1311,8 +1312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4381558934156748}
   - component: {fileID: 114188153072055756}
-  - component: {fileID: 114950775043159266}
-  - component: {fileID: 114493794919530894}
+  - component: {fileID: 114968451802060182}
   m_Layer: 0
   m_Name: PiranhasNW2 (1)
   m_TagString: Untagged
@@ -4609,6 +4609,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 14
+--- !u!114 &114024039752921076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730295414309574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPiranha: 1
 --- !u!114 &114036707595176564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4926,17 +4938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 14
---- !u!114 &114493794919530894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916266754612432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114518503411933570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5218,26 +5219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 14
---- !u!114 &114950775043159266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916266754612432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114952468724394764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5251,6 +5232,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 14
+--- !u!114 &114968451802060182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1916266754612432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89c15376025d4655a06decbecd8d16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotThreshold: 1
+  syncPosX: 0
+  syncPosZ: 0
+  syncRotY: 0
+  lerpRate: 5
 --- !u!114 &114994587988589186
 MonoBehaviour:
   m_ObjectHideFlags: 1
