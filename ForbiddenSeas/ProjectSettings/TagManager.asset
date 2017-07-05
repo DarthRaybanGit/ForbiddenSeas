@@ -47,6 +47,8 @@ TagManager:
   - Aboard
   - Piranhas
   - kraken
+  - Pir2
+  - Pir1
   layers:
   - Default
   - TransparentFX

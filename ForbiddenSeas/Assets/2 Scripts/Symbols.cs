@@ -92,7 +92,8 @@ public enum SpawnIndex
     COIN,
     MINA,
     PIRANHA_NW,
-	KRAKEN
+	KRAKEN,
+    PIRANHA_NW2
 }
 
 public class Symbols
