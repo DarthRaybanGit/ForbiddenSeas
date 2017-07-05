@@ -9,16 +9,6 @@ class PiranhaFlock: MonoBehaviour
 	float tooClose;
 	Vector3 dir;
 
-    public float m_sight_radius = 2f;
-    public float m_alignment =  1f;
-    public float m_cohesion = 1f;
-    public float m_separation = 0.1f;
-
-    [Range(-1f, 1f)]
-    public float m_visionAngle = -0.7f;
-    public float m_speed = 10f;
-    public float m_rotSpeed = 5f;
-
 	void Start()
     {
 		StartCoroutine(flock());
@@ -28,8 +18,8 @@ class PiranhaFlock: MonoBehaviour
 	void Update()
     {
 		//Move toward calculated direction
-        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, m_rotSpeed * Time.deltaTime, 0.0f));
-		transform.Translate(transform.forward * m_speed * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
+        transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 	}
 
@@ -39,8 +29,8 @@ class PiranhaFlock: MonoBehaviour
         {
 			Vector3 tmp = Vector3.zero, tmpdir = Vector3.zero;
 
-            Collider[] neighbours = Physics.OverlapSphere(transform.position, m_sight_radius, layer);
-			tooClose = m_sight_radius ;
+            Collider[] neighbours = Physics.OverlapSphere(transform.position, FlockGlobals.instance.m_sight_radius, layer);
+            tooClose = FlockGlobals.instance.m_sight_radius ;
 
 			tmp += alignment(neighbours);
 			yield return null;
@@ -56,7 +46,7 @@ class PiranhaFlock: MonoBehaviour
 			tmpdir.Normalize();
 
 			//  The nearer the closer boid, the greater the flock component factor.
-			dir = Mathf.Clamp((1f - tooClose/m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/m_sight_radius), 0.4f, 0.8f) * tmpdir;
+            dir = Mathf.Clamp((1f - tooClose/FlockGlobals.instance.m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/FlockGlobals.instance.m_sight_radius), 0.4f, 0.8f) * tmpdir;
 			/*
              * The two component are clamped because, otherwise, if the flocklings 
 			 *  are too close to one another they will ignore the target
@@ -117,6 +107,6 @@ class PiranhaFlock: MonoBehaviour
 
 	bool isVisible(Vector3 pos)
     {
-		return Vector3.Dot(transform.forward, (pos - transform.position).normalized) > m_visionAngle;
+        return Vector3.Dot(transform.forward, (pos - transform.position).normalized) > FlockGlobals.instance.m_visionAngle;
 	}
 }
