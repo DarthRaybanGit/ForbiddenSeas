@@ -4,14 +4,23 @@ using System.Collections;
 
 class PiranhaFlock: MonoBehaviour
 {
-	Vector3 target;
+    public Transform baricentro;
+    public int layer;
 	float tooClose;
-	FlockGlobals FLOCKGLOB;
-	Vector3 dir ;
+	Vector3 dir;
+
+    public float m_sight_radius = 2f;
+    public float m_alignment =  1f;
+    public float m_cohesion = 1f;
+    public float m_separation = 0.1f;
+
+    [Range(-1f, 1f)]
+    public float m_visionAngle = -0.7f;
+    public float m_speed = 10f;
+    public float m_rotSpeed = 5f;
 
 	void Start()
     {
-		FLOCKGLOB = FlockGlobals.instance;
 		StartCoroutine(flock());
 		dir = transform.forward;
 	}
@@ -19,19 +28,19 @@ class PiranhaFlock: MonoBehaviour
 	void Update()
     {
 		//Move toward calculated direction
-        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FLOCKGLOB.ROTATIONSPEED * Time.deltaTime, 0.0f));
-		transform.Translate(transform.forward * FLOCKGLOB.SPEED * Time.deltaTime);
+        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, m_rotSpeed * Time.deltaTime, 0.0f));
+		transform.Translate(transform.forward * m_speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 	}
 
 	public IEnumerator flock()
     {
 		while (true)
         {
-			target = FLOCKGLOB.FLOCK_TARGET.transform.position;
 			Vector3 tmp = Vector3.zero, tmpdir = Vector3.zero;
 
-            Collider[] neighbours = Physics.OverlapSphere(transform.position,FLOCKGLOB.SIGHT_RADIUS);
-			tooClose = FLOCKGLOB.SIGHT_RADIUS ;
+            Collider[] neighbours = Physics.OverlapSphere(transform.position, m_sight_radius, layer);
+			tooClose = m_sight_radius ;
 
 			tmp += alignment(neighbours);
 			yield return null;
@@ -43,13 +52,15 @@ class PiranhaFlock: MonoBehaviour
 
 			tmp.Normalize();
 
-			tmpdir = target - transform.position;
+			tmpdir = baricentro.position - transform.position;
 			tmpdir.Normalize();
 
-			//The nearer the closer boid, the greater the flock component factor.
-			dir = Mathf.Clamp((1f - tooClose/FLOCKGLOB.SIGHT_RADIUS), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/FLOCKGLOB.SIGHT_RADIUS), 0.4f, 0.8f) * tmpdir;
-			//The two component are clamped because, otherwise, if the flocklings 
-			//are too close to one another they will ignore the target
+			//  The nearer the closer boid, the greater the flock component factor.
+			dir = Mathf.Clamp((1f - tooClose/m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/m_sight_radius), 0.4f, 0.8f) * tmpdir;
+			/*
+             * The two component are clamped because, otherwise, if the flocklings 
+			 *  are too close to one another they will ignore the target
+             */         
 			dir.Normalize();
 			yield return null;
 		}
@@ -63,8 +74,7 @@ class PiranhaFlock: MonoBehaviour
 			if(isVisible(c.gameObject.transform.position))
 			    alignment += c.gameObject.transform.forward;	
 		}
-		alignment.Normalize();
-		return alignment;
+        return alignment.normalized;
 	}
 
 	Vector3 cohesion(Collider[] neighbours)
@@ -83,8 +93,7 @@ class PiranhaFlock: MonoBehaviour
 		cohesion -= transform.position;
 		cohesion /= counter;
 		cohesion = cohesion - transform.position;
-		cohesion.Normalize();
-		return cohesion;
+        return cohesion.normalized;
 	}
 
 	Vector3 separation(Collider[] neighbours)
@@ -108,6 +117,6 @@ class PiranhaFlock: MonoBehaviour
 
 	bool isVisible(Vector3 pos)
     {
-		return Vector3.Dot(transform.forward, (pos - transform.position).normalized) > FLOCKGLOB.VISION_ANGLE;
+		return Vector3.Dot(transform.forward, (pos - transform.position).normalized) > m_visionAngle;
 	}
 }
