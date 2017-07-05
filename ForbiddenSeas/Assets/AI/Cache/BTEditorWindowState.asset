@@ -16,8 +16,8 @@ MonoBehaviour:
   - AssetPath: .currentai
     BehaviorTreeName: (No AI Selected)
     BehaviorTreeID: 30
-    LastUpdate: 636348609979274776
-    LastModified: 636348609990062440
+    LastUpdate: 636348697892045853
+    LastModified: 636348697902157325
     Errored: 0
   - AssetPath: .createxml
     BehaviorTreeName: Create New Behavior Tree
@@ -28,8 +28,8 @@ MonoBehaviour:
   - AssetPath: Assets/AI/BehaviorTrees/Kraken_BT.txt
     BehaviorTreeName: Kraken_BT
     BehaviorTreeID: 30
-    LastUpdate: 636348609979274776
-    LastModified: 636348609990062440
+    LastUpdate: 636348697892045853
+    LastModified: 636348697902157325
     Errored: 0
   - AssetPath: Assets/AI/BehaviorTrees/PiranhasTree.txt
     BehaviorTreeName: PiranhasTree
@@ -267,27 +267,135 @@ MonoBehaviour:
       _children: 
       _variables: 
       _focused: 0
-    - _fields: []
-      _type: 0
-      _stateIndex: 0
-      _parent: 0
-      _lastUpdate: 0
+    - _fields:
+      - _field: name
+        _currentValue: expression
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debugbreak
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: startingpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: runningpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: priority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: weight
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: expression
+        _currentValue: underwater=true
+        _recordChange: 1
+        _changed: 0
+      - _field: returnvalue
+        _currentValue: evaluate
+        _recordChange: 1
+        _changed: 0
+      _type: 9
+      _stateIndex: 27
+      _parent: 46
+      _lastUpdate: 636348697892045853
+      _children: 
+      _variables: 
+      _focused: 1
+    - _fields:
+      - _field: name
+        _currentValue: expression
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debugbreak
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: startingpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: runningpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: priority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: weight
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: expression
+        _currentValue: underwater=false
+        _recordChange: 1
+        _changed: 0
+      - _field: returnvalue
+        _currentValue: success
+        _recordChange: 1
+        _changed: 0
+      _type: 9
+      _stateIndex: 28
+      _parent: 43
+      _lastUpdate: 636348697755822904
       _children: 
       _variables: 
       _focused: 0
-    - _fields: []
-      _type: 0
-      _stateIndex: 0
-      _parent: 0
-      _lastUpdate: 0
-      _children: 
-      _variables: 
-      _focused: 0
-    - _fields: []
-      _type: 0
-      _stateIndex: 0
-      _parent: 0
-      _lastUpdate: 0
+    - _fields:
+      - _field: name
+        _currentValue: expression
+        _recordChange: 1
+        _changed: 0
+      - _field: repeatuntil
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: debugbreak
+        _currentValue: False
+        _recordChange: 1
+        _changed: 0
+      - _field: startingpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: runningpriority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: priority
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: weight
+        _currentValue: 
+        _recordChange: 1
+        _changed: 0
+      - _field: expression
+        _currentValue: underwater=false
+        _recordChange: 1
+        _changed: 0
+      - _field: returnvalue
+        _currentValue: success
+        _recordChange: 1
+        _changed: 0
+      _type: 9
+      _stateIndex: 29
+      _parent: 40
+      _lastUpdate: 636348697560635873
       _children: 
       _variables: 
       _focused: 0
@@ -327,7 +435,7 @@ MonoBehaviour:
       _type: 4
       _stateIndex: 30
       _parent: 0
-      _lastUpdate: 636348609979274776
+      _lastUpdate: 636348697892045853
       _children: 1f000000
       _variables: 
       _focused: 0
@@ -831,8 +939,8 @@ MonoBehaviour:
       _type: 16
       _stateIndex: 40
       _parent: 39
-      _lastUpdate: 636348607765112711
-      _children: 290000002a000000
+      _lastUpdate: 636348697381662654
+      _children: 290000002a0000001d000000
       _variables: 
       _focused: 0
     - _fields:
@@ -987,8 +1095,8 @@ MonoBehaviour:
       _type: 5
       _stateIndex: 43
       _parent: 38
-      _lastUpdate: 636348607765112711
-      _children: 2c000000
+      _lastUpdate: 636348697639241518
+      _children: 2c0000001c000000
       _variables: 
       _focused: 0
     - _fields:
@@ -1143,8 +1251,8 @@ MonoBehaviour:
       _type: 16
       _stateIndex: 46
       _parent: 45
-      _lastUpdate: 636348607765122694
-      _children: 2f00000030000000
+      _lastUpdate: 636348697832670155
+      _children: 1b0000002f00000030000000
       _variables: 
       _focused: 0
     - _fields:
@@ -1258,5 +1366,5 @@ MonoBehaviour:
       _lastUpdate: 636348609979274776
       _children: 
       _variables: 
-      _focused: 1
-    _freeList: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d000000
+      _focused: 0
+    _freeList: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a000000
