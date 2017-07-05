@@ -5,8 +5,9 @@ using UnityEngine.Networking;
 
 public class ActivateServerAi : NetworkBehaviour
 {	
-    public override void OnStartClient()
+    void Start()
     {
-        Destroy(gameObject);
+        if (!isServer)
+            transform.GetChild(0).gameObject.SetActive(false);
     }
 }
