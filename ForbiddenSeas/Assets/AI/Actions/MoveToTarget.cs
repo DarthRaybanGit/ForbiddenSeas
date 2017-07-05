@@ -97,10 +97,10 @@ public class MoveToTarget : RAINAction
 				t = cc2;
 			else
 				t = cc3;
-			Debug.Log ("centro1: " + cc1);
-			Debug.Log ("centro2: " + cc2);
-			Debug.Log ("centro3: " + cc3);
-			Debug.Log ("scelto: " + t);
+//			Debug.Log ("centro1: " + cc1);
+//			Debug.Log ("centro2: " + cc2);
+//			Debug.Log ("centro3: " + cc3);
+//			Debug.Log ("scelto: " + t);
 			ai.WorkingMemory.SetItem ("TargetPos", t);
 		}
         return ActionResult.SUCCESS;
