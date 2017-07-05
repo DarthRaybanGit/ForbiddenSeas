@@ -39,9 +39,9 @@ public class MoveToTarget : RAINAction
 			Vector3 cc3 = new Vector3 (55f, 0f, -40f);
 			//initialize
 			foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player")) {
-				if (Vector3.Distance (g.transform.position, cc1) < Vector3.Distance (g.transform.position, cc2) && Vector3.Distance (g.transform.position, cc1) < Vector3.Distance (g.transform.position, cc3))
+				if (Vector3.Distance (g.transform.position, cc1) <= Vector3.Distance (g.transform.position, cc2) && Vector3.Distance (g.transform.position, cc1) <= Vector3.Distance (g.transform.position, cc3))
 					cluster1.Add (g);
-				if (Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc1) && Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc3))
+				if (Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc1) && Vector3.Distance (g.transform.position, cc2) <= Vector3.Distance (g.transform.position, cc3))
 					cluster2.Add (g);
 				else
 					cluster3.Add (g);
@@ -59,15 +59,16 @@ public class MoveToTarget : RAINAction
 				cc3 += e.transform.position / cluster3.Count;
 			}
 
-			for (int i = 1; i < q; i++) {
+			for (int i = 1; i < q; i++) 
+			{
 				List<GameObject> c1 = new List<GameObject> ();
 				List<GameObject> c2 = new List<GameObject> ();
 				List<GameObject> c3 = new List<GameObject> ();
 
 				foreach (GameObject g in GameObject.FindGameObjectsWithTag("Player")) {
-					if (Vector3.Distance (g.transform.position, cc1) < Vector3.Distance (g.transform.position, cc2) && Vector3.Distance (g.transform.position, cc1) < Vector3.Distance (g.transform.position, cc3))
+					if (Vector3.Distance (g.transform.position, cc1) <= Vector3.Distance (g.transform.position, cc2) && Vector3.Distance (g.transform.position, cc1) <= Vector3.Distance (g.transform.position, cc3))
 						c1.Add (g);
-					if (Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc1) && Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc3))
+					if (Vector3.Distance (g.transform.position, cc2) < Vector3.Distance (g.transform.position, cc1) && Vector3.Distance (g.transform.position, cc2) <= Vector3.Distance (g.transform.position, cc3))
 						c2.Add (g);
 					else
 						c3.Add (g);
@@ -96,10 +97,10 @@ public class MoveToTarget : RAINAction
 				t = cc2;
 			else
 				t = cc3;
-			Debug.Log ("centro1: " + cc1);
-			Debug.Log ("centro2: " + cc2);
-			Debug.Log ("centro3: " + cc3);
-			Debug.Log ("scelto: " + t);
+//			Debug.Log ("centro1: " + cc1);
+//			Debug.Log ("centro2: " + cc2);
+//			Debug.Log ("centro3: " + cc3);
+//			Debug.Log ("scelto: " + t);
 			ai.WorkingMemory.SetItem ("TargetPos", t);
 		}
         return ActionResult.SUCCESS;
