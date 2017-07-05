@@ -91,7 +91,8 @@ public enum SpawnIndex
     DAMAGE_UP,
     COIN,
     MINA,
-    PIRANHA_NW
+    PIRANHA_NW,
+	KRAKEN
 }
 
 public class Symbols

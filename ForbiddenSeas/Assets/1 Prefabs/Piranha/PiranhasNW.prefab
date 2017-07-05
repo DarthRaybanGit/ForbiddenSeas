@@ -344,7 +344,7 @@ MonoBehaviour:
       type="RAIN.Perception.Sensors.VisualSensor" reference="13"><_showVisual>True</_showVisual><_sensorName>PiranhaAttack</_sensorName><_isActive>True</_isActive><_sensorColor>0,0.6,0.6,1</_sensorColor><_mountPoint
       sceneobject="b649a64d-36c1-4170-ad01-2ac0bd7c8bd1" object="3" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>10</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element1></_sensors></_senses><_customElements></_customElements></_ai></component>
     _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
-      type="System.Int32">5</value></element0></meta>
+      type="System.Int32">0</value></element0></meta>
     _serializedObjects:
     - {fileID: 4900000, guid: ef6182edba9aa4210aa1e6345da366f5, type: 3}
     - {fileID: 1916266754612432}

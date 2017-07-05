@@ -46,6 +46,7 @@ TagManager:
   - Damage
   - Aboard
   - Piranhas
+  - kraken
   layers:
   - Default
   - TransparentFX

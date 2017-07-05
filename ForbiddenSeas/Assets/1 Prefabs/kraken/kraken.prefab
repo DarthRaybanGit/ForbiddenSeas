@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114395223811319336}
   m_Layer: 0
   m_Name: kraken
-  m_TagString: Untagged
+  m_TagString: kraken
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,8 +196,9 @@ MonoBehaviour:
     _includeCustomData: 0
     _serializedDocument: <component version="1.8" type="RAIN.Core.AIRig" reference="0"
       includecustomdata="False"><_visualMode>OnWhenSelected</_visualMode><_useUnityMessages>True</_useUnityMessages><_useFixedUpdate>False</_useFixedUpdate><_ai
-      reference="1"><_isActive>True</_isActive><_body sceneobject="80625a88-d401-4493-b13f-3d58deb215a5"></_body><_workingMemory
-      type="RAIN.Memory.BasicMemory" reference="2"><_memoryItems><element0 reference="14"><Key>TargetPos</Key><ValueType>UnityEngine.Vector3</ValueType><Value
+      reference="1"><_isActive>True</_isActive><_body sceneobject="80625a88-d401-4493-b13f-3d58deb215a5"
+      object="1"></_body><_workingMemory type="RAIN.Memory.BasicMemory" reference="2"><_memoryItems><element0
+      reference="14"><Key>TargetPos</Key><ValueType>UnityEngine.Vector3</ValueType><Value
       type="UnityEngine.Vector3">0,0,0</Value></element0></_memoryItems></_workingMemory><_mind
       type="RAIN.Minds.BasicMind" reference="3"><_behaviorTree object="0"></_behaviorTree><_behaviorTreeBindings></_behaviorTreeBindings></_mind><_motor
       type="RAIN.Motion.BasicMotor" reference="4"><_speed>1</_speed><_rotationSpeed>360</_rotationSpeed><_closeEnoughDistance>0.1</_closeEnoughDistance><_closeEnoughAngle>0.1</_closeEnoughAngle><_faceBeforeMoveAngle>360</_faceBeforeMoveAngle><_maxHeightOffset>1</_maxHeightOffset><_allow3DMovement>False</_allow3DMovement><_allow3DRotation>False</_allow3DRotation><_allowOffGraphMovement>True</_allowOffGraphMovement><_useRootMotion>False</_useRootMotion><_overrideRootRotation>True</_overrideRootRotation><_mecanimParameters></_mecanimParameters></_motor><_animator
@@ -217,6 +218,7 @@ MonoBehaviour:
       type="System.Boolean">False</value></element1></meta>
     _serializedObjects:
     - {fileID: 4900000, guid: 10911e33f63821b4881235068a34260b, type: 3}
+    - {fileID: 1035278231204438}
     _serializedCustomData: []
 --- !u!114 &114736891777281736
 MonoBehaviour:

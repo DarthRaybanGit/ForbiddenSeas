@@ -148,6 +148,10 @@ public class Player : NetworkBehaviour
             GameObject nw = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRANHA_NW], GameObject.FindGameObjectWithTag("Piranhas").transform);
             nw.transform.localPosition = new Vector3(-6f, 0f, -43f);
             NetworkServer.Spawn(nw);
+			//kraken
+			GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.KRAKEN]);
+			g.transform.localPosition = new Vector3(0f, 0f, 15f);
+			NetworkServer.Spawn(g);
         }
 
     }
