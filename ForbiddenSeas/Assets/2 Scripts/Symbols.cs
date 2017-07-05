@@ -100,7 +100,10 @@ public enum SpawnIndex
     SPEED_UP,
     DAMAGE_UP,
     COIN,
-    MINA
+    MINA,
+    PIRANHA_NW,
+	KRAKEN,
+    PIRANHA_NW2
 }
 
 public class Symbols
@@ -126,4 +129,9 @@ public class ReputationValues
     public const int POWERUP = 200;
     public const int TREASURE = 500;
     public const int ARRH = 2000;
+}
+
+public enum EnemyDmg
+{
+    PIRANHA = 50
 }

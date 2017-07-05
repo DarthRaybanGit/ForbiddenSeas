@@ -45,6 +45,10 @@ TagManager:
   - Binocolo
   - Damage
   - Aboard
+  - Piranhas
+  - kraken
+  - Pir2
+  - Pir1
   layers:
   - Default
   - TransparentFX
@@ -59,8 +63,8 @@ TagManager:
   - Player
   - Cartelli
   - CostaBastarda
-  - 
-  - 
+  - P1
+  - P2
   - 
   - 
   - 

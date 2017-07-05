@@ -51,6 +51,8 @@ public class FlagshipStatus : NetworkBehaviour
 
     public bool sonoMortissimo = false;
 
+	public bool wait = false;
+
     void Start()
     {
         m_Me = gameObject.GetComponent<Player>();
@@ -176,14 +178,16 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void PrendiDannoDaEnemy(int dmg)
     {
-        m_Health -= dmg;
+       
 
 
-        if (m_Health <= 0)
+		if (m_Health <= 0 && !m_isDead)
         {
             m_Health = 0;
             OnDeath();
         }
+		if (m_Health>0 && !m_isDead)
+			m_Health -= dmg;
     }
 
     public void OnDeath()
@@ -823,4 +827,23 @@ public class FlagshipStatus : NetworkBehaviour
 		//spegnere i particle qua
 		m_DoT = 0;
 	}
+
+    bool ready = true;
+    float currentTime = 0f;
+
+    [Server]
+    public void TakeDmgFromPiranha()
+    {
+        if (ready)
+        {
+            ready = false;
+            PrendiDannoDaEnemy((int)EnemyDmg.PIRANHA);
+            currentTime = Time.time;
+        }
+
+        if (!ready && currentTime + 3f < Time.time)
+        {
+            ready = true;
+        }
+    }
 }
