@@ -153,11 +153,6 @@ public class Player : NetworkBehaviour
             nw.transform.localPosition = new Vector3(0f, 0f, 0f);
             NetworkServer.Spawn(nw2);
 
-			//kraken
-			GameObject g = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.KRAKEN]);
-			g.transform.localPosition = new Vector3(0f, 0f, 15f);
-			NetworkServer.Spawn(g);
-
 
         }
 
