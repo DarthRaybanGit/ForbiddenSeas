@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4334746616525250}
   - component: {fileID: 114877604251850832}
   - component: {fileID: 114736891777281736}
+  - component: {fileID: 114940370909486174}
   m_Layer: 0
   m_Name: kraken
   m_TagString: kraken
@@ -281,3 +282,14 @@ MonoBehaviour:
   syncPosZ: 0
   syncRotY: 0
   lerpRate: 8
+--- !u!114 &114940370909486174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035278231204438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

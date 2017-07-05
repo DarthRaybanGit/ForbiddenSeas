@@ -213,8 +213,9 @@ public class SupportShip : NetworkBehaviour {
     {
         if (!canAttack)
         {
-            StartCoroutine(attivaTrigger());
             canAttack = true;
+            StartCoroutine(attivaTrigger());
+
         }
     }
 
@@ -240,11 +241,11 @@ public class SupportShip : NetworkBehaviour {
             RpcSetUnactiveTrigger(tag);
         }
         yield return new WaitForSeconds(m_mainCD - Symbols.mainAttackDelay - 0.2f);
-        RpcEndMainCoolDown();
+        EndMainCoolDown();
     }
 
-    [ClientRpc]
-    public void RpcEndMainCoolDown()
+
+    public void EndMainCoolDown()
     {
         canAttack = false;
     }
