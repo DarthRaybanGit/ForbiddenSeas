@@ -23,11 +23,11 @@ public class TrasmitPositionPiranha : NetworkBehaviour
 
 	void Start ()
     {
-		myTransform = GetComponent<Transform> ();
+        myTransform = transform.GetChild(0);
 		lastPos = myTransform.position;
 		lastRot = myTransform.rotation.eulerAngles;
-		syncPosX = GetComponent<Transform>().position.x;
-		syncPosZ = GetComponent<Transform>().position.z;
+        syncPosX = transform.GetChild(0).position.x;
+        syncPosZ = transform.GetChild(0).position.z;
 	}
 
 	void FixedUpdate ()
@@ -42,11 +42,11 @@ public class TrasmitPositionPiranha : NetworkBehaviour
 	public void TransmitPosition()
 	{
 		//Debug.Log("###########"+Vector3.Distance(myTransform.position, lastPos));
-		if (Vector3.Distance(myTransform.position, lastPos) > threshold || Vector3.Distance(transform.rotation.eulerAngles, lastRot) > rotThreshold)
+        if (Vector3.Distance(myTransform.position, lastPos) > threshold || Vector3.Distance(transform.GetChild(0).rotation.eulerAngles, lastRot) > rotThreshold)
 		{
-			Rpc_SetPosition(myTransform.position.x, myTransform.position.z, transform.rotation.eulerAngles.y);
+            Rpc_SetPosition(myTransform.position.x, myTransform.position.z, transform.GetChild(0).rotation.eulerAngles.y);
 			lastPos = myTransform.position;
-			lastRot = transform.rotation.eulerAngles;
+            lastRot = transform.GetChild(0).rotation.eulerAngles;
 		}
 	}
 
@@ -61,7 +61,7 @@ public class TrasmitPositionPiranha : NetworkBehaviour
 	void LerpPosition()
 	{
 		Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
-		transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), lerpRate);
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), smoothTime);
+        transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, new Vector3(syncPosX, 0, syncPosZ), lerpRate);
+        transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), smoothTime);
 	}
 }

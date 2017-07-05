@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 4909748568787776}
   - component: {fileID: 114199871966228228}
   - component: {fileID: 114871658241301232}
+  - component: {fileID: 114845882566442680}
   m_Layer: 0
   m_Name: PiranhasNW
   m_TagString: Untagged
@@ -1329,7 +1330,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4381558934156748}
   - component: {fileID: 114188153072055756}
-  - component: {fileID: 114439331481604950}
   m_Layer: 0
   m_Name: PiranhasNW (1)
   m_TagString: Untagged
@@ -4887,22 +4887,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 13
---- !u!114 &114439331481604950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916266754612432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89c15376025d4655a06decbecd8d16f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotThreshold: 1
-  syncPosX: 0
-  syncPosZ: 0
-  syncRotY: 0
-  lerpRate: 5
 --- !u!114 &114441480871133688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5170,6 +5154,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 13
+--- !u!114 &114845882566442680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1192930892743276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89c15376025d4655a06decbecd8d16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotThreshold: 1
+  syncPosX: 0
+  syncPosZ: 0
+  syncRotY: 0
+  lerpRate: 5
 --- !u!114 &114871658241301232
 MonoBehaviour:
   m_ObjectHideFlags: 1
