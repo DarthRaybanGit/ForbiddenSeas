@@ -13,6 +13,7 @@ public class SupportShip : NetworkBehaviour {
 
     public FlagshipStatus.ShipClass m_Classe;
     public SupportShipType m_Tipo;
+
     [SyncVar]
     public int supportID;
 
@@ -219,14 +220,13 @@ public class SupportShip : NetworkBehaviour {
         if (!canAttack)
         {
             canAttack = true;
-            StartCoroutine(attivaTrigger());
+            attivaTrigger();
 
         }
     }
 
-    IEnumerator attivaTrigger()
+    public void attivaTrigger()
     {
-        yield return new WaitForSeconds(m_mainCD + 0.5f);
         StartCoroutine(MainAttack("MA"));
     }
 
@@ -245,7 +245,7 @@ public class SupportShip : NetworkBehaviour {
             yield return new WaitForSeconds(0.2f);
             RpcSetUnactiveTrigger(tag);
         }
-        yield return new WaitForSeconds(m_mainCD);
+        yield return new WaitForSeconds(m_mainCD + 2f);
         EndMainCoolDown();
     }
 
