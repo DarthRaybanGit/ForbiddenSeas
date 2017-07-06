@@ -13,6 +13,12 @@ public class ActivateServerAi : NetworkBehaviour
         {
             if (!isServer)
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            else
+                foreach (Transform p in transform)
+                {
+                    if (p.GetComponent<BoxCollider>())
+                        p.gameObject.SetActive(false);
+                }
         }
         else
         {
