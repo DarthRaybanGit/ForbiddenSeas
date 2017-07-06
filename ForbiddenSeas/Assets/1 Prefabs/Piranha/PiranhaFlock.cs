@@ -19,7 +19,6 @@ class PiranhaFlock: MonoBehaviour
     {
         if (Vector3.Distance(transform.position, baricentro.position) >= 10f)
         {
-            Debug.Log("Back");
             //transform.position = baricentro.position;
             transform.LookAt(baricentro.position);
             transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);

@@ -226,7 +226,7 @@ public class SupportShip : NetworkBehaviour {
 
     IEnumerator attivaTrigger()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(m_mainCD + 0.5f);
         StartCoroutine(MainAttack("MA"));
     }
 

@@ -5,9 +5,25 @@ using UnityEngine.Networking;
 
 public class ActivateServerAi : NetworkBehaviour
 {	
+    public bool isPiranha = false;
+
     void Start()
     {
-        if (!isServer)
-            transform.GetChild(0).gameObject.SetActive(false);
+        if (isPiranha)
+        {
+            if (!isServer)
+                transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            else
+                foreach (Transform p in transform)
+                {
+                    if (p.GetComponent<BoxCollider>())
+                        p.gameObject.SetActive(false);
+                }
+        }
+        else
+        {
+            if (!isServer)
+                transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 }

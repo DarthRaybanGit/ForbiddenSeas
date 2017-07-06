@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPiranha: 0
 --- !u!114 &114695956982319298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,7 +196,7 @@ MonoBehaviour:
       type="RAIN.Perception.Sensors.VisualSensor" reference="13"><_showVisual>True</_showVisual><_sensorName>AttackRange</_sensorName><_isActive>True</_isActive><_sensorColor>0.6,0,0,1</_sensorColor><_mountPoint
       sceneobject="80625a88-d401-4493-b13f-3d58deb215a5" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>10</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element1></_sensors></_senses><_customElements></_customElements></_ai></component>
     _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
-      type="System.Int32">1</value></element0><element1><key>/component/_ai/_navigator/_graphTags+_foldout</key><value
+      type="System.Int32">0</value></element0><element1><key>/component/_ai/_navigator/_graphTags+_foldout</key><value
       type="System.Boolean">False</value></element1></meta>
     _serializedObjects:
     - {fileID: 4900000, guid: 10911e33f63821b4881235068a34260b, type: 3}
@@ -293,3 +294,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPiranha: 0
