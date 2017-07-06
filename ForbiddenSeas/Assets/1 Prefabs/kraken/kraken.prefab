@@ -55,8 +55,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4747628445318554}
   - component: {fileID: 114695956982319298}
-  - component: {fileID: 114788209496182764}
-  - component: {fileID: 114271930116623352}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -143,18 +141,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1737366120533898}
   m_Mesh: {fileID: 4300000, guid: 4fb8e8bed9cafde4b9cbe5abbcd9d19c, type: 3}
---- !u!114 &114271930116623352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745294413174988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177534c75bf2b44069fd53cac2e0e17f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPiranha: 0
 --- !u!114 &114695956982319298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,38 +194,6 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035278231204438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 111
-    i1: 123
-    i2: 68
-    i3: 203
-    i4: 120
-    i5: 45
-    i6: 249
-    i7: 212
-    i8: 41
-    i9: 185
-    i10: 153
-    i11: 252
-    i12: 246
-    i13: 233
-    i14: 152
-    i15: 100
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
---- !u!114 &114788209496182764
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1745294413174988}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
