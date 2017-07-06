@@ -1329,7 +1329,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4381558934156748}
-  - component: {fileID: 114188153072055756}
   m_Layer: 0
   m_Name: PiranhasNW (1)
   m_TagString: Untagged
@@ -4648,38 +4647,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baricentro: {fileID: 4381558934156748}
   layer: 13
---- !u!114 &114188153072055756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1916266754612432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 165
-    i1: 153
-    i2: 157
-    i3: 86
-    i4: 167
-    i5: 165
-    i6: 180
-    i7: 138
-    i8: 72
-    i9: 56
-    i10: 24
-    i11: 56
-    i12: 228
-    i13: 55
-    i14: 24
-    i15: 227
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114191074805457876
 MonoBehaviour:
   m_ObjectHideFlags: 1
