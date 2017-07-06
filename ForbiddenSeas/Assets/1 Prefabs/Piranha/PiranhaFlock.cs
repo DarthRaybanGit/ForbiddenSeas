@@ -19,17 +19,19 @@ class PiranhaFlock: MonoBehaviour
     {
         if (Vector3.Distance(transform.position, baricentro.position) >= 10f)
         {
-            //transform.position = baricentro.position;
             transform.LookAt(baricentro.position);
             transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);
         }
         else
         {
+            Vector3.ProjectOnPlane(dir, Vector3.up);
+            //transform.forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+            transform.LookAt(transform.position + Vector3.ProjectOnPlane(transform.forward, Vector3.up));
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
-            transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime);
+            transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);
         }
 
-        //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+       //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
 
 	}
 
@@ -56,8 +58,10 @@ class PiranhaFlock: MonoBehaviour
 			tmpdir.Normalize();
 
 			//  The nearer the closer boid, the greater the flock component factor.
-            dir = Mathf.Clamp((1f - tooClose/FlockGlobals.instance.m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/FlockGlobals.instance.m_sight_radius), 0.4f, 0.8f) * tmpdir;
-			/*
+            //dir = Mathf.Clamp((1f - tooClose/FlockGlobals.instance.m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/FlockGlobals.instance.m_sight_radius), 0.4f, 0.8f) * tmpdir;
+            dir = Mathf.Clamp((1f - Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.0f, 0.6f) * tmp + Mathf.Clamp((Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.4f, 1f) * tmpdir;
+
+            /*
              * The two component are clamped because, otherwise, if the flocklings 
 			 *  are too close to one another they will ignore the target
              */         

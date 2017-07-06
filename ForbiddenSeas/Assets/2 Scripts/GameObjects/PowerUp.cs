@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PowerUp : NetworkBehaviour {
+public class PowerUp : NetworkBehaviour
+{
 
     public PowerUP type;
     public NetworkInstanceId playerInside;
