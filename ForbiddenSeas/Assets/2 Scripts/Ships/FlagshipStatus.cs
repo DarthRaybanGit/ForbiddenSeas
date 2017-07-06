@@ -147,6 +147,7 @@ public class FlagshipStatus : NetworkBehaviour
         m_Health = Mathf.Clamp(m_Health - dmg, -50, m_MaxHealth);
         //RpcTakenDamage(a_name, da_playerId);
 
+        Debug.Log("Sono il player " + GetComponent<Player>().playerId + ", " + GetComponent<Player>().playerName +  " e stato colpito da " + da_playerId + " che mi toglierà " + dmg);
 
         if (m_Health <= 0 && !m_isDead)
         {
@@ -178,7 +179,7 @@ public class FlagshipStatus : NetworkBehaviour
 
     public void PrendiDannoDaEnemy(int dmg)
     {
-       
+
 
 
 		if (m_Health <= 0 && !m_isDead)
