@@ -73,7 +73,7 @@ public class KrakenInit : NetworkBehaviour {
 
 	void LerpPosition()
 	{
-		Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
+		//Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
 		transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), lerpRate);
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), smoothTime);
 	}
