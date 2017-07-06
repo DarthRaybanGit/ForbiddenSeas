@@ -180,13 +180,13 @@ public class CombatSystem : NetworkBehaviour
         if(m_NumOfSupport == 1)
         {
             LeftSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], LeftSupportPos.position, Quaternion.identity);
-            LeftSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, LeftSupportPos);
+            LeftSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, LeftSupportPos, 1);
             NetworkServer.Spawn(LeftSupportShip);
         }
         else
         {
             RightSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], RightSupportPos.position, Quaternion.identity);
-            RightSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, RightSupportPos);
+            RightSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, RightSupportPos, 2);
             NetworkServer.Spawn(RightSupportShip);
         }
     }
@@ -545,20 +545,27 @@ public class CombatSystem : NetworkBehaviour
             {
                 case "mainAttack":
                     danno.GetComponent<Animation>().Play("FadeDanno");
-                    dmg = other.GetComponentInParent<FlagshipStatus>().m_main;
-                    if(other.gameObject.GetComponentInParent<FlagshipStatus>().shipClass != FlagshipStatus.ShipClass.egyptians)
+                    dmg = (other.GetComponentInParent<FlagshipStatus>()) ? other.GetComponentInParent<FlagshipStatus>().m_main : other.GetComponentInParent<SupportShip>().m_main;
+
+                    FlagshipStatus.ShipClass classe = (other.GetComponentInParent<FlagshipStatus>()) ? other.GetComponentInParent<FlagshipStatus>().shipClass : other.GetComponentInParent<SupportShip>().m_Classe;
+
+
+
+                    if (classe != FlagshipStatus.ShipClass.egyptians)
                     {
-                        if (!lockForDoubleAttack && lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId)
+                        bool iCanSufferDmg = (other.gameObject.GetComponentInParent<Player>()) ? lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId : lastAttacker != other.gameObject.GetComponentInParent<SupportShip>().supportID;
+
+                        if (!lockForDoubleAttack && iCanSufferDmg)
                         {
                             lockForDoubleAttack = true;
-                            lastAttacker = other.gameObject.GetComponentInParent<Player>().playerId;
-                            GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                            lastAttacker = (other.gameObject.GetComponentInParent<Player>()) ? other.gameObject.GetComponentInParent<Player>().playerId : other.gameObject.GetComponentInParent<SupportShip>().supportID;
+                            GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, (other.gameObject.GetComponentInParent<Player>()) ? other.gameObject.GetComponentInParent<Player>().playerId : other.gameObject.GetComponentInParent<SupportShip>().supportID);
                             StartCoroutine(doppioCollider());
                         }
                     }
                     else
                     {
-                        GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, other.transform.parent.parent.gameObject.GetComponent<Player>().playerId);
+                        GetComponent<FlagshipStatus>().CmdTakeDamage(Mathf.RoundToInt(dmg * (1f - GetComponent<FlagshipStatus>().m_defense)), GetComponent<Player>().playerName, (other.gameObject.GetComponentInParent<Player>()) ? other.gameObject.GetComponentInParent<Player>().playerId : other.gameObject.GetComponentInParent<SupportShip>().supportID);
                     }
 
                     break;

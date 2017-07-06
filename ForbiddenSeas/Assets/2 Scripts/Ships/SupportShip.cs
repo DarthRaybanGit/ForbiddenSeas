@@ -13,6 +13,8 @@ public class SupportShip : NetworkBehaviour {
 
     public FlagshipStatus.ShipClass m_Classe;
     public SupportShipType m_Tipo;
+    [SyncVar]
+    public int supportID;
 
     public int m_MaxHealth;
 
@@ -78,6 +80,7 @@ public class SupportShip : NetworkBehaviour {
         syncPosX = transform.position.x;
         syncPosZ = transform.position.y;
         syncRotY = transform.rotation.eulerAngles.y;
+
     }
 
     private void FixedUpdate()
@@ -114,12 +117,14 @@ public class SupportShip : NetworkBehaviour {
 
 
 
-    public void InizializeSupportShip(SupportShipType tipo, GameObject owner, Transform dest)
+    public void InizializeSupportShip(SupportShipType tipo, GameObject owner, Transform dest, int index)
     {
 
         m_Flagship = owner;
         m_Tipo = tipo;
         m_Destination = dest;
+
+        supportID = m_Flagship.GetComponent<Player>().playerId + (index * 100);
 
         if (!isServer)
             return;
@@ -221,7 +226,7 @@ public class SupportShip : NetworkBehaviour {
 
     IEnumerator attivaTrigger()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(MainAttack("MA"));
     }
 
@@ -240,7 +245,7 @@ public class SupportShip : NetworkBehaviour {
             yield return new WaitForSeconds(0.2f);
             RpcSetUnactiveTrigger(tag);
         }
-        yield return new WaitForSeconds(m_mainCD - Symbols.mainAttackDelay - 0.2f);
+        yield return new WaitForSeconds(m_mainCD);
         EndMainCoolDown();
     }
 
@@ -288,7 +293,7 @@ public class SupportShip : NetworkBehaviour {
     IEnumerator CreaScia()
     {
 
-            switch (GetComponent<FlagshipStatus>().shipClass)
+            switch (m_Classe)
             {
                 case FlagshipStatus.ShipClass.pirates:
                     GameObject g = GameObject.Instantiate(MainParticles[1], transform);
@@ -318,7 +323,7 @@ public class SupportShip : NetworkBehaviour {
     IEnumerator startParticle()
     {
 
-            switch (GetComponent<FlagshipStatus>().shipClass)
+            switch (m_Classe)
             {
                 case FlagshipStatus.ShipClass.pirates:
 
@@ -355,7 +360,7 @@ public class SupportShip : NetworkBehaviour {
     IEnumerator shutdownParticle(float time, GameObject g)
     {
         yield return new WaitForSeconds(time);
-        if (!g.GetComponentInParent<Player>())
+        if (!g.GetComponentInParent<SupportShip>())
         {
             Destroy(g);
         }
