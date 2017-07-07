@@ -31,10 +31,17 @@ public class CombatSystem : NetworkBehaviour
     public int m_NumOfSupport = 0;
     [SyncVar]
     public bool m_SummoningSupport = false;
+    [SyncVar]
+    public bool m_ChangingSupportBehaviour = false;
+
+    [SyncVar]
+    public int m_SupportBehaviour = 0;
 
     public GameObject LeftSupportShip;
     public GameObject RightSupportShip;
 
+
+    public RAIN.BehaviorTrees.BTAsset attacker;
 
 
     void Awake()
@@ -117,23 +124,33 @@ public class CombatSystem : NetworkBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.C) && !m_SummoningSupport)
+            if (Input.GetKeyDown(KeyCode.E) && !m_SummoningSupport)
             {
-                if (GetComponent<FlagshipStatus>().m_reputation > Mathf.Abs(ReputationValues.SUPPSUMMON) && m_NumOfSupport < 2)
+                if (GetComponent<FlagshipStatus>().m_reputation >= Mathf.Abs(ReputationValues.SUPPSUMMON) && m_NumOfSupport < 2)
                 {
                     m_SummoningSupport = true;
                     CmdSummonAttackerSupport();
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Z) && !m_SummoningSupport)
+            if (Input.GetKeyDown(KeyCode.Q) && !m_SummoningSupport)
             {
-                if (GetComponent<FlagshipStatus>().m_reputation > Mathf.Abs(ReputationValues.SUPPSUMMON) && m_NumOfSupport < 2)
+                if (GetComponent<FlagshipStatus>().m_reputation >= Mathf.Abs(ReputationValues.SUPPSUMMON) && m_NumOfSupport < 2)
                 {
                     m_SummoningSupport = true;
                     CmdSummonDefenserSupport();
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (m_NumOfSupport > 0)
+                {
+                    m_ChangingSupportBehaviour = true;
+                    CmdChangeSupportBehaviour();
+                }
+            }
+
 
             if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.D))
             {
@@ -170,33 +187,93 @@ public class CombatSystem : NetworkBehaviour
         }
     }
 
+    [Command]
+    public void CmdChangeSupportBehaviour()
+    {
+        if(m_NumOfSupport > 0)
+        {
+            m_SupportBehaviour = Mathf.Abs(m_SupportBehaviour - 1);
+
+            if (LeftSupportShip.GetComponent<SupportShip>())
+            {
+
+                LeftSupportShip.GetComponent<SupportShip>().m_AI.GetComponent<RAIN.Core.AIRig>().AI.WorkingMemory.SetItem<bool>("Attacker", (m_SupportBehaviour == 1) ? true : false);
+            }
+
+            if(RightSupportShip.GetComponent<SupportShip>())
+            {
+
+                RightSupportShip.GetComponent<SupportShip>().m_AI.GetComponent<RAIN.Core.AIRig>().AI.WorkingMemory.SetItem<bool>("Attacker", (m_SupportBehaviour == 1) ? true : false);
+            }
+
+            TargetRpcBehaviourModified(GetComponent<NetworkIdentity>().connectionToClient);
+        }
+    }
+
+    [TargetRpc]
+    public void TargetRpcBehaviourModified(NetworkConnection conn)
+    {
+        m_ChangingSupportBehaviour = false;
+    }
 
     [Command]
     public void CmdSummonAttackerSupport()
     {
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.SUPPSUMMON;
+        GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
+
         m_NumOfSupport++;
 
         if(m_NumOfSupport == 1)
         {
             LeftSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], LeftSupportPos.position, Quaternion.identity);
-            LeftSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, LeftSupportPos, 1);
             NetworkServer.Spawn(LeftSupportShip);
+            LeftSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, LeftSupportPos, 1);
         }
         else
         {
             RightSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], RightSupportPos.position, Quaternion.identity);
-            RightSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, RightSupportPos, 2);
             NetworkServer.Spawn(RightSupportShip);
+            RightSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Attacker, gameObject, RightSupportPos, 2);
+
         }
+
+        TargetRpcBarcaEvocata(GetComponent<NetworkIdentity>().connectionToClient);
+
+    }
+
+
+
+
+    [TargetRpc]
+    public void TargetRpcBarcaEvocata(NetworkConnection conn)
+    {
+        m_SummoningSupport = false;
     }
 
     [Command]
     public void CmdSummonDefenserSupport()
     {
         GetComponent<FlagshipStatus>().m_reputation += ReputationValues.SUPPSUMMON;
+        GetComponent<Player>().TargetRpcUpdateReputationUI(GetComponent<NetworkIdentity>().connectionToClient);
+
         m_NumOfSupport++;
 
+        if (m_NumOfSupport == 1)
+        {
+            LeftSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], LeftSupportPos.position, Quaternion.identity);
+            NetworkServer.Spawn(LeftSupportShip);
+            LeftSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Defenser, gameObject, LeftSupportPos, 1);
+        }
+        else
+        {
+            RightSupportShip = GameObject.Instantiate(OnlineManager.s_Singleton.spawnPrefabs.ToArray()[(int)SpawnIndex.PIRATES_SUPPORT], RightSupportPos.position, Quaternion.identity);
+            NetworkServer.Spawn(RightSupportShip);
+            RightSupportShip.GetComponent<SupportShip>().InizializeSupportShip(SupportShip.SupportShipType.Defenser, gameObject, RightSupportPos, 2);
+
+        }
+
+        TargetRpcBarcaEvocata(GetComponent<NetworkIdentity>().connectionToClient);
     }
 
     [Command]

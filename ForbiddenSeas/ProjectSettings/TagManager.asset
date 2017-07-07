@@ -49,6 +49,7 @@ TagManager:
   - kraken
   - Pir2
   - Pir1
+  - Support
   layers:
   - Default
   - TransparentFX

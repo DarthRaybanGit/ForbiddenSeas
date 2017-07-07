@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 114755765109482974}
   m_Layer: 10
   m_Name: Pirates Support
-  m_TagString: Player
+  m_TagString: Support
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2787,6 +2787,7 @@ MonoBehaviour:
   m_Destination: {fileID: 0}
   m_Classe: 0
   m_Tipo: 0
+  supportID: 0
   m_MaxHealth: 0
   m_maxSpeed: 0
   m_maksuSpeedo: 0

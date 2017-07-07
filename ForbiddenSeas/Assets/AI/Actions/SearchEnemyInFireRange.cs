@@ -18,13 +18,26 @@ public class SearchEnemyInFireRange : RAINAction
 
         List<RAIN.Entities.Aspects.RAINAspect> enemiesInRange = new List<RAIN.Entities.Aspects.RAINAspect>();
 
-        foreach (RAIN.Entities.Aspects.RAINAspect ra in ai.Senses.Match("SupportShipView", "Player"))
+        foreach (RAIN.Entities.Aspects.RAINAspect ra in ((ai.WorkingMemory.GetItem<bool>("Attacker")) ? ai.Senses.Match("SupportShipView", "Player") : ai.Senses.Match("SupportShipView_Defenser", "Player")))
         {
-
-            if(ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
+            if (ra.Entity.Form.GetComponent<Player>() && !ra.Entity.Form.GetComponent<FlagshipStatus>().m_isDead)
             {
-                enemiesInRange.Add(ra);
+                if (ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
+                {
+                    enemiesInRange.Add(ra);
+                }
             }
+            else if (ra.Entity.Form.GetComponent<SupportShip>() && !ra.Entity.Form.GetComponent<SupportShip>().m_isDead)
+            {
+                SupportShip left = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().LeftSupportShip.GetComponent<SupportShip>();
+                SupportShip right = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().RightSupportShip.GetComponent<SupportShip>();
+
+                if (((left) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != left.supportID : true) && ((right) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != right.supportID : true))
+                {
+                    enemiesInRange.Add(ra);
+                }
+            }
+
 
             /*
             if (ra.Entity.Form.GetInstanceID() != ai.Body.GetComponent<SupportShip>().m_Flagship.GetInstanceID())
@@ -51,14 +64,14 @@ public class SearchEnemyInFireRange : RAINAction
         {
             ai.WorkingMemory.SetItem("ToShootPos", target.transform.position, typeof(Vector3));
 
-            if (ai.Senses.IsDetected("ChasingBoundaries", target, "Player") == null)
+            if (ai.WorkingMemory.GetItem<bool>("Attacker"))
             {
-                ai.WorkingMemory.SetItem("canChase", false, typeof(bool));
+                if (ai.Senses.IsDetected("ChasingBoundaries", target, "Player") == null)
+                {
+                    ai.WorkingMemory.SetItem("canChase", false, typeof(bool));
+                }
             }
         }
-
-
-
 
 
 

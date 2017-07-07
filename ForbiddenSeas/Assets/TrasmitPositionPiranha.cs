@@ -38,7 +38,7 @@ public class TrasmitPositionPiranha : NetworkBehaviour
         else
             TransmitPosition();
 	}
-        
+
 	public void TransmitPosition()
 	{
 		//Debug.Log("###########"+Vector3.Distance(myTransform.position, lastPos));
@@ -60,7 +60,7 @@ public class TrasmitPositionPiranha : NetworkBehaviour
 
 	void LerpPosition()
 	{
-		Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
+		//Debug.Log("Sono " + netId + " mi sto spostando in " + transform.position);
         transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, new Vector3(syncPosX, 0, syncPosZ), lerpRate);
         transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), smoothTime);
 	}

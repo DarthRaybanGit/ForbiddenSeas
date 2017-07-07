@@ -245,7 +245,7 @@ public class SupportShip : NetworkBehaviour {
             yield return new WaitForSeconds(0.2f);
             RpcSetUnactiveTrigger(tag);
         }
-        yield return new WaitForSeconds(m_mainCD + 2f);
+        yield return new WaitForSeconds(m_mainCD + 3f);
         EndMainCoolDown();
     }
 
