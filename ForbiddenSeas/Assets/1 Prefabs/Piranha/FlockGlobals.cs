@@ -8,6 +8,7 @@ public class FlockGlobals: MonoBehaviour
     public float m_alignment =  1f;
     public float m_cohesion = 1f;
     public float m_separation = 0.1f;
+    public float limit = 9f;
 
     [Range(-1f, 1f)]
     public float m_visionAngle = -0.7f;
