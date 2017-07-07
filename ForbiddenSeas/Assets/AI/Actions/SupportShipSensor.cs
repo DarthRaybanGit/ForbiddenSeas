@@ -19,6 +19,7 @@ public class SupportShipSensor : RAINAction
         ai.WorkingMemory.SetItem("MyDestination", ai.Body.gameObject.GetComponent<SupportShip>().m_Destination.position, typeof(Vector3));
         ai.Senses.GetSensor("FlagShipView").MountPoint = ai.Body.gameObject.GetComponent<SupportShip>().m_Flagship.transform;
         ai.Senses.GetSensor("ChasingBoundaries").MountPoint = ai.Body.gameObject.GetComponent<SupportShip>().m_Flagship.transform;
+        ai.WorkingMemory.SetItem("Speed", ai.Body.gameObject.GetComponent<SupportShip>().m_Flagship.GetComponent<FlagshipStatus>().m_maxSpeed, typeof(float));
 
 
 

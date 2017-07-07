@@ -29,10 +29,8 @@ public class SearchEnemyInFireRange : RAINAction
             }
             else if (ra.Entity.Form.GetComponent<SupportShip>() && !ra.Entity.Form.GetComponent<SupportShip>().m_isDead)
             {
-                SupportShip left = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().LeftSupportShip.GetComponent<SupportShip>();
-                SupportShip right = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().RightSupportShip.GetComponent<SupportShip>();
 
-                if (((left) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != left.supportID : true) && ((right) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != right.supportID : true))
+                if(ra.Entity.Form.GetComponent<SupportShip>().fatherID != ai.Body.GetComponent<SupportShip>().fatherID)
                 {
                     enemiesInRange.Add(ra);
                 }

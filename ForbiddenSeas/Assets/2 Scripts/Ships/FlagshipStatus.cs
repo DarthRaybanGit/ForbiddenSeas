@@ -191,6 +191,36 @@ public class FlagshipStatus : NetworkBehaviour
 			m_Health -= dmg;
     }
 
+    [Command]
+    public void CmdSupportTakeDamage(int dmg, int supportID)
+    {
+
+        List<SupportShip> ls = GetComponent<CombatSystem>().getSupportShipList();
+
+        SupportShip target = null;
+
+        foreach(SupportShip s in ls) {
+            if (s.supportID == supportID)
+                target = s;
+        }
+
+        if (target)
+        {
+            if (target.m_Health > 0 && !target.m_isDead)
+                target.m_Health -= dmg;
+
+            if (target.m_Health <= 0 && !target.m_isDead)
+            {
+                target.m_Health = 0;
+                Debug.Log("Sono Morta Support " + supportID);
+                target.OnDeath();
+            }
+
+
+        }
+
+    }
+
     public void OnDeath()
     {
         if (m_Me.m_LocalTreasure && m_Me.m_HasTreasure)

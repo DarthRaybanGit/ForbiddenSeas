@@ -23,17 +23,14 @@ public class SupportShipSearchEnemy : RAINAction
 
             if (ra.Entity.Form.GetComponent<Player>() && !ra.Entity.Form.GetComponent<FlagshipStatus>().m_isDead)
             {
-                if (ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
+                if (ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().fatherID)
                 {
                     enemiesInRange.Add(ra);
                 }
             }
             else if (ra.Entity.Form.GetComponent<SupportShip>() && !ra.Entity.Form.GetComponent<SupportShip>().m_isDead)
             {
-                SupportShip left = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().LeftSupportShip.GetComponent<SupportShip>();
-                SupportShip right = ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<CombatSystem>().RightSupportShip.GetComponent<SupportShip>();
-
-                if (((left) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != left.supportID : true) && ((right) ? ra.Entity.Form.GetComponent<SupportShip>().supportID != right.supportID : true))
+                if (ra.Entity.Form.GetComponent<SupportShip>().fatherID != ai.Body.GetComponent<SupportShip>().fatherID)
                 {
                     enemiesInRange.Add(ra);
                 }
@@ -63,6 +60,9 @@ public class SupportShipSearchEnemy : RAINAction
 
 
         ai.WorkingMemory.SetItem("EnemySeen", target, typeof(GameObject));
+
+
+        Debug.Log("Il target è " + target + " e sono una support attaccante " + ai.WorkingMemory.GetItem<bool>("Attacker"));
 
         return ActionResult.SUCCESS;
     }
