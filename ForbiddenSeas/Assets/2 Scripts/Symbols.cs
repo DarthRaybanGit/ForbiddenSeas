@@ -55,12 +55,12 @@ public enum FixedDelayInGame
 
 public enum SupportShipStatistics
 {
-    ATTACKER_HP = 50,
-    ATTACKER_DMG = 70,
-    ATTACKER_DEF = 50,
-    DEFENSER_HP = 70,
-    DEFENSER_DMG = 50,
-    DEFENSER_DEF = 70
+    ATTACKER_HP = 30,
+    ATTACKER_DMG = 50,
+    ATTACKER_DEF = 30,
+    DEFENSER_HP = 50,
+    DEFENSER_DMG = 30,
+    DEFENSER_DEF = 50
 }
 
 public enum BuffTiming

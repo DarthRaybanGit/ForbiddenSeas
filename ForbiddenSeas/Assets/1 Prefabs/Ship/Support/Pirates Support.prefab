@@ -305,6 +305,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1191340253505458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4910838975229730}
+  - component: {fileID: 114233371022033154}
+  m_Layer: 0
+  m_Name: Entity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1195597146728976
 GameObject:
   m_ObjectHideFlags: 1
@@ -995,7 +1011,7 @@ GameObject:
   - component: {fileID: 114755765109482974}
   m_Layer: 10
   m_Name: Pirates Support
-  m_TagString: Player
+  m_TagString: Support
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1826,6 +1842,7 @@ Transform:
   - {fileID: 4265979700661618}
   - {fileID: 4789058009680094}
   - {fileID: 4300775086617806}
+  - {fileID: 4910838975229730}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -2430,6 +2447,19 @@ Transform:
   m_Father: {fileID: 4942110100920580}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4910838975229730
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191340253505458}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
+  m_Children: []
+  m_Father: {fileID: 4422879453581050}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4917285199752828
 Transform:
   m_ObjectHideFlags: 1
@@ -2772,6 +2802,35 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114233371022033154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191340253505458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 220721487, guid: 9fa2ecd1ff2ad394281dd3bf72c5b76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataSerializer:
+    _preferredSerialization: 2
+    _serializedData: 
+    _serializedMetaData: <meta></meta>
+    _serializedGameObjects: []
+    _serializedCustomData: []
+  _serializer:
+    _preferredSerialization: 1
+    _includeCustomData: 0
+    _serializedDocument: <component version="1.8" type="RAIN.Entities.EntityRig" reference="0"
+      includecustomdata="False"><_visualMode>OnWhenSelected</_visualMode><_useUnityMessages>True</_useUnityMessages><_entity
+      reference="1"><_entityName>Pirates Support</_entityName><_isActive>True</_isActive><_form
+      sceneobject="ab6ffca8-b615-4e35-885c-1943483a2078"></_form><_aspects><element0
+      type="RAIN.Entities.Aspects.VisualAspect" reference="2"><_showVisual>True</_showVisual><_aspectName>Player</_aspectName><_isActive>True</_isActive><_aspectColor>0.6,0,0,1</_aspectColor><_outlineColorOffset>-0.5</_outlineColorOffset><_selectionColorOffset>0.4</_selectionColorOffset><_visualSize>0.1</_visualSize><_mountPoint
+      sceneobject="ab6ffca8-b615-4e35-885c-1943483a2078" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset></element0></_aspects></_entity></component>
+    _serializedMetaDocument: <meta></meta>
+    _serializedObjects: []
+    _serializedCustomData: []
 --- !u!114 &114375771447284534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2787,6 +2846,8 @@ MonoBehaviour:
   m_Destination: {fileID: 0}
   m_Classe: 0
   m_Tipo: 0
+  supportID: -1
+  fatherID: 0
   m_MaxHealth: 0
   m_maxSpeed: 0
   m_maksuSpeedo: 0
@@ -2893,7 +2954,8 @@ MonoBehaviour:
       type="System.Boolean">False</Value></element6><element7 reference="24"><Key>EnemyPos</Key><ValueType>UnityEngine.Vector3</ValueType><Value
       type="UnityEngine.Vector3">0,0,0</Value></element7><element8 reference="25"><Key>Enemy</Key><ValueType>UnityEngine.GameObject</ValueType><Value></Value></element8><element9
       reference="26"><Key>haveToWait</Key><ValueType>System.Boolean</ValueType><Value
-      type="System.Boolean">True</Value></element9></_memoryItems></_workingMemory><_mind
+      type="System.Boolean">True</Value></element9><element10 reference="27"><Key>Speed</Key><ValueType>System.Single</ValueType><Value
+      type="System.Single">0</Value></element10></_memoryItems></_workingMemory><_mind
       type="RAIN.Minds.BasicMind" reference="3"><_behaviorTree object="0"></_behaviorTree><_behaviorTreeBindings></_behaviorTreeBindings></_mind><_motor
       type="RAIN.Motion.MecanimMotor" reference="4"><_speed>1</_speed><_rotationSpeed>360</_rotationSpeed><_closeEnoughDistance>0.1</_closeEnoughDistance><_closeEnoughAngle>0.1</_closeEnoughAngle><_faceBeforeMoveAngle>360</_faceBeforeMoveAngle><_maxHeightOffset>1</_maxHeightOffset><_allow3DMovement>False</_allow3DMovement><_allow3DRotation>False</_allow3DRotation><_allowOffGraphMovement>True</_allowOffGraphMovement><_useRootMotion>False</_useRootMotion><_overrideRootRotation>True</_overrideRootRotation><_mecanimParameters><element0
       reference="13"><_parameterName>Speed</_parameterName><_motorField>Speed</_motorField><_dampTime>0</_dampTime></element0></_mecanimParameters></_motor><_animator
@@ -2910,9 +2972,11 @@ MonoBehaviour:
       type="RAIN.Perception.Sensors.VisualSensor" reference="15"><_showVisual>True</_showVisual><_sensorName>SupportShipView</_sensorName><_isActive>True</_isActive><_sensorColor>0,0.6,0.6,1</_sensorColor><_mountPoint
       sceneobject="e89c0bdf-43e7-422f-acbf-1e3ba6b9573e" object="1" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>9.5</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>1024</_lineOfSightMask></element1><element2
       type="RAIN.Perception.Sensors.VisualSensor" reference="22"><_showVisual>True</_showVisual><_sensorName>ChasingBoundaries</_sensorName><_isActive>True</_isActive><_sensorColor>0.6,0.5529412,0.009411765,1</_sensorColor><_mountPoint
-      sceneobject="" object="2" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>22</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>1024</_lineOfSightMask></element2></_sensors></_senses><_customElements></_customElements></_ai></component>
+      sceneobject="" object="2" component="0"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>22</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>1024</_lineOfSightMask></element2><element3
+      type="RAIN.Perception.Sensors.VisualSensor" reference="28"><_showVisual>True</_showVisual><_sensorName>SupportShipView_Defenser</_sensorName><_isActive>True</_isActive><_sensorColor>0.6,0,0,1</_sensorColor><_mountPoint
+      object="5"></_mountPoint><_positionOffset>0,0,0</_positionOffset><_angleOffset>0,0,0</_angleOffset><_filters></_filters><_range>5.25</_range><_canDetectSelf>False</_canDetectSelf><_horizontalAngle>360</_horizontalAngle><_verticalAngle>180</_verticalAngle><_lineOfSight>False</_lineOfSight><_lineOfSightMask>-5</_lineOfSightMask></element3></_sensors></_senses><_customElements></_customElements></_ai></component>
     _serializedMetaDocument: <meta><element0><key>/component/_ai+_selected</key><value
-      type="System.Int32">1</value></element0><element1><key>/component/_ai/_navigator/_graphTags+_foldout</key><value
+      type="System.Int32">5</value></element0><element1><key>/component/_ai/_navigator/_graphTags+_foldout</key><value
       type="System.Boolean">False</value></element1><element2><key>/component/_ai/_animator/_animationStates/element0/startParameter+_foldout</key><value
       type="System.Boolean">True</value></element2><element3><key>/component/_ai/_animator/_animationStates/element0/stopParameter+_foldout</key><value
       type="System.Boolean">True</value></element3></meta>
@@ -2922,6 +2986,7 @@ MonoBehaviour:
     - {fileID: 4422879453581050}
     - {fileID: 4422879453581050}
     - {fileID: 1709368008555356}
+    - {fileID: 4422879453581050}
     _serializedCustomData:
     - DQo=
     - DQo=

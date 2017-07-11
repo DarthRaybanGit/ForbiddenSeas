@@ -15,7 +15,12 @@ public class SupportShip : NetworkBehaviour {
     public SupportShipType m_Tipo;
 
     [SyncVar]
-    public int supportID;
+    public int supportID = -1;
+    [SyncVar]
+    public int fatherID;
+    [SyncVar]
+    public bool m_Left = false;
+
 
     public int m_MaxHealth;
 
@@ -84,6 +89,11 @@ public class SupportShip : NetworkBehaviour {
 
     }
 
+    float journeyLenght;
+    float startTime;
+
+    bool isLerping = false;
+
     private void FixedUpdate()
     {
         if (isServer)
@@ -94,11 +104,55 @@ public class SupportShip : NetworkBehaviour {
                 lastPos = transform.position;
                 lastRot = transform.rotation.eulerAngles;
             }
+
+            if (m_Flagship)
+            {
+                m_maxSpeed = m_Flagship.GetComponent<MoveSimple>().maxSpeed;
+
+
+            }
+
         }
         else
         {
-            LerpPosition();
+            /*
+            if((Vector3.Distance(transform.position, new Vector3(syncPosX, 0, syncPosZ)) > threshold))
+            {
+                startTime = Time.time;
+                journeyLenght = Vector3.Distance(transform.position, new Vector3(syncPosX, 0, syncPosZ));
+
+                if (!isLerping)
+                    StartCoroutine(lerpa());
+            }*/
+
+            LerpPosition(0.5f);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), lerpRotRate);
+
+            if (LocalGameManager.Instance.GetPlayer(fatherID))
+            {
+                GetComponent<Animator>().SetFloat("Speed", LocalGameManager.Instance.GetPlayer(fatherID).GetComponent<Animator>().GetFloat("Speed"));
+            }
         }
+    }
+
+    IEnumerator lerpa()
+    {
+        isLerping = true;
+        while (true)
+        {
+            float distCovered = (Time.time - startTime) * lerpMoveRate;
+            float fracJourney = distCovered / journeyLenght;
+            LerpPosition(fracJourney);
+            if (fracJourney == 1)
+            {
+                isLerping = false;
+                break;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+        yield return null;
     }
 
     [ClientRpc]
@@ -109,16 +163,16 @@ public class SupportShip : NetworkBehaviour {
         syncRotY = rot;
     }
 
-    void LerpPosition()
+    void LerpPosition(float frac)
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), lerpMoveRate);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0f, syncRotY, 0f)), lerpRotRate);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(syncPosX, 0, syncPosZ), frac);
+
     }
 
 
 
 
-    public void InizializeSupportShip(SupportShipType tipo, GameObject owner, Transform dest, int index)
+    public void InizializeSupportShip(SupportShipType tipo, GameObject owner, Transform dest, int index, bool left)
     {
 
         m_Flagship = owner;
@@ -126,6 +180,8 @@ public class SupportShip : NetworkBehaviour {
         m_Destination = dest;
 
         supportID = m_Flagship.GetComponent<Player>().playerId + (index * 100);
+        fatherID = m_Flagship.GetComponent<Player>().playerId;
+        m_Left = left;
 
         if (!isServer)
             return;
@@ -203,6 +259,8 @@ public class SupportShip : NetworkBehaviour {
 
         }
 
+        m_Health = m_MaxHealth;
+
         m_AI.GetComponent<RAIN.Core.AIRig>().AI.Body = gameObject;
 
         m_AI.GetComponent<RAIN.Core.AIRig>().AI.IsActive = true;
@@ -245,7 +303,7 @@ public class SupportShip : NetworkBehaviour {
             yield return new WaitForSeconds(0.2f);
             RpcSetUnactiveTrigger(tag);
         }
-        yield return new WaitForSeconds(m_mainCD + 2f);
+        yield return new WaitForSeconds(m_mainCD + 3f);
         EndMainCoolDown();
     }
 
@@ -373,5 +431,105 @@ public class SupportShip : NetworkBehaviour {
 
 
 
+    bool lockForDoubleAttack = false;
+    int lastAttacker = -1;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isServer && LocalGameManager.Instance.GetPlayer(fatherID).GetComponent<Player>().isLocalPlayer && !m_isDead)
+        {
+            if (other.gameObject.Equals(gameObject) || (other.gameObject.GetComponentInParent<Player>() && other.gameObject.GetComponentInParent<Player>().playerId == fatherID) || (other.gameObject.GetComponentInParent<SupportShip>() && other.gameObject.GetComponentInParent<SupportShip>().fatherID == fatherID))
+                return;
+
+            int dmg;
+            switch (other.tag)
+            {
+                case "mainAttack":
+                    dmg = (other.GetComponentInParent<FlagshipStatus>()) ? other.GetComponentInParent<FlagshipStatus>().m_main : other.GetComponentInParent<SupportShip>().m_main;
+
+                    FlagshipStatus.ShipClass classe = (other.GetComponentInParent<FlagshipStatus>()) ? other.GetComponentInParent<FlagshipStatus>().shipClass : other.GetComponentInParent<SupportShip>().m_Classe;
+
+                    if (classe != FlagshipStatus.ShipClass.egyptians)
+                    {
+                        bool iCanSufferDmg = (other.gameObject.GetComponentInParent<Player>()) ? lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId : lastAttacker != other.gameObject.GetComponentInParent<SupportShip>().supportID;
+
+                        if (!lockForDoubleAttack && iCanSufferDmg)
+                        {
+                            lockForDoubleAttack = true;
+                            lastAttacker = (other.gameObject.GetComponentInParent<Player>()) ? other.gameObject.GetComponentInParent<Player>().playerId : other.gameObject.GetComponentInParent<SupportShip>().supportID;
+                            LocalGameManager.Instance.GetPlayer(fatherID).GetComponent<FlagshipStatus>().CmdSupportTakeDamage(Mathf.RoundToInt(dmg * (1f - m_defense)), supportID);
+                            StartCoroutine(doppioCollider());
+                        }
+                    }
+                    else
+                    {
+                        LocalGameManager.Instance.GetPlayer(fatherID).GetComponent<FlagshipStatus>().CmdSupportTakeDamage(Mathf.RoundToInt(dmg * (1f - m_defense)), supportID);
+                    }
+
+                    break;
+                case "specialAttack":
+
+                    dmg = other.GetComponentInParent<FlagshipStatus>().m_special;
+                    if (!lockForDoubleAttack && lastAttacker != other.gameObject.GetComponentInParent<Player>().playerId)
+                    {
+                        lockForDoubleAttack = true;
+                        lastAttacker = other.gameObject.GetComponentInParent<Player>().playerId;
+                        LocalGameManager.Instance.GetPlayer(fatherID).GetComponent<FlagshipStatus>().CmdSupportTakeDamage(Mathf.RoundToInt(dmg * (1f - m_defense)), supportID);
+                        StartCoroutine(doppioCollider());
+                    }
+                    break;
+                case "Miasma":
+                    /*
+                    bool check = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.poison];
+                    GetComponent<FlagshipStatus>().CmdMiasma(check);
+                    */
+                    break;
+                case "RasEye":
+                    /*
+                    bool check1 = GetComponent<FlagshipStatus>().debuffList[(int)DebuffStatus.blind];
+                    GetComponent<FlagshipStatus>().CmdBlind(GetComponent<NetworkIdentity>(), check1);
+                    */
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+
+    IEnumerator doppioCollider()
+    {
+        yield return new WaitForSeconds(0.4f);
+        lockForDoubleAttack = false;
+        lastAttacker = -1;
+    }
+
+
+    [Server]
+    public void OnDeath()
+    {
+        m_isDead = true;
+        m_Flagship.GetComponent<FlagshipStatus>().m_reputation += ReputationValues.SUPPKILLED;
+        m_Flagship.GetComponent<FlagshipStatus>().m_reputation = (m_Flagship.GetComponent<FlagshipStatus>().m_reputation < 0) ? 0 : m_Flagship.GetComponent<FlagshipStatus>().m_reputation;
+        m_Flagship.GetComponent<Player>().TargetRpcUpdateReputationUI(m_Flagship.GetComponent<NetworkIdentity>().connectionToClient);
+
+        m_Flagship.GetComponent<CombatSystem>().m_NumOfSupport--;
+        Invoke("killMe", 4f);
+    }
+
+    public void killMe()
+    {
+        //NetworkServer.UnSpawn(gameObject);
+        m_Flagship.GetComponent<CombatSystem>().m_NumOfSupport--;
+        if (m_Left)
+            m_Flagship.GetComponent<CombatSystem>().LeftSupportShip = null;
+        else
+            m_Flagship.GetComponent<CombatSystem>().RightSupportShip = null;
+        Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcSupportShipDeath()
+    {
+        Debug.Log("La support " + supportID + " del player " + fatherID + " è affondata!");
+    }
 }

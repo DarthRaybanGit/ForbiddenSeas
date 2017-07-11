@@ -21,9 +21,19 @@ public class SupportShipSearchEnemy : RAINAction
         foreach (RAIN.Entities.Aspects.RAINAspect ra in ai.Senses.Match("FlagShipView", "Player"))
         {
 
-            if(ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().m_Flagship.GetComponent<Player>().playerId)
+            if (ra.Entity.Form.GetComponent<Player>() && !ra.Entity.Form.GetComponent<FlagshipStatus>().m_isDead)
             {
-                enemiesInRange.Add(ra);
+                if (ra.Entity.Form.GetComponent<Player>().playerId != ai.Body.GetComponent<SupportShip>().fatherID)
+                {
+                    enemiesInRange.Add(ra);
+                }
+            }
+            else if (ra.Entity.Form.GetComponent<SupportShip>() && !ra.Entity.Form.GetComponent<SupportShip>().m_isDead)
+            {
+                if (ra.Entity.Form.GetComponent<SupportShip>().fatherID != ai.Body.GetComponent<SupportShip>().fatherID)
+                {
+                    enemiesInRange.Add(ra);
+                }
             }
             /*
             if (ra.Entity.Form.GetInstanceID() != ai.Body.GetComponent<SupportShip>().m_Flagship.GetInstanceID())
@@ -50,6 +60,9 @@ public class SupportShipSearchEnemy : RAINAction
 
 
         ai.WorkingMemory.SetItem("EnemySeen", target, typeof(GameObject));
+
+
+        Debug.Log("Il target è " + target + " e sono una support attaccante " + ai.WorkingMemory.GetItem<bool>("Attacker"));
 
         return ActionResult.SUCCESS;
     }
