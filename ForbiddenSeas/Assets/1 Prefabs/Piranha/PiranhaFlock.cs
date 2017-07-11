@@ -29,6 +29,7 @@ class PiranhaFlock: MonoBehaviour
             transform.LookAt(transform.position + Vector3.ProjectOnPlane(transform.forward, Vector3.up));
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
             transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);
+            transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
         }
 	}
 
