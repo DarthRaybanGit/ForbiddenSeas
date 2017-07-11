@@ -30,16 +30,14 @@ class PiranhaFlock: MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, dir, FlockGlobals.instance.m_rotSpeed * Time.deltaTime, 0.0f));
             transform.Translate(transform.forward * FlockGlobals.instance.m_speed * Time.deltaTime, Space.World);
         }
-
-       //transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-
 	}
 
 	public IEnumerator flock()
     {
 		while (true)
         {
-			Vector3 tmp = Vector3.zero, tmpdir = Vector3.zero;
+            Vector3 tmp = Vector3.zero;
+            Vector3 tmpdir = Vector3.zero;
 
             Collider[] neighbours = Physics.OverlapSphere(transform.position, FlockGlobals.instance.m_sight_radius, layer);
             tooClose = FlockGlobals.instance.m_sight_radius;
@@ -57,14 +55,9 @@ class PiranhaFlock: MonoBehaviour
 			tmpdir = baricentro.position - transform.position;
 			tmpdir.Normalize();
 
-			//  The nearer the closer boid, the greater the flock component factor.
             //dir = Mathf.Clamp((1f - tooClose/FlockGlobals.instance.m_sight_radius), 0.0f, 0.6f) * tmp + Mathf.Clamp((tooClose/FlockGlobals.instance.m_sight_radius), 0.4f, 0.8f) * tmpdir;
-            dir = Mathf.Clamp((1f - Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.0f, 0.6f) * tmp + Mathf.Clamp((Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.4f, 1f) * tmpdir;
-
-            /*
-             * The two component are clamped because, otherwise, if the flocklings 
-			 *  are too close to one another they will ignore the target
-             */         
+            dir = Mathf.Clamp((1f - Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.0f, 0.6f) * tmp
+                + Mathf.Clamp((Vector3.Distance(transform.position, baricentro.position)/FlockGlobals.instance.limit), 0.4f, 1f) * tmpdir;
 			dir.Normalize();
 			yield return null;
 		}
@@ -115,7 +108,6 @@ class PiranhaFlock: MonoBehaviour
 			
 			separation += tmp.normalized / Mathf.Clamp(tmp.magnitude, 0.0001f, float.PositiveInfinity);
 		}
-
 		return separation.normalized;
 	}
 
