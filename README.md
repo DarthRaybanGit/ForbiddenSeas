@@ -2,7 +2,7 @@
 
 Trailers:
  - https://www.youtube.com/watch?v=bYs-LBB1V0I
- -
+ - https://www.youtube.com/watch?v=XYyuRNClPzQ
 
 ## Game Overview
 ### Game Summary
